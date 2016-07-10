@@ -1,0 +1,16 @@
+[
+{
+  "modid": "basegems",
+  "name": "Base Gems",
+  "description": "Base Gems Addon",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://minecraft.curseforge.com/projects/base-gems",
+  "updateUrl": "",
+  "authorList": ["cyb3rkat"],
+  "credits": "DrCyano (aka Cyanobacterium)",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

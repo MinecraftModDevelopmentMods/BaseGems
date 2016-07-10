@@ -1,0 +1,53 @@
+itemGroup.basegems.items=Base Gems
+itemGroup.basegems.tools=Base Gems
+itemGroup.basegems.blocks=Base Gems
+nei.basegems.recipehandler.crusher.name=Crushed Blocks/Items
+
+item.basegems:template_arrow.name=Template Arrow
+item.basegems:template_axe.name=Template Axe
+item.basegems:template_bars.name=Template Bars
+item.basegems:template_blend.name=Template Blend
+item.basegems:template_block.name=Template Block
+item.basegems:template_boots.name=Template Boots
+item.basegems:template_bolt.name=Template Bolt
+item.basegems:template_bow.name=Template Bow
+item.basegems:template_chestplate.name=Template Chestplate
+item.basegems:template_crackhammer.name=Template Crack Hammer
+item.basegems:template_crossbow.name=Template Crossbow
+item.basegems:template_door.name=Template Door
+item.basegems:template_fishingrod.name=Template Fishing Rod
+item.basegems:template_gear.name=Template Gear
+item.basegems:template_helmet.name=Template Helmet
+item.basegems:template_hoe.name=Template Hoe
+item.basegems:template_horsearmor.name=Template Horse Armor
+item.basegems:template_ingot.name=Template Ingot
+item.basegems:template_leggings.name=Template Leg Armor
+item.basegems:template_nugget.name=Template Nugget
+item.basegems:template_ore.name=Template Ore
+item.basegems:template_pickaxe.name=Template Pickaxe
+item.basegems:template_powder.name=Powdered Template
+item.basegems:template_rod.name=Template Rod
+item.basegems:template_shears.name=Template Shears
+item.basegems:template_shovel.name=Template Shovel
+item.basegems:template_smallblend.name=Small Pile of Template Blend
+item.basegems:template_smallpowder.name=Small Pile of Powdered Template
+item.basegems:template_sword.name=Template Sword
+item.basegems:template_trapdoor.name=Template Trapdoor
+
+tile.basegems:template_bars.name=Template Bars
+tile.basegems:template_block.name=Template Block
+tile.basegems:template_door.name=Template Door
+tile.basegems:template_ore.name=Template Ore
+tile.basegems:template_plate.name=Template Plate
+tile.basegems:template_trapdoor.name=Template Trapdoor
+
+tooltip.template.tool=Nothing Special
+
+tooltip.template.armor=Nothing Special
+
+achievement.template_maker=Template Brass
+achievement.template_maker.desc=Combine powdered ??? and ??? to make ???
+
+fluid.basegems.template=Molten Template
+
+tile.basegems:template.name=Molten Template
