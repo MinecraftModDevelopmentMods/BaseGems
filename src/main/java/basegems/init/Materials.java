@@ -28,6 +28,7 @@ public abstract class Materials extends cyano.basemetals.init.Materials {
 	public static MetalMaterial heliodor;
 	public static MetalMaterial indicolite;
 	public static MetalMaterial iolite;
+	public static MetalMaterial jade;
 	public static MetalMaterial jasper;
 	public static MetalMaterial lepidolite;
 	public static MetalMaterial malachite;
@@ -71,6 +72,7 @@ public abstract class Materials extends cyano.basemetals.init.Materials {
 		heliodor = addMaterial("heliodor", 8, 8, 4.5);
 		indicolite = addMaterial("indicolite", 8, 8, 4.5);
 		iolite = addMaterial("iolite", 8, 8, 4.5);
+		jade = addMaterial("jade", 8, 8, 4.5);
 		jasper = addMaterial("jasper", 8, 8, 4.5);
 		lepidolite = addMaterial("lepidolite", 8, 8, 4.5);
 		malachite = addMaterial("malachite", 8, 8, 4.5);
