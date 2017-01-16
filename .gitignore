@@ -24,3 +24,5 @@ run
 /README.txt
 /forge-*-changelog.txt
 gradle.properties
+
+secret.json
