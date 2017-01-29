@@ -1,7 +1,7 @@
 package com.mcmoddev.basegems.integration.plugins;
 
-import cyano.basemetals.integration.BaseMetalsPlugin;
-import cyano.basemetals.integration.IIntegration;
+import com.mcmoddev.basemetals.integration.BaseMetalsPlugin;
+import com.mcmoddev.basemetals.integration.IIntegration;
 
 /**
  * VeinMiner Integration Plugin
@@ -10,13 +10,13 @@ import cyano.basemetals.integration.IIntegration;
  *
  */
 @BaseMetalsPlugin(VeinMiner.PLUGIN_MODID)
-public class VeinMiner extends cyano.basemetals.integration.plugins.VeinMiner implements IIntegration {
+public class VeinMiner extends com.mcmoddev.basemetals.integration.plugins.VeinMiner implements IIntegration {
 
 	private static boolean initDone = false;
 
 	@Override
 	public void init() {
-		if (initDone || !cyano.basemetals.util.Config.Options.ENABLE_VEINMINER) {
+		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.ENABLE_VEINMINER) {
 			return;
 		}
 /*

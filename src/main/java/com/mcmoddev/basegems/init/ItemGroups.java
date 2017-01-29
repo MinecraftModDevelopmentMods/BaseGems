@@ -1,19 +1,13 @@
 package com.mcmoddev.basegems.init;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
-
-import com.mcmoddev.basegems.init.Items;
-import com.mcmoddev.basegems.init.Materials;
-
 /**
  * This class initializes all item groups in Base Gems.
  *
- * @author DrCyano
+ * @author Jasmine Iwanek
  *
  */
-public class ItemGroups extends cyano.basemetals.init.ItemGroups {
-
+public class ItemGroups extends com.mcmoddev.lib.init.ItemGroups {
+/*
 	public static final java.util.function.BiFunction<ItemStack, ItemStack, Integer> sortingAlgorithm = (ItemStack a, ItemStack b) -> {
 		final int delta = Items.getSortingValue(a) - Items.getSortingValue(b);
 		if (delta == 0) {
@@ -21,10 +15,10 @@ public class ItemGroups extends cyano.basemetals.init.ItemGroups {
 		}
 		return delta;
 	};
-
-	public static CreativeTabs tab_blocks;
-	public static CreativeTabs tab_items;
-	public static CreativeTabs tab_tools;
+*/
+//	public static CreativeTabs tab_blocks;
+//	public static CreativeTabs tab_items;
+//	public static CreativeTabs tab_tools;
 
 	private static boolean initDone = false;
 
@@ -36,9 +30,9 @@ public class ItemGroups extends cyano.basemetals.init.ItemGroups {
 			return;
 		}
 
-		tab_blocks = addTab("blocks", true, Materials.vanilla_iron);
-		tab_items = addTab("items", true, Materials.vanilla_iron);
-		tab_tools = addTab("tools", true, Materials.vanilla_iron);
+//		tab_blocks = addTab("blocks", true, Materials.vanilla_iron);
+//		tab_items = addTab("items", true, Materials.vanilla_iron);
+//		tab_tools = addTab("tools", true, Materials.vanilla_iron);
 
 		initDone = true;
 	}

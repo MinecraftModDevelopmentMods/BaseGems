@@ -12,11 +12,11 @@ import net.minecraftforge.fml.common.event.*;
  * @author Jasmine Iwanek
  *
  */
-@Mod(modid = BaseGems.MODID, name = BaseGems.NAME, version = BaseGems.VERSION, dependencies = "required-after:Forge@[12.17.0.1976,);required-after:basemetals;before:buildingbricks", acceptedMinecraftVersions = "[1.10.2,)", updateJSON = "https://raw.githubusercontent.com/jriwanek/BaseGems/master/update.json")
+@Mod(modid = BaseGems.MODID, name = BaseGems.NAME, version = BaseGems.VERSION, dependencies = "required-after:Forge@[12.17.0.1976,);required-after:basemetals;before:buildingbricks", acceptedMinecraftVersions = "[1.10.2,)", updateJSON = BaseGems.UPDATEJSON)
 public class BaseGems {
 
 	@Instance
-	public static BaseGems INSTANCE = new BaseGems();
+	public static BaseGems INSTANCE;
 
 	/** ID of this Mod */
 	public static final String MODID = "basegems";
@@ -31,18 +31,14 @@ public class BaseGems {
 	 */
 	public static final String VERSION = "0.12.0-beta1";
 
+	public static final String UPDATEJSON = "https://raw.githubusercontent.com/MinecraftModDevelopment/BaseGems/master/update.json";
+
 	@SidedProxy(clientSide = "basegems.proxy.ClientProxy", serverSide = "basegems.proxy.ServerProxy")
-	public static CommonProxy PROXY = null;
+	public static CommonProxy PROXY;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-//		INSTANCE = this;
 		PROXY.preInit(event);
-	}
-
-	@EventHandler
-	public void onRemap(FMLMissingMappingsEvent event) {
-		PROXY.onRemap(event);
 	}
 
 	@EventHandler
@@ -53,5 +49,10 @@ public class BaseGems {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		PROXY.postInit(event);
+	}
+
+	@EventHandler
+	public void onRemap(FMLMissingMappingsEvent event) {
+		PROXY.onRemap(event);
 	}
 }

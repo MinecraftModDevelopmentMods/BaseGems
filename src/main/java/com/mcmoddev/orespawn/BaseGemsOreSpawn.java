@@ -1,9 +1,8 @@
 package com.mcmoddev.orespawn;
 
 import com.google.common.base.Function;
-import com.mcmoddev.basegems.init.Blocks;
-import com.mcmoddev.orespawn.api.OreSpawnAPI;
-import com.mcmoddev.orespawn.api.SpawnLogic;
+import mmd.orespawn.api.OreSpawnAPI;
+import mmd.orespawn.api.SpawnLogic;
 
 public class BaseGemsOreSpawn implements Function<OreSpawnAPI, SpawnLogic> {
 
@@ -13,21 +12,21 @@ public class BaseGemsOreSpawn implements Function<OreSpawnAPI, SpawnLogic> {
 
 /*
 		logic.getDimension(-1)
-				.addOre(Blocks.coldiron_ore.getDefaultState(), 8, 4, 5, 0, 128)
-				.addOre(Blocks.adamantine_ore.getDefaultState(), 8, 4, 2, 0, 128);
+				.addOre(Materials.coldiron_ore.getDefaultState(), 8, 4, 5, 0, 128)
+				.addOre(Materials.adamantine.ore.getDefaultState(), 8, 4, 2, 0, 128);
 
 		logic.getDimension(OreSpawnAPI.DIMENSION_WILDCARD)
-				.addOre(Blocks.copper_ore.getDefaultState(), 8, 4, 10, 0,  96)
-				.addOre(Blocks.silver_ore.getDefaultState(), 8, 4,  4, 0,  32)
-				.addOre(Blocks.tin_ore.getDefaultState(), 8, 4, 10, 0, 128)
-				.addOre(Blocks.lead_ore.getDefaultState(), 8, 4, 5, 0, 64)
-				.addOre(Blocks.zinc_ore.getDefaultState(), 8, 4, 5, 0, 96)
-				.addOre(Blocks.mercury_ore.getDefaultState(), 8, 4, 3, 0, 32)
-				.addOre(Blocks.nickel_ore.getDefaultState(), 8, 4, 1, 32, 96);
-//				.addOre(Blocks.platinum_ore.getDefaultState(), 8, 4, 0.125f, 1, 32); // Currently broken
+				.addOre(Materials.copper.ore.getDefaultState(), 8, 4, 10, 0,  96)
+				.addOre(Materials.silver.ore.getDefaultState(), 8, 4,  4, 0,  32)
+				.addOre(Materials.tin.ore.getDefaultState(), 8, 4, 10, 0, 128)
+				.addOre(Materials.lead.ore.getDefaultState(), 8, 4, 5, 0, 64)
+				.addOre(Materials.zinc.ore.getDefaultState(), 8, 4, 5, 0, 96)
+				.addOre(Materials.mercury.ore.getDefaultState(), 8, 4, 3, 0, 32)
+				.addOre(Materials.nickel.ore.getDefaultState(), 8, 4, 1, 32, 96);
+//				.addOre(Materials.platinum.ore.getDefaultState(), 8, 4, 0.125f, 1, 32); // Currently broken
 
 		logic.getDimension(1)
-				.addOre(Blocks.starsteel_ore.getDefaultState(), 8, 4, 5, 0, 255);
+				.addOre(Materials.starsteel.ore.getDefaultState(), 8, 4, 5, 0, 255);
 */
 		return logic;
 	}

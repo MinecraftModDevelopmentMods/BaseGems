@@ -1,7 +1,7 @@
 package com.mcmoddev.basegems.integration.plugins;
 
-import cyano.basemetals.integration.BaseMetalsPlugin;
-import cyano.basemetals.integration.IIntegration;
+import com.mcmoddev.basemetals.integration.BaseMetalsPlugin;
+import com.mcmoddev.basemetals.integration.IIntegration;
 
 /**
  *
@@ -9,7 +9,7 @@ import cyano.basemetals.integration.IIntegration;
  *
  */
 @BaseMetalsPlugin(EnderIO.PLUGIN_MODID)
-public class EnderIO extends cyano.basemetals.integration.plugins.EnderIO implements IIntegration {
+public class EnderIO extends com.mcmoddev.basemetals.integration.plugins.EnderIO implements IIntegration {
 
 	private static boolean initDone = false;
 
@@ -18,7 +18,7 @@ public class EnderIO extends cyano.basemetals.integration.plugins.EnderIO implem
 	 */
 	@Override
 	public void init() {
-		if (initDone || !cyano.basemetals.util.Config.Options.ENABLE_ENDER_IO) {
+		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.ENABLE_ENDER_IO) {
 			return;
 		}
 

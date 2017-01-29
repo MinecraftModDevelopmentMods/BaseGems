@@ -1,19 +1,15 @@
 package com.mcmoddev.basegems.init;
 
+import com.mcmoddev.basemetals.material.MetalMaterial;
 import com.mcmoddev.basegems.util.Config.Options;
-
-import net.minecraftforge.fluids.*;
 
 /**
  * This class initializes all fluids in Base Gems.
  *
- * @author DrCyano
+ * @author Jasmine Iwanek
  *
  */
-public class Fluids extends cyano.basemetals.init.Fluids {
-
-	public static Fluid fluidAgate = null;
-	public static BlockFluidBase fluidBlockAgate = null;
+public class Fluids extends com.mcmoddev.lib.init.Fluids {
 
 	private static boolean initDone = false;
 
@@ -25,205 +21,206 @@ public class Fluids extends cyano.basemetals.init.Fluids {
 			return;
 		}
 
-		String materialName;
+		MetalMaterial material;
 
+		// fluids and fluid blocks
 		if (Options.ENABLE_AGATE) {
-			materialName = "agate";
+			material = Materials.agate;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_ALEXANDRITE) {
-			materialName = "alexandrite";
+			material = Materials.alexandrite;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_AMBER) {
-			materialName = "amber";
+			material = Materials.amber;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_AMETHYST) {
-			materialName = "amethyst";
+			material = Materials.amethyst;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_AMETRINE) {
-			materialName = "ametrine";
+			material = Materials.ametrine;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_AQUAMARINE) {
-			materialName = "aquamarine";
+			material = Materials.aquamarine;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_BERYL) {
-			materialName = "beryl";
+			material = Materials.beryl;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_BLACKDIAMOND) {
-			materialName = "blackdiamond";
+			material = Materials.blackdiamond;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_BLUETOPAZ) {
-			materialName = "bluetopaz";
+			material = Materials.bluetopaz;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_CARNELIAN) {
-			materialName = "carnelian";
+			material = Materials.carnelian;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_CITRINE) {
-			materialName = "citrine";
+			material = Materials.citrine;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_GARNET) {
-			materialName = "garnet";
+			material = Materials.garnet;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_GOLDENBERYL) {
-			materialName = "goldenberyl";
+			material = Materials.goldenberyl;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_HELIODOR) {
-			materialName = "heliodor";
+			material = Materials.heliodor;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_INDICOLITE) {
-			materialName = "indicolite";
+			material = Materials.indicolite;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_IOLITE) {
-			materialName = "iolite";
+			material = Materials.iolite;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_JADE) {
-			materialName = "jade";
+			material = Materials.jade;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_JASPER) {
-			materialName = "jasper";
+			material = Materials.jasper;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_LEPIDOLITE) {
-			materialName = "lepidolite";
+			material = Materials.lepidolite;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_MALACHITE) {
-			materialName = "malachite";
+			material = Materials.malachite;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_MOLDAVITE) {
-			materialName = "moldovite";
+			material = Materials.moldavite;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_MOONSTONE) {
-			materialName = "moonstone";
+			material = Materials.moonstone;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_MORGANITE) {
-			materialName = "morganite";
+			material = Materials.morganite;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_ONYX) {
-			materialName = "onyx";
+			material = Materials.onyx;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_OPAL) {
-			materialName = "opal";
+			material = Materials.opal;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_PERIDOT) {
-			materialName = "peridot";
+			material = Materials.peridot;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_RUBY) {
-			materialName = "ruby";
+			material = Materials.ruby;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_SAPPHIRE) {
-			materialName = "sapphire";
+			material = Materials.sapphire;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_SPINEL) {
-			materialName = "spinel";
+			material = Materials.spinel;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_TANZANITE) {
-			materialName = "tanzanite";
+			material = Materials.tanzanite;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_TOPAZ) {
-			materialName = "topaz";
+			material = Materials.topaz;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_TURQUOISE) {
-			materialName = "turquoise";
+			material = Materials.turquoise;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 		if (Options.ENABLE_VIOLETSAPPHIRE) {
-			materialName = "violetsapphire";
+			material = Materials.violetsapphire;
 
-			fluidAgate = addFluid(materialName, 2000, 10000, 330, 10);
-			fluidBlockAgate = addFluidBlock(materialName);
+			addFluid(material, 2000, 10000, 330, 10);
+			addFluidBlock(material);
 		}
 
 		initDone = true;

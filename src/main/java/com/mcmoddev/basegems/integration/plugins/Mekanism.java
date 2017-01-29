@@ -1,34 +1,40 @@
 package com.mcmoddev.basegems.integration.plugins;
 
-import cyano.basemetals.integration.BaseMetalsPlugin;
-import cyano.basemetals.integration.IIntegration;
+import com.mcmoddev.basegems.init.Materials;
+import com.mcmoddev.basegems.util.Config.Options;
+import com.mcmoddev.basemetals.integration.BaseMetalsPlugin;
+import com.mcmoddev.basemetals.integration.IIntegration;
+import com.mcmoddev.basemetals.material.MetalMaterial;
+
+import net.minecraft.item.ItemStack;
 
 @BaseMetalsPlugin(Mekanism.PLUGIN_MODID)
-public class Mekanism extends cyano.basemetals.integration.plugins.Mekanism implements IIntegration {
+public class Mekanism extends com.mcmoddev.basemetals.integration.plugins.Mekanism implements IIntegration {
 
 	private static boolean initDone = false;
 
 	@Override
 	public void init() {
-		if (initDone || !cyano.basemetals.util.Config.Options.ENABLE_MEKANISM) {
+		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.ENABLE_MEKANISM) {
 			return;
 		}
 
-		/*
-		if (Options.ENABLE_ALUMINUM) {
-			addCrusherRecipe(new ItemStack(Items.aluminum_clump), new ItemStack(Items.aluminum_powder_dirty)); // Verified
-			addCrusherRecipe(new ItemStack(Items.aluminum_ingot), new ItemStack(Items.aluminum_powder)); // Verified
+		MetalMaterial material;
 
-			addEnrichmentChamberRecipe(new ItemStack(Blocks.aluminum_ore), new ItemStack(Items.aluminum_powder, 2)); // Verified
-			addEnrichmentChamberRecipe(new ItemStack(Items.aluminum_powder_dirty), new ItemStack(Items.aluminum_powder)); // Verified
+		if (Options.ENABLE_AGATE) {
+			material = Materials.agate;
+			addCrusherRecipe(new ItemStack(material.clump), new ItemStack(material.powder_dirty));
+			addCrusherRecipe(new ItemStack(material.ingot), new ItemStack(material.powder));
 
-			addPurificationChamberRecipe(new ItemStack(Blocks.aluminum_ore), new ItemStack(Items.aluminum_clump, 3)); // Verified
-			addPurificationChamberRecipe(new ItemStack(Items.aluminum_shard), new ItemStack(Items.aluminum_clump)); // Verified
+			addEnrichmentChamberRecipe(new ItemStack(material.ore), new ItemStack(material.powder, 2));
+			addEnrichmentChamberRecipe(new ItemStack(material.powder_dirty), new ItemStack(material.powder));
 
-			addChemicalInjectionChamberRecipe(new ItemStack(Blocks.aluminum_ore), new ItemStack(Items.aluminum_shard, 4)); // Verified
-			addChemicalInjectionChamberRecipe(new ItemStack(Items.aluminum_crystal), new ItemStack(Items.aluminum_shard)); // Verified
+			addPurificationChamberRecipe(new ItemStack(material.ore), new ItemStack(material.clump, 3));
+			addPurificationChamberRecipe(new ItemStack(material.shard), new ItemStack(material.clump));
+
+			addChemicalInjectionChamberRecipe(new ItemStack(material.ore), new ItemStack(material.shard, 4));
+			addChemicalInjectionChamberRecipe(new ItemStack(material.crystal), new ItemStack(material.shard));
 		}
-		*/
 
 		initDone = true;
 	}

@@ -1,12 +1,12 @@
 package com.mcmoddev.basegems.init;
+import com.mcmoddev.basegems.util.Config.Options;
 
-import cyano.basemetals.util.Config.Options;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.fml.common.Loader;
 
 /** initializer for achievements */
-public class Achievements extends cyano.basemetals.init.Achievements {
+public class Achievements extends com.mcmoddev.lib.init.Achievements {
 
 	public static Achievement agate_maker; // make blend
 
@@ -20,11 +20,13 @@ public class Achievements extends cyano.basemetals.init.Achievements {
 			return;
 		}
 
-		if (Options.ENABLE_ACHIEVEMENTS) {
+		if (com.mcmoddev.basemetals.util.Config.Options.ENABLE_ACHIEVEMENTS) {
 			AchievementPage page = new AchievementPage(Loader.instance().activeModContainer().getModId());
 			AchievementPage.registerAchievementPage(page);
 
-			agate_maker = makeAchievement("agate_maker", cyano.basemetals.init.Achievements.metallurgy, 0, 0, Materials.agate.ingot, page);
+			if (Options.ENABLE_AGATE) {
+				agate_maker = makeAchievement("agate_maker", com.mcmoddev.basemetals.init.Achievements.metallurgy, 0, 0, Materials.agate.ingot, page);
+			}
 		}
 
 		initDone = true;

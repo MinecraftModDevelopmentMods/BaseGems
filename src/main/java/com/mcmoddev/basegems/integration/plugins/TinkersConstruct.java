@@ -2,8 +2,8 @@ package com.mcmoddev.basegems.integration.plugins;
 
 import com.mcmoddev.basegems.util.Config.Options;
 
-import cyano.basemetals.integration.BaseMetalsPlugin;
-import cyano.basemetals.integration.IIntegration;
+import com.mcmoddev.basemetals.integration.BaseMetalsPlugin;
+import com.mcmoddev.basemetals.integration.IIntegration;
 
 /**
  *
@@ -11,17 +11,18 @@ import cyano.basemetals.integration.IIntegration;
  *
  */
 @BaseMetalsPlugin(TinkersConstruct.PLUGIN_MODID)
-public class TinkersConstruct extends cyano.basemetals.integration.plugins.TinkersConstruct implements IIntegration {
+public class TinkersConstruct extends com.mcmoddev.basemetals.integration.plugins.TinkersConstruct implements IIntegration {
 
 	private static boolean initDone = false;
 
 	@Override
 	public void init() {
-		if (initDone || !cyano.basemetals.util.Config.Options.ENABLE_TINKERS_CONSTRUCT) {
+		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.ENABLE_TINKERS_CONSTRUCT) {
 			return;
 		}
 
 		if (Options.ENABLE_AGATE) {
+			//registerMaterial("agate", false, true);
 			//registerFluid("agate");
 		}
 		if (Options.ENABLE_ALEXANDRITE) {

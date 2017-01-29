@@ -1,9 +1,8 @@
 package com.mcmoddev.basegems.init;
 
-
 import com.mcmoddev.basegems.util.Config.Options;
 
-import cyano.basemetals.material.MetalMaterial;
+import com.mcmoddev.basemetals.material.MetalMaterial;
 
 /**
  * This class initializes all of the materials in Base Gems.
@@ -11,7 +10,7 @@ import cyano.basemetals.material.MetalMaterial;
  * @author DrCyano
  *
  */
-public class Materials extends cyano.basemetals.init.Materials {
+public class Materials extends com.mcmoddev.lib.init.Materials {
 
 	public static MetalMaterial agate;
 	public static MetalMaterial alexandrite;

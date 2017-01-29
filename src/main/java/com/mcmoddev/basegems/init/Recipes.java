@@ -1,15 +1,13 @@
 package com.mcmoddev.basegems.init;
 
-import net.minecraft.item.*;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.*;
+import com.mcmoddev.basegems.util.Config.Options;
 
 /**
  *
  * @author Jasmine Iwanek
  *
  */
-public class Recipes extends cyano.basemetals.init.Recipes {
+public class Recipes extends com.mcmoddev.lib.init.Recipes {
 
 	private static boolean initDone = false;
 
@@ -32,9 +30,9 @@ public class Recipes extends cyano.basemetals.init.Recipes {
 
 	private static void initModSpecificRecipes() {
 		// alloy blends
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Materials.agate.blend, 2), "dustAgate", "dustAgate"));
-
-		// small alloy blends
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Materials.agate.smallblend, 2), "smalldustAgate", "smalldustAgate"));
+		if (Options.ENABLE_AGATE) {
+			//GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Materials.agate.blend, 2), "dustAgate", "dustAgate"));
+			//GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Materials.agate.smallblend, 2), "smalldustAgate", "smalldustAgate"));
+		}
 	}
 }
