@@ -1,5 +1,8 @@
 package com.mcmoddev.basegems;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.mcmoddev.basegems.proxy.CommonProxy;
 
 import net.minecraftforge.fml.common.*;
