@@ -10,7 +10,7 @@ public class IC2 extends com.mcmoddev.lib.integration.plugins.IC2 implements IIn
 
 	@Override
 	public void init() {
-		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.ENABLE_IC2) {
+		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.enableIC2) {
 			return;
 		}
 

@@ -2,10 +2,10 @@ package com.mcmoddev.basegems.integration.plugins;
 
 import com.mcmoddev.basegems.integration.BaseGemsPlugin;
 import com.mcmoddev.basegems.util.Config.Options;
+import com.mcmoddev.basegems.init.Materials;
+
 
 import com.mcmoddev.lib.integration.IIntegration;
-
-import com.mcmoddev.basegems.init.Materials;
 
 /**
  *
@@ -19,7 +19,7 @@ public class TinkersConstruct extends com.mcmoddev.lib.integration.plugins.Tinke
 
 	@Override
 	public void init() {
-		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.ENABLE_TINKERS_CONSTRUCT) {
+		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.enableTinkersConstruct) {
 			return;
 		}
 

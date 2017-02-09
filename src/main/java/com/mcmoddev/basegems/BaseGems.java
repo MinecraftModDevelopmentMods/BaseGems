@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.Mod.*;
 import net.minecraftforge.fml.common.event.*;
 
 /**
- * This is the entry point for this mod.
+ * This is the entry point for this Mod.
  *
  * @author Jasmine Iwanek
  *
@@ -33,26 +33,37 @@ public class BaseGems {
 
 	public static final String UPDATEJSON = "https://raw.githubusercontent.com/MinecraftModDevelopment/BaseGems/master/update.json";
 
-	@SidedProxy(clientSide = "basegems.proxy.ClientProxy", serverSide = "basegems.proxy.ServerProxy")
+	private static final String PROXY_BASE = "com.mcmoddev." + MODID + ".proxy.";
+
+	@SidedProxy(clientSide = PROXY_BASE + "ClientProxy", serverSide = PROXY_BASE + "ServerProxy")
 	public static CommonProxy proxy;
 
+	public static Logger logger;
+/*
+	private ModernMetals() {
+		throw new IllegalAccessError("Not a instantiable class");
+	}
+*/
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
+	public static void preInit(FMLPreInitializationEvent event) {
+//		logger = event.getModLog();
+		logger = LogManager.getFormatterLogger(BaseGems.MODID);
+
 		proxy.preInit(event);
 	}
 
 	@EventHandler
-	public void init(FMLInitializationEvent event) {
+	public static void init(FMLInitializationEvent event) {
 		proxy.init(event);
 	}
 
 	@EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
+	public static void postInit(FMLPostInitializationEvent event) {
 		proxy.postInit(event);
 	}
 
 	@EventHandler
-	public void onRemap(FMLMissingMappingsEvent event) {
+	public static void onRemap(FMLMissingMappingsEvent event) {
 		proxy.onRemap(event);
 	}
 }

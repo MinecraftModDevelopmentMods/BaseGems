@@ -15,7 +15,7 @@ public class Mekanism extends com.mcmoddev.lib.integration.plugins.Mekanism impl
 
 	@Override
 	public void init() {
-		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.ENABLE_MEKANISM) {
+		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.enableMekanism) {
 			return;
 		}
 

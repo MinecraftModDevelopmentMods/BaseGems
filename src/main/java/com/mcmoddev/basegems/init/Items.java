@@ -14,6 +14,10 @@ public class Items extends com.mcmoddev.lib.init.Items {
 
 	private static boolean initDone = false;
 
+	protected Items() {
+		throw new IllegalAccessError("Not a instantiable class");
+	}
+
 	/**
 	 *
 	 */
