@@ -1,6 +1,6 @@
 package com.mcmoddev.basegems.init;
 
-import com.mcmoddev.basemetals.material.MetalMaterial;
+import com.mcmoddev.lib.material.MetalMaterial;
 import com.mcmoddev.basegems.util.Config.Options;
 
 /**

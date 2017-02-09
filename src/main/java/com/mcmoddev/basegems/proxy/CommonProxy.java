@@ -43,7 +43,9 @@ public class CommonProxy {
 		for (final MissingMapping mapping : event.get()) {
 			if (mapping.resourceLocation.getResourceDomain().equals(BaseGems.MODID)) {
 				if (mapping.type.equals(GameRegistry.Type.BLOCK)) {
+					// Dummy
 				} else if (mapping.type.equals(GameRegistry.Type.ITEM)) {
+					// Dummy
 				}
 			}
 		}

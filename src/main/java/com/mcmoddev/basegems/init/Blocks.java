@@ -2,8 +2,6 @@ package com.mcmoddev.basegems.init;
 
 import com.mcmoddev.basegems.util.Config.Options;
 
-import com.mcmoddev.basemetals.material.MetalMaterial;
-
 /**
  * This class initializes all blocks in Base Gems.
  *
@@ -25,171 +23,136 @@ public class Blocks extends com.mcmoddev.lib.init.Blocks {
 		Materials.init();
 		ItemGroups.init();
 
-		MetalMaterial material;
-
 		if (Options.ENABLE_AGATE) {
-			material = Materials.agate;
-			createBlocksFull(material);
+			createBlocksFull(Materials.agate);
 		}
 
 		if (Options.ENABLE_ALEXANDRITE) {
-			material = Materials.alexandrite;
-			createBlocksFull(material);
+			createBlocksFull(Materials.alexandrite);
 		}
 
 		if (Options.ENABLE_AMBER) {
-			material = Materials.amber;
-			createBlocksFull(material);
+			createBlocksFull(Materials.amber);
 		}
 
 		if (Options.ENABLE_AMETHYST) {
-			material = Materials.amethyst;
-			createBlocksFull(material);
+			createBlocksFull(Materials.amethyst);
 		}
 
 		if (Options.ENABLE_AMETRINE) {
-			material = Materials.ametrine;
-			createBlocksFull(material);
+			createBlocksFull(Materials.ametrine);
 		}
 
 		if (Options.ENABLE_AQUAMARINE) {
-			material = Materials.aquamarine;
-			createBlocksFull(material);
+			createBlocksFull(Materials.aquamarine);
 		}
 
 		if (Options.ENABLE_BERYL) {
-			material = Materials.beryl;
-			createBlocksFull(material);
+			createBlocksFull(Materials.beryl);
 		}
 
 		if (Options.ENABLE_BLACKDIAMOND) {
-			material = Materials.blackdiamond;
-			createBlocksFull(material);
+			createBlocksFull(Materials.blackdiamond);
 		}
 
 		if (Options.ENABLE_BLUETOPAZ) {
-			material = Materials.bluetopaz;
-			createBlocksFull(material);
+			createBlocksFull(Materials.bluetopaz);
 		}
 
 		if (Options.ENABLE_CARNELIAN) {
-			material = Materials.carnelian;
-			createBlocksFull(material);
+			createBlocksFull(Materials.carnelian);
 		}
 
 		if (Options.ENABLE_CITRINE) {
-			material = Materials.citrine;
-			createBlocksFull(material);
+			createBlocksFull(Materials.citrine);
 		}
 
 		if (Options.ENABLE_GARNET) {
-			material = Materials.garnet;
-			createBlocksFull(material);
+			createBlocksFull(Materials.garnet);
 		}
 
 		if (Options.ENABLE_GOLDENBERYL) {
-			material = Materials.goldenberyl;
-			createBlocksFull(material);
+			createBlocksFull(Materials.goldenberyl);
 		}
 
 		if (Options.ENABLE_HELIODOR) {
-			material = Materials.heliodor;
-			createBlocksFull(material);
+			createBlocksFull(Materials.heliodor);
 		}
 
 		if (Options.ENABLE_INDICOLITE) {
-			material = Materials.indicolite;
-			createBlocksFull(material);
+			createBlocksFull(Materials.indicolite);
 		}
 
 		if (Options.ENABLE_IOLITE) {
-			material = Materials.iolite;
-			createBlocksFull(material);
+			createBlocksFull(Materials.iolite);
 		}
 
 		if (Options.ENABLE_JADE) {
-			material = Materials.jade;
-			createBlocksFull(material);
+			createBlocksFull(Materials.jade);
 		}
 
 		if (Options.ENABLE_JASPER) {
-			material = Materials.jasper;
-			createBlocksFull(material);
+			createBlocksFull(Materials.jasper);
 		}
 
 		if (Options.ENABLE_LEPIDOLITE) {
-			material = Materials.lepidolite;
-			createBlocksFull(material);
+			createBlocksFull(Materials.lepidolite);
 		}
 
 		if (Options.ENABLE_MALACHITE) {
-			material = Materials.malachite;
-			createBlocksFull(material);
+			createBlocksFull(Materials.malachite);
 		}
 
 		if (Options.ENABLE_MOLDAVITE) {
-			material = Materials.moldavite;
-			createBlocksFull(material);
+			createBlocksFull(Materials.moldavite);
 		}
 
 		if (Options.ENABLE_MOONSTONE) {
-			material = Materials.moonstone;
-			createBlocksFull(material);
+			createBlocksFull(Materials.moonstone);
 		}
 
 		if (Options.ENABLE_MORGANITE) {
-			material = Materials.morganite;
-			createBlocksFull(material);
+			createBlocksFull(Materials.morganite);
 		}
 
 		if (Options.ENABLE_ONYX) {
-			material = Materials.onyx;
-			createBlocksFull(material);
+			createBlocksFull(Materials.onyx);
 		}
 
 		if (Options.ENABLE_OPAL) {
-			material = Materials.opal;
-			createBlocksFull(material);
+			createBlocksFull(Materials.opal);
 		}
 
 		if (Options.ENABLE_PERIDOT) {
-			material = Materials.peridot;
-			createBlocksFull(material);
+			createBlocksFull(Materials.peridot);
 		}
 
 		if (Options.ENABLE_RUBY) {
-			material = Materials.ruby;
-			createBlocksFull(material);
+			createBlocksFull(Materials.ruby);
 		}
 
 		if (Options.ENABLE_SAPPHIRE) {
-			material = Materials.sapphire;
-			createBlocksFull(material);
+			createBlocksFull(Materials.sapphire);
 		}
 
 		if (Options.ENABLE_SPINEL) {
-			material = Materials.spinel;
-			createBlocksFull(material);
+			createBlocksFull(Materials.spinel);
 		}
 
 		if (Options.ENABLE_TANZANITE) {
-			material = Materials.tanzanite;
-			createBlocksFull(material);
+			createBlocksFull(Materials.tanzanite);
 		}
 
 		if (Options.ENABLE_TOPAZ) {
-			material = Materials.topaz;
-			createBlocksFull(material);
+			createBlocksFull(Materials.topaz);
 		}
 
 		if (Options.ENABLE_TURQUOISE) {
-			material = Materials.turquoise;
-			createBlocksFull(material);
+			createBlocksFull(Materials.turquoise);
 		}
 
 		if (Options.ENABLE_VIOLETSAPPHIRE) {
-			material = Materials.violetsapphire;
-			createBlocksFull(material);
+			createBlocksFull(Materials.violetsapphire);
 		}
 
 		initDone = true;

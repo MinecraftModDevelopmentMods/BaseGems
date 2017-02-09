@@ -1,15 +1,15 @@
 package com.mcmoddev.basegems.integration.plugins;
 
-import com.mcmoddev.basemetals.integration.BaseMetalsPlugin;
-import com.mcmoddev.basemetals.integration.IIntegration;
+import com.mcmoddev.basegems.integration.BaseGemsPlugin;
+import com.mcmoddev.lib.integration.IIntegration;
 
 /**
  *
  * @author Jasmine Iwanek
  *
  */
-@BaseMetalsPlugin(EnderIO.PLUGIN_MODID)
-public class EnderIO extends com.mcmoddev.basemetals.integration.plugins.EnderIO implements IIntegration {
+@BaseGemsPlugin(EnderIO.PLUGIN_MODID)
+public class EnderIO extends com.mcmoddev.lib.integration.plugins.EnderIO implements IIntegration {
 
 	private static boolean initDone = false;
 
@@ -21,28 +21,6 @@ public class EnderIO extends com.mcmoddev.basemetals.integration.plugins.EnderIO
 		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.ENABLE_ENDER_IO) {
 			return;
 		}
-
-		// TODO: Verify blocks, Slabs, Ingots, Oreblocks
-/*
-		addSagMillRecipe("aluminum", null, 3600);
-		addSagMillRecipe("aluminumbrass", null, 3600);
-		addSagMillRecipe("cadmium", null, 3600);
-		addSagMillRecipe("chromium", null, 3600);
-		addSagMillRecipe("galvanizedsteel", null, 3600);
-		addSagMillRecipe("iridium", null, 3600);
-		addSagMillRecipe("magnesium", null, 3600);
-		addSagMillRecipe("manganese", null, 3600);
-		addSagMillRecipe("nichrome", null, 3600);
-		addSagMillRecipe("osmium", null, 3600);
-		addSagMillRecipe("plutonium", null, 3600);
-		addSagMillRecipe("rutile", null, 3600);
-		addSagMillRecipe("stainlesssteel", null, 3600);
-		addSagMillRecipe("tantalum", null, 3600);
-		addSagMillRecipe("titanium", null, 3600);
-		addSagMillRecipe("tungsten", null, 3600);
-		addSagMillRecipe("uranium", null, 3600);
-		addSagMillRecipe("zirconium", null, 3600);
-*/
 
 		initDone = true;
 	}

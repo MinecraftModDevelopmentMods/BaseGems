@@ -1,15 +1,15 @@
 package com.mcmoddev.basegems.integration.plugins;
 
 import com.mcmoddev.basegems.init.Materials;
+import com.mcmoddev.basegems.integration.BaseGemsPlugin;
 import com.mcmoddev.basegems.util.Config.Options;
-import com.mcmoddev.basemetals.integration.BaseMetalsPlugin;
-import com.mcmoddev.basemetals.integration.IIntegration;
-import com.mcmoddev.basemetals.material.MetalMaterial;
+import com.mcmoddev.lib.integration.IIntegration;
+import com.mcmoddev.lib.material.MetalMaterial;
 
 import net.minecraft.item.ItemStack;
 
-@BaseMetalsPlugin(Mekanism.PLUGIN_MODID)
-public class Mekanism extends com.mcmoddev.basemetals.integration.plugins.Mekanism implements IIntegration {
+@BaseGemsPlugin(Mekanism.PLUGIN_MODID)
+public class Mekanism extends com.mcmoddev.lib.integration.plugins.Mekanism implements IIntegration {
 
 	private static boolean initDone = false;
 

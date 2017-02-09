@@ -7,15 +7,7 @@ package com.mcmoddev.basegems.init;
  *
  */
 public class ItemGroups extends com.mcmoddev.lib.init.ItemGroups {
-/*
-	public static final java.util.function.BiFunction<ItemStack, ItemStack, Integer> sortingAlgorithm = (ItemStack a, ItemStack b) -> {
-		final int delta = Items.getSortingValue(a) - Items.getSortingValue(b);
-		if (delta == 0) {
-			return a.getItem().getUnlocalizedName().compareToIgnoreCase(b.getItem().getUnlocalizedName());
-		}
-		return delta;
-	};
-*/
+
 //	public static CreativeTabs tab_blocks;
 //	public static CreativeTabs tab_items;
 //	public static CreativeTabs tab_tools;

@@ -2,7 +2,7 @@ package com.mcmoddev.basegems.init;
 
 import com.mcmoddev.basegems.util.Config.Options;
 
-import com.mcmoddev.basemetals.material.MetalMaterial;
+import com.mcmoddev.lib.material.MetalMaterial;
 
 /**
  * This class initializes all items in Base Gems.

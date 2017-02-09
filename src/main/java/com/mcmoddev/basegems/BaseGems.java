@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.event.*;
 public class BaseGems {
 
 	@Instance
-	public static BaseGems INSTANCE;
+	public static BaseGems instance;
 
 	/** ID of this Mod */
 	public static final String MODID = "basegems";
@@ -34,25 +34,25 @@ public class BaseGems {
 	public static final String UPDATEJSON = "https://raw.githubusercontent.com/MinecraftModDevelopment/BaseGems/master/update.json";
 
 	@SidedProxy(clientSide = "basegems.proxy.ClientProxy", serverSide = "basegems.proxy.ServerProxy")
-	public static CommonProxy PROXY;
+	public static CommonProxy proxy;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		PROXY.preInit(event);
+		proxy.preInit(event);
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		PROXY.init(event);
+		proxy.init(event);
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		PROXY.postInit(event);
+		proxy.postInit(event);
 	}
 
 	@EventHandler
 	public void onRemap(FMLMissingMappingsEvent event) {
-		PROXY.onRemap(event);
+		proxy.onRemap(event);
 	}
 }
