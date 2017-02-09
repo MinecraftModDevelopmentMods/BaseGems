@@ -2,10 +2,10 @@ package com.mcmoddev.basegems.integration.plugins;
 
 import com.mcmoddev.basegems.integration.BaseGemsPlugin;
 import com.mcmoddev.basegems.util.Config.Options;
+import com.mcmoddev.basegems.init.Materials;
+
 
 import com.mcmoddev.lib.integration.IIntegration;
-
-import com.mcmoddev.basegems.init.Materials;
 
 /**
  *
@@ -19,140 +19,140 @@ public class TinkersConstruct extends com.mcmoddev.lib.integration.plugins.Tinke
 
 	@Override
 	public void init() {
-		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.ENABLE_TINKERS_CONSTRUCT) {
+		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.enableTinkersConstruct) {
 			return;
 		}
 
 		if (Options.ENABLE_AGATE) {
-			registerFluid(Materials.agate.fluid, false);
+			registerFluid(Materials.agate, 144);
 		}
 
 		if (Options.ENABLE_ALEXANDRITE) {
-			registerFluid(Materials.alexandrite.fluid, false);
+			registerFluid(Materials.alexandrite, 144);
 		}
 
 		if (Options.ENABLE_AMBER) {
-			registerFluid(Materials.amber.fluid, false);
+			registerFluid(Materials.amber, 144);
 		}
 
 		if (Options.ENABLE_AMETHYST) {
-			registerFluid(Materials.amethyst.fluid, false);
+			registerFluid(Materials.amethyst, 144);
 		}
 
 		if (Options.ENABLE_AMETRINE) {
-			registerFluid(Materials.ametrine.fluid, false);
+			registerFluid(Materials.ametrine, 144);
 		}
 
 		if (Options.ENABLE_AQUAMARINE) {
-			registerFluid(Materials.aquamarine.fluid, false);
+			registerFluid(Materials.aquamarine, 144);
 		}
 
 		if (Options.ENABLE_BERYL) {
-			registerFluid(Materials.beryl.fluid, false);
+			registerFluid(Materials.beryl, 144);
 		}
 
 		if (Options.ENABLE_BLACKDIAMOND) {
-			registerFluid(Materials.blackdiamond.fluid, false);
+			registerFluid(Materials.blackdiamond, 144);
 		}
 
 		if (Options.ENABLE_BLUETOPAZ) {
-			registerFluid(Materials.bluetopaz.fluid, false);
+			registerFluid(Materials.bluetopaz, 144);
 		}
 
 		if (Options.ENABLE_CARNELIAN) {
-			registerFluid(Materials.carnelian.fluid, false);
+			registerFluid(Materials.carnelian, 144);
 		}
 
 		if (Options.ENABLE_CITRINE) {
-			registerFluid(Materials.citrine.fluid, false);
+			registerFluid(Materials.citrine, 144);
 		}
 
 		if (Options.ENABLE_GARNET) {
-			registerFluid(Materials.garnet.fluid, false);
+			registerFluid(Materials.garnet, 144);
 		}
 
 		if (Options.ENABLE_GOLDENBERYL) {
-			registerFluid(Materials.goldenberyl.fluid, false);
+			registerFluid(Materials.goldenberyl, 144);
 		}
 
 		if (Options.ENABLE_HELIODOR) {
-			registerFluid(Materials.heliodor.fluid, false);
+			registerFluid(Materials.heliodor, 144);
 		}
 
 		if (Options.ENABLE_INDICOLITE) {
-			registerFluid(Materials.indicolite.fluid, false);
+			registerFluid(Materials.indicolite, 144);
 		}
 
 		if (Options.ENABLE_IOLITE) {
-			registerFluid(Materials.iolite.fluid, false);
+			registerFluid(Materials.iolite, 144);
 		}
 
 		if (Options.ENABLE_JADE) {
-			registerFluid(Materials.jade.fluid, false);
+			registerFluid(Materials.jade, 144);
 		}
 
 		if (Options.ENABLE_JASPER) {
-			registerFluid(Materials.jasper.fluid, false);
+			registerFluid(Materials.jasper, 144);
 		}
 
 		if (Options.ENABLE_LEPIDOLITE) {
-			registerFluid(Materials.lepidolite.fluid, false);
+			registerFluid(Materials.lepidolite, 144);
 		}
 
 		if (Options.ENABLE_MALACHITE) {
-			registerFluid(Materials.malachite.fluid, false);
+			registerFluid(Materials.malachite, 144);
 		}
 
 		if (Options.ENABLE_MOLDAVITE) {
-			registerFluid(Materials.moldavite.fluid, false);
+			registerFluid(Materials.moldavite, 144);
 		}
 
 		if (Options.ENABLE_MOONSTONE) {
-			registerFluid(Materials.moonstone.fluid, false);
+			registerFluid(Materials.moonstone, 144);
 		}
 
 		if (Options.ENABLE_MORGANITE) {
-			registerFluid(Materials.morganite.fluid, false);
+			registerFluid(Materials.morganite, 144);
 		}
 
 		if (Options.ENABLE_ONYX) {
-			registerFluid(Materials.onyx.fluid, false);
+			registerFluid(Materials.onyx, 144);
 		}
 
 		if (Options.ENABLE_OPAL) {
-			registerFluid(Materials.opal.fluid, false);
+			registerFluid(Materials.opal, 144);
 		}
 
 		if (Options.ENABLE_PERIDOT) {
-			registerFluid(Materials.peridot.fluid, false);
+			registerFluid(Materials.peridot, 144);
 		}
 
 		if (Options.ENABLE_RUBY) {
-			registerFluid(Materials.ruby.fluid, false);
+			registerFluid(Materials.ruby, 144);
 		}
 
 		if (Options.ENABLE_SAPPHIRE) {
-			registerFluid(Materials.sapphire.fluid, false);
+			registerFluid(Materials.sapphire, 144);
 		}
 
 		if (Options.ENABLE_SPINEL) {
-			registerFluid(Materials.spinel.fluid, false);
+			registerFluid(Materials.spinel, 144);
 		}
 
 		if (Options.ENABLE_TANZANITE) {
-			registerFluid(Materials.tanzanite.fluid, false);
+			registerFluid(Materials.tanzanite, 144);
 		}
 		
 		if (Options.ENABLE_TOPAZ) {
-			registerFluid(Materials.topaz.fluid, false);
+			registerFluid(Materials.topaz, 144);
 		}
 
 		if (Options.ENABLE_TURQUOISE) {
-			registerFluid(Materials.turquoise.fluid, false);
+			registerFluid(Materials.turquoise, 144);
 		}
 
 		if (Options.ENABLE_VIOLETSAPPHIRE) {
-			registerFluid(Materials.violetsapphire.fluid, false);
+			registerFluid(Materials.violetsapphire, 144);
 		}
 
 		initDone = true;

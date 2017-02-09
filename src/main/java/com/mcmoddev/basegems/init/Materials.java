@@ -7,7 +7,7 @@ import com.mcmoddev.lib.material.MetalMaterial;
 /**
  * This class initializes all of the materials in Base Gems.
  *
- * @author DrCyano
+ * @author Jasmine Iwanek
  *
  */
 public class Materials extends com.mcmoddev.lib.init.Materials {

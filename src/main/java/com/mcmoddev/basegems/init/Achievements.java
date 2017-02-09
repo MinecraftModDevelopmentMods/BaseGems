@@ -8,7 +8,8 @@ import net.minecraftforge.fml.common.Loader;
 /** initializer for achievements */
 public class Achievements extends com.mcmoddev.lib.init.Achievements {
 
-	public static Achievement agate_maker; // make blend
+	/** make Agate Blend */
+	public static Achievement agate_maker;
 
 	private static boolean initDone = false;
 
@@ -20,7 +21,7 @@ public class Achievements extends com.mcmoddev.lib.init.Achievements {
 			return;
 		}
 
-		if (com.mcmoddev.basemetals.util.Config.Options.ENABLE_ACHIEVEMENTS) {
+		if (com.mcmoddev.basemetals.util.Config.Options.enableAchievements) {
 			AchievementPage page = new AchievementPage(Loader.instance().activeModContainer().getModId());
 			AchievementPage.registerAchievementPage(page);
 

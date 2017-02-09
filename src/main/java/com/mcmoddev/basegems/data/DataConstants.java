@@ -41,4 +41,8 @@ public abstract class DataConstants {
 			+ "\n	]"
 			+ "\n}";
 	//@formatter:on
+
+	private DataConstants() {
+		throw new IllegalAccessError("Not a instantiable class");
+	}
 }

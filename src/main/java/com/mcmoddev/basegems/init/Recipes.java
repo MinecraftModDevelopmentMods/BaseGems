@@ -11,6 +11,10 @@ public class Recipes extends com.mcmoddev.lib.init.Recipes {
 
 	private static boolean initDone = false;
 
+	private Recipes() {
+		throw new IllegalAccessError("Not a instantiable class");
+	}
+
 	/**
 	 *
 	 */
@@ -29,7 +33,6 @@ public class Recipes extends com.mcmoddev.lib.init.Recipes {
 	}
 
 	private static void initModSpecificRecipes() {
-		// alloy blends
 		if (Options.ENABLE_AGATE) {
 			//GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Materials.agate.blend, 2), "dustAgate", "dustAgate"));
 			//GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Materials.agate.smallblend, 2), "smalldustAgate", "smalldustAgate"));

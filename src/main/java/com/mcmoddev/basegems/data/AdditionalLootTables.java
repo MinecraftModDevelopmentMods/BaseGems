@@ -22,7 +22,6 @@ public abstract class AdditionalLootTables {
 	// @formatter:on
 
 	private AdditionalLootTables() {
-		throw new IllegalAccessError("Utility class");
+		throw new IllegalAccessError("Not a instantiable class");
 	}
-
 }

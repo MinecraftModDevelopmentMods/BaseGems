@@ -18,7 +18,7 @@ public class EnderIO extends com.mcmoddev.lib.integration.plugins.EnderIO implem
 	 */
 	@Override
 	public void init() {
-		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.ENABLE_ENDER_IO) {
+		if (initDone || !com.mcmoddev.basemetals.util.Config.Options.enableEnderIO) {
 			return;
 		}
 

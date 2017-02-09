@@ -14,6 +14,10 @@ public class ItemGroups extends com.mcmoddev.lib.init.ItemGroups {
 
 	private static boolean initDone = false;
 
+	private ItemGroups() {
+		throw new IllegalAccessError("Not a instantiable class");
+	}
+
 	/**
 	 *
 	 */

@@ -51,7 +51,7 @@ public class Config {
 			configuration.save();
 		}
 
-		if (com.mcmoddev.basemetals.util.Config.Options.REQUIRE_ORESPAWN) {
+		if (com.mcmoddev.basemetals.util.Config.Options.requireMMDOreSpawn) {
 			if (!Loader.isModLoaded("orespawn")) {
 				final HashSet<ArtifactVersion> orespawnMod = new HashSet<>();
 				orespawnMod.add(new DefaultArtifactVersion("1.1.0"));
@@ -88,10 +88,6 @@ public class Config {
 				FMLLog.log(Level.ERROR, ex, "%s: Failed to extract additional loot tables", Loader.instance().activeModContainer().getModId());
 			}
 		}
-	}
-
-	public static void postInit() {
-		CrusherRecipeRegistry.getInstance().clearCache();
 	}
 
 	public static class Options {
@@ -134,5 +130,9 @@ public class Config {
 		private Options() {
 			throw new IllegalAccessError("Not a instantiable class");
 		}
+	}
+
+	public static void postInit() {
+		CrusherRecipeRegistry.getInstance().clearCache();
 	}
 }
