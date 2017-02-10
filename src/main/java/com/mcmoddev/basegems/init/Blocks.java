@@ -23,135 +23,135 @@ public class Blocks extends com.mcmoddev.lib.init.Blocks {
 		Materials.init();
 		ItemGroups.init();
 
-		if (Options.ENABLE_AGATE) {
+		if (Options.enableAgate) {
 			createBlocksFull(Materials.agate);
 		}
 
-		if (Options.ENABLE_ALEXANDRITE) {
+		if (Options.enableAlexandrite) {
 			createBlocksFull(Materials.alexandrite);
 		}
 
-		if (Options.ENABLE_AMBER) {
+		if (Options.enableAmber) {
 			createBlocksFull(Materials.amber);
 		}
 
-		if (Options.ENABLE_AMETHYST) {
+		if (Options.enableAmethyst) {
 			createBlocksFull(Materials.amethyst);
 		}
 
-		if (Options.ENABLE_AMETRINE) {
+		if (Options.enableAmetrine) {
 			createBlocksFull(Materials.ametrine);
 		}
 
-		if (Options.ENABLE_AQUAMARINE) {
+		if (Options.enableAquamarine) {
 			createBlocksFull(Materials.aquamarine);
 		}
 
-		if (Options.ENABLE_BERYL) {
+		if (Options.enableBeryl) {
 			createBlocksFull(Materials.beryl);
 		}
 
-		if (Options.ENABLE_BLACKDIAMOND) {
+		if (Options.enableBlackDiamond) {
 			createBlocksFull(Materials.blackdiamond);
 		}
 
-		if (Options.ENABLE_BLUETOPAZ) {
+		if (Options.enableBlueTopaz) {
 			createBlocksFull(Materials.bluetopaz);
 		}
 
-		if (Options.ENABLE_CARNELIAN) {
+		if (Options.enableCarnelian) {
 			createBlocksFull(Materials.carnelian);
 		}
 
-		if (Options.ENABLE_CITRINE) {
+		if (Options.enableCitrine) {
 			createBlocksFull(Materials.citrine);
 		}
 
-		if (Options.ENABLE_GARNET) {
+		if (Options.enableGarnet) {
 			createBlocksFull(Materials.garnet);
 		}
 
-		if (Options.ENABLE_GOLDENBERYL) {
+		if (Options.enableGoldenBeryl) {
 			createBlocksFull(Materials.goldenberyl);
 		}
 
-		if (Options.ENABLE_HELIODOR) {
+		if (Options.enableHeliodor) {
 			createBlocksFull(Materials.heliodor);
 		}
 
-		if (Options.ENABLE_INDICOLITE) {
+		if (Options.enableIndicolite) {
 			createBlocksFull(Materials.indicolite);
 		}
 
-		if (Options.ENABLE_IOLITE) {
+		if (Options.enableIolite) {
 			createBlocksFull(Materials.iolite);
 		}
 
-		if (Options.ENABLE_JADE) {
+		if (Options.enableJade) {
 			createBlocksFull(Materials.jade);
 		}
 
-		if (Options.ENABLE_JASPER) {
+		if (Options.enableJasper) {
 			createBlocksFull(Materials.jasper);
 		}
 
-		if (Options.ENABLE_LEPIDOLITE) {
+		if (Options.enableLepidolite) {
 			createBlocksFull(Materials.lepidolite);
 		}
 
-		if (Options.ENABLE_MALACHITE) {
+		if (Options.enableMalachite) {
 			createBlocksFull(Materials.malachite);
 		}
 
-		if (Options.ENABLE_MOLDAVITE) {
+		if (Options.enableMoldavite) {
 			createBlocksFull(Materials.moldavite);
 		}
 
-		if (Options.ENABLE_MOONSTONE) {
+		if (Options.enableMoonstone) {
 			createBlocksFull(Materials.moonstone);
 		}
 
-		if (Options.ENABLE_MORGANITE) {
+		if (Options.enableMorganite) {
 			createBlocksFull(Materials.morganite);
 		}
 
-		if (Options.ENABLE_ONYX) {
+		if (Options.enableOnyx) {
 			createBlocksFull(Materials.onyx);
 		}
 
-		if (Options.ENABLE_OPAL) {
+		if (Options.enableOpal) {
 			createBlocksFull(Materials.opal);
 		}
 
-		if (Options.ENABLE_PERIDOT) {
+		if (Options.enablePeridot) {
 			createBlocksFull(Materials.peridot);
 		}
 
-		if (Options.ENABLE_RUBY) {
+		if (Options.enableRuby) {
 			createBlocksFull(Materials.ruby);
 		}
 
-		if (Options.ENABLE_SAPPHIRE) {
+		if (Options.enableSapphire) {
 			createBlocksFull(Materials.sapphire);
 		}
 
-		if (Options.ENABLE_SPINEL) {
+		if (Options.enableSpinel) {
 			createBlocksFull(Materials.spinel);
 		}
 
-		if (Options.ENABLE_TANZANITE) {
+		if (Options.enableTanzanite) {
 			createBlocksFull(Materials.tanzanite);
 		}
 
-		if (Options.ENABLE_TOPAZ) {
+		if (Options.enableTopaz) {
 			createBlocksFull(Materials.topaz);
 		}
 
-		if (Options.ENABLE_TURQUOISE) {
+		if (Options.enableTurquoise) {
 			createBlocksFull(Materials.turquoise);
 		}
 
-		if (Options.ENABLE_VIOLETSAPPHIRE) {
+		if (Options.enableVioletSapphire) {
 			createBlocksFull(Materials.violetsapphire);
 		}
 

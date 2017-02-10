@@ -57,135 +57,135 @@ public class Materials extends com.mcmoddev.lib.init.Materials {
 		}
 
 		// Mod Materials
-		if (Options.ENABLE_AGATE) {
+		if (Options.enableAgate) {
 			agate = createMaterial("agate", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_ALEXANDRITE) {
+		if (Options.enableAlexandrite) {
 			alexandrite = createMaterial("alexandrite", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_AMBER) {
+		if (Options.enableAmber) {
 			amber = createMaterial("amber", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_AMETHYST) {
+		if (Options.enableAmethyst) {
 			amethyst = createMaterial("amethyst", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_AMETRINE) {
+		if (Options.enableAmetrine) {
 			ametrine = createMaterial("ametrine", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_AQUAMARINE) {
+		if (Options.enableAquamarine) {
 			aquamarine = createMaterial("aquamarine", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_BERYL) {
+		if (Options.enableBeryl) {
 			beryl = createMaterial("beryl", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_BLACKDIAMOND) {
+		if (Options.enableBlackDiamond) {
 			blackdiamond = createMaterial("blackdiamond", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_BLUETOPAZ) {
+		if (Options.enableBlueTopaz) {
 			bluetopaz = createMaterial("bluetopaz", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_CARNELIAN) {
+		if (Options.enableCarnelian) {
 			carnelian = createMaterial("carnelian", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_CITRINE) {
+		if (Options.enableCitrine) {
 			citrine = createMaterial("citrine", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_GARNET) {
+		if (Options.enableGarnet) {
 			garnet = createMaterial("garnet", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_GOLDENBERYL) {
+		if (Options.enableGoldenBeryl) {
 			goldenberyl = createMaterial("goldenberyl", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_HELIODOR) {
+		if (Options.enableHeliodor) {
 			heliodor = createMaterial("heliodor", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_INDICOLITE) {
+		if (Options.enableIndicolite) {
 			indicolite = createMaterial("indicolite", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_IOLITE) {
+		if (Options.enableIolite) {
 			iolite = createMaterial("iolite", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_JADE) {
+		if (Options.enableJade) {
 			jade = createMaterial("jade", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_JASPER) {
+		if (Options.enableJasper) {
 			jasper = createMaterial("jasper", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_LEPIDOLITE) {
+		if (Options.enableLepidolite) {
 			lepidolite = createMaterial("lepidolite", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_MALACHITE) {
+		if (Options.enableMalachite) {
 			malachite = createMaterial("malachite", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_MOLDAVITE) {
+		if (Options.enableMoldavite) {
 			moldavite = createMaterial("moldavite", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_MOONSTONE) {
+		if (Options.enableMoonstone) {
 			moonstone = createMaterial("moonstone", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_MORGANITE) {
+		if (Options.enableMorganite) {
 			morganite = createMaterial("morganite", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_ONYX) {
+		if (Options.enableOnyx) {
 			onyx = createMaterial("onyx", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_OPAL) {
+		if (Options.enableOpal) {
 			opal = createMaterial("opal", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_PERIDOT) {
+		if (Options.enablePeridot) {
 			peridot = createMaterial("peridot", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_RUBY) {
+		if (Options.enableRuby) {
 			ruby = createMaterial("ruby", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_SAPPHIRE) {
+		if (Options.enableSapphire) {
 			sapphire = createMaterial("sapphire", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_SPINEL) {
+		if (Options.enableSpinel) {
 			spinel = createMaterial("spinel", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_TANZANITE) {
+		if (Options.enableTanzanite) {
 			tanzanite = createMaterial("tanzanite", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_TOPAZ) {
+		if (Options.enableTopaz) {
 			topaz = createMaterial("topaz", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_TURQUOISE) {
+		if (Options.enableTurquoise) {
 			turquoise = createMaterial("turquoise", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
-		if (Options.ENABLE_VIOLETSAPPHIRE) {
+		if (Options.enableVioletSapphire) {
 			violetsapphire = createMaterial("violetsapphire", 8, 8, 4.5, 0xFF000000);
 			agate.materialType = MetalMaterial.MaterialType.GEM;
 		}
