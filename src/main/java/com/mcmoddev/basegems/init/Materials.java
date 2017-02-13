@@ -79,7 +79,11 @@ public class Materials extends com.mcmoddev.lib.init.Materials {
 	public static MetalMaterial turquoise;
 	/**	 */
 	public static MetalMaterial violetsapphire;
-
+	/**	Diamond */
+	public static MetalMaterial vanilla_diamond;
+	/**	Emerald */
+	public static MetalMaterial vanilla_emerald;
+	
 	private static boolean initDone = false;
 
 	/**
@@ -123,6 +127,12 @@ public class Materials extends com.mcmoddev.lib.init.Materials {
 		}
 		if (Options.enableCitrine) {
 			citrine = createMaterial("citrine", MaterialType.GEM, 8, 8, 4.5, 0xFF000000);
+		}
+		if (Options.enableDiamond) {
+			vanilla_diamond = createMaterial("diamond", MaterialType.GEM, 10, 15, 4, 0xFF000000);
+		}
+		if (Options.enableEmerald) {
+			vanilla_emerald = createMaterial("emerald", MaterialType.GEM, 10, 15, 4, 0xFF000000);
 		}
 		if (Options.enableGarnet) {
 			garnet = createMaterial("garnet", MaterialType.GEM, 8, 8, 4.5, 0xFF000000);

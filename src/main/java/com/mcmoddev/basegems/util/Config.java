@@ -159,6 +159,9 @@ public class Config {
 		public static boolean enableTurquoise = true;
 		public static boolean enableVioletSapphire = true;
 
+		public static boolean enableDiamond = true;
+		public static boolean enableEmerald = true;
+
 		private Options() {
 			throw new IllegalAccessError("Not a instantiable class");
 		}
