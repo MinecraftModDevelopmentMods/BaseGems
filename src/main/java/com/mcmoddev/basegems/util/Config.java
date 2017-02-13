@@ -161,6 +161,7 @@ public class Config {
 
 		public static boolean enableDiamond = true;
 		public static boolean enableEmerald = true;
+		public static boolean enableQuartz = true;
 
 		private Options() {
 			throw new IllegalAccessError("Not a instantiable class");
