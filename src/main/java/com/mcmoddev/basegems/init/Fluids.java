@@ -28,199 +28,199 @@ public class Fluids extends com.mcmoddev.lib.init.Fluids {
 		MetalMaterial material;
 
 		// fluids and fluid blocks
-		if (Options.ENABLE_AGATE) {
+		if (Options.enableAgate) {
 			material = Materials.agate;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_ALEXANDRITE) {
+		if (Options.enableAlexandrite) {
 			material = Materials.alexandrite;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_AMBER) {
+		if (Options.enableAmber) {
 			material = Materials.amber;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_AMETHYST) {
+		if (Options.enableAmethyst) {
 			material = Materials.amethyst;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_AMETRINE) {
+		if (Options.enableAmetrine) {
 			material = Materials.ametrine;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_AQUAMARINE) {
+		if (Options.enableAquamarine) {
 			material = Materials.aquamarine;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_BERYL) {
+		if (Options.enableBeryl) {
 			material = Materials.beryl;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_BLACKDIAMOND) {
+		if (Options.enableBlackDiamond) {
 			material = Materials.blackdiamond;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_BLUETOPAZ) {
+		if (Options.enableBlueTopaz) {
 			material = Materials.bluetopaz;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_CARNELIAN) {
+		if (Options.enableCarnelian) {
 			material = Materials.carnelian;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_CITRINE) {
+		if (Options.enableCitrine) {
 			material = Materials.citrine;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_GARNET) {
+		if (Options.enableGarnet) {
 			material = Materials.garnet;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_GOLDENBERYL) {
+		if (Options.enableGoldenBeryl) {
 			material = Materials.goldenberyl;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_HELIODOR) {
+		if (Options.enableHeliodor) {
 			material = Materials.heliodor;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_INDICOLITE) {
+		if (Options.enableIndicolite) {
 			material = Materials.indicolite;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_IOLITE) {
+		if (Options.enableIolite) {
 			material = Materials.iolite;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_JADE) {
+		if (Options.enableJade) {
 			material = Materials.jade;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_JASPER) {
+		if (Options.enableJasper) {
 			material = Materials.jasper;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_LEPIDOLITE) {
+		if (Options.enableLepidolite) {
 			material = Materials.lepidolite;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_MALACHITE) {
+		if (Options.enableMalachite) {
 			material = Materials.malachite;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_MOLDAVITE) {
+		if (Options.enableMoldavite) {
 			material = Materials.moldavite;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_MOONSTONE) {
+		if (Options.enableMoonstone) {
 			material = Materials.moonstone;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_MORGANITE) {
+		if (Options.enableMorganite) {
 			material = Materials.morganite;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_ONYX) {
+		if (Options.enableOnyx) {
 			material = Materials.onyx;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_OPAL) {
+		if (Options.enableOpal) {
 			material = Materials.opal;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_PERIDOT) {
+		if (Options.enablePeridot) {
 			material = Materials.peridot;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_RUBY) {
+		if (Options.enableRuby) {
 			material = Materials.ruby;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_SAPPHIRE) {
+		if (Options.enableSapphire) {
 			material = Materials.sapphire;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_SPINEL) {
+		if (Options.enableSpinel) {
 			material = Materials.spinel;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_TANZANITE) {
+		if (Options.enableTanzanite) {
 			material = Materials.tanzanite;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_TOPAZ) {
+		if (Options.enableTopaz) {
 			material = Materials.topaz;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_TURQUOISE) {
+		if (Options.enableTurquoise) {
 			material = Materials.turquoise;
 
 			addFluid(material, 2000, 10000, 330, 10);
 			addFluidBlock(material);
 		}
-		if (Options.ENABLE_VIOLETSAPPHIRE) {
+		if (Options.enableVioletSapphire) {
 			material = Materials.violetsapphire;
 
 			addFluid(material, 2000, 10000, 330, 10);

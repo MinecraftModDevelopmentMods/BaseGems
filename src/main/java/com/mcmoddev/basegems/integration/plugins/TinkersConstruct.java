@@ -23,135 +23,135 @@ public class TinkersConstruct extends com.mcmoddev.lib.integration.plugins.Tinke
 			return;
 		}
 
-		if (Options.ENABLE_AGATE) {
+		if (Options.enableAgate) {
 			registerFluid(Materials.agate, 144);
 		}
 
-		if (Options.ENABLE_ALEXANDRITE) {
+		if (Options.enableAlexandrite) {
 			registerFluid(Materials.alexandrite, 144);
 		}
 
-		if (Options.ENABLE_AMBER) {
+		if (Options.enableAmber) {
 			registerFluid(Materials.amber, 144);
 		}
 
-		if (Options.ENABLE_AMETHYST) {
+		if (Options.enableAmethyst) {
 			registerFluid(Materials.amethyst, 144);
 		}
 
-		if (Options.ENABLE_AMETRINE) {
+		if (Options.enableAmetrine) {
 			registerFluid(Materials.ametrine, 144);
 		}
 
-		if (Options.ENABLE_AQUAMARINE) {
+		if (Options.enableAquamarine) {
 			registerFluid(Materials.aquamarine, 144);
 		}
 
-		if (Options.ENABLE_BERYL) {
+		if (Options.enableBeryl) {
 			registerFluid(Materials.beryl, 144);
 		}
 
-		if (Options.ENABLE_BLACKDIAMOND) {
+		if (Options.enableBlackDiamond) {
 			registerFluid(Materials.blackdiamond, 144);
 		}
 
-		if (Options.ENABLE_BLUETOPAZ) {
+		if (Options.enableBlueTopaz) {
 			registerFluid(Materials.bluetopaz, 144);
 		}
 
-		if (Options.ENABLE_CARNELIAN) {
+		if (Options.enableCarnelian) {
 			registerFluid(Materials.carnelian, 144);
 		}
 
-		if (Options.ENABLE_CITRINE) {
+		if (Options.enableCitrine) {
 			registerFluid(Materials.citrine, 144);
 		}
 
-		if (Options.ENABLE_GARNET) {
+		if (Options.enableGarnet) {
 			registerFluid(Materials.garnet, 144);
 		}
 
-		if (Options.ENABLE_GOLDENBERYL) {
+		if (Options.enableGoldenBeryl) {
 			registerFluid(Materials.goldenberyl, 144);
 		}
 
-		if (Options.ENABLE_HELIODOR) {
+		if (Options.enableHeliodor) {
 			registerFluid(Materials.heliodor, 144);
 		}
 
-		if (Options.ENABLE_INDICOLITE) {
+		if (Options.enableIndicolite) {
 			registerFluid(Materials.indicolite, 144);
 		}
 
-		if (Options.ENABLE_IOLITE) {
+		if (Options.enableIolite) {
 			registerFluid(Materials.iolite, 144);
 		}
 
-		if (Options.ENABLE_JADE) {
+		if (Options.enableJade) {
 			registerFluid(Materials.jade, 144);
 		}
 
-		if (Options.ENABLE_JASPER) {
+		if (Options.enableJasper) {
 			registerFluid(Materials.jasper, 144);
 		}
 
-		if (Options.ENABLE_LEPIDOLITE) {
+		if (Options.enableLepidolite) {
 			registerFluid(Materials.lepidolite, 144);
 		}
 
-		if (Options.ENABLE_MALACHITE) {
+		if (Options.enableMalachite) {
 			registerFluid(Materials.malachite, 144);
 		}
 
-		if (Options.ENABLE_MOLDAVITE) {
+		if (Options.enableMoldavite) {
 			registerFluid(Materials.moldavite, 144);
 		}
 
-		if (Options.ENABLE_MOONSTONE) {
+		if (Options.enableMoonstone) {
 			registerFluid(Materials.moonstone, 144);
 		}
 
-		if (Options.ENABLE_MORGANITE) {
+		if (Options.enableMorganite) {
 			registerFluid(Materials.morganite, 144);
 		}
 
-		if (Options.ENABLE_ONYX) {
+		if (Options.enableOnyx) {
 			registerFluid(Materials.onyx, 144);
 		}
 
-		if (Options.ENABLE_OPAL) {
+		if (Options.enableOpal) {
 			registerFluid(Materials.opal, 144);
 		}
 
-		if (Options.ENABLE_PERIDOT) {
+		if (Options.enablePeridot) {
 			registerFluid(Materials.peridot, 144);
 		}
 
-		if (Options.ENABLE_RUBY) {
+		if (Options.enableRuby) {
 			registerFluid(Materials.ruby, 144);
 		}
 
-		if (Options.ENABLE_SAPPHIRE) {
+		if (Options.enableSapphire) {
 			registerFluid(Materials.sapphire, 144);
 		}
 
-		if (Options.ENABLE_SPINEL) {
+		if (Options.enableSpinel) {
 			registerFluid(Materials.spinel, 144);
 		}
 
-		if (Options.ENABLE_TANZANITE) {
+		if (Options.enableTanzanite) {
 			registerFluid(Materials.tanzanite, 144);
 		}
 		
-		if (Options.ENABLE_TOPAZ) {
+		if (Options.enableTopaz) {
 			registerFluid(Materials.topaz, 144);
 		}
 
-		if (Options.ENABLE_TURQUOISE) {
+		if (Options.enableTurquoise) {
 			registerFluid(Materials.turquoise, 144);
 		}
 
-		if (Options.ENABLE_VIOLETSAPPHIRE) {
+		if (Options.enableVioletSapphire) {
 			registerFluid(Materials.violetsapphire, 144);
 		}
 

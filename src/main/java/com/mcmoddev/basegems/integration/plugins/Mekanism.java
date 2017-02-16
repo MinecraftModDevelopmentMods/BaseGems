@@ -4,9 +4,6 @@ import com.mcmoddev.basegems.init.Materials;
 import com.mcmoddev.basegems.integration.BaseGemsPlugin;
 import com.mcmoddev.basegems.util.Config.Options;
 import com.mcmoddev.lib.integration.IIntegration;
-import com.mcmoddev.lib.material.MetalMaterial;
-
-import net.minecraft.item.ItemStack;
 
 @BaseGemsPlugin(Mekanism.PLUGIN_MODID)
 public class Mekanism extends com.mcmoddev.lib.integration.plugins.Mekanism implements IIntegration {
@@ -19,21 +16,136 @@ public class Mekanism extends com.mcmoddev.lib.integration.plugins.Mekanism impl
 			return;
 		}
 
-		MetalMaterial material;
+		if (Options.enableAgate) {
+			addOreMultiplicationRecipes(Materials.agate);
+		}
 
-		if (Options.ENABLE_AGATE) {
-			material = Materials.agate;
-			addCrusherRecipe(new ItemStack(material.clump), new ItemStack(material.powder_dirty));
-			addCrusherRecipe(new ItemStack(material.ingot), new ItemStack(material.powder));
+		if (Options.enableAlexandrite) {
+			addOreMultiplicationRecipes(Materials.alexandrite);
+		}
 
-			addEnrichmentChamberRecipe(new ItemStack(material.ore), new ItemStack(material.powder, 2));
-			addEnrichmentChamberRecipe(new ItemStack(material.powder_dirty), new ItemStack(material.powder));
+		if (Options.enableAmber) {
+			addOreMultiplicationRecipes(Materials.amber);
+		}
 
-			addPurificationChamberRecipe(new ItemStack(material.ore), new ItemStack(material.clump, 3));
-			addPurificationChamberRecipe(new ItemStack(material.shard), new ItemStack(material.clump));
+		if (Options.enableAmethyst) {
+			addOreMultiplicationRecipes(Materials.amethyst);
+		}
 
-			addChemicalInjectionChamberRecipe(new ItemStack(material.ore), new ItemStack(material.shard, 4));
-			addChemicalInjectionChamberRecipe(new ItemStack(material.crystal), new ItemStack(material.shard));
+		if (Options.enableAmetrine) {
+			addOreMultiplicationRecipes(Materials.ametrine);
+		}
+
+		if (Options.enableAquamarine) {
+			addOreMultiplicationRecipes(Materials.aquamarine);
+		}
+
+		if (Options.enableBeryl) {
+			addOreMultiplicationRecipes(Materials.beryl);
+		}
+
+		if (Options.enableBlackDiamond) {
+			addOreMultiplicationRecipes(Materials.blackdiamond);
+		}
+
+		if (Options.enableBlueTopaz) {
+			addOreMultiplicationRecipes(Materials.bluetopaz);
+		}
+
+		if (Options.enableCarnelian) {
+			addOreMultiplicationRecipes(Materials.carnelian);
+		}
+
+		if (Options.enableCitrine) {
+			addOreMultiplicationRecipes(Materials.citrine);
+		}
+
+		if (Options.enableGarnet) {
+			addOreMultiplicationRecipes(Materials.garnet);
+		}
+
+		if (Options.enableGoldenBeryl) {
+			addOreMultiplicationRecipes(Materials.goldenberyl);
+		}
+
+		if (Options.enableHeliodor) {
+			addOreMultiplicationRecipes(Materials.heliodor);
+		}
+
+		if (Options.enableIndicolite) {
+			addOreMultiplicationRecipes(Materials.indicolite);
+		}
+
+		if (Options.enableIolite) {
+			addOreMultiplicationRecipes(Materials.iolite);
+		}
+
+		if (Options.enableJade) {
+			addOreMultiplicationRecipes(Materials.jade);
+		}
+
+		if (Options.enableJasper) {
+			addOreMultiplicationRecipes(Materials.jasper);
+		}
+
+		if (Options.enableLepidolite) {
+			addOreMultiplicationRecipes(Materials.lepidolite);
+		}
+
+		if (Options.enableMalachite) {
+			addOreMultiplicationRecipes(Materials.malachite);
+		}
+
+		if (Options.enableMoldavite) {
+			addOreMultiplicationRecipes(Materials.moldavite);
+		}
+
+		if (Options.enableMoonstone) {
+			addOreMultiplicationRecipes(Materials.moonstone);
+		}
+
+		if (Options.enableMorganite) {
+			addOreMultiplicationRecipes(Materials.morganite);
+		}
+
+		if (Options.enableOnyx) {
+			addOreMultiplicationRecipes(Materials.onyx);
+		}
+
+		if (Options.enableOpal) {
+			addOreMultiplicationRecipes(Materials.opal);
+		}
+
+		if (Options.enablePeridot) {
+			addOreMultiplicationRecipes(Materials.peridot);
+		}
+
+		if (Options.enableRuby) {
+			addOreMultiplicationRecipes(Materials.ruby);
+		}
+
+		if (Options.enableSapphire) {
+			addOreMultiplicationRecipes(Materials.sapphire);
+		}
+
+		if (Options.enableSpinel) {
+			addOreMultiplicationRecipes(Materials.spinel);
+		}
+
+		if (Options.enableTanzanite) {
+			addOreMultiplicationRecipes(Materials.tanzanite);
+		}
+		
+		if (Options.enableTopaz) {
+			addOreMultiplicationRecipes(Materials.topaz);
+		}
+
+		if (Options.enableTurquoise) {
+			addOreMultiplicationRecipes(Materials.turquoise);
+		}
+
+		if (Options.enableVioletSapphire) {
+			addOreMultiplicationRecipes(Materials.violetsapphire);
 		}
 
 		initDone = true;
