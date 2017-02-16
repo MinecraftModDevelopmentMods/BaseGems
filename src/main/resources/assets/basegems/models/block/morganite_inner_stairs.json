@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "basegems:blocks/morganite_block",
+        "top": "basegems:blocks/morganite_block",
+        "side": "basegems:blocks/morganite_block"
+    }
+}

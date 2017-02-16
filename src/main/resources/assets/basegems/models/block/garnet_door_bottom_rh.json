@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom_rh",
+    "textures": {
+        "bottom": "basegems:blocks/garnet_door_lower",
+        "top": "basegems:blocks/garnet_door_upper"
+    }
+}

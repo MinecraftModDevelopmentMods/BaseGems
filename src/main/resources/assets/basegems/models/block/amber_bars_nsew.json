@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/bars_nsew",
+    "textures": {
+        "particle": "basegems:blocks/amber_bars",
+        "bars": "basegems:blocks/amber_bars",
+        "edge": "basegems:blocks/amber_bars"
+    }
+}

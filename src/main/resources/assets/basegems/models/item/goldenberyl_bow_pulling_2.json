@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/goldenberyl_bow",
+    "textures": {
+        "layer0": "basegems:items/goldenberyl_bow_pulling_2"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "basegems:blocks/iolite_block",
+        "top": "basegems:blocks/iolite_block",
+        "side": "basegems:blocks/iolite_block"
+    }
+}

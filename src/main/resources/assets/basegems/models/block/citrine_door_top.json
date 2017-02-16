@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_top",
+    "textures": {
+        "bottom": "basegems:blocks/citrine_door_lower",
+        "top": "basegems:blocks/citrine_door_upper"
+    }
+}

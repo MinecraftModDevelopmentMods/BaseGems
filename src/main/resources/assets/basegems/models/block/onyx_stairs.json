@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "basegems:blocks/onyx_block",
+        "top": "basegems:blocks/onyx_block",
+        "side": "basegems:blocks/onyx_block"
+    }
+}

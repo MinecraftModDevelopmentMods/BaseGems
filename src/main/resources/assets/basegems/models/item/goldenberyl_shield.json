@@ -1,0 +1,14 @@
+{
+  "parent": "basemetals:item/shield",
+  "textures": {
+    "shield": "basegems:blocks/goldenberyl_block"
+  },
+    "overrides": [
+        {
+            "predicate": {
+                "blocking": 1
+            },
+            "model": "basegems:item/goldenberyl_shield_blocking"
+        }
+    ]
+}

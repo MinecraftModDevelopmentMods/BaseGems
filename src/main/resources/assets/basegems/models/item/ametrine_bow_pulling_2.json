@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/ametrine_bow",
+    "textures": {
+        "layer0": "basegems:items/ametrine_bow_pulling_2"
+    }
+}

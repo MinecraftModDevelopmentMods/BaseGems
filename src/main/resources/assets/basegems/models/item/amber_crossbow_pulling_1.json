@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/amber_crossbow",
+    "textures": {
+        "layer0": "basegems:items/amber_crossbow_pulling_1"
+    }
+}

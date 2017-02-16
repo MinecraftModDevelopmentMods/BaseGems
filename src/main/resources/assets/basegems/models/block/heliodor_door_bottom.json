@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "basegems:blocks/heliodor_door_lower",
+        "top": "basegems:blocks/heliodor_door_upper"
+    }
+}

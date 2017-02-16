@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "basegems:blocks/moldavite_door_lower",
+        "top": "basegems:blocks/moldavite_door_upper"
+    }
+}

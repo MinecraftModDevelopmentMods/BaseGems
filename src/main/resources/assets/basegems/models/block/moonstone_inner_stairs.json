@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "basegems:blocks/moonstone_block",
+        "top": "basegems:blocks/moonstone_block",
+        "side": "basegems:blocks/moonstone_block"
+    }
+}

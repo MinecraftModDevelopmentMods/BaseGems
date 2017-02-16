@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/violetsapphire_bow",
+    "textures": {
+        "layer0": "basegems:items/violetsapphire_bow_pulling_1"
+    }
+}

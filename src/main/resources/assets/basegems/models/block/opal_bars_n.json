@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/bars_n",
+    "textures": {
+        "particle": "basegems:blocks/opal_bars",
+        "bars": "basegems:blocks/opal_bars",
+        "edge": "basegems:blocks/opal_bars"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "basegems:blocks/violetsapphire_block",
+        "top": "basegems:blocks/violetsapphire_block",
+        "side": "basegems:blocks/violetsapphire_block"
+    }
+}

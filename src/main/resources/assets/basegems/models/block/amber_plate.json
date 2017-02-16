@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/plate",
+    "textures": {
+        "top": "basegems:blocks/amber_plate",
+        "side": "basegems:blocks/amber_plate",
+        "bottom": "basegems:blocks/amber_plate"
+    }
+}

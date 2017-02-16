@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/peridot_crossbow",
+    "textures": {
+        "layer0": "basegems:items/peridot_crossbow_pulling_1"
+    }
+}

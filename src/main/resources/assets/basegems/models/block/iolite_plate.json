@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/plate",
+    "textures": {
+        "top": "basegems:blocks/iolite_plate",
+        "side": "basegems:blocks/iolite_plate",
+        "bottom": "basegems:blocks/iolite_plate"
+    }
+}

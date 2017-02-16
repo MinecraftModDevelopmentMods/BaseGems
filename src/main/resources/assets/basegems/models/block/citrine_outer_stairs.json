@@ -1,0 +1,8 @@
+{
+    "parent": "block/outer_stairs",
+    "textures": {
+        "bottom": "basegems:blocks/citrine_block",
+        "top": "basegems:blocks/citrine_block",
+        "side": "basegems:blocks/citrine_block"
+    }
+}

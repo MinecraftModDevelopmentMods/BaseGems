@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/opal_bow",
+    "textures": {
+        "layer0": "basegems:items/opal_bow_pulling_1"
+    }
+}

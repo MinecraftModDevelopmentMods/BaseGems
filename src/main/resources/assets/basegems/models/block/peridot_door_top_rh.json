@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_top_rh",
+    "textures": {
+        "bottom": "basegems:blocks/peridot_door_lower",
+        "top": "basegems:blocks/peridot_door_upper"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "parent": "item/handheld_rod",
+    "textures": {
+        "layer0": "basegems:items/turquoise_fishing_rod_uncast"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "cast": 1
+            },
+            "model": "basegems:item/turquoise_fishing_rod_cast"
+        }
+    ]
+}

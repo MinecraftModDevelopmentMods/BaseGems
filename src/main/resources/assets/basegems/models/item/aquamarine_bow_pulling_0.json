@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/aquamarine_bow",
+    "textures": {
+        "layer0": "basegems:items/aquamarine_bow_pulling_0"
+    }
+}

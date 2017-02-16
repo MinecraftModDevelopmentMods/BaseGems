@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/bars_ne",
+    "textures": {
+        "particle": "basegems:blocks/jade_bars",
+        "bars": "basegems:blocks/jade_bars",
+        "edge": "basegems:blocks/jade_bars"
+    }
+}

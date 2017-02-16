@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/plate",
+    "textures": {
+        "top": "basegems:blocks/blackdiamond_plate",
+        "side": "basegems:blocks/blackdiamond_plate",
+        "bottom": "basegems:blocks/blackdiamond_plate"
+    }
+}

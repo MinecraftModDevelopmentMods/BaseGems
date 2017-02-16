@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "basegems:agate_pressure_plate_up" },
+        "powered=true": { "model": "basegems:agate_pressure_plate_down" }
+    }
+}

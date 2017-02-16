@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/bars_ns",
+    "textures": {
+        "particle": "basegems:blocks/sapphire_bars",
+        "bars": "basegems:blocks/sapphire_bars",
+        "edge": "basegems:blocks/sapphire_bars"
+    }
+}
