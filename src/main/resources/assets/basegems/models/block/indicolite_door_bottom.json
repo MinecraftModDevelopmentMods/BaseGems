@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "basegems:blocks/indicolite_door_lower",
+        "top": "basegems:blocks/indicolite_door_upper"
+    }
+}

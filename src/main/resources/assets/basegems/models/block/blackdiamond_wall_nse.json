@@ -1,0 +1,6 @@
+{
+    "parent": "block/wall_nse",
+    "textures": {
+        "wall": "basegems:blocks/blackdiamond_block"
+    }
+}

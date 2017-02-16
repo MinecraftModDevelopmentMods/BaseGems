@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/topaz_crossbow",
+    "textures": {
+        "layer0": "basegems:items/topaz_crossbow_pulling_1"
+    }
+}

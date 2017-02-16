@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/moldavite_crossbow",
+    "textures": {
+        "layer0": "basegems:items/moldavite_crossbow_pulling_1"
+    }
+}

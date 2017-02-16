@@ -1,0 +1,6 @@
+{
+    "parent": "block/wall_side",
+    "textures": {
+        "wall": "basegems:blocks/citrine_block"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/plate",
+    "textures": {
+        "top": "basegems:blocks/sapphire_plate",
+        "side": "basegems:blocks/sapphire_plate",
+        "bottom": "basegems:blocks/sapphire_plate"
+    }
+}

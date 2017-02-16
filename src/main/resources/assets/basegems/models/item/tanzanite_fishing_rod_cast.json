@@ -1,0 +1,6 @@
+{
+    "parent": "item/fishing_rod",
+    "textures": {
+        "layer0": "basegems:items/tanzanite_fishing_rod_cast"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "basemetals:item/door_item",
+    "textures": {
+        "bottom": "basegems:blocks/lepidolite_door_lower",
+        "top": "basegems:blocks/lepidolite_door_upper"
+    }
+}

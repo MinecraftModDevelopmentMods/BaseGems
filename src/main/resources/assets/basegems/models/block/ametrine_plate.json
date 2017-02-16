@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/plate",
+    "textures": {
+        "top": "basegems:blocks/ametrine_plate",
+        "side": "basegems:blocks/ametrine_plate",
+        "bottom": "basegems:blocks/ametrine_plate"
+    }
+}

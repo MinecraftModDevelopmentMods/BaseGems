@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/amethyst_crossbow",
+    "textures": {
+        "layer0": "basegems:items/amethyst_crossbow_pulling_0"
+    }
+}

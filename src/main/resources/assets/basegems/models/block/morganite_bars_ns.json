@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/bars_ns",
+    "textures": {
+        "particle": "basegems:blocks/morganite_bars",
+        "bars": "basegems:blocks/morganite_bars",
+        "edge": "basegems:blocks/morganite_bars"
+    }
+}

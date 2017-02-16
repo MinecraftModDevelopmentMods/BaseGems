@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/malachite_bow",
+    "textures": {
+        "layer0": "basegems:items/malachite_bow_pulling_0"
+    }
+}

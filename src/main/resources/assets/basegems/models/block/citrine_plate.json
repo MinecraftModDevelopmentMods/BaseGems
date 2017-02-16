@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/plate",
+    "textures": {
+        "top": "basegems:blocks/citrine_plate",
+        "side": "basegems:blocks/citrine_plate",
+        "bottom": "basegems:blocks/citrine_plate"
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "parent": "basemetals:item/shield",
+  "textures": {
+    "shield": "basegems:blocks/onyx_block"
+  },
+    "overrides": [
+        {
+            "predicate": {
+                "blocking": 1
+            },
+            "model": "basegems:item/onyx_shield_blocking"
+        }
+    ]
+}

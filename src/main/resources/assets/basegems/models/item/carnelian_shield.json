@@ -1,0 +1,14 @@
+{
+  "parent": "basemetals:item/shield",
+  "textures": {
+    "shield": "basegems:blocks/carnelian_block"
+  },
+    "overrides": [
+        {
+            "predicate": {
+                "blocking": 1
+            },
+            "model": "basegems:item/carnelian_shield_blocking"
+        }
+    ]
+}

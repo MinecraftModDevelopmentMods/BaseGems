@@ -1,0 +1,14 @@
+{
+  "parent": "basemetals:item/shield",
+  "textures": {
+    "shield": "basegems:blocks/sapphire_block"
+  },
+    "overrides": [
+        {
+            "predicate": {
+                "blocking": 1
+            },
+            "model": "basegems:item/sapphire_shield_blocking"
+        }
+    ]
+}

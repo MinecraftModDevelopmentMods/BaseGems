@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/bars_ne",
+    "textures": {
+        "particle": "basegems:blocks/citrine_bars",
+        "bars": "basegems:blocks/citrine_bars",
+        "edge": "basegems:blocks/citrine_bars"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/carnelian_crossbow",
+    "textures": {
+        "layer0": "basegems:items/carnelian_crossbow_pulling_0"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/ruby_crossbow",
+    "textures": {
+        "layer0": "basegems:items/ruby_crossbow_pulling_0"
+    }
+}

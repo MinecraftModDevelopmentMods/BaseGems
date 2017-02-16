@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/citrine_crossbow",
+    "textures": {
+        "layer0": "basegems:items/citrine_crossbow_pulling_0"
+    }
+}

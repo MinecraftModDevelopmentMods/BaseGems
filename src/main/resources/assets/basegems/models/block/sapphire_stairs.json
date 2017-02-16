@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "basegems:blocks/sapphire_block",
+        "top": "basegems:blocks/sapphire_block",
+        "side": "basegems:blocks/sapphire_block"
+    }
+}

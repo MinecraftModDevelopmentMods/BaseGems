@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/bars_ns",
+    "textures": {
+        "particle": "basegems:blocks/turquoise_bars",
+        "bars": "basegems:blocks/turquoise_bars",
+        "edge": "basegems:blocks/turquoise_bars"
+    }
+}

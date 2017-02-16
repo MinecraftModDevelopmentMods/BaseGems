@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/moldavite_bow",
+    "textures": {
+        "layer0": "basegems:items/moldavite_bow_pulling_0"
+    }
+}

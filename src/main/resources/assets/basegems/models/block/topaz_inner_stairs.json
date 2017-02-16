@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "basegems:blocks/topaz_block",
+        "top": "basegems:blocks/topaz_block",
+        "side": "basegems:blocks/topaz_block"
+    }
+}

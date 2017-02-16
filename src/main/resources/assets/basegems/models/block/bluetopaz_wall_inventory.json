@@ -1,0 +1,6 @@
+{
+    "parent": "block/wall_inventory",
+    "textures": {
+        "wall": "basegems:blocks/bluetopaz_block"
+    }
+}

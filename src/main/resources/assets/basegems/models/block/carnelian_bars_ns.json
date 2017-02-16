@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/bars_ns",
+    "textures": {
+        "particle": "basegems:blocks/carnelian_bars",
+        "bars": "basegems:blocks/carnelian_bars",
+        "edge": "basegems:blocks/carnelian_bars"
+    }
+}

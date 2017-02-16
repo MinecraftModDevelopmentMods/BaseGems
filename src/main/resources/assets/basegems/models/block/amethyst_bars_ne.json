@@ -1,0 +1,8 @@
+{
+    "parent": "basemetals:block/bars_ne",
+    "textures": {
+        "particle": "basegems:blocks/amethyst_bars",
+        "bars": "basegems:blocks/amethyst_bars",
+        "edge": "basegems:blocks/amethyst_bars"
+    }
+}

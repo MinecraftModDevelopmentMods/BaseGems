@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "basegems:blocks/goldenberyl_door_lower",
+        "top": "basegems:blocks/goldenberyl_door_upper"
+    }
+}

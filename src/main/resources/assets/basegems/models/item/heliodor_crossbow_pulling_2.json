@@ -1,0 +1,6 @@
+{
+    "parent": "basegems:item/heliodor_crossbow",
+    "textures": {
+        "layer0": "basegems:items/heliodor_crossbow_pulling_2"
+    }
+}
