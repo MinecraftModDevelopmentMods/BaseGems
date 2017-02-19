@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=down":  { "model": "basegems:alexandrite_plate", "x": 90  },
+        "facing=up":    { "model": "basegems:alexandrite_plate", "x": 270 },
+        "facing=north": { "model": "basegems:alexandrite_plate"           },
+        "facing=south": { "model": "basegems:alexandrite_plate", "y": 180 },
+        "facing=west":  { "model": "basegems:alexandrite_plate", "y": 270 },
+        "facing=east":  { "model": "basegems:alexandrite_plate", "y": 90  }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=down":  { "model": "basegems:blackdiamond_plate", "x": 90  },
+        "facing=up":    { "model": "basegems:blackdiamond_plate", "x": 270 },
+        "facing=north": { "model": "basegems:blackdiamond_plate"           },
+        "facing=south": { "model": "basegems:blackdiamond_plate", "y": 180 },
+        "facing=west":  { "model": "basegems:blackdiamond_plate", "y": 270 },
+        "facing=east":  { "model": "basegems:blackdiamond_plate", "y": 90  }
+    }
+}

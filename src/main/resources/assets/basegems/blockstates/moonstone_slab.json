@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=bottom,variant=default": { "model": "basegems:half_slab_moonstone" },
+        "half=top,variant=default": { "model": "basegems:upper_slab_moonstone" }
+    }
+}

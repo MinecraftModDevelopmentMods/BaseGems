@@ -1,0 +1,8 @@
+{
+    "parent": "block/half_slab",
+    "textures": {
+        "bottom": "basegems:blocks/carnelian_block",
+        "top": "basegems:blocks/carnelian_block",
+        "side": "basegems:blocks/carnelian_block"
+    }
+}

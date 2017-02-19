@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=down":  { "model": "basegems:citrine_plate", "x": 90  },
+        "facing=up":    { "model": "basegems:citrine_plate", "x": 270 },
+        "facing=north": { "model": "basegems:citrine_plate"           },
+        "facing=south": { "model": "basegems:citrine_plate", "y": 180 },
+        "facing=west":  { "model": "basegems:citrine_plate", "y": 270 },
+        "facing=east":  { "model": "basegems:citrine_plate", "y": 90  }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=down":  { "model": "basegems:lepidolite_plate", "x": 90  },
+        "facing=up":    { "model": "basegems:lepidolite_plate", "x": 270 },
+        "facing=north": { "model": "basegems:lepidolite_plate"           },
+        "facing=south": { "model": "basegems:lepidolite_plate", "y": 180 },
+        "facing=west":  { "model": "basegems:lepidolite_plate", "y": 270 },
+        "facing=east":  { "model": "basegems:lepidolite_plate", "y": 90  }
+    }
+}

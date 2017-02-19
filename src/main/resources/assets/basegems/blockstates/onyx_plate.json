@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=down":  { "model": "basegems:onyx_plate", "x": 90  },
+        "facing=up":    { "model": "basegems:onyx_plate", "x": 270 },
+        "facing=north": { "model": "basegems:onyx_plate"           },
+        "facing=south": { "model": "basegems:onyx_plate", "y": 180 },
+        "facing=west":  { "model": "basegems:onyx_plate", "y": 270 },
+        "facing=east":  { "model": "basegems:onyx_plate", "y": 90  }
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "basegems:lepidolite_pressure_plate_up" },
+        "powered=true": { "model": "basegems:lepidolite_pressure_plate_down" }
+    }
+}

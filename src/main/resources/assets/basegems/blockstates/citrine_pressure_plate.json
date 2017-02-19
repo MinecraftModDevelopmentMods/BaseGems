@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "basegems:citrine_pressure_plate_up" },
+        "powered=true": { "model": "basegems:citrine_pressure_plate_down" }
+    }
+}
