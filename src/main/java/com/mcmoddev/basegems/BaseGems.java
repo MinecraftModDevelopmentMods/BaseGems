@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.event.*;
  * @author Jasmine Iwanek
  *
  */
-@Mod(modid = BaseGems.MODID, name = BaseGems.NAME, version = BaseGems.VERSION, dependencies = "required-after:Forge@[12.17.0.1976,);required-after:basemetals;before:buildingbricks", acceptedMinecraftVersions = "[1.10.2,)", updateJSON = BaseGems.UPDATEJSON)
+@Mod(modid = BaseGems.MODID, name = BaseGems.NAME, version = BaseGems.VERSION, dependencies = "required-after:Forge@[12.18.3.2185,);required-after:basemetals;before:buildingbricks", acceptedMinecraftVersions = "[1.10.2,)", updateJSON = BaseGems.UPDATEJSON)
 public class BaseGems {
 
 	@Instance
