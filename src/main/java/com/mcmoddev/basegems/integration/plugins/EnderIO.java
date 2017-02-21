@@ -1,6 +1,7 @@
 package com.mcmoddev.basegems.integration.plugins;
 
-import com.mcmoddev.basegems.integration.BaseGemsPlugin;
+import com.mcmoddev.basegems.BaseGems;
+import com.mcmoddev.lib.integration.MMDPlugin;
 import com.mcmoddev.lib.integration.IIntegration;
 
 /**
@@ -8,7 +9,7 @@ import com.mcmoddev.lib.integration.IIntegration;
  * @author Jasmine Iwanek
  *
  */
-@BaseGemsPlugin(EnderIO.PLUGIN_MODID)
+@MMDPlugin(addonId = BaseGems.MODID, pluginId = EnderIO.PLUGIN_MODID)
 public class EnderIO extends com.mcmoddev.lib.integration.plugins.EnderIO implements IIntegration {
 
 	private static boolean initDone = false;

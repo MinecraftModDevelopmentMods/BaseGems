@@ -1,6 +1,7 @@
 package com.mcmoddev.basegems.integration.plugins;
 
-import com.mcmoddev.basegems.integration.BaseGemsPlugin;
+import com.mcmoddev.basegems.BaseGems;
+import com.mcmoddev.lib.integration.MMDPlugin;
 import com.mcmoddev.lib.integration.IIntegration;
 
 /**
@@ -9,7 +10,7 @@ import com.mcmoddev.lib.integration.IIntegration;
  * @author Jasmine Iwanek
  *
  */
-@BaseGemsPlugin(VeinMiner.PLUGIN_MODID)
+@MMDPlugin(addonId = BaseGems.MODID, pluginId = VeinMiner.PLUGIN_MODID)
 public class VeinMiner extends com.mcmoddev.lib.integration.plugins.VeinMiner implements IIntegration {
 
 	private static boolean initDone = false;

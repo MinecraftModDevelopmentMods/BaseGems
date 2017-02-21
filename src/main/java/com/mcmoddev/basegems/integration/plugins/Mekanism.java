@@ -1,11 +1,12 @@
 package com.mcmoddev.basegems.integration.plugins;
 
+import com.mcmoddev.basegems.BaseGems;
 import com.mcmoddev.basegems.init.Materials;
-import com.mcmoddev.basegems.integration.BaseGemsPlugin;
 import com.mcmoddev.basegems.util.Config.Options;
+import com.mcmoddev.lib.integration.MMDPlugin;
 import com.mcmoddev.lib.integration.IIntegration;
 
-@BaseGemsPlugin(Mekanism.PLUGIN_MODID)
+@MMDPlugin(addonId = BaseGems.MODID, pluginId = Mekanism.PLUGIN_MODID)
 public class Mekanism extends com.mcmoddev.lib.integration.plugins.Mekanism implements IIntegration {
 
 	private static boolean initDone = false;
