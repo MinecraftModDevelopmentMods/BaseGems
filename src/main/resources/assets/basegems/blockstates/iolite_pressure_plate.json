@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "basegems:iolite_pressure_plate_up" },
+        "powered=true": { "model": "basegems:iolite_pressure_plate_down" }
+    }
+}

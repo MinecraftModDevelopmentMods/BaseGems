@@ -1,10 +1,9 @@
 package com.mcmoddev.basegems.integration.plugins;
 
-import com.mcmoddev.basegems.integration.BaseGemsPlugin;
-import com.mcmoddev.basegems.util.Config.Options;
+import com.mcmoddev.basegems.BaseGems;
 import com.mcmoddev.basegems.init.Materials;
-
-
+import com.mcmoddev.basegems.util.Config.Options;
+import com.mcmoddev.lib.integration.MMDPlugin;
 import com.mcmoddev.lib.integration.IIntegration;
 
 /**
@@ -12,7 +11,7 @@ import com.mcmoddev.lib.integration.IIntegration;
  * @author Jasmine Iwanek
  *
  */
-@BaseGemsPlugin(TinkersConstruct.PLUGIN_MODID)
+@MMDPlugin(addonId = BaseGems.MODID, pluginId = TinkersConstruct.PLUGIN_MODID)
 public class TinkersConstruct extends com.mcmoddev.lib.integration.plugins.TinkersConstruct implements IIntegration {
 
 	private static boolean initDone = false;

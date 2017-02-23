@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "basegems:spinel_pressure_plate_up" },
+        "powered=true": { "model": "basegems:spinel_pressure_plate_down" }
+    }
+}

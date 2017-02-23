@@ -5,6 +5,10 @@ public class Achievements extends com.mcmoddev.lib.init.Achievements {
 
 	private static boolean initDone = false;
 
+	private Achievements() {
+		throw new IllegalAccessError("Not a instantiable class");
+	}
+
 	/**
 	 *
 	 */
@@ -12,7 +16,7 @@ public class Achievements extends com.mcmoddev.lib.init.Achievements {
 		if (initDone) {
 			return;
 		}
-		
+
 		// No Achievements yet
 /*
 		if (com.mcmoddev.basemetals.util.Config.Options.enableAchievements) {
@@ -20,6 +24,7 @@ public class Achievements extends com.mcmoddev.lib.init.Achievements {
 			AchievementPage.registerAchievementPage(page);
 		}
 */
+
 		initDone = true;
 	}
 }

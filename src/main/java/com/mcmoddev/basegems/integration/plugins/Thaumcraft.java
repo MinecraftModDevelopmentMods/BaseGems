@@ -1,9 +1,10 @@
 package com.mcmoddev.basegems.integration.plugins;
 
-import com.mcmoddev.basegems.integration.BaseGemsPlugin;
+import com.mcmoddev.basegems.BaseGems;
+import com.mcmoddev.lib.integration.MMDPlugin;
 import com.mcmoddev.lib.integration.IIntegration;
 
-@BaseGemsPlugin(Thaumcraft.PLUGIN_MODID)
+@MMDPlugin(addonId = BaseGems.MODID, pluginId = Thaumcraft.PLUGIN_MODID)
 public class Thaumcraft extends com.mcmoddev.lib.integration.plugins.Thaumcraft implements IIntegration {
 
 	private static boolean initDone = false;

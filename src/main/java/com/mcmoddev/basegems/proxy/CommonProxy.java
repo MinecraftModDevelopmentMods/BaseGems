@@ -1,10 +1,10 @@
 package com.mcmoddev.basegems.proxy;
 
-import com.mcmoddev.basegems.integration.IntegrationManager;
 import com.mcmoddev.basegems.BaseGems;
 import com.mcmoddev.basegems.init.*;
 import com.mcmoddev.basegems.util.Config;
 import com.mcmoddev.basegems.util.EventHandler;
+import com.mcmoddev.lib.integration.IntegrationManager;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

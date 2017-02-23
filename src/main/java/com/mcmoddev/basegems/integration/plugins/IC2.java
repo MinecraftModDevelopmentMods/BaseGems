@@ -1,9 +1,10 @@
 package com.mcmoddev.basegems.integration.plugins;
 
-import com.mcmoddev.basegems.integration.BaseGemsPlugin;
+import com.mcmoddev.basegems.BaseGems;
+import com.mcmoddev.lib.integration.MMDPlugin;
 import com.mcmoddev.lib.integration.IIntegration;
 
-@BaseGemsPlugin(IC2.PLUGIN_MODID)
+@MMDPlugin(addonId = BaseGems.MODID, pluginId = IC2.PLUGIN_MODID)
 public class IC2 extends com.mcmoddev.lib.integration.plugins.IC2 implements IIntegration {
 
 	private static boolean initDone = false;

@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "basegems:moonstone_pressure_plate_up" },
+        "powered=true": { "model": "basegems:moonstone_pressure_plate_down" }
+    }
+}
