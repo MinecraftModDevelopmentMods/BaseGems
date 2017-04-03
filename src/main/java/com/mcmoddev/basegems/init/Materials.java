@@ -1,8 +1,8 @@
 package com.mcmoddev.basegems.init;
 
 import com.mcmoddev.basegems.util.Config.Options;
-import com.mcmoddev.lib.material.MetalMaterial;
-import com.mcmoddev.lib.material.MetalMaterial.MaterialType;
+import com.mcmoddev.lib.material.MMDMaterial;
+import com.mcmoddev.lib.material.MMDMaterial.MaterialType;
 
 /**
  * This class initializes all of the materials in Base Gems.
@@ -13,79 +13,79 @@ import com.mcmoddev.lib.material.MetalMaterial.MaterialType;
 public class Materials extends com.mcmoddev.lib.init.Materials {
 
 	/** Agate */
-	public static MetalMaterial agate;
+	public static MMDMaterial agate;
 	/** Alexandrite */
-	public static MetalMaterial alexandrite;
+	public static MMDMaterial alexandrite;
 	/** Amber */
-	public static MetalMaterial amber;
+	public static MMDMaterial amber;
 	/** Amethyst */
-	public static MetalMaterial amethyst;
+	public static MMDMaterial amethyst;
 	/** Ametrine */
-	public static MetalMaterial ametrine;
+	public static MMDMaterial ametrine;
 	/** Aquamarine */
-	public static MetalMaterial aquamarine;
+	public static MMDMaterial aquamarine;
 	/** Beryl */
-	public static MetalMaterial beryl;
+	public static MMDMaterial beryl;
 	/** Black Diamond */
-	public static MetalMaterial blackdiamond;
+	public static MMDMaterial blackdiamond;
 	/** Blue Topaz */
-	public static MetalMaterial bluetopaz;
+	public static MMDMaterial bluetopaz;
 	/** Carnelian */
-	public static MetalMaterial carnelian;
+	public static MMDMaterial carnelian;
 	/** Citrine */
-	public static MetalMaterial citrine;
+	public static MMDMaterial citrine;
 	/** Garnet */
-	public static MetalMaterial garnet;
+	public static MMDMaterial garnet;
 	/** Golden Beryl */
-	public static MetalMaterial goldenberyl;
+	public static MMDMaterial goldenberyl;
 	/** Heliodor */
-	public static MetalMaterial heliodor;
+	public static MMDMaterial heliodor;
 	/** Indicolite */
-	public static MetalMaterial indicolite;
+	public static MMDMaterial indicolite;
 	/** Iolite */
-	public static MetalMaterial iolite;
+	public static MMDMaterial iolite;
 	/** Jade */
-	public static MetalMaterial jade;
+	public static MMDMaterial jade;
 	/** Jasper */
-	public static MetalMaterial jasper;
+	public static MMDMaterial jasper;
 	/** Lepidolite */
-	public static MetalMaterial lepidolite;
+	public static MMDMaterial lepidolite;
 	/** Malachite */
-	public static MetalMaterial malachite;
+	public static MMDMaterial malachite;
 	/** Moldavite */
-	public static MetalMaterial moldavite;
+	public static MMDMaterial moldavite;
 	/** Moonstone */
-	public static MetalMaterial moonstone;
+	public static MMDMaterial moonstone;
 	/**	Morganite */
-	public static MetalMaterial morganite;
+	public static MMDMaterial morganite;
 	/** Onyx */
-	public static MetalMaterial onyx;
+	public static MMDMaterial onyx;
 	/** Opal */
-	public static MetalMaterial opal;
+	public static MMDMaterial opal;
 	/** Peridot */
-	public static MetalMaterial peridot;
+	public static MMDMaterial peridot;
 	/** Ruby */
-	public static MetalMaterial ruby;
+	public static MMDMaterial ruby;
 	/**	Sapphire */
-	public static MetalMaterial sapphire;
+	public static MMDMaterial sapphire;
 	/**	Spinel */
-	public static MetalMaterial spinel;
+	public static MMDMaterial spinel;
 	/**	Tanzanite */
-	public static MetalMaterial tanzanite;
+	public static MMDMaterial tanzanite;
 	/**	Topaz */
-	public static MetalMaterial topaz;
+	public static MMDMaterial topaz;
 	/** Turquoise */
-	public static MetalMaterial turquoise;
+	public static MMDMaterial turquoise;
 	/** Violet Sapphire */
-	public static MetalMaterial violetsapphire;
+	public static MMDMaterial violetsapphire;
 
 	// vanilla imports
 	/** Diamond */
-	public static MetalMaterial vanilla_diamond;
+	public static MMDMaterial vanilla_diamond;
 	/** Emerald */
-	public static MetalMaterial vanilla_emerald;
+	public static MMDMaterial vanilla_emerald;
 	/** Quartz */
-	public static MetalMaterial vanilla_quartz;
+	public static MMDMaterial vanilla_quartz;
 
 	private static boolean initDone = false;
 
