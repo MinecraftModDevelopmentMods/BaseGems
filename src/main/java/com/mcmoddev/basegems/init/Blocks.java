@@ -1,6 +1,8 @@
 package com.mcmoddev.basegems.init;
 
 import com.mcmoddev.basegems.util.Config.Options;
+import com.mcmoddev.basemetals.init.ItemGroups;
+import com.mcmoddev.lib.util.TabContainer;
 
 /**
  * This class initializes all blocks in Base Gems.
@@ -11,6 +13,7 @@ import com.mcmoddev.basegems.util.Config.Options;
 public class Blocks extends com.mcmoddev.lib.init.Blocks {
 
 	private static boolean initDone = false;
+	private static TabContainer myTabs = new TabContainer( ItemGroups.blocksTab, ItemGroups.itemsTab, ItemGroups.toolsTab );
 
 	protected Blocks() {
 		throw new IllegalAccessError("Not a instantiable class");
@@ -28,135 +31,135 @@ public class Blocks extends com.mcmoddev.lib.init.Blocks {
 		ItemGroups.init();
 
 		if (Options.enableAgate) {
-			createBlocksFull(Materials.agate);
+			createBlocksFull(Materials.agate, myTabs);
 		}
 
 		if (Options.enableAlexandrite) {
-			createBlocksFull(Materials.alexandrite);
+			createBlocksFull(Materials.alexandrite, myTabs);
 		}
 
 		if (Options.enableAmber) {
-			createBlocksFull(Materials.amber);
+			createBlocksFull(Materials.amber, myTabs);
 		}
 
 		if (Options.enableAmethyst) {
-			createBlocksFull(Materials.amethyst);
+			createBlocksFull(Materials.amethyst, myTabs);
 		}
 
 		if (Options.enableAmetrine) {
-			createBlocksFull(Materials.ametrine);
+			createBlocksFull(Materials.ametrine, myTabs);
 		}
 
 		if (Options.enableAquamarine) {
-			createBlocksFull(Materials.aquamarine);
+			createBlocksFull(Materials.aquamarine, myTabs);
 		}
 
 		if (Options.enableBeryl) {
-			createBlocksFull(Materials.beryl);
+			createBlocksFull(Materials.beryl, myTabs);
 		}
 
 		if (Options.enableBlackDiamond) {
-			createBlocksFull(Materials.blackdiamond);
+			createBlocksFull(Materials.blackdiamond, myTabs);
 		}
 
 		if (Options.enableBlueTopaz) {
-			createBlocksFull(Materials.bluetopaz);
+			createBlocksFull(Materials.bluetopaz, myTabs);
 		}
 
 		if (Options.enableCarnelian) {
-			createBlocksFull(Materials.carnelian);
+			createBlocksFull(Materials.carnelian, myTabs);
 		}
 
 		if (Options.enableCitrine) {
-			createBlocksFull(Materials.citrine);
+			createBlocksFull(Materials.citrine, myTabs);
 		}
 
 		if (Options.enableGarnet) {
-			createBlocksFull(Materials.garnet);
+			createBlocksFull(Materials.garnet, myTabs);
 		}
 
 		if (Options.enableGoldenBeryl) {
-			createBlocksFull(Materials.goldenberyl);
+			createBlocksFull(Materials.goldenberyl, myTabs);
 		}
 
 		if (Options.enableHeliodor) {
-			createBlocksFull(Materials.heliodor);
+			createBlocksFull(Materials.heliodor, myTabs);
 		}
 
 		if (Options.enableIndicolite) {
-			createBlocksFull(Materials.indicolite);
+			createBlocksFull(Materials.indicolite, myTabs);
 		}
 
 		if (Options.enableIolite) {
-			createBlocksFull(Materials.iolite);
+			createBlocksFull(Materials.iolite, myTabs);
 		}
 
 		if (Options.enableJade) {
-			createBlocksFull(Materials.jade);
+			createBlocksFull(Materials.jade, myTabs);
 		}
 
 		if (Options.enableJasper) {
-			createBlocksFull(Materials.jasper);
+			createBlocksFull(Materials.jasper, myTabs);
 		}
 
 		if (Options.enableLepidolite) {
-			createBlocksFull(Materials.lepidolite);
+			createBlocksFull(Materials.lepidolite, myTabs);
 		}
 
 		if (Options.enableMalachite) {
-			createBlocksFull(Materials.malachite);
+			createBlocksFull(Materials.malachite, myTabs);
 		}
 
 		if (Options.enableMoldavite) {
-			createBlocksFull(Materials.moldavite);
+			createBlocksFull(Materials.moldavite, myTabs);
 		}
 
 		if (Options.enableMoonstone) {
-			createBlocksFull(Materials.moonstone);
+			createBlocksFull(Materials.moonstone, myTabs);
 		}
 
 		if (Options.enableMorganite) {
-			createBlocksFull(Materials.morganite);
+			createBlocksFull(Materials.morganite, myTabs);
 		}
 
 		if (Options.enableOnyx) {
-			createBlocksFull(Materials.onyx);
+			createBlocksFull(Materials.onyx, myTabs);
 		}
 
 		if (Options.enableOpal) {
-			createBlocksFull(Materials.opal);
+			createBlocksFull(Materials.opal, myTabs);
 		}
 
 		if (Options.enablePeridot) {
-			createBlocksFull(Materials.peridot);
+			createBlocksFull(Materials.peridot, myTabs);
 		}
 
 		if (Options.enableRuby) {
-			createBlocksFull(Materials.ruby);
+			createBlocksFull(Materials.ruby, myTabs);
 		}
 
 		if (Options.enableSapphire) {
-			createBlocksFull(Materials.sapphire);
+			createBlocksFull(Materials.sapphire, myTabs);
 		}
 
 		if (Options.enableSpinel) {
-			createBlocksFull(Materials.spinel);
+			createBlocksFull(Materials.spinel, myTabs);
 		}
 
 		if (Options.enableTanzanite) {
-			createBlocksFull(Materials.tanzanite);
+			createBlocksFull(Materials.tanzanite, myTabs);
 		}
 
 		if (Options.enableTopaz) {
-			createBlocksFull(Materials.topaz);
+			createBlocksFull(Materials.topaz, myTabs);
 		}
 
 		if (Options.enableTurquoise) {
-			createBlocksFull(Materials.turquoise);
+			createBlocksFull(Materials.turquoise, myTabs);
 		}
 
 		if (Options.enableVioletSapphire) {
-			createBlocksFull(Materials.violetsapphire);
+			createBlocksFull(Materials.violetsapphire, myTabs);
 		}
 
 		initDone = true;
