@@ -7,7 +7,6 @@ import com.mcmoddev.lib.data.Names;
 import com.mcmoddev.lib.init.MMDCreativeTab;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 /**

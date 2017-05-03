@@ -1,7 +1,6 @@
 package com.mcmoddev.basegems.init;
 
 import com.mcmoddev.basegems.util.Config.Options;
-import com.mcmoddev.basemetals.init.ItemGroups;
 import com.mcmoddev.lib.util.TabContainer;
 
 /**
