@@ -46,8 +46,8 @@ public class ItemGroups extends com.mcmoddev.lib.init.ItemGroups {
 	
 	public static void setupIcons() {
 		Item blocksTabIconItem = Item.getItemFromBlock(Materials.getMaterialByName("blackdiamond")!=null?Materials.getMaterialByName("blackdiamond").getBlock(Names.BLOCK):(Block) Materials.getMaterialByName(MaterialNames.IRON).getBlock(Names.BLOCK));
-		Item itemsTabIconItem = (Options.enableGear&&Materials.getMaterialByName("blackdiamond")!=null)?Materials.getMaterialByName("blackdiamond").getItem(Names.GEAR):net.minecraft.init.Items.STICK;
-		Item toolsTabIconItem = (Options.enableBasicTools&&Materials.getMaterialByName("blackdiamond")!=null)?Materials.getMaterialByName("blackdiamond").getItem(Names.SWORD):net.minecraft.init.Items.DIAMOND_SWORD;
+		Item itemsTabIconItem = Options.thingEnabled("Gear")?Materials.getMaterialByName("blackdiamond").getItem(Names.GEAR):net.minecraft.init.Items.STICK;
+		Item toolsTabIconItem = Options.thingEnabled("BasicTools")?Materials.getMaterialByName("blackdiamond").getItem(Names.SWORD):net.minecraft.init.Items.DIAMOND_SWORD;
 		
 		blocksTab.setTabIconItem( blocksTabIconItem );
 		itemsTab.setTabIconItem(itemsTabIconItem);
