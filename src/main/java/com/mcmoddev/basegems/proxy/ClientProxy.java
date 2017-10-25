@@ -4,8 +4,11 @@ import com.mcmoddev.basegems.BaseGems;
 import com.mcmoddev.basegems.init.Blocks;
 import com.mcmoddev.basegems.init.Fluids;
 import com.mcmoddev.basegems.init.Items;
+import com.mcmoddev.lib.material.MMDMaterial;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockDoor;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
@@ -15,8 +18,11 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * Base Gems Client Proxy
@@ -29,11 +35,17 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
+		MinecraftForge.EVENT_BUS.register(this);
+	}
+
+	@SubscribeEvent
+	public void fluidRendering(RegistryEvent.Register<MMDMaterial> ev) {
 		for (final String name : Fluids.getFluidBlockRegistry().keySet()) {
 			final Block block = Fluids.getFluidBlockByName(name);
 			final Item item = Item.getItemFromBlock(block);
-			if (!item.getRegistryName().getResourceDomain().equals(BaseGems.MODID))
+			if (!item.getRegistryName().getResourceDomain().equals(BaseGems.MODID)) {
 				continue;
+			}
 			final ModelResourceLocation fluidModelLocation = new ModelResourceLocation(item.getRegistryName().getResourceDomain() + ":" + name, "fluid");
 			ModelBakery.registerItemVariants(item);
 			ModelLoader.setCustomMeshDefinition(item, stack -> fluidModelLocation);
@@ -45,7 +57,7 @@ public class ClientProxy extends CommonProxy {
 			});
 		}
 	}
-
+	
 	@Override
 	public void init(FMLInitializationEvent event) {
 		super.init(event);

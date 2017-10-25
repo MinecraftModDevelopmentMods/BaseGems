@@ -1,13 +1,13 @@
 package com.mcmoddev.basegems.init;
 
-import com.mcmoddev.basemetals.data.MaterialNames;
-import com.mcmoddev.basemetals.init.Materials;
-import com.mcmoddev.basemetals.util.Config.Options;
+import com.mcmoddev.basegems.data.MaterialNames;
+import com.mcmoddev.lib.init.Materials;
+import com.mcmoddev.lib.util.ConfigBase.Options;
 import com.mcmoddev.lib.data.Names;
 import com.mcmoddev.lib.init.MMDCreativeTab;
 
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 /**
  * This class initializes all item groups in Base Gems.
@@ -18,7 +18,7 @@ import net.minecraft.item.Item;
 public class ItemGroups extends com.mcmoddev.lib.init.ItemGroups {
 
 	private static boolean initDone = false;
-	private static final int blocksTabId  = addTab("blocks", true );;
+	private static final int blocksTabId  = addTab("blocks", true );
 	private static final int itemsTabId = addTab("items", true );
 	private static final int toolsTabId = addTab("tools", true );
 	public static final MMDCreativeTab blocksTab = getTab(blocksTabId);
@@ -37,21 +37,17 @@ public class ItemGroups extends com.mcmoddev.lib.init.ItemGroups {
 			return;
 		}
 
-		// blocksTab = addTab("blocks", true, Materials.vanilla_iron);
-		// itemsTab = addTab("items", true, Materials.vanilla_iron);
-		// toolsTab = addTab("tools", true, Materials.vanilla_iron);
-
 		initDone = true;
 	}
 	
 	public static void setupIcons() {
-		Item blocksTabIconItem = Item.getItemFromBlock(Materials.getMaterialByName("blackdiamond")!=null?Materials.getMaterialByName("blackdiamond").getBlock(Names.BLOCK):(Block) Materials.getMaterialByName(MaterialNames.IRON).getBlock(Names.BLOCK));
-		Item itemsTabIconItem = Options.thingEnabled("Gear")?Materials.getMaterialByName("blackdiamond").getItem(Names.GEAR):net.minecraft.init.Items.STICK;
-		Item toolsTabIconItem = Options.thingEnabled("BasicTools")?Materials.getMaterialByName("blackdiamond").getItem(Names.SWORD):net.minecraft.init.Items.DIAMOND_SWORD;
+		Item blocksTabIconItem = Item.getItemFromBlock(Options.isMaterialEnabled(MaterialNames.BLACKDIAMOND)?Materials.getMaterialByName(MaterialNames.BLACKDIAMOND).getBlock(Names.BLOCK):Materials.getMaterialByName(com.mcmoddev.basemetals.data.MaterialNames.IRON).getBlock(Names.BLOCK));
+		Item itemsTabIconItem = Options.isThingEnabled("Gear")?Materials.getMaterialByName(MaterialNames.BLACKDIAMOND).getItem(Names.GEAR):net.minecraft.init.Items.STICK;
+		Item toolsTabIconItem = Options.isThingEnabled("BasicTools")?Materials.getMaterialByName(MaterialNames.BLACKDIAMOND).getItem(Names.SWORD):net.minecraft.init.Items.DIAMOND_SWORD;
 		
-		blocksTab.setTabIconItem( blocksTabIconItem );
-		itemsTab.setTabIconItem(itemsTabIconItem);
-		toolsTab.setTabIconItem(toolsTabIconItem);
+		blocksTab.setTabIconItem( new ItemStack(blocksTabIconItem) );
+		itemsTab.setTabIconItem(new ItemStack(itemsTabIconItem));
+		toolsTab.setTabIconItem(new ItemStack(toolsTabIconItem));
 	}
 
 }

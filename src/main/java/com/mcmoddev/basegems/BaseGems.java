@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLMissingMappingsEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -24,8 +23,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 		modid = BaseGems.MODID,
 		name = BaseGems.NAME,
 		version = BaseGems.VERSION,
-		dependencies = "required-after:Forge@[12.18.3.2185,);required-after:basemetals;before:buildingbricks",
-		acceptedMinecraftVersions = "[1.10.2,)",
+		dependencies = "required-after:forge@[14.21.1.2443,);required-after:basemetals",
+		acceptedMinecraftVersions = "[1.12,)",
 		updateJSON = BaseGems.UPDATEJSON)
 public class BaseGems {
 
@@ -43,7 +42,7 @@ public class BaseGems {
 	 * increased whenever a change is made that has the potential to break
 	 * compatibility with other mods that depend on this one.
 	 */
-	public static final String VERSION = "2.5.0-beta1";
+	public static final String VERSION = "2.5.0-beta2";
 
 	public static final String UPDATEJSON = "https://raw.githubusercontent.com/MinecraftModDevelopment/BaseGems/master/update.json";
 
@@ -67,10 +66,5 @@ public class BaseGems {
 	@EventHandler
 	public static void postInit(FMLPostInitializationEvent event) {
 		proxy.postInit(event);
-	}
-
-	@EventHandler
-	public static void onRemap(FMLMissingMappingsEvent event) {
-		proxy.onRemap(event);
 	}
 }
