@@ -3,8 +3,13 @@ package com.mcmoddev.basegems.init;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import com.mcmoddev.basegems.BaseGems;
 import com.mcmoddev.basegems.data.MaterialNames;
+import com.mcmoddev.lib.data.Names;
+import com.mcmoddev.lib.data.SharedStrings;
+import com.mcmoddev.lib.init.Materials;
 import com.mcmoddev.lib.material.MMDMaterial;
 import com.mcmoddev.lib.util.TabContainer;
 
@@ -21,10 +26,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class Blocks extends com.mcmoddev.lib.init.Blocks {
 
 	private static boolean initDone = false;
-	private static TabContainer myTabs = new TabContainer( ItemGroups.blocksTab, ItemGroups.itemsTab, ItemGroups.toolsTab );
 
 	protected Blocks() {
-		throw new IllegalAccessError("Not a instantiable class");
+		throw new IllegalAccessError(SharedStrings.NOT_INSTANTIABLE);
 	}
 
 	/**
@@ -46,19 +50,40 @@ public class Blocks extends com.mcmoddev.lib.init.Blocks {
 				MaterialNames.OPAL, MaterialNames.PERIDOT, MaterialNames.RUBY, MaterialNames.SAPPHIRE, MaterialNames.SPINEL,
 				MaterialNames.TANZANITE, MaterialNames.TOPAZ, MaterialNames.TURQUOISE, MaterialNames.VIOLETSAPPHIRE);
 		
-		materials.forEach( name -> createBlocksFull(name, myTabs));
+		materials.forEach(name -> {
+			final MMDMaterial material = Materials.getMaterialByName(name);
+
+			create(Names.BLOCK, material);
+			create(Names.PLATE, material);
+			create(Names.ORE, material);
+			create(Names.BARS, material);
+			create(Names.DOOR, material);
+			create(Names.TRAPDOOR, material);
+
+			create(Names.BUTTON, material);
+			create(Names.SLAB, material);
+			create(Names.DOUBLE_SLAB, material);
+			create(Names.LEVER, material);
+			create(Names.PRESSURE_PLATE, material);
+			create(Names.STAIRS, material);
+			create(Names.WALL, material);
+		});
 
 		initDone = true;
 	}
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		for( MMDMaterial mat : Materials.getMaterialsByMod(BaseGems.MODID) ) {
-			for( Block block : mat.getBlocks() ) {
-				if( block.getRegistryName().getResourceDomain().equals(BaseGems.MODID) ) {
+		for (MMDMaterial mat : Materials.getMaterialsByMod(BaseGems.MODID)) {
+			for (Block block : mat.getBlocks()) {
+				if (block.getRegistryName().getResourceDomain().equals(BaseGems.MODID)) {
 					event.getRegistry().register(block);
 				}
 			}
 		}
-}
+	}
+
+	protected static Block create(@Nonnull final Names name, @Nonnull final MMDMaterial material) {
+		return create(name, material, ItemGroups.myTabs.blocksTab);
+	}
 }

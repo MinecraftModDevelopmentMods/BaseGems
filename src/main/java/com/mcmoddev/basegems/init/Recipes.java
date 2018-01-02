@@ -1,5 +1,7 @@
 package com.mcmoddev.basegems.init;
 
+import com.mcmoddev.lib.data.SharedStrings;
+
 /**
  *
  * @author Jasmine Iwanek
@@ -10,7 +12,7 @@ public class Recipes extends com.mcmoddev.lib.init.Recipes {
 	private static boolean initDone = false;
 
 	private Recipes() {
-		throw new IllegalAccessError("Not a instantiable class");
+		throw new IllegalAccessError(SharedStrings.NOT_INSTANTIABLE);
 	}
 
 	/**

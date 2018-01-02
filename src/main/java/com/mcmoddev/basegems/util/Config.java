@@ -22,7 +22,7 @@ public class Config extends com.mcmoddev.lib.util.ConfigBase {
 	private static final String MATERIALS_CAT = "Gems";
 
 	@SubscribeEvent
-	public static void onConfigChange(ConfigChangedEvent.OnConfigChangedEvent e) {
+	public void onConfigChange(ConfigChangedEvent.OnConfigChangedEvent e) {
 		if (e.getModID().equals(BaseGems.MODID)) {
 			init();
 		}

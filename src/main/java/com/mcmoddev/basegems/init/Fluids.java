@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.mcmoddev.basegems.data.MaterialNames;
 import com.mcmoddev.lib.util.ConfigBase.Options;
+import com.mcmoddev.lib.data.SharedStrings;
+import com.mcmoddev.lib.init.Materials;
 
 /**
  * This class initializes all fluids in Base Gems.
@@ -17,7 +19,7 @@ public class Fluids extends com.mcmoddev.lib.init.Fluids {
 	private static boolean initDone = false;
 
 	private Fluids() {
-		throw new IllegalAccessError("Not a instantiable class");
+		throw new IllegalAccessError(SharedStrings.NOT_INSTANTIABLE);
 	}
 
 	/**
@@ -37,9 +39,11 @@ public class Fluids extends com.mcmoddev.lib.init.Fluids {
 				MaterialNames.TANZANITE, MaterialNames.TOPAZ, MaterialNames.TURQUOISE, MaterialNames.VIOLETSAPPHIRE);
 		
 		materials.stream()
-		.filter(Options::isMaterialEnabled)
-		.forEach( name -> { addFluid( name, 2000, 10000, 330, 10); addFluidBlock(name); });
-
+		.filter(Materials::hasMaterial)
+		.forEach(name -> {
+			addFluid( name, 2000, 10000, 330, 10);
+			addFluidBlock(name);
+		});
 
 		initDone = true;
 	}

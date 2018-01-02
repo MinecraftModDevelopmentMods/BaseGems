@@ -1,6 +1,9 @@
 package com.mcmoddev.basegems.data;
 
+import com.mcmoddev.lib.data.SharedStrings;
+
 public final class MaterialNames {
+
 	public static final String AMBER = "amber";
 	public static final String ALEXANDRITE = "alexandrite";
 	public static final String AGATE = "agate";
@@ -34,4 +37,8 @@ public final class MaterialNames {
 	public static final String TOPAZ = "topaz";
 	public static final String TURQUOISE = "turquoise";
 	public static final String VIOLETSAPPHIRE = "violetsapphire";
+
+	private MaterialNames() {
+		throw new IllegalAccessError(SharedStrings.NOT_INSTANTIABLE);
+	}
 }

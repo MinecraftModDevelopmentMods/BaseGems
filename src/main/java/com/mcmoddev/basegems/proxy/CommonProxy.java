@@ -3,13 +3,7 @@ package com.mcmoddev.basegems.proxy;
 import java.util.HashSet;
 
 import com.mcmoddev.basegems.BaseGems;
-import com.mcmoddev.basegems.init.Blocks;
-import com.mcmoddev.basegems.init.Materials;
-import com.mcmoddev.basegems.init.Items;
-import com.mcmoddev.basegems.init.ItemGroups;
-import com.mcmoddev.basegems.init.Fluids;
-import com.mcmoddev.basegems.init.VillagerTrades;
-import com.mcmoddev.basegems.init.Recipes;
+import com.mcmoddev.basegems.init.*;
 import com.mcmoddev.basegems.util.Config;
 import com.mcmoddev.lib.integration.IntegrationManager;
 import com.mcmoddev.lib.oregen.FallbackGenerator;
@@ -19,15 +13,15 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.RegistryEvent.MissingMappings;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.MissingModsException;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.versioning.DefaultArtifactVersion;
 import net.minecraftforge.fml.common.versioning.ArtifactVersion;
+import net.minecraftforge.fml.common.versioning.DefaultArtifactVersion;
 
 /**
  * Base Gems Common Proxy
@@ -38,11 +32,7 @@ import net.minecraftforge.fml.common.versioning.ArtifactVersion;
 public class CommonProxy {
 
 	public void preInit(FMLPreInitializationEvent event) {
-		MinecraftForge.EVENT_BUS.register(com.mcmoddev.basegems.init.Items.class);
-		MinecraftForge.EVENT_BUS.register(com.mcmoddev.basegems.init.Blocks.class);
-		MinecraftForge.EVENT_BUS.register(com.mcmoddev.basegems.init.Recipes.class);
-		MinecraftForge.EVENT_BUS.register(this);
-		
+
 		Config.init();
 
 		if ((Options.requireMMDOreSpawn()) && (!Loader.isModLoaded("orespawn"))) {
@@ -50,11 +40,11 @@ public class CommonProxy {
 				GameRegistry.registerWorldGenerator(new FallbackGenerator(), 0);
 			} else {
 				final HashSet<ArtifactVersion> orespawnMod = new HashSet<>();
-				orespawnMod.add(new DefaultArtifactVersion("3.1.0"));
+				orespawnMod.add(new DefaultArtifactVersion("3.2.0"));
 				throw new MissingModsException(orespawnMod, "orespawn", "MMD Ore Spawn Mod (fallback generator disabled, MMD OreSpawn enabled)");
 			}
 		}
-		
+
 		Materials.init();
 		Fluids.init();
 		ItemGroups.init();
@@ -62,21 +52,23 @@ public class CommonProxy {
 		Items.init();
 		VillagerTrades.init();
 
-
 		IntegrationManager.INSTANCE.preInit(event);
 		IntegrationManager.INSTANCE.runCallbacks("preInit");
+		MinecraftForge.EVENT_BUS.register(com.mcmoddev.basegems.proxy.CommonProxy.class);
 	}
 
-	public void onRemapItem(MissingMappings<Item> event) {
-		for (final RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
+	@SubscribeEvent
+	public void onRemapBlock(RegistryEvent.MissingMappings<Block> event) {
+		for (final RegistryEvent.MissingMappings.Mapping<Block> mapping : event.getAllMappings()) {
 			if (mapping.key.getResourceDomain().equals(BaseGems.MODID)) {
 				// we have nothing in BaseGems that needs this right now
 			}
 		}
 	}
 
-	public void onRemapBlock(MissingMappings<Block> event) {
-		for (final RegistryEvent.MissingMappings.Mapping<Block> mapping : event.getAllMappings()) {
+	@SubscribeEvent
+	public void onRemapItem(RegistryEvent.MissingMappings<Item> event) {
+		for (final RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
 			if (mapping.key.getResourceDomain().equals(BaseGems.MODID)) {
 				// we have nothing in BaseGems that needs this right now
 			}
