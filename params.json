@@ -1,6 +1,0 @@
-{
-  "name": "Basegems",
-  "tagline": "",
-  "body": "# BaseGems [![Build Status](https://travis-ci.org/jriwanek/BaseGems.svg?branch=master)](https://travis-ci.org/jriwanek/BaseGems)\r\nAddon to BaseMetals supporting Gemstones\r\n\r\nContent\r\n-------\r\nBars\r\n\r\nDoors\r\n\r\nOres\r\n\r\nPlates\r\n\r\nTrapdoors\r\n\r\nArmor\r\n\r\nTools: Crackhammers, Axes, Hoes, Pickaxes, Shovels, Fishing Rods\r\n\r\nOres, Blocks, Ingots & Nuggets\r\n\r\nPowders & Blends (Ingot and Nugget size)\r\n\r\nRods\r\n\r\nGears\r\n\r\nWeapons: Swords, Bows, Arrows, Crossbows & Bolts\r\n\r\nMaterials\r\n---------\r\n[In Progress]",
-  "note": "Don't delete this file! It's used internally to help with page regeneration."
-}
