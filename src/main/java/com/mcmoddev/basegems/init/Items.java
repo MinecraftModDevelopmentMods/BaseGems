@@ -12,9 +12,8 @@ import com.mcmoddev.lib.data.SharedStrings;
 import com.mcmoddev.lib.init.Materials;
 import com.mcmoddev.lib.material.MMDMaterial;
 import com.mcmoddev.lib.util.Oredicts;
-
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -25,9 +24,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  *
  */
 public class Items extends com.mcmoddev.lib.init.Items {
-
-	private static boolean initDone = false;
-
 	protected Items() {
 		throw new IllegalAccessError(SharedStrings.NOT_INSTANTIABLE);
 	}
@@ -36,13 +32,7 @@ public class Items extends com.mcmoddev.lib.init.Items {
 	 *
 	 */
 	public static void init() {
-		if (initDone) {
-			return;
-		}
-
-		Blocks.init();
-
-		List<String> materials = Arrays.asList(MaterialNames.AMBER, MaterialNames.ALEXANDRITE, MaterialNames.AGATE, MaterialNames.AMETRINE,
+		final List<String> materials = Arrays.asList(MaterialNames.AMBER, MaterialNames.ALEXANDRITE, MaterialNames.AGATE, MaterialNames.AMETRINE,
 				MaterialNames.AMETHYST, MaterialNames.AQUAMARINE, MaterialNames.BERYL, MaterialNames.BLACKDIAMOND, MaterialNames.BLUETOPAZ,
 				MaterialNames.CARNELION, MaterialNames.CITRINE, MaterialNames.GARNET, MaterialNames.GOLDENBERYL, MaterialNames.HELIODOR,
 				MaterialNames.INDICOLITE, MaterialNames.IOLITE, MaterialNames.JADE, MaterialNames.JASPER, MaterialNames.LEPIDOLITE,
@@ -83,34 +73,27 @@ public class Items extends com.mcmoddev.lib.init.Items {
 			create(Names.ROD, material);
 			create(Names.GEAR, material);
 		});
+	}
 
-		initDone = true;
+	private static boolean filterFunc(ItemStack item) {
+		return item.getItem().getRegistryName().getResourceDomain().equals(BaseGems.MODID);
+	}
+
+	private static Item mapFunc(ItemStack itemStack) {
+		return itemStack.getItem();
 	}
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		for (MMDMaterial mat : Materials.getMaterialsByMod(BaseGems.MODID)) {
-			for (Item item : mat.getItems()) {
-				if (item.getRegistryName().getResourceDomain().equals(BaseGems.MODID)) {
-					event.getRegistry().register(item);
-				}
-			}
-		}
+		Materials.getMaterialsByMod(BaseGems.MODID).stream()
+		.forEach( mat -> {
+			mat.getItems().stream()
+			.filter(Items::filterFunc)
+			.map(Items::mapFunc)
+			.forEach(event.getRegistry()::register);
+		});
+
 		Oredicts.registerItemOreDictionaryEntries();
 		Oredicts.registerBlockOreDictionaryEntries();
-	}
-
-	protected static Item create(@Nonnull final Names name, @Nonnull final MMDMaterial material) {
-		CreativeTabs tab;
-
-		if ((name.equals(Names.DOOR)) || (name.equals(Names.SLAB))) {
-			tab = ItemGroups.myTabs.blocksTab;
-		} else if ((name.equals(Names.BLEND)) || (name.equals(Names.INGOT)) || (name.equals(Names.NUGGET)) || (name.equals(Names.POWDER)) || (name.equals(Names.SMALLBLEND)) || (name.equals(Names.SMALLPOWDER)) || (name.equals(Names.ROD)) || (name.equals(Names.GEAR))) {
-			tab = ItemGroups.myTabs.itemsTab;
-		} else {
-			tab = ItemGroups.myTabs.toolsTab;
-		}
-
-		return create(name, material, tab);
 	}
 }

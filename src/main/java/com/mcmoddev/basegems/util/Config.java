@@ -1,6 +1,6 @@
 package com.mcmoddev.basegems.util;
 
-import java.io.*;
+import java.io.File;
 
 import com.mcmoddev.basegems.BaseGems;
 import com.mcmoddev.basegems.data.MaterialNames;
@@ -34,7 +34,6 @@ public class Config extends com.mcmoddev.lib.util.ConfigBase {
 			MinecraftForge.EVENT_BUS.register(com.mcmoddev.basegems.util.Config.class);
 		}
 
-		
 		Options.materialEnabled(MaterialNames.AMBER, configuration.getBoolean("EnableAmber", MATERIALS_CAT, true, "Enable Amber Items and Materials"));
 		Options.materialEnabled(MaterialNames.ALEXANDRITE, configuration.getBoolean("EnableAlexandrite", MATERIALS_CAT, true, "Enable Alexandrite Items and Materials"));
 		Options.materialEnabled(MaterialNames.AGATE, configuration.getBoolean("EnableAgate", MATERIALS_CAT, true, "Enable Agate Items and Materials"));

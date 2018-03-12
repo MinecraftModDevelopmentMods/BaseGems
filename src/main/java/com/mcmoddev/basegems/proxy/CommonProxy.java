@@ -3,8 +3,10 @@ package com.mcmoddev.basegems.proxy;
 import java.util.HashSet;
 
 import com.mcmoddev.basegems.BaseGems;
+import com.mcmoddev.basegems.data.MaterialNames;
 import com.mcmoddev.basegems.init.*;
 import com.mcmoddev.basegems.util.Config;
+import com.mcmoddev.lib.data.SharedStrings;
 import com.mcmoddev.lib.integration.IntegrationManager;
 import com.mcmoddev.lib.oregen.FallbackGenerator;
 import com.mcmoddev.lib.util.ConfigBase.Options;
@@ -35,13 +37,14 @@ public class CommonProxy {
 
 		Config.init();
 
-		if ((Options.requireMMDOreSpawn()) && (!Loader.isModLoaded("orespawn"))) {
-			if(Options.fallbackOrespawn()) {
+		if ((Options.requireMMDOreSpawn()) && (!Loader.isModLoaded(SharedStrings.ORESPAWN_MODID))) {
+			if (Options.fallbackOrespawn()) {
 				GameRegistry.registerWorldGenerator(new FallbackGenerator(), 0);
 			} else {
 				final HashSet<ArtifactVersion> orespawnMod = new HashSet<>();
-				orespawnMod.add(new DefaultArtifactVersion("3.2.0"));
-				throw new MissingModsException(orespawnMod, "orespawn", "MMD Ore Spawn Mod (fallback generator disabled, MMD OreSpawn enabled)");
+				orespawnMod.add(new DefaultArtifactVersion(SharedStrings.ORESPAWN_VERSION));
+				throw new MissingModsException(orespawnMod, SharedStrings.ORESPAWN_MODID,
+						SharedStrings.ORESPAWN_MISSING_TEXT);
 			}
 		}
 
@@ -50,6 +53,7 @@ public class CommonProxy {
 		ItemGroups.init();
 		Blocks.init();
 		Items.init();
+
 		VillagerTrades.init();
 
 		IntegrationManager.INSTANCE.preInit(event);
@@ -61,7 +65,7 @@ public class CommonProxy {
 	public void onRemapBlock(RegistryEvent.MissingMappings<Block> event) {
 		for (final RegistryEvent.MissingMappings.Mapping<Block> mapping : event.getAllMappings()) {
 			if (mapping.key.getResourceDomain().equals(BaseGems.MODID)) {
-				// we have nothing in BaseGems that needs this right now
+				// dummy
 			}
 		}
 	}
@@ -70,7 +74,7 @@ public class CommonProxy {
 	public void onRemapItem(RegistryEvent.MissingMappings<Item> event) {
 		for (final RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
 			if (mapping.key.getResourceDomain().equals(BaseGems.MODID)) {
-				// we have nothing in BaseGems that needs this right now
+				// dummy
 			}
 		}
 	}
@@ -78,8 +82,7 @@ public class CommonProxy {
 	public void init(FMLInitializationEvent event) {
 		Recipes.init();
 
-		ItemGroups.setupIcons();
-		
+		ItemGroups.setupIcons(MaterialNames.BLACKDIAMOND);
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {

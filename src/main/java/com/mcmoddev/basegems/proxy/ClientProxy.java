@@ -7,9 +7,9 @@ import com.mcmoddev.basegems.init.Fluids;
 import com.mcmoddev.basegems.init.Items;
 import com.mcmoddev.lib.material.MMDMaterial;
 
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -29,16 +29,14 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@SubscribeEvent
-	public void fluidRendering(RegistryEvent.Register<MMDMaterial> ev) {
+	public void fluidRendering(RegistryEvent.Register<MMDMaterial> event) {
 		for (final String name : Fluids.getFluidBlockRegistry().keySet()) {
 			RegistrationHelper.registerFluidRender(name);
 		}
 	}
 
-	@Override
-	public void init(FMLInitializationEvent event) {
-		super.init(event);
-
+	@SubscribeEvent
+	public void modelRegistry(ModelRegistryEvent event) {
 		for (final String name : Items.getItemRegistry().keySet()) {
 			RegistrationHelper.registerItemRender(name);
 		}
