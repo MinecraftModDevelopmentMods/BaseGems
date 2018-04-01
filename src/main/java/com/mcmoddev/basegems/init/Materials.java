@@ -27,7 +27,7 @@ public class Materials extends com.mcmoddev.lib.init.Materials {
 	public static void init() {
 		final List<String> materials = Arrays.asList(MaterialNames.AMBER, MaterialNames.ALEXANDRITE, MaterialNames.AGATE, MaterialNames.AMETRINE,
 				MaterialNames.AMETHYST, MaterialNames.AQUAMARINE, MaterialNames.BERYL, MaterialNames.BLACKDIAMOND, MaterialNames.BLUETOPAZ,
-				MaterialNames.CARNELION, MaterialNames.CITRINE, MaterialNames.GARNET, MaterialNames.GOLDENBERYL, MaterialNames.HELIODOR,
+				MaterialNames.CARNELIAN, MaterialNames.CITRINE, MaterialNames.GARNET, MaterialNames.GOLDENBERYL, MaterialNames.HELIODOR,
 				MaterialNames.INDICOLITE, MaterialNames.IOLITE, MaterialNames.JADE, MaterialNames.JASPER, MaterialNames.LEPIDOLITE,
 				MaterialNames.MALACHITE, MaterialNames.MOLDAVITE, MaterialNames.MOONSTONE, MaterialNames.MORGANITE, MaterialNames.ONYX,
 				MaterialNames.OPAL, MaterialNames.PERIDOT, MaterialNames.RUBY, MaterialNames.SAPPHIRE, MaterialNames.SPINEL,
@@ -48,7 +48,7 @@ public class Materials extends com.mcmoddev.lib.init.Materials {
 			case MaterialNames.BERYL:
 			case MaterialNames.BLACKDIAMOND:
 			case MaterialNames.BLUETOPAZ:
-			case MaterialNames.CARNELION:
+			case MaterialNames.CARNELIAN:
 			case MaterialNames.CITRINE:
 			case MaterialNames.GARNET:
 			case MaterialNames.GOLDENBERYL:
@@ -89,7 +89,7 @@ public class Materials extends com.mcmoddev.lib.init.Materials {
 			case MaterialNames.BERYL:
 			case MaterialNames.BLACKDIAMOND:
 			case MaterialNames.BLUETOPAZ:
-			case MaterialNames.CARNELION:
+			case MaterialNames.CARNELIAN:
 			case MaterialNames.CITRINE:
 			case MaterialNames.GARNET:
 			case MaterialNames.GOLDENBERYL:
@@ -129,7 +129,7 @@ public class Materials extends com.mcmoddev.lib.init.Materials {
 			case MaterialNames.AQUAMARINE:
 			case MaterialNames.BERYL:
 			case MaterialNames.BLUETOPAZ:
-			case MaterialNames.CARNELION:
+			case MaterialNames.CARNELIAN:
 			case MaterialNames.CITRINE:
 			case MaterialNames.GARNET:
 			case MaterialNames.GOLDENBERYL:
@@ -169,7 +169,7 @@ public class Materials extends com.mcmoddev.lib.init.Materials {
 				return 8.5d;
 			case MaterialNames.PERIDOT:
 			case MaterialNames.JADE:
-			case MaterialNames.CARNELION:
+			case MaterialNames.CARNELIAN:
 			case MaterialNames.GARNET:
 			case MaterialNames.AGATE:
 				return 6.5d;
