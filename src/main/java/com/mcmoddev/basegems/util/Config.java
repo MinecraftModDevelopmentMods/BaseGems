@@ -43,7 +43,7 @@ public class Config extends com.mcmoddev.lib.util.ConfigBase {
 		Options.materialEnabled(MaterialNames.BERYL, configuration.getBoolean("EnableBeryl", MATERIALS_CAT, true, "Enable Beryl Items and Materials"));
 		Options.materialEnabled(MaterialNames.BLACKDIAMOND, configuration.getBoolean("EnableBlackdiamond", MATERIALS_CAT, true, "Enable Blackdiamond Items and Materials"));
 		Options.materialEnabled(MaterialNames.BLUETOPAZ, configuration.getBoolean("EnableBluetopaz", MATERIALS_CAT, true, "Enable Bluetopaz Items and Materials"));
-		Options.materialEnabled(MaterialNames.CARNELION, configuration.getBoolean("EnableCarnelion", MATERIALS_CAT, true, "Enable Carnelion Items and Materials"));
+		Options.materialEnabled(MaterialNames.CARNELIAN, configuration.getBoolean("EnableCarnelian", MATERIALS_CAT, true, "Enable Carnelian Items and Materials"));
 		Options.materialEnabled(MaterialNames.CITRINE, configuration.getBoolean("EnableCitrine", MATERIALS_CAT, true, "Enable Citrine Items and Materials"));
 		Options.materialEnabled(MaterialNames.GARNET, configuration.getBoolean("EnableGarnet", MATERIALS_CAT, true, "Enable Garnet Items and Materials"));
 		Options.materialEnabled(MaterialNames.GOLDENBERYL, configuration.getBoolean("EnableGoldenberyl", MATERIALS_CAT, true, "Enable Goldenberyl Items and Materials"));

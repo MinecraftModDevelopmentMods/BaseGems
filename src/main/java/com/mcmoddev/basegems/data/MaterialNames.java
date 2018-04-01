@@ -13,7 +13,7 @@ public final class MaterialNames {
 	public static final String BERYL = "beryl";
 	public static final String BLACKDIAMOND = "blackdiamond";
 	public static final String BLUETOPAZ = "bluetopaz";
-	public static final String CARNELION = "carnelion";
+	public static final String CARNELIAN = "carnelian";
 	public static final String CITRINE = "citrine";
 	public static final String GARNET = "garnet";
 	public static final String GOLDENBERYL = "goldenberyl";
