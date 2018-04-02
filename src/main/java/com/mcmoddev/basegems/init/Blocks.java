@@ -1,7 +1,18 @@
 package com.mcmoddev.basegems.init;
 
-import com.mcmoddev.basegems.util.Config.Options;
-import com.mcmoddev.lib.util.TabContainer;
+import java.util.Arrays;
+import java.util.List;
+
+import com.mcmoddev.basegems.BaseGems;
+import com.mcmoddev.basegems.data.MaterialNames;
+import com.mcmoddev.lib.data.Names;
+import com.mcmoddev.lib.data.SharedStrings;
+import com.mcmoddev.lib.init.Materials;
+import com.mcmoddev.lib.material.MMDMaterial;
+
+import net.minecraft.block.Block;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * This class initializes all blocks in Base Gems.
@@ -11,156 +22,44 @@ import com.mcmoddev.lib.util.TabContainer;
  */
 public class Blocks extends com.mcmoddev.lib.init.Blocks {
 
-	private static boolean initDone = false;
-	private static TabContainer myTabs = new TabContainer( ItemGroups.blocksTab, ItemGroups.itemsTab, ItemGroups.toolsTab );
-
 	protected Blocks() {
-		throw new IllegalAccessError("Not a instantiable class");
+		throw new IllegalAccessError(SharedStrings.NOT_INSTANTIABLE);
 	}
 
 	/**
 	 *
 	 */
 	public static void init() {
-		if (initDone) {
-			return;
-		}
+		final List<String> materials = Arrays.asList(MaterialNames.AMBER, MaterialNames.ALEXANDRITE, MaterialNames.AGATE, MaterialNames.AMETRINE,
+				MaterialNames.AMETHYST, MaterialNames.AQUAMARINE, MaterialNames.BERYL, MaterialNames.BLACKDIAMOND, MaterialNames.BLUETOPAZ,
+				MaterialNames.CARNELIAN, MaterialNames.CITRINE, MaterialNames.GARNET, MaterialNames.GOLDENBERYL, MaterialNames.HELIODOR,
+				MaterialNames.INDICOLITE, MaterialNames.IOLITE, MaterialNames.JADE, MaterialNames.JASPER, MaterialNames.LEPIDOLITE,
+				MaterialNames.MALACHITE, MaterialNames.MOLDAVITE, MaterialNames.MOONSTONE, MaterialNames.MORGANITE, MaterialNames.ONYX,
+				MaterialNames.OPAL, MaterialNames.PERIDOT, MaterialNames.RUBY, MaterialNames.SAPPHIRE, MaterialNames.SPINEL,
+				MaterialNames.TANZANITE, MaterialNames.TOPAZ, MaterialNames.TURQUOISE, MaterialNames.VIOLETSAPPHIRE);
 
-		Materials.init();
-		ItemGroups.init();
+		materials.stream().filter(Materials::hasMaterial)
+				.filter(materialName -> !Materials.getMaterialByName(materialName).isEmpty())
+				.forEach(materialName -> {
+					final MMDMaterial material = Materials.getMaterialByName(materialName);
+					Arrays.asList(Names.BLOCK, Names.PLATE, Names.ORE, Names.BARS, Names.DOOR, Names.TRAPDOOR,
+							Names.BUTTON, Names.SLAB, Names.DOUBLE_SLAB, Names.LEVER, Names.PRESSURE_PLATE,
+							Names.STAIRS, Names.WALL).stream()
+					.forEach(name -> create( name, material));
+				});
+	}
 
-		if (Options.enableAgate) {
-			createBlocksFull(Materials.agate, myTabs);
-		}
+	private static boolean filterFunc(Block block) {
+		return block.getRegistryName().getResourceDomain().equals(BaseGems.MODID);
+	}
 
-		if (Options.enableAlexandrite) {
-			createBlocksFull(Materials.alexandrite, myTabs);
-		}
-
-		if (Options.enableAmber) {
-			createBlocksFull(Materials.amber, myTabs);
-		}
-
-		if (Options.enableAmethyst) {
-			createBlocksFull(Materials.amethyst, myTabs);
-		}
-
-		if (Options.enableAmetrine) {
-			createBlocksFull(Materials.ametrine, myTabs);
-		}
-
-		if (Options.enableAquamarine) {
-			createBlocksFull(Materials.aquamarine, myTabs);
-		}
-
-		if (Options.enableBeryl) {
-			createBlocksFull(Materials.beryl, myTabs);
-		}
-
-		if (Options.enableBlackDiamond) {
-			createBlocksFull(Materials.blackdiamond, myTabs);
-		}
-
-		if (Options.enableBlueTopaz) {
-			createBlocksFull(Materials.bluetopaz, myTabs);
-		}
-
-		if (Options.enableCarnelian) {
-			createBlocksFull(Materials.carnelian, myTabs);
-		}
-
-		if (Options.enableCitrine) {
-			createBlocksFull(Materials.citrine, myTabs);
-		}
-
-		if (Options.enableGarnet) {
-			createBlocksFull(Materials.garnet, myTabs);
-		}
-
-		if (Options.enableGoldenBeryl) {
-			createBlocksFull(Materials.goldenberyl, myTabs);
-		}
-
-		if (Options.enableHeliodor) {
-			createBlocksFull(Materials.heliodor, myTabs);
-		}
-
-		if (Options.enableIndicolite) {
-			createBlocksFull(Materials.indicolite, myTabs);
-		}
-
-		if (Options.enableIolite) {
-			createBlocksFull(Materials.iolite, myTabs);
-		}
-
-		if (Options.enableJade) {
-			createBlocksFull(Materials.jade, myTabs);
-		}
-
-		if (Options.enableJasper) {
-			createBlocksFull(Materials.jasper, myTabs);
-		}
-
-		if (Options.enableLepidolite) {
-			createBlocksFull(Materials.lepidolite, myTabs);
-		}
-
-		if (Options.enableMalachite) {
-			createBlocksFull(Materials.malachite, myTabs);
-		}
-
-		if (Options.enableMoldavite) {
-			createBlocksFull(Materials.moldavite, myTabs);
-		}
-
-		if (Options.enableMoonstone) {
-			createBlocksFull(Materials.moonstone, myTabs);
-		}
-
-		if (Options.enableMorganite) {
-			createBlocksFull(Materials.morganite, myTabs);
-		}
-
-		if (Options.enableOnyx) {
-			createBlocksFull(Materials.onyx, myTabs);
-		}
-
-		if (Options.enableOpal) {
-			createBlocksFull(Materials.opal, myTabs);
-		}
-
-		if (Options.enablePeridot) {
-			createBlocksFull(Materials.peridot, myTabs);
-		}
-
-		if (Options.enableRuby) {
-			createBlocksFull(Materials.ruby, myTabs);
-		}
-
-		if (Options.enableSapphire) {
-			createBlocksFull(Materials.sapphire, myTabs);
-		}
-
-		if (Options.enableSpinel) {
-			createBlocksFull(Materials.spinel, myTabs);
-		}
-
-		if (Options.enableTanzanite) {
-			createBlocksFull(Materials.tanzanite, myTabs);
-		}
-
-		if (Options.enableTopaz) {
-			createBlocksFull(Materials.topaz, myTabs);
-		}
-
-		if (Options.enableTurquoise) {
-			createBlocksFull(Materials.turquoise, myTabs);
-		}
-
-		if (Options.enableVioletSapphire) {
-			createBlocksFull(Materials.violetsapphire, myTabs);
-		}
-
-		initDone = true;
+	@SubscribeEvent
+	public static void registerBlocks(RegistryEvent.Register<Block> event) {
+		Materials.getMaterialsByMod(BaseGems.MODID).stream()
+		.forEach(mat -> {
+			mat.getBlocks().stream()
+			.filter(Blocks::filterFunc)
+			.forEach(event.getRegistry()::register);
+		});
 	}
 }
