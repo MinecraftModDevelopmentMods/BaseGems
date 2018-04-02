@@ -40,39 +40,71 @@ public class Materials extends com.mcmoddev.lib.init.Materials {
 	private static int getColor(@Nonnull final String name) {
 		switch (name) {
 			case MaterialNames.AMBER:
+				return 0xFFF9C923;
 			case MaterialNames.ALEXANDRITE:
+				return 0xFF747385;
 			case MaterialNames.AGATE:
+				return 0xFF179FD1;
 			case MaterialNames.AMETRINE:
+				return 0xFFC8A394;
 			case MaterialNames.AMETHYST:
+				return 0xFFA242E2;
 			case MaterialNames.AQUAMARINE:
+				return 0xFF78BACA;
 			case MaterialNames.BERYL:
+				return 0xFF4EB86A;
 			case MaterialNames.BLACKDIAMOND:
-			case MaterialNames.BLUETOPAZ:
-			case MaterialNames.CARNELIAN:
-			case MaterialNames.CITRINE:
-			case MaterialNames.GARNET:
-			case MaterialNames.GOLDENBERYL:
-			case MaterialNames.HELIODOR:
-			case MaterialNames.INDICOLITE:
-			case MaterialNames.IOLITE:
-			case MaterialNames.JADE:
-			case MaterialNames.JASPER:
-			case MaterialNames.LEPIDOLITE:
-			case MaterialNames.MALACHITE:
-			case MaterialNames.MOLDAVITE:
-			case MaterialNames.MOONSTONE:
-			case MaterialNames.MORGANITE:
-			case MaterialNames.ONYX:
-			case MaterialNames.OPAL:
-			case MaterialNames.PERIDOT:
-			case MaterialNames.RUBY:
-			case MaterialNames.SAPPHIRE:
-			case MaterialNames.SPINEL:
-			case MaterialNames.TANZANITE:
-			case MaterialNames.TOPAZ:
-			case MaterialNames.TURQUOISE:
-			case MaterialNames.VIOLETSAPPHIRE:
 				return 0xFF000000;
+			case MaterialNames.BLUETOPAZ:
+				return 0xFF01A4E9;
+			case MaterialNames.CARNELIAN:
+				return 0xFFF03905;
+			case MaterialNames.CITRINE:
+				return 0xFFFAD563;
+			case MaterialNames.GARNET:
+				return 0xFF9D0938;
+			case MaterialNames.GOLDENBERYL:
+				return 0xFFFDEE4C;
+			case MaterialNames.HELIODOR:
+				return 0xFFF9FD5D;
+			case MaterialNames.INDICOLITE:
+				return 0xFF7EFBF5;
+			case MaterialNames.IOLITE:
+				return 0xFF605DBD;
+			case MaterialNames.JADE:
+				return 0xFF008127;
+			case MaterialNames.JASPER:
+				return 0xFF9E0403;
+			case MaterialNames.LEPIDOLITE:
+				return 0xFFB980A0;
+			case MaterialNames.MALACHITE:
+				return 0xFF25674C;
+			case MaterialNames.MOLDAVITE:
+				return 0xFF68873B;
+			case MaterialNames.MOONSTONE:
+				return 0xFF9FAED7;
+			case MaterialNames.MORGANITE:
+				return 0xFFF4D8CA;
+			case MaterialNames.ONYX:
+				return 0xFF000000;
+			case MaterialNames.OPAL:
+				return 0xFFC3CCE9;
+			case MaterialNames.PERIDOT:
+				return 0xFFB9E64F;
+			case MaterialNames.RUBY:
+				return 0xFF7E0308;
+			case MaterialNames.SAPPHIRE:
+				return 0xFF1036D5;
+			case MaterialNames.SPINEL:
+				return 0xFFFE2B80;
+			case MaterialNames.TANZANITE:
+				return 0xFF4A4AE0;
+			case MaterialNames.TOPAZ:
+				return 0xFFF9E838;
+			case MaterialNames.TURQUOISE:
+				return 0xFF3FB2C4;
+			case MaterialNames.VIOLETSAPPHIRE:
+				return 0xFF8247B7;
 			default:
 				return 0xFF000000;
 		}
