@@ -1,7 +1,6 @@
 package com.mcmoddev.basegems.proxy;
 
 import com.mcmoddev.lib.client.registrations.RegistrationHelper;
-import com.mcmoddev.basegems.BaseGems;
 import com.mcmoddev.basegems.init.Blocks;
 import com.mcmoddev.basegems.init.Fluids;
 import com.mcmoddev.basegems.init.Items;

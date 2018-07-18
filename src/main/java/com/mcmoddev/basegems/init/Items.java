@@ -3,8 +3,6 @@ package com.mcmoddev.basegems.init;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-
 import com.mcmoddev.basegems.BaseGems;
 import com.mcmoddev.basegems.data.MaterialNames;
 import com.mcmoddev.lib.data.Names;
@@ -76,7 +74,7 @@ public class Items extends com.mcmoddev.lib.init.Items {
 	}
 
 	private static boolean filterFunc(ItemStack item) {
-		return item.getItem().getRegistryName().getResourceDomain().equals(BaseGems.MODID);
+		return item.getItem().getRegistryName().getNamespace().equals(BaseGems.MODID);
 	}
 
 	private static Item mapFunc(ItemStack itemStack) {
@@ -86,12 +84,12 @@ public class Items extends com.mcmoddev.lib.init.Items {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		Materials.getMaterialsByMod(BaseGems.MODID).stream()
-		.forEach( mat -> {
+		.forEach( mat ->
 			mat.getItems().stream()
 			.filter(Items::filterFunc)
 			.map(Items::mapFunc)
-			.forEach(event.getRegistry()::register);
-		});
+			.forEach(event.getRegistry()::register)
+		);
 
 		Oredicts.registerItemOreDictionaryEntries();
 		Oredicts.registerBlockOreDictionaryEntries();

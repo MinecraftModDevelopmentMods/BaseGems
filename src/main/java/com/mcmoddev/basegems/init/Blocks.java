@@ -50,16 +50,16 @@ public class Blocks extends com.mcmoddev.lib.init.Blocks {
 	}
 
 	private static boolean filterFunc(Block block) {
-		return block.getRegistryName().getResourceDomain().equals(BaseGems.MODID);
+		return block.getRegistryName().getNamespace().equals(BaseGems.MODID);
 	}
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		Materials.getMaterialsByMod(BaseGems.MODID).stream()
-		.forEach(mat -> {
+		.forEach(mat ->
 			mat.getBlocks().stream()
 			.filter(Blocks::filterFunc)
-			.forEach(event.getRegistry()::register);
-		});
+			.forEach(event.getRegistry()::register)
+		);
 	}
 }

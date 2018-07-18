@@ -3,12 +3,9 @@ package com.mcmoddev.basegems.init;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-
 import com.mcmoddev.basegems.data.MaterialNames;
 import com.mcmoddev.lib.data.SharedStrings;
 import com.mcmoddev.lib.init.Materials;
-import com.mcmoddev.lib.util.ConfigBase.Options;
 
 /**
  * This class initializes all fluids in Base Gems.

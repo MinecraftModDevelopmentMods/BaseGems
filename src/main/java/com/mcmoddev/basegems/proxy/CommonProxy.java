@@ -33,7 +33,8 @@ import net.minecraftforge.fml.common.versioning.DefaultArtifactVersion;
  */
 public class CommonProxy {
 
-	public void preInit(FMLPreInitializationEvent event) {
+	@SuppressWarnings("deprecation")
+	public void preInit(final FMLPreInitializationEvent event) {
 
 		Config.init();
 
@@ -57,35 +58,34 @@ public class CommonProxy {
 		VillagerTrades.init();
 
 		IntegrationManager.INSTANCE.preInit(event);
-		IntegrationManager.INSTANCE.runCallbacks("preInit");
 		MinecraftForge.EVENT_BUS.register(com.mcmoddev.basegems.proxy.CommonProxy.class);
 	}
 
 	@SubscribeEvent
-	public void onRemapBlock(RegistryEvent.MissingMappings<Block> event) {
+	public void onRemapBlock(final RegistryEvent.MissingMappings<Block> event) {
 		for (final RegistryEvent.MissingMappings.Mapping<Block> mapping : event.getAllMappings()) {
-			if (mapping.key.getResourceDomain().equals(BaseGems.MODID)) {
+			if (mapping.key.getNamespace().equals(BaseGems.MODID)) {
 				// dummy
 			}
 		}
 	}
 
 	@SubscribeEvent
-	public void onRemapItem(RegistryEvent.MissingMappings<Item> event) {
+	public void onRemapItem(final RegistryEvent.MissingMappings<Item> event) {
 		for (final RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
-			if (mapping.key.getResourceDomain().equals(BaseGems.MODID)) {
+			if (mapping.key.getNamespace().equals(BaseGems.MODID)) {
 				// dummy
 			}
 		}
 	}
 
-	public void init(FMLInitializationEvent event) {
+	public void init(final FMLInitializationEvent event) {
 		Recipes.init();
 
 		ItemGroups.setupIcons(MaterialNames.BLACKDIAMOND);
 	}
 
-	public void postInit(FMLPostInitializationEvent event) {
+	public void postInit(final FMLPostInitializationEvent event) {
 		Config.postInit();
 	}
 }
