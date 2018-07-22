@@ -22,8 +22,8 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
-        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.0.9'
-        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5'
+        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.0.11'
+        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2'
     }
 }
 
@@ -102,17 +102,13 @@ repositories {
         name 'tterrag'
         url 'http://maven.tterrag.com/'
     }
-    maven {
+    maven { // Tesla
         name 'MMD'
         url 'https://maven.mcmoddev.com/'
     }
     maven { // MCMultipart
         name 'amadornes'
         url 'http://maven.amadornes.com/'
-    }
-    maven { // Tesla
-        name 'epoxide'
-        url 'http://maven.epoxide.org'
     }
     maven { // CraftTweaker, ZenScript
         name 'jared maven'
@@ -145,10 +141,14 @@ repositories {
 }
 
 dependencies {
-    compile "slimeknights:TConstruct:${mc_version}-${tconstruct_version}:deobf"
-    compile "slimeknights.mantle:Mantle:${mc_version}-${mantle_version}:deobf"
-    compile "mmd:orespawn:${orespawn_version}-${mc_version}:dev"
-    compile "com.mcmoddev:BaseMetals:${mc_version}-${bme_version}:deobf"
+//  deobfProvided "slimeknights:TConstruct:${mc_version}-${tconstruct_version}"
+//  deobfProvided "slimeknights.mantle:Mantle:${mc_version}-${mantle_version}"
+    deobfProvided "com.mcmoddev:AdditionalLootTables:${mc_version}-${alt_version}"
+    runtime "com.mcmoddev:AdditionalLootTables:${mc_version}-${alt_version}"
+    deobfProvided "mmd:orespawn:${orespawn_version}-${mc_version}"
+    runtime "mmd:orespawn:${orespawn_version}-${mc_version}"
+    deobfProvided "com.mcmoddev:BaseMetals:${mc_version}-${bme_version}"
+    runtime "com.mcmoddev:BaseMetals:${mc_version}-${bme_version}"
 }
 
 processResources {
