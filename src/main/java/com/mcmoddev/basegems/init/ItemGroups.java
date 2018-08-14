@@ -26,6 +26,7 @@ public class ItemGroups extends com.mcmoddev.lib.init.ItemGroups {
 	 *
 	 */
 	public static void init() {
+		//
 	}
 
 	public static void setupIcons(String materialName) {

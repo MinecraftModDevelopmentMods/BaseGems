@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  * @author Jasmine Iwanek
  *
  */
-public class Config extends com.mcmoddev.lib.util.ConfigBase {
+public class BGeConfig extends com.mcmoddev.lib.util.Config {
 
 	private static Configuration configuration;
 	private static final String CONFIG_FILE = "config/BaseGems.cfg";
@@ -31,7 +31,7 @@ public class Config extends com.mcmoddev.lib.util.ConfigBase {
 	public static void init() {
 		if (configuration == null) {
 			configuration = new Configuration(new File(CONFIG_FILE));
-			MinecraftForge.EVENT_BUS.register(com.mcmoddev.basegems.util.Config.class);
+			MinecraftForge.EVENT_BUS.register(com.mcmoddev.basegems.util.BGeConfig.class);
 		}
 
 		Options.materialEnabled(MaterialNames.AMBER, configuration.getBoolean("EnableAmber", MATERIALS_CAT, true, "Enable Amber Items and Materials"));

@@ -5,11 +5,11 @@ import java.util.HashSet;
 import com.mcmoddev.basegems.BaseGems;
 import com.mcmoddev.basegems.data.MaterialNames;
 import com.mcmoddev.basegems.init.*;
-import com.mcmoddev.basegems.util.Config;
+import com.mcmoddev.basegems.util.BGeConfig;
 import com.mcmoddev.lib.data.SharedStrings;
 import com.mcmoddev.lib.integration.IntegrationManager;
 import com.mcmoddev.lib.oregen.FallbackGenerator;
-import com.mcmoddev.lib.util.ConfigBase.Options;
+import com.mcmoddev.lib.util.Config.Options;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -36,7 +36,7 @@ public class CommonProxy {
 	@SuppressWarnings("deprecation")
 	public void preInit(final FMLPreInitializationEvent event) {
 
-		Config.init();
+		BGeConfig.init();
 
 		if ((Options.requireMMDOreSpawn()) && (!Loader.isModLoaded(SharedStrings.ORESPAWN_MODID))) {
 			if (Options.fallbackOrespawn()) {
@@ -86,6 +86,6 @@ public class CommonProxy {
 	}
 
 	public void postInit(final FMLPostInitializationEvent event) {
-		Config.postInit();
+		BGeConfig.postInit();
 	}
 }
