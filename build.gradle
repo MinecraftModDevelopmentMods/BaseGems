@@ -206,7 +206,7 @@ repositories {
 dependencies {
   deobfProvided "com.mcmoddev:AdditionalLootTables:${mc_version}-${alt_version}"
   deobfProvided "com.mcmoddev:OreSpawn:${mc_version}-${orespawn_version}"
-  deobfProvided "com.mcmoddev:BaseMetals:${mc_version}-${bme_version}"
+  deobfProvided "com.mcmoddev:MMDLib:${mc_version}-${mmdlib_version}"
 }
 
 processResources {
@@ -336,8 +336,8 @@ curseforge {
       mainArtifact(jar) {
         displayName = "$project.description $display_version"
         relations {
-          requiredLibrary 'mmd-orespawn'
-          requiredLibrary 'base-metals'
+          optionalLibrary 'mmd-orespawn'
+          requiredLibrary 'mmdlib'
           optionalLibrary 'additional-loot-tables'
         }
       }
