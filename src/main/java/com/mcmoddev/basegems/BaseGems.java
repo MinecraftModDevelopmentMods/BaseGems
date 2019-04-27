@@ -4,22 +4,19 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.mcmoddev.basegems.proxy.CommonProxy;
+import com.mcmoddev.basegems.util.BGeConfig;
 import com.mcmoddev.lib.data.SharedStrings;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.launchwrapper.Launch;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLFingerprintViolationEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * This is the entry point for this Mod.
@@ -31,7 +28,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 		modid = BaseGems.MODID,
 		name = BaseGems.NAME,
 		version = BaseGems.VERSION,
-		dependencies = "required-after:forge@[14.21.1.2387,);required-after:basemetals;before:buildingbricks",
+		dependencies = "required-after:forge@[14.21.1.2387,);required-after:mmdlib;before:buildingbricks",
 		acceptedMinecraftVersions = "[1.12,)",
 		certificateFingerprint = "@FINGERPRINT@",
 		updateJSON = BaseGems.UPDATEJSON)
@@ -51,7 +48,7 @@ public class BaseGems {
 	 * increased whenever a change is made that has the potential to break
 	 * compatibility with other mods that depend on this one.
 	 */
-	protected static final String VERSION = "2.5.0-beta4";
+	protected static final String VERSION = "2.5.0-rc1";
 
 	protected static final String UPDATEJSON = SharedStrings.UPDATE_JSON_URL + "BaseGems/master/update.json";
 
@@ -61,22 +58,23 @@ public class BaseGems {
 		+ SharedStrings.SERVERPROXY)
 	public static CommonProxy proxy;
 
-	public static final Logger logger = LogManager.getFormatterLogger(BaseGems.MODID);
+	public static final Logger logger = LogManager.getLogger(BaseGems.MODID);
 
 	@EventHandler
 	public void onFingerprintViolation(FMLFingerprintViolationEvent event) {
 		if (!(Boolean)Launch.blackboard.get("fml.deobfuscatedEnvironment")) {
-//			logger.warn("The mod " + MODID + " is expecting signature " + event.getExpectedFingerprint() + " for source "+ event.getSource() + ", however there is no signature matching that description")
 			logger.warn(SharedStrings.INVALID_FINGERPRINT);
 		}
+	}
+
+  	@EventHandler
+	public static void constructing(final FMLConstructionEvent event) {
+		BGeConfig.init();
 	}
 
 	@EventHandler
 	public static void preInit(FMLPreInitializationEvent event) {
 		proxy.preInit(event);
-
-		MinecraftForge.EVENT_BUS.register(com.mcmoddev.basegems.init.Items.class);
-		MinecraftForge.EVENT_BUS.register(com.mcmoddev.basegems.init.Blocks.class);
 	}
 
 	@EventHandler
@@ -87,15 +85,5 @@ public class BaseGems {
 	@EventHandler
 	public static void postInit(FMLPostInitializationEvent event) {
 		proxy.postInit(event);
-	}
-
-	@SubscribeEvent
-	public void onRemapBlock(RegistryEvent.MissingMappings<Block> event) {
-		proxy.onRemapBlock(event);
-	}
-
-	@SubscribeEvent
-	public void onRemapItem(RegistryEvent.MissingMappings<Item> event) {
-		proxy.onRemapItem(event);
 	}
 }

@@ -1,5 +1,5 @@
 {
-    "parent": "basemetals:block/bars_nsew",
+    "parent": "mmdlib:block/bars_nsew",
     "textures": {
         "particle": "basegems:blocks/garnet_bars",
         "bars": "basegems:blocks/garnet_bars",

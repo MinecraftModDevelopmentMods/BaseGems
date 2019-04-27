@@ -1,5 +1,5 @@
 {
-    "parent": "basemetals:block/bars_ns",
+    "parent": "mmdlib:block/bars_ns",
     "textures": {
         "particle": "basegems:blocks/jasper_bars",
         "bars": "basegems:blocks/jasper_bars",

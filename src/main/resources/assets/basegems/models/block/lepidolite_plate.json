@@ -1,5 +1,5 @@
 {
-    "parent": "basemetals:block/plate",
+    "parent": "mmdlib:block/plate",
     "textures": {
         "top": "basegems:blocks/lepidolite_plate",
         "side": "basegems:blocks/lepidolite_plate",

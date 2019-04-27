@@ -1,5 +1,5 @@
 {
-    "parent": "basemetals:block/bars_ne",
+    "parent": "mmdlib:block/bars_ne",
     "textures": {
         "particle": "basegems:blocks/morganite_bars",
         "bars": "basegems:blocks/morganite_bars",

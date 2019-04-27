@@ -1,5 +1,5 @@
 {
-    "parent": "basemetals:block/plate",
+    "parent": "mmdlib:block/plate",
     "textures": {
         "top": "basegems:blocks/bluetopaz_plate",
         "side": "basegems:blocks/bluetopaz_plate",

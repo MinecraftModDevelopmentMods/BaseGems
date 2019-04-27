@@ -5,10 +5,15 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
+import com.mcmoddev.basegems.BaseGems;
 import com.mcmoddev.basegems.data.MaterialNames;
 import com.mcmoddev.lib.data.SharedStrings;
-import com.mcmoddev.lib.material.MMDMaterial.MaterialType;
+import com.mcmoddev.lib.events.MMDLibRegisterMaterials;
+import com.mcmoddev.lib.material.MMDMaterialType.MaterialType;
 import com.mcmoddev.lib.util.Config.Options;
+
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * This class initializes all of the materials in Base Gems.
@@ -16,6 +21,7 @@ import com.mcmoddev.lib.util.Config.Options;
  * @author Jasmine Iwanek
  *
  */
+@Mod.EventBusSubscriber(modid=BaseGems.MODID)
 public class Materials extends com.mcmoddev.lib.init.Materials {
 	private Materials() {
 		throw new IllegalAccessError(SharedStrings.NOT_INSTANTIABLE);
@@ -24,7 +30,8 @@ public class Materials extends com.mcmoddev.lib.init.Materials {
 	/**
 	 *
 	 */
-	public static void init() {
+	@SubscribeEvent
+	public static void init(final MMDLibRegisterMaterials event) {
 		final List<String> materials = Arrays.asList(MaterialNames.AMBER, MaterialNames.ALEXANDRITE, MaterialNames.AGATE, MaterialNames.AMETRINE,
 				MaterialNames.AMETHYST, MaterialNames.AQUAMARINE, MaterialNames.BERYL, MaterialNames.BLACKDIAMOND, MaterialNames.BLUETOPAZ,
 				MaterialNames.CARNELIAN, MaterialNames.CITRINE, MaterialNames.GARNET, MaterialNames.GOLDENBERYL, MaterialNames.HELIODOR,

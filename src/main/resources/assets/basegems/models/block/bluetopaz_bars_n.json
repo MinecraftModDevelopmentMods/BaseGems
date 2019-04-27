@@ -1,5 +1,5 @@
 {
-    "parent": "basemetals:block/bars_n",
+    "parent": "mmdlib:block/bars_n",
     "textures": {
         "particle": "basegems:blocks/bluetopaz_bars",
         "bars": "basegems:blocks/bluetopaz_bars",
