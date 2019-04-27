@@ -3,9 +3,14 @@ package com.mcmoddev.basegems.init;
 import java.util.Arrays;
 import java.util.List;
 
+import com.mcmoddev.basegems.BaseGems;
 import com.mcmoddev.basegems.data.MaterialNames;
 import com.mcmoddev.lib.data.SharedStrings;
+import com.mcmoddev.lib.events.MMDLibRegisterFluids;
 import com.mcmoddev.lib.init.Materials;
+
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * This class initializes all fluids in Base Gems.
@@ -13,6 +18,7 @@ import com.mcmoddev.lib.init.Materials;
  * @author Jasmine Iwanek
  *
  */
+@Mod.EventBusSubscriber(modid=BaseGems.MODID)
 public class Fluids extends com.mcmoddev.lib.init.Fluids {
 	private Fluids() {
 		throw new IllegalAccessError(SharedStrings.NOT_INSTANTIABLE);
@@ -21,7 +27,8 @@ public class Fluids extends com.mcmoddev.lib.init.Fluids {
 	/**
 	 *
 	 */
-	public static void init() {
+	@SubscribeEvent
+	public static void registerEvent(MMDLibRegisterFluids event) {
 		final List<String> materials = Arrays.asList(MaterialNames.AMBER, MaterialNames.ALEXANDRITE, MaterialNames.AGATE, MaterialNames.AMETRINE,
 				MaterialNames.AMETHYST, MaterialNames.AQUAMARINE, MaterialNames.BERYL, MaterialNames.BLACKDIAMOND, MaterialNames.BLUETOPAZ,
 				MaterialNames.CARNELIAN, MaterialNames.CITRINE, MaterialNames.GARNET, MaterialNames.GOLDENBERYL, MaterialNames.HELIODOR,
