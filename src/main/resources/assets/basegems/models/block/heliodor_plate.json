@@ -1,5 +1,5 @@
 {
-    "parent": "basemetals:block/plate",
+    "parent": "mmdlib:block/plate",
     "textures": {
         "top": "basegems:blocks/heliodor_plate",
         "side": "basegems:blocks/heliodor_plate",
