@@ -1,8 +1,0 @@
-{
-    "parent": "mmdlib:block/bars_ne",
-    "textures": {
-        "particle": "basegems:blocks/ametrine_bars",
-        "bars": "basegems:blocks/ametrine_bars",
-        "edge": "basegems:blocks/ametrine_bars"
-    }
-}

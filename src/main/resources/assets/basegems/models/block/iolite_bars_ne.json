@@ -1,8 +1,0 @@
-{
-    "parent": "mmdlib:block/bars_ne",
-    "textures": {
-        "particle": "basegems:blocks/iolite_bars",
-        "bars": "basegems:blocks/iolite_bars",
-        "edge": "basegems:blocks/iolite_bars"
-    }
-}

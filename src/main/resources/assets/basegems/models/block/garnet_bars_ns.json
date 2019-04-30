@@ -1,8 +1,0 @@
-{
-    "parent": "mmdlib:block/bars_ns",
-    "textures": {
-        "particle": "basegems:blocks/garnet_bars",
-        "bars": "basegems:blocks/garnet_bars",
-        "edge": "basegems:blocks/garnet_bars"
-    }
-}

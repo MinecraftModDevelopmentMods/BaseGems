@@ -1,8 +1,0 @@
-{
-    "parent": "mmdlib:block/bars_nsew",
-    "textures": {
-        "particle": "basegems:blocks/malachite_bars",
-        "bars": "basegems:blocks/malachite_bars",
-        "edge": "basegems:blocks/malachite_bars"
-    }
-}

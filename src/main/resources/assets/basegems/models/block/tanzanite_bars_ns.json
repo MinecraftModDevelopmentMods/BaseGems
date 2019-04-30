@@ -1,8 +1,0 @@
-{
-    "parent": "mmdlib:block/bars_ns",
-    "textures": {
-        "particle": "basegems:blocks/tanzanite_bars",
-        "bars": "basegems:blocks/tanzanite_bars",
-        "edge": "basegems:blocks/tanzanite_bars"
-    }
-}

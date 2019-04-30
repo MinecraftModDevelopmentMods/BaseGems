@@ -1,8 +1,0 @@
-{
-    "parent": "mmdlib:block/bars_n",
-    "textures": {
-        "particle": "basegems:blocks/moldavite_bars",
-        "bars": "basegems:blocks/moldavite_bars",
-        "edge": "basegems:blocks/moldavite_bars"
-    }
-}
