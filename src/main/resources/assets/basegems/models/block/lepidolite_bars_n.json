@@ -1,8 +1,0 @@
-{
-    "parent": "mmdlib:block/bars_n",
-    "textures": {
-        "particle": "basegems:blocks/lepidolite_bars",
-        "bars": "basegems:blocks/lepidolite_bars",
-        "edge": "basegems:blocks/lepidolite_bars"
-    }
-}

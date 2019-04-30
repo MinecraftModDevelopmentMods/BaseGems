@@ -1,8 +1,0 @@
-{
-    "parent": "mmdlib:block/bars_nse",
-    "textures": {
-        "particle": "basegems:blocks/aquamarine_bars",
-        "bars": "basegems:blocks/aquamarine_bars",
-        "edge": "basegems:blocks/aquamarine_bars"
-    }
-}

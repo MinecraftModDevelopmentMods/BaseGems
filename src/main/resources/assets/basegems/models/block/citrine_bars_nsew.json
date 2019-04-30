@@ -1,8 +1,0 @@
-{
-    "parent": "mmdlib:block/bars_nsew",
-    "textures": {
-        "particle": "basegems:blocks/citrine_bars",
-        "bars": "basegems:blocks/citrine_bars",
-        "edge": "basegems:blocks/citrine_bars"
-    }
-}

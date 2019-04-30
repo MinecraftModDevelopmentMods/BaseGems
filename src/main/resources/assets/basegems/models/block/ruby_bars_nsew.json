@@ -1,8 +1,0 @@
-{
-    "parent": "mmdlib:block/bars_nsew",
-    "textures": {
-        "particle": "basegems:blocks/ruby_bars",
-        "bars": "basegems:blocks/ruby_bars",
-        "edge": "basegems:blocks/ruby_bars"
-    }
-}
