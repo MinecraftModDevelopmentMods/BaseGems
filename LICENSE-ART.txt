@@ -1,5 +1,6 @@
 Primary Art Contribution By Eejit
 Art for Molten Metals is from Tinkers Construct (See LICENSE-TiC.txt)
+Art for Base Gems (blocks, ores, ingots, powders, nuggets, weapons, tools, armors, doors, and trapdoors) by Aedda
 
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License
 
