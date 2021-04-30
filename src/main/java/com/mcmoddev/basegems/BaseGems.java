@@ -28,7 +28,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 		modid = BaseGems.MODID,
 		name = BaseGems.NAME,
 		version = BaseGems.VERSION,
-		dependencies = "required-after:forge@[14.21.1.2387,);required-after:mmdlib;before:buildingbricks",
+		dependencies = "required-after:forge@[14.23.5.2847,);required-after:mmdlib;before:buildingbricks",
 		acceptedMinecraftVersions = "[1.12,)",
 		certificateFingerprint = "@FINGERPRINT@",
 		updateJSON = BaseGems.UPDATEJSON)
@@ -50,7 +50,7 @@ public class BaseGems {
 	 */
 	protected static final String VERSION = "2.5.0-rc1";
 
-	protected static final String UPDATEJSON = SharedStrings.UPDATE_JSON_URL + "BaseGems/master/update.json";
+	protected static final String UPDATEJSON = SharedStrings.UPDATE_JSON_URL + "BaseGems/master-1.12/update.json";
 
 	private static final String PROXY_BASE = SharedStrings.MMD_PROXY_GROUP + MODID + SharedStrings.DOT_PROXY_DOT;
 

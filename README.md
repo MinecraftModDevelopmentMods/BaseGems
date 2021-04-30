@@ -1,4 +1,4 @@
-# BaseGems [![Build Status](https://travis-ci.org/jriwanek/BaseGems.svg?branch=master)](https://travis-ci.org/jriwanek/BaseGems)
+# BaseGems [![Build Status](https://travis-ci.com/MinecraftModDevelopmentMods/BaseGems.svg?branch=master-1.12)](https://travis-ci.com/MinecraftModDevelopmentMods/BaseGems)
 Addon to BaseMetals supporting Gemstones
 
 Content
