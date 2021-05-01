@@ -27,6 +27,11 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
+	/**
+	 * Registers Fluid models for this mod.
+	 *
+	 * @param event The Event.
+	 */
 	@SubscribeEvent
 	public void fluidRendering(RegistryEvent.Register<MMDMaterial> event) {
 		for (final String name : Fluids.getFluidBlockRegistry().keySet()) {

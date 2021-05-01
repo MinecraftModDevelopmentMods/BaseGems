@@ -5,13 +5,10 @@ import java.util.List;
 
 import com.mcmoddev.basegems.BaseGems;
 import com.mcmoddev.basegems.data.MaterialNames;
-import com.mcmoddev.lib.client.registrations.RegistrationHelper;
 import com.mcmoddev.lib.data.SharedStrings;
 import com.mcmoddev.lib.events.MMDLibRegisterFluids;
 import com.mcmoddev.lib.init.Materials;
-import com.mcmoddev.lib.material.MMDMaterial;
 
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -46,18 +43,4 @@ public class Fluids extends com.mcmoddev.lib.init.Fluids {
 					addFluidBlock(materialName);
 				});
 	}
-	
-
-	/**
-	 * Registers Fluid models for this mod.
-	 *
-	 * @param event The Event.
-	 */
-	@SubscribeEvent
-	public static void fluidRendering(final RegistryEvent.Register<MMDMaterial> event) {
-		for (final String name : Fluids.getFluidBlockRegistry().keySet()) {
-			RegistrationHelper.registerFluidRender(name);
-		}
-	}
-
 }
