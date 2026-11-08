@@ -197,8 +197,13 @@ minecraft {
 
 repositories {
   maven {
-    name 'MMD'
-    url 'https://maven.mcmoddev.com/'
+    name "MMD's old maven archive"
+    url "https://maven.moddev.zone/mmd-archive"
+  }
+
+  maven {
+    name "Mod Dev Zone maven used for MMD mods"
+    url "https://maven.moddev.zone/releases"
   }
 }
 
