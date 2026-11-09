@@ -1,0 +1,25 @@
+2.5.0.110021 for Minecraft 1.10.2
+
+Base Gems brings 33 gemstones to Minecraft 1.10.2. Use Java 8, Forge
+12.18.3.2511 or later for 1.10.2, Base Metals 2.6.0.110021 and MMD OreSpawn
+4.1.6.110021.
+
+- Brought over the gem artwork and colours from 1.12.2. Ores use overlays
+  so the stone from your resource pack shows through.
+- Added Overworld deposits through OreSpawn. Common gems turn up in
+  shallower caves, while ruby, sapphire and black diamond reward deeper
+  mining. Existing chunks stay as they are.
+- Gem ores give mining XP and support Fortune and Silk Touch. Smiths buy
+  and sell gems as they level up.
+- Added High and Low Fantasy and individual gem switches to the Forge and
+  OreSpawn Mods menus. Restart after changing them. Low Fantasy keeps
+  mining, trading and processing while removing recipes for gem equipment,
+  gears and structural parts.
+- Added Ore Dictionary names for gems and their material forms, including
+  compound names such as gemBlackDiamond and gemBlueTopaz.
+- Kept gem tools, weapons and shields in High Fantasy. Player and horse
+  armour are left to add-ons.
+- Translated gem names, blocks, equipment, fluids and config options across
+  the same locale files as Base Metals.
+- Updated the build and Eclipse setup to ForgeGradle 7. Minecraft still runs
+  on Java 8.

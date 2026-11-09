@@ -1,8 +1,8 @@
 {
     "parent": "basemetals:block/bars_ns",
     "textures": {
-        "particle": "basegems:blocks/agate_bars",
-        "bars": "basegems:blocks/agate_bars",
-        "edge": "basegems:blocks/agate_bars"
+        "particle": "basegems:blocks/agate_block",
+        "bars": "basegems:blocks/agate_block",
+        "edge": "basegems:blocks/agate_block"
     }
 }

@@ -1,7 +1,7 @@
 {
     "parent": "block/door_bottom",
     "textures": {
-        "bottom": "basegems:blocks/carnelian_door_lower",
-        "top": "basegems:blocks/carnelian_door_upper"
+        "bottom": "basegems:blocks/carnelian_door_bottom",
+        "top": "basegems:blocks/carnelian_door_top"
     }
 }

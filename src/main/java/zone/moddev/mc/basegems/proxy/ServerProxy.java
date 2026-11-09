@@ -1,0 +1,10 @@
+package zone.moddev.mc.basegems.proxy;
+
+/**
+ * Base Gems Server Proxy
+ *
+ * @author Jasmine Iwanek
+ *
+ */
+public class ServerProxy extends CommonProxy {
+}

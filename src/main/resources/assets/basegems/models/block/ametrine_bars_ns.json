@@ -1,8 +1,8 @@
 {
     "parent": "basemetals:block/bars_ns",
     "textures": {
-        "particle": "basegems:blocks/ametrine_bars",
-        "bars": "basegems:blocks/ametrine_bars",
-        "edge": "basegems:blocks/ametrine_bars"
+        "particle": "basegems:blocks/ametrine_block",
+        "bars": "basegems:blocks/ametrine_block",
+        "edge": "basegems:blocks/ametrine_block"
     }
 }
