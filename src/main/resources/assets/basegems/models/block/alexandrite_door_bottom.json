@@ -1,7 +1,7 @@
 {
     "parent": "block/door_bottom",
     "textures": {
-        "bottom": "basegems:blocks/alexandrite_door_lower",
-        "top": "basegems:blocks/alexandrite_door_upper"
+        "bottom": "basegems:blocks/alexandrite_door_bottom",
+        "top": "basegems:blocks/alexandrite_door_top"
     }
 }

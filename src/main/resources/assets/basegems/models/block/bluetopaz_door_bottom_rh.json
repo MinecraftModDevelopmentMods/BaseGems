@@ -1,7 +1,7 @@
 {
     "parent": "block/door_bottom_rh",
     "textures": {
-        "bottom": "basegems:blocks/bluetopaz_door_lower",
-        "top": "basegems:blocks/bluetopaz_door_upper"
+        "bottom": "basegems:blocks/bluetopaz_door_bottom",
+        "top": "basegems:blocks/bluetopaz_door_top"
     }
 }

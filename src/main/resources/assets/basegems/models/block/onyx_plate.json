@@ -1,8 +1,8 @@
 {
     "parent": "basemetals:block/plate",
     "textures": {
-        "top": "basegems:blocks/onyx_plate",
-        "side": "basegems:blocks/onyx_plate",
-        "bottom": "basegems:blocks/onyx_plate"
+        "top": "basegems:blocks/onyx_block",
+        "side": "basegems:blocks/onyx_block",
+        "bottom": "basegems:blocks/onyx_block"
     }
 }

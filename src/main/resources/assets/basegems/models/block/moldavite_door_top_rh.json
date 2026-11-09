@@ -1,7 +1,7 @@
 {
     "parent": "block/door_top_rh",
     "textures": {
-        "bottom": "basegems:blocks/moldavite_door_lower",
-        "top": "basegems:blocks/moldavite_door_upper"
+        "bottom": "basegems:blocks/moldavite_door_bottom",
+        "top": "basegems:blocks/moldavite_door_top"
     }
 }

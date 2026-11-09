@@ -1,7 +1,7 @@
 {
     "parent": "block/door_bottom_rh",
     "textures": {
-        "bottom": "basegems:blocks/blackdiamond_door_lower",
-        "top": "basegems:blocks/blackdiamond_door_upper"
+        "bottom": "basegems:blocks/blackdiamond_door_bottom",
+        "top": "basegems:blocks/blackdiamond_door_top"
     }
 }

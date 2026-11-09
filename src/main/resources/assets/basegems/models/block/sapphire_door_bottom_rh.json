@@ -1,7 +1,7 @@
 {
     "parent": "block/door_bottom_rh",
     "textures": {
-        "bottom": "basegems:blocks/sapphire_door_lower",
-        "top": "basegems:blocks/sapphire_door_upper"
+        "bottom": "basegems:blocks/sapphire_door_bottom",
+        "top": "basegems:blocks/sapphire_door_top"
     }
 }

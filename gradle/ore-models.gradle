@@ -1,0 +1,75 @@
+import groovy.json.JsonOutput
+
+// Forge 1.10 predates Minecraft's data generator. Generate models during the build.
+def assets = layout.projectDirectory.dir('src/main/resources/assets/basegems')
+def textures = assets.dir('textures/blocks')
+def solidTextures = fileTree(textures) { include '*_ore.png' }
+def overlayTextures = fileTree(textures.dir('ore_overlays')) { include '*_ore.png' }
+def oreStates = fileTree(assets.dir('blockstates')) {
+    include '*_ore.json'
+}
+def generated = layout.buildDirectory.dir('generated/ore-models')
+
+def generateOreModels = tasks.register('generateOreModels') {
+    group = 'build'
+    description = 'Generates ore models from the available overlay or solid textures.'
+    inputs.files(oreStates, solidTextures, overlayTextures).withPathSensitivity(PathSensitivity.RELATIVE)
+    outputs.dir(generated)
+
+    doLast {
+        def names = oreStates.files.collect { it.name - '.json' }.sort()
+        def overlays = overlayTextures.files.collect { it.name - '.png' }.toSet()
+        def solid = solidTextures.files.collect { it.name - '.png' }.toSet()
+        def extra = overlays - names
+        def missing = names.findAll { !overlays.contains(it) && !solid.contains(it) }
+        if (extra || missing) {
+            throw new GradleException("Invalid ore textures. Missing textures: ${missing}. Unmatched overlays: ${extra}.")
+        }
+
+        def directory = generated.get().dir('assets/basegems/models/block').asFile
+        directory.mkdirs()
+        def writeModel = { String name, Map model ->
+            new File(directory, "${name}.json").setText(JsonOutput.prettyPrint(JsonOutput.toJson(model)) + '\n', 'UTF-8')
+        }
+        def cube = { Number from, Number to, String texture ->
+            def faces = ['down', 'up', 'north', 'south', 'west', 'east'].collectEntries { face ->
+                [(face): [texture: texture, cullface: face, uv: [0, 0, 16, 16]]]
+            }
+            [from: [from, from, from], to: [to, to, to], faces: faces]
+        }
+        writeModel('ore_overlay', [
+            parent: 'minecraft:block/block',
+            elements: [cube(0, 16, '#base'), cube(-0.05, 16.05, '#overlay')]
+        ])
+        names.each { name ->
+            if (overlays.contains(name)) {
+                writeModel(name, [
+                    parent: 'basegems:block/ore_overlay',
+                    textures: [particle: 'minecraft:blocks/stone', base: 'minecraft:blocks/stone',
+                               overlay: "basegems:blocks/ore_overlays/${name}"]
+                ])
+            } else {
+                writeModel(name, [
+                    parent: 'block/cube_all',
+                    textures: [all: "basegems:blocks/${name}"]
+                ])
+            }
+        }
+        directory.listFiles().findAll {
+            it.isFile() && it.name.endsWith('_ore.json') && !names.contains(it.name - '.json')
+        }.each {
+            if (!it.delete()) throw new GradleException("Could not remove stale generated ore model ${it.name}")
+        }
+    }
+}
+
+tasks.named('processResources', ProcessResources) {
+    dependsOn generateOreModels
+    from generated
+    duplicatesStrategy = DuplicatesStrategy.FAIL
+}
+
+tasks.named('sourcesJar', Jar) {
+    dependsOn generateOreModels
+    from generated
+}
