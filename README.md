@@ -1,19 +1,19 @@
-# Base Gems for Minecraft 1.10.2
+# Base Gems for Minecraft 1.11.2
 
 Base Gems adds 33 gemstones to Base Metals. Mine agate and amethyst in upper
 caves, look deeper for ruby and sapphire, or head down near bedrock for black
-diamond. Trade gems with smiths or use them for storage blocks,
-decorative pieces, tools and equipment.
+diamond. Trade gems with smiths or use them for storage blocks, decorative
+pieces, tools, weapons and shields.
 
 ## Installation
 
-Use Java 8 and Forge **12.18.3.2511 or later for Minecraft 1.10.2**. Put the
+Use Java 8 and Forge **13.20.1.2588 or later for Minecraft 1.11.2**. Put the
 game jars in the `mods` folder on both the client and server:
 
-- Base Gems `2.5.0.110021`.
-- [Base Metals 2.6.0.110021](https://www.curseforge.com/minecraft/mc-mods/base-metals/files/9524447),
-  or a compatible update below 2.7.0.
-- [MMD OreSpawn 4.1.6.110021](https://www.curseforge.com/minecraft/mc-mods/mmd-orespawn/files/9518063),
+- Base Gems `2.5.0.111021`.
+- [Base Metals 2.5.1.111021](https://www.curseforge.com/minecraft/mc-mods/base-metals/files/9526386),
+  or a compatible update below 2.6.0.
+- [MMD OreSpawn 4.1.6.111021](https://www.curseforge.com/minecraft/mc-mods/mmd-orespawn/files/9524249),
   or a compatible 4.x update.
 
 Base Metals supplies the shared library. A separate MMDLib jar is not needed.
@@ -47,13 +47,12 @@ server and client in multiplayer.
 ## Mod compatibility
 
 Other mods can use the Ore Dictionary names, such as `gemRuby`, `oreRuby`,
-`blockRuby` and `dustRuby`. In basePower's Normal mode, the shared gear
-entry lets gem gears stand in for sprockets in basePower, baseSteam and
-baseElectric recipes.
+`blockRuby`, `dustRuby` and `gearRuby`. The block and item IDs, config keys
+and Ore Dictionary names carry over from 1.10.2.
 
 ## Development and credits
 
-The 1.10.2 branch uses ForgeGradle 7 and builds a Java 8 mod.
+The 1.11.2 branch uses ForgeGradle 7 and builds a Java 8 mod.
 See [building and Eclipse setup](docs/BUILDING.md) and the
 [changelog](CHANGELOG.txt).
 

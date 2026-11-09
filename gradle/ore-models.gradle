@@ -1,6 +1,6 @@
 import groovy.json.JsonOutput
 
-// Forge 1.10 predates Minecraft's data generator. Generate models during the build.
+// Forge 1.11 predates Minecraft's data generator. Generate models during the build.
 def assets = layout.projectDirectory.dir('src/main/resources/assets/basegems')
 def textures = assets.dir('textures/blocks')
 def solidTextures = fileTree(textures) { include '*_ore.png' }

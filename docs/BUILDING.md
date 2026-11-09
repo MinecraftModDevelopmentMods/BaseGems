@@ -1,4 +1,4 @@
-# Building Base Gems for Minecraft 1.10.2
+# Building Base Gems for Minecraft 1.11.2
 
 Use Java 17 to run Gradle 9.6.1, Java 25 for ForgeGradle's Mavenizer, and
 Java 8 for compilation and Minecraft. Put Java 17 on your command path and
@@ -13,7 +13,7 @@ python gradle/stage-legacy-dependencies.py .gradle/legacy-dependencies
 ```
 
 On Linux or macOS, use `python3` and `./gradlew`. The game jar is
-`build/libs/BaseGems-2.5.0.110021.jar`. Gradle builds the ore models from
+`build/libs/BaseGems-2.5.0.111021.jar`. Gradle builds the ore models from
 the tracked textures during resource processing.
 
 `prepareEclipse` generates the Eclipse project and Java 8 launches with

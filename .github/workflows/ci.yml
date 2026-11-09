@@ -1,19 +1,19 @@
-name: Base Gems 1.10 CI
+name: Base Gems 1.11 CI
 
 on:
   push:
     branches:
-      - master-1.10.2
+      - master-1.11.2
       - 'feature/**'
   pull_request:
     branches:
-      - master-1.10.2
+      - master-1.11.2
 
 permissions:
   contents: read
 
 concurrency:
-  group: basegems-1.10-${{ github.workflow }}-${{ github.ref }}
+  group: basegems-1.11-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:

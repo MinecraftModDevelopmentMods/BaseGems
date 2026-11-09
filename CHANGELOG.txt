@@ -1,3 +1,16 @@
+2.5.0.111021 for Minecraft 1.11.2
+
+This port brings over the 33 gems, OreSpawn deposits, mining XP, smith trades
+and both Fantasy Level settings from 1.10.2. Use Java 8, Forge 13.20.1.2588
+or later for 1.11.2, Base Metals 2.5.1.111021 and MMD OreSpawn 4.1.6.111021.
+
+- Updated smith trades and the Forge Mods config screen for Forge 1.11.2.
+  You can still open the same config from OreSpawn.
+- Updated the resource pack format so 1.11.2 loads all 18 language files.
+  Gem ores still use overlays with the stone texture from your resource pack.
+- Kept the block and item IDs, config keys and Ore Dictionary names from 1.10.2.
+- Carried over ForgeGradle 7 and added a build check for the 1.11.2 branch.
+
 2.5.0.110021 for Minecraft 1.10.2
 
 Base Gems brings 33 gemstones to Minecraft 1.10.2. Use Java 8, Forge

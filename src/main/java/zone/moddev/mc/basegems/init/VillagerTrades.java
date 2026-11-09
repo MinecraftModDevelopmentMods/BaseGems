@@ -43,12 +43,12 @@ public final class VillagerTrades extends com.mcmoddev.lib.init.VillagerTrades {
         gemsByRarity.forEach((rarity, gems) -> {
             gems.sort(Comparator.comparing(gem -> gem.getRegistryName().getResourcePath()));
             for (int career : SMITH_CAREERS) {
-                VillagerTradeHelper.insertTrades(SMITH_RL, career, rarity.tradeLevel, (offers, random) -> {
+                VillagerTradeHelper.insertTrades(SMITH_RL, career, rarity.tradeLevel, (merchant, offers, random) -> {
                     Item gem = gems.get(random.nextInt(gems.size()));
                     ItemStack bundle = new ItemStack(gem, rarity.gemsPerTrade);
-                    offers.add(new MerchantRecipe(bundle, null, new ItemStack(Items.EMERALD), 0, GEM_TRADE_USES));
+                    offers.add(new MerchantRecipe(bundle, ItemStack.EMPTY, new ItemStack(Items.EMERALD), 0, GEM_TRADE_USES));
                     offers.add(new MerchantRecipe(new ItemStack(Items.EMERALD, rarity.emeraldsToBuy),
-                            null, bundle.copy(), 0, GEM_TRADE_USES));
+                            ItemStack.EMPTY, bundle.copy(), 0, GEM_TRADE_USES));
                 });
             }
         });

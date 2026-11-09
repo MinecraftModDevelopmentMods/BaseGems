@@ -19,7 +19,7 @@ dependencies {
     }
 }
 
-// Forge 1.10's mod scanner cannot read Java 11 multi-release entries. They are
+// Forge 1.11's mod scanner cannot read Java 11 multi-release entries. They are
 // unused on Java 8, so omit them from the development launcher copy.
 tasks.register('prepareJava8Launcher', Jar) {
     dependsOn configurations.java8LauncherArtifact
@@ -37,14 +37,14 @@ tasks.register('verifyReleaseDependencies') {
     doLast {
         def artifacts = configurations.legacyModArtifacts.resolvedConfiguration.resolvedArtifacts
         def orespawn = specs.find { it.id == 'orespawn' }
-        if (orespawn.coordinate != 'curse.maven:mmd-orespawn-245586:9518063'
-                || orespawn.sha256 != '05DB7CBFAADC815D6A713DACDFB9F0647BCED49CCFC357FB2FF010E95BD1379F') {
-            throw new GradleException('Use the verified OreSpawn 4.1.6.110021 release.')
+        if (orespawn.coordinate != 'curse.maven:mmd-orespawn-245586:9524249'
+                || orespawn.sha256 != '4246D1EB83FFFC325F04E3D3FE331D1404714F4A8D773ADE278A5D0EBEE5EDBC') {
+            throw new GradleException('Use the verified OreSpawn 4.1.6.111021 release.')
         }
         def basemetals = specs.find { it.id == 'basemetals' }
-        if (basemetals.coordinate != 'curse.maven:base-metals-240967:9524447'
-                || basemetals.sha256 != '9CA948215549C4A3D30D76339932ED489FB7D2C73A71A5F4F8F68456B8BC276B') {
-            throw new GradleException('Use the verified Base Metals 2.6.0.110021 release.')
+        if (basemetals.coordinate != 'curse.maven:base-metals-240967:9526386'
+                || basemetals.sha256 != 'B69E62A786D32CB7D7129E237E3759355721F6D0ED90271C59B5E4444AF0F95C') {
+            throw new GradleException('Use the verified Base Metals 2.5.1.111021 release.')
         }
         specs.each { spec ->
             def parts = spec.coordinate.split(':')

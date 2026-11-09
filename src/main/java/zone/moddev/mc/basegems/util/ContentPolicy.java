@@ -12,7 +12,7 @@ public final class ContentPolicy {
     private ContentPolicy() {}
 
     private static boolean allows(ItemStack output) {
-        if (output == null || output.getItem() == null) return true;
+        if (output == null || output.isEmpty()) return true;
         ResourceLocation id = output.getItem().getRegistryName();
         if (id == null || !BaseGems.MODID.equals(id.getResourceDomain())) return true;
 
