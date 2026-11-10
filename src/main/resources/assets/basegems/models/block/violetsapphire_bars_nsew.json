@@ -1,0 +1,8 @@
+{
+    "parent": "basegems:block/bars_nsew",
+    "textures": {
+        "particle": "basegems:blocks/violetsapphire_block",
+        "bars": "basegems:blocks/violetsapphire_block",
+        "edge": "basegems:blocks/violetsapphire_block"
+    }
+}

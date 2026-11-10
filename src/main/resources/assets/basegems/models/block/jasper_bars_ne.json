@@ -1,0 +1,8 @@
+{
+    "parent": "basegems:block/bars_ne",
+    "textures": {
+        "particle": "basegems:blocks/jasper_block",
+        "bars": "basegems:blocks/jasper_block",
+        "edge": "basegems:blocks/jasper_block"
+    }
+}

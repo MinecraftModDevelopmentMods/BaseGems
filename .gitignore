@@ -2,7 +2,6 @@
 bin
 *.launch
 .settings
-.settings/*
 .metadata
 .classpath
 .project
@@ -21,7 +20,6 @@ build
 # other
 eclipse
 run
-classes
 
 /README.txt
 /forge-*-changelog.txt

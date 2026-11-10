@@ -1,8 +1,8 @@
 {
-    "parent": "mmdlib:block/plate",
+    "parent": "basegems:block/plate",
     "textures": {
-        "top": "basegems:blocks/blackdiamond_plate",
-        "side": "basegems:blocks/blackdiamond_plate",
-        "bottom": "basegems:blocks/blackdiamond_plate"
+        "top": "basegems:blocks/blackdiamond_block",
+        "side": "basegems:blocks/blackdiamond_block",
+        "bottom": "basegems:blocks/blackdiamond_block"
     }
 }

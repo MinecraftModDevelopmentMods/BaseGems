@@ -1,7 +1,7 @@
 {
     "parent": "block/door_bottom",
     "textures": {
-        "bottom": "basegems:blocks/morganite_door_lower",
-        "top": "basegems:blocks/morganite_door_upper"
+        "bottom": "basegems:blocks/morganite_door_bottom",
+        "top": "basegems:blocks/morganite_door_top"
     }
 }

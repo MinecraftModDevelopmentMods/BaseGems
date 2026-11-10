@@ -1,5 +1,5 @@
 {
-  "parent": "basemetals:item/shield",
+  "parent": "basegems:item/shield",
   "textures": {
     "shield": "basegems:blocks/carnelian_block"
   },

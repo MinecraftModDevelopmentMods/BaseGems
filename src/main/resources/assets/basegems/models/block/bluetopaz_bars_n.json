@@ -1,0 +1,8 @@
+{
+    "parent": "basegems:block/bars_n",
+    "textures": {
+        "particle": "basegems:blocks/bluetopaz_block",
+        "bars": "basegems:blocks/bluetopaz_block",
+        "edge": "basegems:blocks/bluetopaz_block"
+    }
+}

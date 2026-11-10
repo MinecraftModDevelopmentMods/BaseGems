@@ -1,0 +1,67 @@
+import groovy.json.JsonOutput
+
+def gemOres = fileTree('src/main/resources/assets/basegems/blockstates') { include '*_ore.json' }
+def generated = layout.buildDirectory.dir('generated/recipe-advancements')
+
+// Match the stable recipe names in GemRecipes and use a main ingredient to introduce each one.
+def recipesByIngredient = [
+    ingot: ['block', 'unpack_gem', 'plate', 'lever', 'bars', 'pressure_plate', 'door',
+            'trapdoor', 'rod', 'axe', 'hoe', 'pickaxe', 'shovel', 'sword', 'shears', 'shield'],
+    block: ['unpack_block', 'slab', 'stairs', 'wall', 'crackhammer'],
+    nugget: ['ingot', 'button', 'arrow'],
+    rod: ['bars_from_rods', 'gear', 'bow', 'bolt', 'crossbow', 'fishing_rod'],
+    plate: ['repair_shield'],
+    smallpowder: ['powder'],
+    powder: ['unpack_powder']
+]
+
+def generateRecipeAdvancements = tasks.register('generateRecipeAdvancements') {
+    group = 'build'
+    description = 'Generates recipe book unlocks for Base Gems.'
+    inputs.files(gemOres).withPathSensitivity(PathSensitivity.NAME_ONLY)
+    inputs.property('recipesByIngredient', recipesByIngredient)
+    outputs.dir(generated)
+
+    doLast {
+        def directory = generated.get().dir('assets/basegems/advancements/recipes').asFile
+        directory.mkdirs()
+        Set<String> current = [] as Set
+        gemOres.files.collect { it.name - '_ore.json' }.sort().each { gem ->
+            recipesByIngredient.each { ingredient, recipes ->
+                String item = "basegems:${gem}_${ingredient}"
+                recipes.each { name ->
+                    String recipe = "basegems:${gem}_${name}"
+                    String filename = "${gem}_${name}.json"
+                    current.add(filename)
+                    def advancement = [
+                        parent: 'minecraft:recipes/root',
+                        conditions: [
+                            [type: 'minecraft:item_exists', item: item],
+                            [type: 'basegems:book_recipe', recipe: recipe]
+                        ],
+                        rewards: [recipes: [recipe]],
+                        criteria: [
+                            has_ingredient: [trigger: 'minecraft:inventory_changed', conditions: [items: [[item: item]]]],
+                            has_recipe: [trigger: 'minecraft:recipe_unlocked', conditions: [recipe: recipe]]
+                        ],
+                        requirements: [['has_ingredient', 'has_recipe']]
+                    ]
+                    new File(directory, filename).setText(JsonOutput.prettyPrint(JsonOutput.toJson(advancement)) + '\n', 'UTF-8')
+                }
+            }
+        }
+        directory.listFiles().findAll { it.isFile() && it.name.endsWith('.json') && !current.contains(it.name) }.each {
+            if (!it.delete()) throw new GradleException("Could not remove stale recipe advancement ${it.name}")
+        }
+    }
+}
+
+tasks.named('processResources', ProcessResources) {
+    dependsOn generateRecipeAdvancements
+    from generated
+}
+
+tasks.named('sourcesJar', Jar) {
+    dependsOn generateRecipeAdvancements
+    from generated
+}

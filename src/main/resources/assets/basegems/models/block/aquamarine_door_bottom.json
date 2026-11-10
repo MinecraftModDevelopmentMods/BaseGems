@@ -1,7 +1,7 @@
 {
     "parent": "block/door_bottom",
     "textures": {
-        "bottom": "basegems:blocks/aquamarine_door_lower",
-        "top": "basegems:blocks/aquamarine_door_upper"
+        "bottom": "basegems:blocks/aquamarine_door_bottom",
+        "top": "basegems:blocks/aquamarine_door_top"
     }
 }

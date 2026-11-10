@@ -2,13 +2,13 @@
 {
   "modid": "basegems",
   "name": "Base Gems",
-  "description": "Base Metals Addon",
+  "description": "Base Gems Addon",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "https://www.curseforge.com/minecraft/mc-modsbase-gems",
-  "updateUrl": "https://raw.githubusercontent.com/MinecraftModDevelopmentMods/BaseGems/master-1.12/update.json",
-  "authorList": ["cyb3rkat", "dshadowwolf"],
-  "credits": "DrCyano (aka Cyanobacterium)",
+  "url": "http://minecraft.curseforge.com/projects/base-gems",
+  "updateUrl": "",
+  "authorList": ["cyb3rkat"],
+  "credits": "DrCyano (aka Cyanobacterium); artwork by Eejit, Aedda, jmlovelace, KiriCattus and the Tinkers' Construct team. See LICENSE-ART.txt.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
