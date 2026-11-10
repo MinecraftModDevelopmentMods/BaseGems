@@ -1,0 +1,8 @@
+{
+    "parent": "basegems:block/bars_n",
+    "textures": {
+        "particle": "basegems:blocks/moonstone_block",
+        "bars": "basegems:blocks/moonstone_block",
+        "edge": "basegems:blocks/moonstone_block"
+    }
+}

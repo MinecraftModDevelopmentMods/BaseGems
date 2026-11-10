@@ -1,8 +1,8 @@
 {
-    "parent": "mmdlib:block/plate",
+    "parent": "basegems:block/plate",
     "textures": {
-        "top": "basegems:blocks/agate_plate",
-        "side": "basegems:blocks/agate_plate",
-        "bottom": "basegems:blocks/agate_plate"
+        "top": "basegems:blocks/agate_block",
+        "side": "basegems:blocks/agate_block",
+        "bottom": "basegems:blocks/agate_block"
     }
 }

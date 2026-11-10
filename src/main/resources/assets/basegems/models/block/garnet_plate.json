@@ -1,8 +1,8 @@
 {
-    "parent": "mmdlib:block/plate",
+    "parent": "basegems:block/plate",
     "textures": {
-        "top": "basegems:blocks/garnet_plate",
-        "side": "basegems:blocks/garnet_plate",
-        "bottom": "basegems:blocks/garnet_plate"
+        "top": "basegems:blocks/garnet_block",
+        "side": "basegems:blocks/garnet_block",
+        "bottom": "basegems:blocks/garnet_block"
     }
 }

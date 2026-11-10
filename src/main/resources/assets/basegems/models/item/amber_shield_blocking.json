@@ -1,5 +1,5 @@
 {
-  "parent": "basemetals:item/shield_blocking",
+  "parent": "basegems:item/shield_blocking",
   "textures": {
     "shield": "basegems:blocks/amber_block"
     }

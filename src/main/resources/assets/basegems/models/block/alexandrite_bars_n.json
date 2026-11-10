@@ -1,0 +1,8 @@
+{
+    "parent": "basegems:block/bars_n",
+    "textures": {
+        "particle": "basegems:blocks/alexandrite_block",
+        "bars": "basegems:blocks/alexandrite_block",
+        "edge": "basegems:blocks/alexandrite_block"
+    }
+}

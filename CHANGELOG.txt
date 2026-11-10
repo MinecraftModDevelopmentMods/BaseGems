@@ -1,0 +1,56 @@
+2.5.0.112021 for Minecraft 1.12.2
+
+All 33 gems come across from 1.11.2, along with the OreSpawn deposits, mining
+XP, smith trades and both Fantasy Level settings. Use Java 8, Forge
+14.23.5.2859 or later for 1.12.2, MMDLib 1.0.0 RC3 and MMD OreSpawn
+4.1.6.112021. Base Metals is optional on this version.
+
+- Pick up gems and their crafting materials to learn the recipes in the
+  recipe book. It only teaches recipes allowed by your gem and Fantasy Level
+  settings.
+- Gem bars, plates, doors and shields have their own models. Ore overlays
+  still use the stone texture from your resource pack.
+- Keeps the Base Gems block and item IDs, config keys and Ore Dictionary
+  names from 1.11.2.
+- Kept tools, weapons and shields in High Fantasy and left player and horse
+  armour to add-ons. Low Fantasy keeps gem processing, storage blocks and
+  smith trades.
+
+2.5.0.111021 for Minecraft 1.11.2
+
+This port brings over the 33 gems, OreSpawn deposits, mining XP, smith trades
+and both Fantasy Level settings from 1.10.2. Use Java 8, Forge 13.20.1.2588
+or later for 1.11.2, Base Metals 2.5.1.111021 and MMD OreSpawn 4.1.6.111021.
+
+- Updated smith trades and the Forge Mods config screen for Forge 1.11.2.
+  You can still open the same config from OreSpawn.
+- Updated the resource pack format so 1.11.2 loads all 18 language files.
+  Gem ores still use overlays with the stone texture from your resource pack.
+- Kept the block and item IDs, config keys and Ore Dictionary names from 1.10.2.
+- Carried over ForgeGradle 7 and added a build check for the 1.11.2 branch.
+
+2.5.0.110021 for Minecraft 1.10.2
+
+Base Gems brings 33 gemstones to Minecraft 1.10.2. Use Java 8, Forge
+12.18.3.2511 or later for 1.10.2, Base Metals 2.6.0.110021 and MMD OreSpawn
+4.1.6.110021.
+
+- Brought over the gem artwork and colours from 1.12.2. Ores use overlays
+  so the stone from your resource pack shows through.
+- Added Overworld deposits through OreSpawn. Common gems turn up in
+  shallower caves, while ruby, sapphire and black diamond reward deeper
+  mining. Existing chunks stay as they are.
+- Gem ores give mining XP and support Fortune and Silk Touch. Smiths buy
+  and sell gems as they level up.
+- Added High and Low Fantasy and individual gem switches to the Forge and
+  OreSpawn Mods menus. Restart after changing them. Low Fantasy keeps
+  mining, trading and processing while removing recipes for gem equipment,
+  gears and structural parts.
+- Added Ore Dictionary names for gems and their material forms, including
+  compound names such as gemBlackDiamond and gemBlueTopaz.
+- Kept gem tools, weapons and shields in High Fantasy. Player and horse
+  armour are left to add-ons.
+- Translated gem names, blocks, equipment, fluids and config options across
+  the same locale files as Base Metals.
+- Updated the build and Eclipse setup to ForgeGradle 7. Minecraft still runs
+  on Java 8.

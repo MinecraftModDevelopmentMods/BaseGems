@@ -1,0 +1,8 @@
+{
+    "parent": "basegems:block/bars_nsew",
+    "textures": {
+        "particle": "basegems:blocks/peridot_block",
+        "bars": "basegems:blocks/peridot_block",
+        "edge": "basegems:blocks/peridot_block"
+    }
+}

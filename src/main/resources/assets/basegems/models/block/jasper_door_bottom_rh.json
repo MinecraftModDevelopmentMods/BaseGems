@@ -1,7 +1,7 @@
 {
     "parent": "block/door_bottom_rh",
     "textures": {
-        "bottom": "basegems:blocks/jasper_door_lower",
-        "top": "basegems:blocks/jasper_door_upper"
+        "bottom": "basegems:blocks/jasper_door_bottom",
+        "top": "basegems:blocks/jasper_door_top"
     }
 }

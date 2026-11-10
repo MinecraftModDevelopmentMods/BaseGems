@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
     "textures": {
-        "layer0": "basegems:blocks/jade_bars"
+        "layer0": "basegems:blocks/jade_block"
     }
 }

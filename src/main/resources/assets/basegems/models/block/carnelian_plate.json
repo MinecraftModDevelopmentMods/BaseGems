@@ -1,8 +1,8 @@
 {
-    "parent": "mmdlib:block/plate",
+    "parent": "basegems:block/plate",
     "textures": {
-        "top": "basegems:blocks/carnelian_plate",
-        "side": "basegems:blocks/carnelian_plate",
-        "bottom": "basegems:blocks/carnelian_plate"
+        "top": "basegems:blocks/carnelian_block",
+        "side": "basegems:blocks/carnelian_block",
+        "bottom": "basegems:blocks/carnelian_block"
     }
 }
