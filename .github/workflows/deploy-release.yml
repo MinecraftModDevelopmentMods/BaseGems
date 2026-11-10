@@ -1,0 +1,161 @@
+name: Release Base Gems
+run-name: Base Gems ${{ inputs.release_version }} (${{ inputs.confirm_live_publication && 'publish' || 'verify' }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: Base Gems version for Minecraft 1.11.2
+        required: true
+        type: string
+      tested_jar_sha256:
+        description: SHA-256 of the game jar that passed manual testing
+        required: true
+        type: string
+      curseforge_release_level:
+        description: CurseForge release level
+        required: true
+        default: release
+        type: choice
+        options:
+          - release
+          - beta
+          - alpha
+      confirm_live_publication:
+        description: Publish to CurseForge and GitHub after verification
+        default: false
+        required: true
+        type: boolean
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: basegems-release-1.11.2
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Verify merged CI bundle and release
+    if: github.repository == 'MinecraftModDevelopmentMods/BaseGems' && github.ref == 'refs/heads/master-1.12'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      actions: read
+      contents: write
+    env:
+      RELEASE_BRANCH: master-1.11.2
+      RELEASE_VERSION: ${{ inputs.release_version }}
+      TESTED_JAR_SHA256: ${{ inputs.tested_jar_sha256 }}
+    steps:
+      - name: Locate the release bundle for the current MMD branch tip
+        id: candidate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          [[ "$RELEASE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.111021$ ]]
+          [[ "$TESTED_JAR_SHA256" =~ ^[[:xdigit:]]{64}$ ]]
+
+          sha="$(gh api "repos/$GITHUB_REPOSITORY/branches/$RELEASE_BRANCH" --jq .commit.sha)"
+          props="$(gh api "repos/$GITHUB_REPOSITORY/contents/gradle.properties?ref=$sha" --jq .content | base64 --decode)"
+          grep -Fxq "mod_version=$RELEASE_VERSION" <<<"$props"
+          grep -Fxq 'minecraft_version=1.11.2' <<<"$props"
+          grep -Fxq 'loader_name=forge' <<<"$props"
+
+          run="$(gh api --method GET "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/runs" \
+            -f branch="$RELEASE_BRANCH" -f head_sha="$sha" -f event=push -f status=success \
+            --jq '.workflow_runs[0].id // empty')"
+          if [[ -z "$run" ]]; then
+            echo "No successful push CI run for $RELEASE_BRANCH at $sha" >&2
+            exit 1
+          fi
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "run=$run" >> "$GITHUB_OUTPUT"
+
+      - name: Download the audited CI artifacts
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+        with:
+          name: BaseGems-1.11.2-${{ steps.candidate.outputs.sha }}
+          path: ${{ runner.temp }}/release-input
+          run-id: ${{ steps.candidate.outputs.run }}
+          github-token: ${{ github.token }}
+
+      - name: Verify jar checksums and manual test match
+        working-directory: ${{ runner.temp }}/release-input
+        env:
+          RELEASE_SHA: ${{ steps.candidate.outputs.sha }}
+          CI_RUN: ${{ steps.candidate.outputs.run }}
+        run: |
+          set -euo pipefail
+          diff -u SHA256SUMS <(sha256sum --binary "BaseGems-$RELEASE_VERSION"{,-sources,-javadoc}.jar | sed 's/ \*/  /')
+          printf '%s  BaseGems-%s.jar\n' "${TESTED_JAR_SHA256,,}" "$RELEASE_VERSION" | sha256sum --check --strict
+          grep -Fxq "$RELEASE_VERSION for Minecraft 1.11.2" CHANGELOG.txt
+          {
+            echo "Verified $RELEASE_VERSION at $RELEASE_SHA from CI run $CI_RUN."
+            echo
+            echo 'The game jar matches the manually tested SHA-256.'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Verify CurseForge upload token
+        env:
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [[ -z "$CURSEFORGE_TOKEN" ]]; then
+            echo 'Configure CURSEFORGE_TOKEN in this repository or share the organization secret with it.' >&2
+            exit 1
+          fi
+          curl --fail --silent --show-error --max-time 30 \
+            -H "X-Api-Token: $CURSEFORGE_TOKEN" \
+            https://minecraft.curseforge.com/api/game/versions >/dev/null
+
+      - name: Reserve the release tag
+        if: inputs.confirm_live_publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ steps.candidate.outputs.sha }}
+        run: |
+          set -euo pipefail
+          if [[ "$(gh api "repos/$GITHUB_REPOSITORY/branches/$RELEASE_BRANCH" --jq .commit.sha)" != "$RELEASE_SHA" ]]; then
+            echo "$RELEASE_BRANCH moved during verification. Dispatch again for the new tip." >&2
+            exit 1
+          fi
+          if ! gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" \
+            -f ref="refs/tags/$RELEASE_VERSION" -f sha="$RELEASE_SHA" >/dev/null; then
+            echo 'Tag creation failed. If the tag already exists, inspect the earlier release before trying again.' >&2
+            exit 1
+          fi
+
+      - name: Publish on CurseForge
+        if: inputs.confirm_live_publication
+        uses: Kira-NT/mc-publish@52307b03863581dec6b652b83e597aec02ebb075 # v3.3.1
+        with:
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          curseforge-id: '1793939'
+          name: Base Gems ${{ inputs.release_version }} for Minecraft 1.11.2 (Forge)
+          version: ${{ inputs.release_version }}
+          version-type: ${{ inputs.curseforge_release_level }}
+          changelog-file: ${{ runner.temp }}/release-input/CHANGELOG.txt
+          loaders: forge
+          game-versions: '1.11.2'
+          game-version-filter: none
+          environment: client | server
+          java: Java 8
+          curseforge-dependencies: |
+            240967(required)
+            245586(required)
+          fail-mode: fail
+          files: ${{ runner.temp }}/release-input/BaseGems-${{ inputs.release_version }}.jar
+
+      - name: Publish GitHub Release
+        if: inputs.confirm_live_publication
+        working-directory: ${{ runner.temp }}/release-input
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release create "$RELEASE_VERSION" --repo "$GITHUB_REPOSITORY" --verify-tag \
+            --title "Base Gems $RELEASE_VERSION for Minecraft 1.11.2 (Forge)" \
+            --notes-file CHANGELOG.txt "BaseGems-$RELEASE_VERSION"{,-sources,-javadoc}.jar SHA256SUMS
