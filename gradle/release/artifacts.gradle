@@ -85,7 +85,8 @@ def auditJars = { File directory ->
                     if (!entry.directory && !(date.toString() in ['1980-01-01T00:00', '1980-02-01T00:00'])) {
                         throw new GradleException("Volatile archive timestamp: ${entry.name}")
                     }
-                    if (!entry.directory && path ==~ /.*\.(java|html|css|js|json|lang|mcmeta|md|txt|xml|cfg|info|properties)/) {
+                    if (!entry.directory && (path == 'package-list'
+                            || path ==~ /.*\.(java|html|css|js|json|lang|mcmeta|md|txt|xml|cfg|info|properties)/)) {
                         def decoder = java.nio.charset.StandardCharsets.UTF_8.newDecoder()
                                 .onMalformedInput(java.nio.charset.CodingErrorAction.REPORT)
                                 .onUnmappableCharacter(java.nio.charset.CodingErrorAction.REPORT)

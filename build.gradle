@@ -151,6 +151,7 @@ tasks.named('jar', Jar) {
     tasks.named(name, Jar) {
         filteringCharset = 'UTF-8'
         filesMatching(textPatterns, normalizeText)
+        filesMatching('package-list', normalizeText)
     }
 }
 
