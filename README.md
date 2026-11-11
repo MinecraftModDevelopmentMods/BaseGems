@@ -16,7 +16,7 @@ jars in the `mods` folder on both the client and server.
   or a compatible 4.x update.
 
 You can play with just those three mods. If you also use Base Metals, this
-build was checked with [Base Metals 2.6.2.112021](https://www.curseforge.com/minecraft/mc-mods/base-metals/files/9532211).
+build is checked with [Base Metals 2.6.3.112021](https://www.curseforge.com/minecraft/mc-mods/base-metals/files/9541608).
 
 ## Mining and trading
 

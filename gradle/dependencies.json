@@ -1,5 +1,13 @@
 [
   {
+    "id": "basemetals",
+    "coordinate": "curse.maven:base-metals-240967:9541608",
+    "repository": "https://www.cursemaven.com",
+    "sha256": "327AB27CDBADA30D850F5DA6DE89F566242A2ED9AC16F345FEF8E1DAC07A0ACE",
+    "runtime": false,
+    "compatibility": true
+  },
+  {
     "id": "mmdlib",
     "coordinate": "curse.maven:mmdlib-261744:9414723",
     "repository": "https://www.cursemaven.com",

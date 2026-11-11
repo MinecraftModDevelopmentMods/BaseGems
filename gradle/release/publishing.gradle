@@ -1,0 +1,89 @@
+import java.security.MessageDigest
+
+def prepared = providers.gradleProperty('preparedReleaseDir')
+def releaseFiles = ['', '-sources', '-javadoc'].collect { "BaseGems-${project.version}${it}.jar".toString() }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = project.group.toString()
+            artifactId = 'BaseGems'
+            version = project.version.toString()
+            if (prepared.isPresent()) {
+                artifact(file("${prepared.get()}/${releaseFiles[0]}"))
+                artifact(file("${prepared.get()}/${releaseFiles[1]}")) { classifier = 'sources' }
+                artifact(file("${prepared.get()}/${releaseFiles[2]}")) { classifier = 'javadoc' }
+            } else {
+                artifact(project.ext.baseGemsRelease.jar)
+                artifact(tasks.named('sourcesJar'))
+                artifact(tasks.named('javadocJar'))
+            }
+            pom {
+                name = 'Base Gems'
+                description = 'Gemstones to mine, trade and craft with in Minecraft.'
+                url = 'https://github.com/MinecraftModDevelopmentMods/BaseGems'
+                licenses {
+                    license {
+                        name = 'GNU Lesser General Public License, Version 2.1'
+                        url = 'https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/MinecraftModDevelopmentMods/BaseGems.git'
+                    url = 'https://github.com/MinecraftModDevelopmentMods/BaseGems'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = 'release'
+            url = uri(providers.environmentVariable('MAVEN_UPLOAD_URL')
+                    .orElse('https://invalid.invalid/missing-maven-upload-url').get())
+            credentials {
+                username = providers.environmentVariable('MAVEN_UPLOAD_USERNAME').orNull ?: ''
+                password = providers.environmentVariable('MAVEN_UPLOAD_PASSWORD').orNull ?: ''
+            }
+        }
+        if (providers.gradleProperty('mavenVerificationRepository').isPresent()) {
+            maven {
+                name = 'verification'
+                url = uri(providers.gradleProperty('mavenVerificationRepository').get())
+            }
+        }
+    }
+}
+
+tasks.register('verifyPreparedReleaseArtifacts') {
+    doLast {
+        if (!prepared.isPresent()) throw new GradleException('preparedReleaseDir is required.')
+        File directory = file(prepared.get())
+        def checksums = new File(directory, 'SHA256SUMS').readLines('UTF-8').collectEntries { line ->
+            def parts = line.split('  ', 2)
+            if (parts.length != 2 || !(parts[0] ==~ /[a-fA-F0-9]{64}/)
+                    || !releaseFiles.contains(parts[1])) throw new GradleException('Invalid release checksum entry.')
+            [(parts[1]): parts[0]]
+        }
+        if (checksums.size() != releaseFiles.size()) throw new GradleException('Incomplete release bundle.')
+        releaseFiles.each { name ->
+            File jar = new File(directory, name)
+            String actual = MessageDigest.getInstance('SHA-256').digest(jar.bytes).encodeHex().toString()
+            if (!actual.equalsIgnoreCase(checksums[name])) throw new GradleException("Checksum mismatch: ${name}")
+        }
+        project.ext.baseGemsRelease.audit(directory)
+    }
+}
+
+tasks.withType(PublishToMavenRepository).configureEach {
+    dependsOn prepared.isPresent() ? tasks.named('verifyPreparedReleaseArtifacts') : tasks.named('verifyReleaseArtifacts')
+    if (repository.name == 'release') {
+        doFirst {
+            for (String name : ['MAVEN_UPLOAD_URL', 'MAVEN_UPLOAD_USERNAME', 'MAVEN_UPLOAD_PASSWORD']) {
+                if (!providers.environmentVariable(name).orNull) throw new GradleException("Missing ${name}")
+            }
+            if (!repository.url.toString().startsWith('https://')) {
+                throw new GradleException('Release publication requires an HTTPS Maven repository.')
+            }
+        }
+    }
+}

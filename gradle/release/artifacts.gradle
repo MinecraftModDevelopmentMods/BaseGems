@@ -151,3 +151,5 @@ tasks.register('writeReleaseChecksums') {
     }
 }
 tasks.named('check') { dependsOn tasks.named('verifyReleaseConfiguration') }
+
+ext.baseGemsRelease = [jar: releaseJar, audit: auditJars].asImmutable()

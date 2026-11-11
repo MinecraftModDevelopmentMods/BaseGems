@@ -1,0 +1,245 @@
+name: Release Base Gems 1.12.2
+run-name: Base Gems ${{ inputs.release_version }} (${{ inputs.confirm_live_publication && 'publish' || 'verify' }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: Base Gems version for Minecraft 1.12.2
+        required: true
+        type: string
+      tested_jar_sha256:
+        description: SHA-256 of the game jar that passed manual testing
+        required: true
+        type: string
+      curseforge_release_level:
+        description: CurseForge release level
+        required: true
+        default: release
+        type: choice
+        options: [release, beta, alpha]
+      confirm_live_publication:
+        description: Publish the verified bundle to Maven, CurseForge and GitHub
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: basegems-release-1.12.2
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    name: Verify the merged release bundle
+    if: github.repository == 'MinecraftModDevelopmentMods/BaseGems' && github.ref == 'refs/heads/master-1.12'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      sha: ${{ steps.candidate.outputs.sha }}
+      run: ${{ steps.candidate.outputs.run }}
+    steps:
+      - name: Locate successful CI for the current branch tip
+        id: candidate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ inputs.release_version }}
+          TESTED_JAR_SHA256: ${{ inputs.tested_jar_sha256 }}
+        run: |
+          set -euo pipefail
+          [[ "$RELEASE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.112021$ ]]
+          [[ "$TESTED_JAR_SHA256" =~ ^[[:xdigit:]]{64}$ ]]
+          sha="$(gh api "repos/$GITHUB_REPOSITORY/branches/master-1.12" --jq .commit.sha)"
+          [[ "$sha" == "$GITHUB_SHA" ]]
+          props="$(gh api "repos/$GITHUB_REPOSITORY/contents/gradle.properties?ref=$sha" --jq .content | base64 --decode)"
+          grep -Fxq "mod_version=$RELEASE_VERSION" <<<"$props"
+          grep -Fxq 'minecraft_version=1.12.2' <<<"$props"
+          run="$(gh api --method GET "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/runs" \
+            -f branch=master-1.12 -f head_sha="$sha" -f event=push -f status=success \
+            --jq '.workflow_runs[0].id // empty')"
+          [[ -n "$run" ]]
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "run=$run" >> "$GITHUB_OUTPUT"
+
+      - name: Download the audited CI bundle
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+        with:
+          name: BaseGems-1.12.2-${{ steps.candidate.outputs.sha }}
+          path: ${{ runner.temp }}/release-input
+          run-id: ${{ steps.candidate.outputs.run }}
+          github-token: ${{ github.token }}
+
+      - name: Check all three jars and the manual test match
+        working-directory: ${{ runner.temp }}/release-input
+        env:
+          RELEASE_VERSION: ${{ inputs.release_version }}
+          TESTED_JAR_SHA256: ${{ inputs.tested_jar_sha256 }}
+        run: |
+          set -euo pipefail
+          diff -u SHA256SUMS <(sha256sum "BaseGems-$RELEASE_VERSION"{,-sources,-javadoc}.jar)
+          printf '%s  BaseGems-%s.jar\n' "${TESTED_JAR_SHA256,,}" "$RELEASE_VERSION" | sha256sum --check --strict
+          grep -Fxq "$RELEASE_VERSION for Minecraft 1.12.2" CHANGELOG.txt
+          sha256sum --check SHA256SUMS >> "$GITHUB_STEP_SUMMARY"
+
+  release_confirmation:
+    name: Verify publication credentials
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check credential access without printing credentials
+        env:
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+          MAVEN_UPLOAD_URL: ${{ secrets.MAVEN_UPLOAD_URL }}
+          MAVEN_UPLOAD_USERNAME: ${{ secrets.MAVEN_UPLOAD_USERNAME }}
+          MAVEN_UPLOAD_PASSWORD: ${{ secrets.MAVEN_UPLOAD_PASSWORD }}
+        run: |
+          set -euo pipefail
+          for name in CURSEFORGE_TOKEN MAVEN_UPLOAD_URL MAVEN_UPLOAD_USERNAME MAVEN_UPLOAD_PASSWORD; do
+            if [[ -z "${!name:-}" ]]; then
+              echo "Required release secret is unavailable: $name" >&2
+              exit 1
+            fi
+          done
+          [[ "$MAVEN_UPLOAD_URL" == https://* ]]
+          curl --fail --silent --show-error --max-time 30 \
+            -H "X-Api-Token: $CURSEFORGE_TOKEN" https://minecraft.curseforge.com/api/game/versions >/dev/null
+
+  create_release_tag:
+    name: Create or verify the release tag
+    if: inputs.confirm_live_publication
+    needs: [preflight, release_confirmation]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Bind the tag to the verified merged commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ needs.preflight.outputs.sha }}
+          RELEASE_VERSION: ${{ inputs.release_version }}
+        run: |
+          set -euo pipefail
+          [[ "$(gh api "repos/$GITHUB_REPOSITORY/branches/master-1.12" --jq .commit.sha)" == "$RELEASE_SHA" ]]
+          if ! gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_VERSION" >/dev/null 2>&1; then
+            gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" \
+              -f ref="refs/tags/$RELEASE_VERSION" -f sha="$RELEASE_SHA" >/dev/null
+          fi
+          [[ "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_VERSION" --jq .object.sha)" == "$RELEASE_SHA" ]]
+
+  publish_maven:
+    name: Publish Maven
+    needs: [preflight, create_release_tag]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out the tagged publication definition
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ needs.preflight.outputs.sha }}
+      - name: Install Java 25 for Mavenizer
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '25.0.3+9.0.LTS'
+      - name: Install Java 8 for Forge
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '8.0.502+7'
+      - name: Install Java 17 for Gradle
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '17.0.1+12'
+      - name: Download the audited CI bundle
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+        with:
+          name: BaseGems-1.12.2-${{ needs.preflight.outputs.sha }}
+          path: ${{ runner.temp }}/release-input
+          run-id: ${{ needs.preflight.outputs.run }}
+          github-token: ${{ github.token }}
+      - name: Publish the prepared artifacts
+        env:
+          MAVEN_UPLOAD_URL: ${{ secrets.MAVEN_UPLOAD_URL }}
+          MAVEN_UPLOAD_USERNAME: ${{ secrets.MAVEN_UPLOAD_USERNAME }}
+          MAVEN_UPLOAD_PASSWORD: ${{ secrets.MAVEN_UPLOAD_PASSWORD }}
+        run: |
+          set -euo pipefail
+          python3 gradle/stage-legacy-dependencies.py .gradle/legacy-dependencies
+          ./gradlew publishMavenJavaPublicationToReleaseRepository \
+            -PpreparedReleaseDir="$RUNNER_TEMP/release-input" --no-daemon --stacktrace --max-workers=2 \
+            "-Dorg.gradle.java.installations.paths=$JAVA_HOME,$JAVA_HOME_8_X64,$JAVA_HOME_25_X64" \
+            -Dorg.gradle.java.installations.auto-detect=false \
+            -Dorg.gradle.java.installations.auto-download=false
+
+  publish_curseforge:
+    name: Publish CurseForge
+    needs: [preflight, publish_maven]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Download the audited CI bundle
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+        with:
+          name: BaseGems-1.12.2-${{ needs.preflight.outputs.sha }}
+          path: ${{ runner.temp }}/release-input
+          run-id: ${{ needs.preflight.outputs.run }}
+          github-token: ${{ github.token }}
+      - name: Verify the bundle
+        run: (cd "$RUNNER_TEMP/release-input" && sha256sum --check SHA256SUMS)
+      - name: Publish Base Gems on CurseForge
+        uses: Kira-NT/mc-publish@52307b03863581dec6b652b83e597aec02ebb075 # v3.3.1
+        with:
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          curseforge-id: '1793939'
+          name: Base Gems ${{ inputs.release_version }} for Minecraft 1.12.2 (Forge)
+          version: ${{ inputs.release_version }}
+          version-type: ${{ inputs.curseforge_release_level }}
+          changelog-file: ${{ runner.temp }}/release-input/CHANGELOG.txt
+          loaders: forge
+          game-versions: '1.12.2'
+          game-version-filter: none
+          environment: client | server
+          java: Java 8
+          curseforge-dependencies: |
+            261744(required)
+            245586(required)
+            240967(optional)
+          fail-mode: fail
+          files: |
+            ${{ runner.temp }}/release-input/BaseGems-${{ inputs.release_version }}.jar
+            ${{ runner.temp }}/release-input/BaseGems-${{ inputs.release_version }}-sources.jar
+            ${{ runner.temp }}/release-input/BaseGems-${{ inputs.release_version }}-javadoc.jar
+
+  publish_github:
+    name: Publish GitHub Release
+    needs: [preflight, publish_curseforge]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - name: Download the audited CI bundle
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+        with:
+          name: BaseGems-1.12.2-${{ needs.preflight.outputs.sha }}
+          path: ${{ runner.temp }}/release-input
+          run-id: ${{ needs.preflight.outputs.run }}
+          github-token: ${{ github.token }}
+      - name: Publish the same artifacts on GitHub
+        working-directory: ${{ runner.temp }}/release-input
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ inputs.release_version }}
+        run: |
+          set -euo pipefail
+          sha256sum --check SHA256SUMS
+          gh release create "$RELEASE_VERSION" --repo "$GITHUB_REPOSITORY" --verify-tag \
+            --title "Base Gems $RELEASE_VERSION for Minecraft 1.12.2 (Forge)" \
+            --notes-file CHANGELOG.txt "BaseGems-$RELEASE_VERSION"{,-sources,-javadoc}.jar SHA256SUMS

@@ -59,3 +59,17 @@ jobs:
             -Dorg.gradle.java.installations.auto-detect=false \
             -Dorg.gradle.java.installations.auto-download=false
           sha256sum build/libs/*.jar
+
+      - name: Stage the audited release bundle
+        run: |
+          mkdir -p build/release-bundle
+          cp build/libs/*.jar build/release/SHA256SUMS CHANGELOG.txt build/release-bundle/
+          (cd build/release-bundle && sha256sum --check SHA256SUMS)
+
+      - name: Upload the audited release bundle
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: BaseGems-1.12.2-${{ github.sha }}
+          path: build/release-bundle/*
+          if-no-files-found: error
+          retention-days: 90
