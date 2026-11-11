@@ -1,5 +1,5 @@
 name: Release Base Gems
-run-name: Base Gems ${{ inputs.release_version }} (${{ inputs.confirm_live_publication && 'publish' || 'verify' }})
+run-name: Base Gems ${{ inputs.release_version }} (${{ inputs.curseforge_only && 'CurseForge only' || inputs.confirm_live_publication && 'publish' || 'verify' }})
 
 on:
   workflow_dispatch:
@@ -22,7 +22,12 @@ on:
           - beta
           - alpha
       confirm_live_publication:
-        description: Publish to CurseForge and GitHub after verification
+        description: Publish after verification; CurseForge-only mode skips GitHub
+        default: false
+        required: true
+        type: boolean
+      curseforge_only:
+        description: Retry only CurseForge for an existing, verified release tag
         default: false
         required: true
         type: boolean
@@ -111,22 +116,37 @@ jobs:
             -H "X-Api-Token: $CURSEFORGE_TOKEN" \
             https://minecraft.curseforge.com/api/game/versions >/dev/null
 
-      - name: Reserve the release tag
+      - name: Create or verify the release tag
         if: inputs.confirm_live_publication
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_SHA: ${{ steps.candidate.outputs.sha }}
+          CURSEFORGE_ONLY: ${{ inputs.curseforge_only }}
         run: |
           set -euo pipefail
           if [[ "$(gh api "repos/$GITHUB_REPOSITORY/branches/$RELEASE_BRANCH" --jq .commit.sha)" != "$RELEASE_SHA" ]]; then
             echo "$RELEASE_BRANCH moved during verification. Dispatch again for the new tip." >&2
             exit 1
           fi
-          if ! gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" \
-            -f ref="refs/tags/$RELEASE_VERSION" -f sha="$RELEASE_SHA" >/dev/null; then
-            echo 'Tag creation failed. If the tag already exists, inspect the earlier release before trying again.' >&2
+          if ! gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_VERSION" >/dev/null 2>&1; then
+            if [[ "$CURSEFORGE_ONLY" == true ]]; then
+              echo 'A CurseForge-only retry requires an existing release tag.' >&2
+              exit 1
+            fi
+            gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" \
+              -f ref="refs/tags/$RELEASE_VERSION" -f sha="$RELEASE_SHA" >/dev/null
+          fi
+          tag="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_VERSION" --jq '.object | "\(.type) \(.sha)"')"
+          read -r tag_type tag_sha <<<"$tag"
+          if [[ "$tag_type" == tag ]]; then
+            tag="$(gh api "repos/$GITHUB_REPOSITORY/git/tags/$tag_sha" --jq '.object | "\(.type) \(.sha)"')"
+            read -r tag_type tag_sha <<<"$tag"
+          fi
+          if [[ "$tag_type" != commit || "$tag_sha" != "$RELEASE_SHA" ]]; then
+            echo 'The existing tag does not point to the verified release commit.' >&2
             exit 1
           fi
+          echo "Verified tag $RELEASE_VERSION at $RELEASE_SHA"
 
       - name: Publish on CurseForge
         if: inputs.confirm_live_publication
@@ -150,7 +170,7 @@ jobs:
           files: ${{ runner.temp }}/release-input/BaseGems-${{ inputs.release_version }}.jar
 
       - name: Publish GitHub Release
-        if: inputs.confirm_live_publication
+        if: inputs.confirm_live_publication && !inputs.curseforge_only
         working-directory: ${{ runner.temp }}/release-input
         env:
           GH_TOKEN: ${{ github.token }}
