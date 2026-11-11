@@ -4,6 +4,7 @@ plugins {
     id 'java'
     id 'eclipse'
     id 'idea'
+    id 'maven-publish'
     id 'net.minecraftforge.renamer' version '1.1.5'
     id 'net.minecraftforge.gradle' version '7.0.34'
 }
@@ -150,6 +151,7 @@ tasks.named('jar', Jar) {
     tasks.named(name, Jar) {
         filteringCharset = 'UTF-8'
         filesMatching(textPatterns, normalizeText)
+        filesMatching('package-list', normalizeText)
     }
 }
 
@@ -167,4 +169,5 @@ ext.baseGemsBuild = [developmentOutput: developmentOutput].asImmutable()
 apply from: 'gradle/ore-models.gradle'
 apply from: 'gradle/recipe-advancements.gradle'
 apply from: 'gradle/release/artifacts.gradle'
+apply from: 'gradle/release/publishing.gradle'
 apply from: 'gradle/ide/eclipse.gradle'

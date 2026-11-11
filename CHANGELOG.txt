@@ -5,6 +5,9 @@ XP, smith trades and both Fantasy Level settings. Use Java 8, Forge
 14.23.5.2859 or later for 1.12.2, MMDLib 1.0.0 RC3 and MMD OreSpawn
 4.1.6.112021. Base Metals is optional on this version.
 
+This is the first published 1.12.2 build. It also works alongside Base Metals
+2.6.3.112021. Install MMDLib and OreSpawn on both the client and server.
+
 - Pick up gems and their crafting materials to learn the recipes in the
   recipe book. It only teaches recipes allowed by your gem and Fantasy Level
   settings.

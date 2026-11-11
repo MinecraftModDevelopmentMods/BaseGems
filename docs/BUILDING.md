@@ -24,3 +24,14 @@ Use a fresh test world when checking the OreSpawn defaults. In Low
 Fantasy, try mining and trading a gem, then check that storage blocks are
 still craftable and equipment recipes have gone. See [ore generation](ORE_GENERATION.md)
 for the placement rules and config overrides.
+
+## Publishing
+
+After the release PR is merged and its push CI passes, run **Release Base Gems
+1.12.2** on `master-1.12`. Enter the version and the SHA-256 of the game jar
+that passed manual testing. Leave live publication off for a verification run.
+
+The workflow checks the merged CI bundle against that hash, then publishes
+the same three jars to Maven, CurseForge and GitHub. Maven credentials and the
+CurseForge token come from repository or organization secrets. The 1.11.2
+dispatcher remains separate.
