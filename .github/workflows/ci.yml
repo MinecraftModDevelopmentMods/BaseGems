@@ -44,7 +44,7 @@ jobs:
         run: python3 gradle/stage-legacy-dependencies.py .gradle/legacy-dependencies
       - name: Build, audit and generate Eclipse launches
         run: |
-          bash ./gradlew clean check build javadoc verify113ReleaseArtifacts write113ReleaseChecksums genEclipseRuns eclipse \
+          bash ./gradlew clean check build javadoc verify113ReleaseArtifacts write113ReleaseChecksums prepareEclipse \
             -PreleaseBuild=true -PlegacyDependencyVerificationRepository="$PWD/.gradle/legacy-dependencies" \
             --no-daemon --stacktrace --max-workers=2 \
             "-Dorg.gradle.java.installations.paths=$JAVA_HOME,$JAVA_HOME_8_X64,$JAVA_HOME_25_X64" \
