@@ -1,0 +1,19 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:rods/goldenberyl"
+      }
+    },
+    "result": {
+      "id": "basegems:goldenberyl_bars",
+      "count": 4
+    }
+  }
+}

@@ -1,195 +1,136 @@
-import org.apache.tools.ant.filters.FixCrLfFilter
-
 plugins {
-    id 'java'
-    id 'maven-publish'
+    id 'java-library'
     id 'eclipse'
     id 'idea'
-    id 'net.minecraftforge.renamer' version '1.1.5'
-    id 'net.minecraftforge.gradle' version '7.0.34'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.148'
 }
 
-group = project.mod_group
-version = project.mod_version
-base.archivesName = 'BaseGems'
+def env = System.getenv()
+def tag = providers.environmentVariable('TAG')
+version = tag.orElse("${mod_version}-development").get()
+group = mod_group
 
-if (!(project.version ==~ /\d+\.\d+\.\d+\.113021/)) {
-    throw new GradleException('Use Major.Minor.Patch.113021 for Minecraft 1.13.2 on Forge.')
+base {
+    archivesName = mod_archive_name
 }
 
-// Gradle and Mavenizer use modern JDKs; the mod and game still use Java 8.
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(8)
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
     withSourcesJar()
     withJavadocJar()
 }
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-    sourceCompatibility = targetCompatibility = '1.8'
-    options.compilerArgs.addAll(['-Xmaxerrs', '1000'])
-}
-tasks.withType(Javadoc).configureEach {
-    failOnError = false
-    options.encoding = 'UTF-8'
-    options.addStringOption('Xdoclint:none', '-quiet')
-    options.addStringOption('docencoding', 'UTF-8')
-    options.addStringOption('charset', 'UTF-8')
-    options.addBooleanOption('notimestamp', true)
-}
-tasks.withType(AbstractArchiveTask).configureEach {
-    preserveFileTimestamps = false
-    reproducibleFileOrder = true
-    includeEmptyDirs = false
-    exclude '**/desktop.ini', '**/Thumbs.db', '**/.DS_Store'
-}
-// Mapped dependency bytes no longer match their original signatures. Keep the
-// verified downloads intact and strip signatures only from renamed copies.
-tasks.withType(net.minecraftforge.renamer.gradle.RenameJar).configureEach {
-    additionalArgs.addAll('--strip-sigs', 'ALL', '--disable-abstract-param')
+
+sourceSets {
+    // Recipes, tags, loot tables and advancements written by tools/generate_data.py.
+    main.resources.srcDir 'src/generated/resources'
 }
 
-def textPatterns = ['cfg', 'css', 'html', 'info', 'java', 'js', 'json', 'lang', 'mcmeta', 'md', 'properties', 'txt', 'xml']
-        .collect { "**/*.${it}".toString() }
-def normalizeText = { details ->
-    details.filter(FixCrLfFilter, eol: FixCrLfFilter.CrLf.newInstance('lf'),
-            eof: FixCrLfFilter.AddAsisRemove.newInstance('asis'))
-}
+neoForge {
+    version = neoforge_version
 
-def developmentOutput = layout.buildDirectory.dir('forge-run-mod-classes/main')
-def modPath = developmentOutput.get().asFile.absolutePath
-def prepareDevelopmentMod = tasks.register('prepareDevelopmentMod', Sync) {
-    dependsOn tasks.named('classes')
-    from sourceSets.main.output
-    into developmentOutput
-}
+    parchment {
+        minecraftVersion = parchment_minecraft_version
+        mappingsVersion = parchment_mappings_version
+    }
 
-minecraft {
-    mappings channel: project.mappings_channel, version: project.mappings_version
-    if (gradle.startParameter.offline) mavenizerArguments.add('--offline')
     runs {
         configureEach {
-            mainClass = 'net.minecraftforge.userdev.LaunchTesting'
-            workingDir.convention layout.projectDirectory.dir(
-                    providers.gradleProperty('baseGemsRunDirectory').getOrElse('run'))
-            mods { basegems { source sourceSets.main } }
-            environment 'target', name == 'client' ? 'fmluserdevclient' : 'fmluserdevserver'
-            environment 'MC_VERSION', project.minecraft_version
-            environment 'MCP_VERSION', project.mcp_version
-            environment 'MCP_MAPPINGS', "${project.mappings_channel}_${project.mappings_version}"
-            environment 'FORGE_VERSION', project.forge_version
-            environment 'FORGE_GROUP', 'net.minecraftforge'
-            environment 'MOD_CLASSES', "${mod_id}%%${modPath}${File.pathSeparator}${mod_id}%%${modPath}"
-            systemProperty 'forge.logging.console.level', 'info'
+            gameDirectory = file('run')
         }
-        register('client')
-        register('server') { args '--nogui' }
+        client {
+            client()
+        }
+        server {
+            server()
+            programArgument '--nogui'
+        }
     }
-}
-tasks.withType(JavaExec).configureEach {
-    if (name in ['runClient', 'runServer']) {
-        dependsOn prepareDevelopmentMod
-        doFirst { new File(workingDir, 'mods').mkdirs() }
-    }
-}
 
-def legacyMirror = file(providers.gradleProperty('legacyDependencyVerificationRepository')
-        .orElse(providers.gradleProperty('legacyDependencyRepository'))
-        .getOrElse('.gradle/legacy-dependencies'))
-def legacyRepository = { String remote -> legacyMirror.isDirectory() ? legacyMirror.toURI() : uri(remote) }
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
 
 repositories {
-    minecraft.mavenizer(it)
-    maven fg.forgeMaven
-    maven fg.minecraftLibsMaven
-    maven {
-        name = 'VerifiedLegacyMirror'
-        url = legacyMirror.toURI()
-        metadataSources { artifact() }
-    }
-    exclusiveContent {
-        forRepository { maven { url = legacyRepository('https://www.cursemaven.com'); metadataSources { artifact() } } }
-        filter { includeGroup 'curse.maven' }
-    }
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = 'PublishedBaseMetals'
-                url = legacyRepository('https://maven.moddev.zone/releases')
-                metadataSources { artifact() }
-            }
-        }
-        filter { includeModule('zone.moddev.mc.basemetals', 'BaseMetals') }
-    }
-    exclusiveContent {
-        forRepository { maven { url = 'https://repo.spongepowered.org/repository/maven-public' } }
-        filter { includeGroupAndSubgroups('org.spongepowered') }
-    }
-    maven { url = 'https://libraries.minecraft.net/' }
     mavenCentral()
+    maven {
+        name = 'ModDevZone'
+        url = uri('https://maven.moddev.zone/releases')
+        content {
+            includeGroup 'zone.moddev.mc.lib'
+            includeGroup 'zone.moddev.mc.orespawn'
+        }
+    }
 }
 
-apply from: 'gradle/dependencies.gradle'
-renamer.mappings.from minecraft.dependency.toSrgFile
-
-// Keep the donor armour art in the checkout for a future add-on.
-def armourAssets = ['boots', 'chestplate', 'helmet', 'leggings', 'horse_armor'].collectMany { form ->
-    ["assets/basegems/models/item/*_${form}.json", "assets/basegems/textures/items/*_${form}.png"]
+dependencies {
+    implementation "zone.moddev.mc.lib:mmdlib:${mmdlib_version}"
+    implementation "zone.moddev.mc.orespawn:OreSpawn:${orespawn_version}"
 }
 
 tasks.named('processResources', ProcessResources) {
-    filteringCharset = 'UTF-8'
-    exclude '**/desktop.ini', '**/Thumbs.db', '**/.DS_Store'
-    exclude armourAssets
-    inputs.property 'version', project.version
-    inputs.property 'oreSpawnRange', project.orespawn_version_range
-    filesMatching('META-INF/mods.toml') {
-        expand version: project.version, oreSpawnRange: project.orespawn_version_range
+    def properties = [
+            minecraft_version_range: minecraft_version_range,
+            neoforge_version_range: neoforge_version_range,
+            loader_version_range: loader_version_range,
+            mmdlib_version_range: mmdlib_version_range,
+            orespawn_version_range: orespawn_version_range,
+            mod_id: mod_id,
+            mod_name: mod_name,
+            mod_license: mod_license,
+            mod_version: project.version,
+            mod_authors: mod_authors,
+            mod_description: mod_description,
+            curseforge_url: "https://www.curseforge.com/minecraft/mc-mods/${mod_id}",
+            issue_url: issue_url,
+            update_url: update_url
+    ]
+    inputs.properties properties
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand properties
     }
-    exclude 'assets/basegems/lang/*.lang'
-    filesMatching(textPatterns, normalizeText)
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
 }
 
 tasks.named('jar', Jar) {
-    archiveClassifier = 'deobf'
-    destinationDirectory = layout.buildDirectory.dir('libs-dev')
-    filteringCharset = 'UTF-8'
-    manifest.attributes(
-            'Implementation-Title': 'BaseGems', 'Implementation-Version': project.version,
-            'Maven-Artifact': "${project.group}:BaseGems:${project.version}",
-            'Built-On-Java': '8', 'Built-On': "${project.minecraft_version}-${project.forge_version}")
+    from('LICENSE', 'LICENSE-ART.txt', 'LICENSE-TiC.txt')
 }
-['sourcesJar', 'javadocJar'].each { name ->
-    tasks.named(name, Jar) {
-        filteringCharset = 'UTF-8'
-        filesMatching(textPatterns, normalizeText)
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = mod_archive_name
+            from components.java
+        }
     }
-}
-
-tasks.named('sourcesJar', Jar) { exclude armourAssets }
-
-['jar', 'sourcesJar'].each { name ->
-    tasks.named(name, Jar) {
-        from(files('LICENSE', 'LICENSE-ART.txt', 'LICENSE-TiC.txt')) {
-            filter(FixCrLfFilter, eol: FixCrLfFilter.CrLf.newInstance('lf'))
+    repositories {
+        if (env.MAVEN_UPLOAD_URL) {
+            maven {
+                url = uri(env.MAVEN_UPLOAD_URL)
+                credentials {
+                    username = env.MAVEN_UPLOAD_USERNAME
+                    password = env.MAVEN_UPLOAD_PASSWORD
+                }
+            }
         }
     }
 }
 
-ext.baseGemsBuild = [developmentOutput: developmentOutput].asImmutable()
-apply from: 'gradle/resources.gradle'
-apply from: 'gradle/release/artifacts.gradle'
-apply from: 'gradle/eclipse.gradle'
-tasks.register('prepareEclipse') {
-    dependsOn 'genEclipseRuns', 'eclipse', 'prepareDevelopmentMod'
+idea {
+    module {
+        downloadSources = true
+    }
 }
 
-tasks.register('verifyFluidRegistration', Exec) {
-    group = 'verification'
-    description = 'Checks that fluid registration runs before blocks, outside parallel construction.'
-    commandLine 'node', '--test', 'tools/test_fluid_registration.js'
+eclipse {
+    classpath {
+        downloadJavadoc = true
+        downloadSources = true
+    }
 }
-tasks.named('check') { dependsOn 'verifyFluidRegistration' }
-
-apply from: 'gradle/release-113.gradle'
-
-apply from: 'gradle/normalize-javadoc-trees.gradle'

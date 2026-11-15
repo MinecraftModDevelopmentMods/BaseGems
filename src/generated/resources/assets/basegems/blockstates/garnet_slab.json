@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/garnet_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/garnet_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/garnet_block"
+    }
+  }
+}

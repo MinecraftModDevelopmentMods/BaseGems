@@ -1,8 +1,0 @@
-{
-    "parent": "block/half_slab",
-    "textures": {
-        "bottom": "basegems:blocks/garnet_block",
-        "top": "basegems:blocks/garnet_block",
-        "side": "basegems:blocks/garnet_block"
-    }
-}

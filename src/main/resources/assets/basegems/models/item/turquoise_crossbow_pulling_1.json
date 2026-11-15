@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/turquoise_crossbow",
-    "textures": {
-        "layer0": "basegems:items/turquoise_crossbow_pulling_1"
-    }
-}

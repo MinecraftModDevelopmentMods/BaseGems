@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:jade_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:jade_nugget"
+  },
+  "result": {
+    "id": "basegems:jade_smallpowder",
+    "count": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "srr",
+      " gr",
+      "r s"
+    ],
+    "key": {
+      "r": {
+        "tag": "c:rods/peridot"
+      },
+      "g": {
+        "tag": "c:gears/peridot"
+      },
+      "s": {
+        "item": "minecraft:string"
+      }
+    },
+    "result": {
+      "id": "basegems:peridot_crossbow",
+      "count": 1
+    }
+  }
+}

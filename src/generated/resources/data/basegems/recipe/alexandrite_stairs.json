@@ -1,0 +1,21 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "x  ",
+      "xx ",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:storage_blocks/alexandrite"
+      }
+    },
+    "result": {
+      "id": "basegems:alexandrite_stairs",
+      "count": 4
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:jasper_powder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:jasper_block"
+  },
+  "result": {
+    "id": "basegems:jasper_powder",
+    "count": 9
+  }
+}

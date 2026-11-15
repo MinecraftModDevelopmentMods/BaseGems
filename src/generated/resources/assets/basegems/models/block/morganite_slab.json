@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "basegems:block/morganite_block",
+    "top": "basegems:block/morganite_block",
+    "side": "basegems:block/morganite_block"
+  }
+}

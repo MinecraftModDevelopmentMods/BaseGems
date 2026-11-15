@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/malachite_crossbow",
-    "textures": {
-        "layer0": "basegems:items/malachite_crossbow_pulling_2"
-    }
-}

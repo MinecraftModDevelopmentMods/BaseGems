@@ -1,6 +1,6 @@
 # Where to find gems
 
-Base Gems uses OreSpawn 4 to place small deposits throughout the Overworld.
+Base Gems uses OreSpawn 4.1 to place small deposits throughout the Overworld.
 Look for agate, jasper and carnelian in upper caves, beryl and topaz farther
 down, and black diamond near bedrock. Amber and moldavite turn up in shallow
 sediment pockets. These are starting depths. The ranges overlap so one

@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "x",
+      "s",
+      "s"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/morganite"
+      },
+      "s": {
+        "tag": "c:rods/wooden"
+      }
+    },
+    "result": {
+      "id": "basegems:morganite_shovel",
+      "count": 1
+    }
+  }
+}

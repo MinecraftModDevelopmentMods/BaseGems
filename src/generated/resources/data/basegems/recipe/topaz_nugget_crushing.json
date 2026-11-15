@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:topaz_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:topaz_nugget"
+  },
+  "result": {
+    "id": "basegems:topaz_smallpowder",
+    "count": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "x",
+      "r",
+      "f"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:nuggets/goldenberyl"
+      },
+      "r": {
+        "tag": "c:rods/goldenberyl"
+      },
+      "f": {
+        "item": "minecraft:feather"
+      }
+    },
+    "result": {
+      "id": "basegems:goldenberyl_arrow",
+      "count": 4
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xx",
+      "xx",
+      "xx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/bluetopaz"
+      }
+    },
+    "result": {
+      "id": "basegems:bluetopaz_door",
+      "count": 3
+    }
+  }
+}

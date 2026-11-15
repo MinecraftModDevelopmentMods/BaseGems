@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/blackdiamond_crossbow",
-    "textures": {
-        "layer0": "basegems:items/blackdiamond_crossbow_pulling_0"
-    }
-}

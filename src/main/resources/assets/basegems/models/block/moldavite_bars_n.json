@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/bars_n",
-    "textures": {
-        "particle": "basegems:blocks/moldavite_block",
-        "bars": "basegems:blocks/moldavite_block",
-        "edge": "basegems:blocks/moldavite_block"
-    }
-}

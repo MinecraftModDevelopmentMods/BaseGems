@@ -1,0 +1,27 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "srr",
+      " gr",
+      "r s"
+    ],
+    "key": {
+      "r": {
+        "tag": "c:rods/ruby"
+      },
+      "g": {
+        "tag": "c:gears/ruby"
+      },
+      "s": {
+        "item": "minecraft:string"
+      }
+    },
+    "result": {
+      "id": "basegems:ruby_crossbow",
+      "count": 1
+    }
+  }
+}

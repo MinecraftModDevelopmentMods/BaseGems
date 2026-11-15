@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/bars_ns",
-    "textures": {
-        "particle": "basegems:blocks/heliodor_block",
-        "bars": "basegems:blocks/heliodor_block",
-        "edge": "basegems:blocks/heliodor_block"
-    }
-}

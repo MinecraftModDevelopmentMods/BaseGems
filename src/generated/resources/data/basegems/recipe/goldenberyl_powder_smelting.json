@@ -1,0 +1,12 @@
+{
+  "type": "basegems:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "basegems:goldenberyl_powder"
+  },
+  "result": {
+    "id": "basegems:goldenberyl_ingot"
+  },
+  "experience": 0.45,
+  "cookingtime": 200
+}

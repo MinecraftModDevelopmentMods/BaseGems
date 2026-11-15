@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/lepidolite_crossbow",
-    "textures": {
-        "layer0": "basegems:items/lepidolite_crossbow_pulling_1"
-    }
-}

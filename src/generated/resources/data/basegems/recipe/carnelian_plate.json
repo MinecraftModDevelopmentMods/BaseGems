@@ -1,0 +1,19 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/carnelian"
+      }
+    },
+    "result": {
+      "id": "basegems:carnelian_plate",
+      "count": 3
+    }
+  }
+}

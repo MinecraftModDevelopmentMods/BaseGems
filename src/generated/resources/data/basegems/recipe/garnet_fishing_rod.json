@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "  r",
+      " rs",
+      "r s"
+    ],
+    "key": {
+      "r": {
+        "tag": "c:rods/garnet"
+      },
+      "s": {
+        "item": "minecraft:string"
+      }
+    },
+    "result": {
+      "id": "basegems:garnet_fishing_rod",
+      "count": 1
+    }
+  }
+}

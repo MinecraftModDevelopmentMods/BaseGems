@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/moldavite_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/moldavite_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/moldavite_block"
+    }
+  }
+}

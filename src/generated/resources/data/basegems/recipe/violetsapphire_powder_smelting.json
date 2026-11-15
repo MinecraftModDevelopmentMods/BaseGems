@@ -1,0 +1,12 @@
+{
+  "type": "basegems:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "basegems:violetsapphire_powder"
+  },
+  "result": {
+    "id": "basegems:violetsapphire_ingot"
+  },
+  "experience": 0.45,
+  "cookingtime": 200
+}

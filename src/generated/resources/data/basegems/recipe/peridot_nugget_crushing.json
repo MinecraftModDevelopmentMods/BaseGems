@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:peridot_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:peridot_nugget"
+  },
+  "result": {
+    "id": "basegems:peridot_smallpowder",
+    "count": 1
+  }
+}

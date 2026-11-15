@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:lepidolite_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:lepidolite_nugget"
+  },
+  "result": {
+    "id": "basegems:lepidolite_smallpowder",
+    "count": 1
+  }
+}

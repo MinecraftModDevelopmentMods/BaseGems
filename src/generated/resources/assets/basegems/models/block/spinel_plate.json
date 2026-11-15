@@ -1,0 +1,8 @@
+{
+  "parent": "basegems:block/plate",
+  "textures": {
+    "top": "basegems:block/spinel_block",
+    "side": "basegems:block/spinel_block",
+    "bottom": "basegems:block/spinel_block"
+  }
+}

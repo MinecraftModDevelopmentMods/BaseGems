@@ -1,0 +1,14 @@
+{
+  "parent": "basegems:item/shield",
+  "textures": {
+    "shield": "basegems:block/alexandrite_block"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "basegems:item/alexandrite_shield_blocking"
+    }
+  ]
+}

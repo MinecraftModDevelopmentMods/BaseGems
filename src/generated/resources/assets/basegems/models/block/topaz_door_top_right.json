@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right",
+  "textures": {
+    "bottom": "basegems:block/topaz_door_bottom",
+    "top": "basegems:block/topaz_door_top"
+  }
+}

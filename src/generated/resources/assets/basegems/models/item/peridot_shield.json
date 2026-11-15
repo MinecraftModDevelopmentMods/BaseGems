@@ -1,0 +1,14 @@
+{
+  "parent": "basegems:item/shield",
+  "textures": {
+    "shield": "basegems:block/peridot_block"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "basegems:item/peridot_shield_blocking"
+    }
+  ]
+}

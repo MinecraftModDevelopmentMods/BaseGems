@@ -1,0 +1,21 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "x  ",
+      "xx ",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:storage_blocks/spinel"
+      }
+    },
+    "result": {
+      "id": "basegems:spinel_stairs",
+      "count": 4
+    }
+  }
+}

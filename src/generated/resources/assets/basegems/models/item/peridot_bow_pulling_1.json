@@ -1,0 +1,6 @@
+{
+  "parent": "basegems:item/peridot_bow",
+  "textures": {
+    "layer0": "basegems:item/peridot_bow_pulling_1"
+  }
+}

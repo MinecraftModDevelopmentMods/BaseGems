@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "basegems:block/heliodor_block",
+    "top": "basegems:block/heliodor_block",
+    "side": "basegems:block/heliodor_block"
+  }
+}

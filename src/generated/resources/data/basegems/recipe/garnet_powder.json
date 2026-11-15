@@ -1,0 +1,21 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx",
+      "xxx",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "item": "basegems:garnet_smallpowder"
+      }
+    },
+    "result": {
+      "id": "basegems:garnet_powder",
+      "count": 1
+    }
+  }
+}

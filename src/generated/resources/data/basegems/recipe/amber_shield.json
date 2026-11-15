@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xpx",
+      "xxx",
+      " x "
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/amber"
+      },
+      "p": {
+        "tag": "minecraft:planks"
+      }
+    },
+    "result": {
+      "id": "basegems:amber_shield",
+      "count": 1
+    }
+  }
+}

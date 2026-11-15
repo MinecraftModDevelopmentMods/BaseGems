@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld_rod",
+  "textures": {
+    "layer0": "basegems:item/amber_fishing_rod_cast"
+  }
+}

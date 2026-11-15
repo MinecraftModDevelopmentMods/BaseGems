@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/plate",
-    "textures": {
-        "top": "basegems:blocks/citrine_block",
-        "side": "basegems:blocks/citrine_block",
-        "bottom": "basegems:blocks/citrine_block"
-    }
-}

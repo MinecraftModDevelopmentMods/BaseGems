@@ -1,0 +1,7 @@
+{
+  "type": "basegems:plate_repair",
+  "target": "basegems:onyx_shield",
+  "plate": {
+    "tag": "c:plates/onyx"
+  }
+}

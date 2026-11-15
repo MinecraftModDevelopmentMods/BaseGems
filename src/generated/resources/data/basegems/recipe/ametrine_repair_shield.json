@@ -1,0 +1,7 @@
+{
+  "type": "basegems:plate_repair",
+  "target": "basegems:ametrine_shield",
+  "plate": {
+    "tag": "c:plates/ametrine"
+  }
+}

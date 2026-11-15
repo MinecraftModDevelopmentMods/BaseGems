@@ -1,0 +1,20 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      " x",
+      "x "
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/jasper"
+      }
+    },
+    "result": {
+      "id": "basegems:jasper_shears",
+      "count": 1
+    }
+  }
+}

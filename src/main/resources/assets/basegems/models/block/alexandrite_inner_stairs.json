@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "basegems:blocks/alexandrite_block",
-        "top": "basegems:blocks/alexandrite_block",
-        "side": "basegems:blocks/alexandrite_block"
-    }
-}

@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "basegems:block/garnet_plate",
+      "x": 90
+    },
+    "facing=up": {
+      "model": "basegems:block/garnet_plate",
+      "x": 270
+    },
+    "facing=north": {
+      "model": "basegems:block/garnet_plate"
+    },
+    "facing=south": {
+      "model": "basegems:block/garnet_plate",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "basegems:block/garnet_plate",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "basegems:block/garnet_plate",
+      "y": 90
+    }
+  }
+}

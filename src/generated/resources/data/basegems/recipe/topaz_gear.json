@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      " x ",
+      "xrx",
+      " x "
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/topaz"
+      },
+      "r": {
+        "tag": "c:rods/topaz"
+      }
+    },
+    "result": {
+      "id": "basegems:topaz_gear",
+      "count": 1
+    }
+  }
+}

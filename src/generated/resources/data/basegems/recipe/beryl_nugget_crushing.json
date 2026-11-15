@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:beryl_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:beryl_nugget"
+  },
+  "result": {
+    "id": "basegems:beryl_smallpowder",
+    "count": 1
+  }
+}

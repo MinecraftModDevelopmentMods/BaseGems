@@ -1,8 +1,0 @@
-{
-    "parent": "block/half_slab",
-    "textures": {
-        "bottom": "basegems:blocks/blackdiamond_block",
-        "top": "basegems:blocks/blackdiamond_block",
-        "side": "basegems:blocks/blackdiamond_block"
-    }
-}

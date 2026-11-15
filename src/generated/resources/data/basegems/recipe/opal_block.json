@@ -1,0 +1,21 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx",
+      "xxx",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/opal"
+      }
+    },
+    "result": {
+      "id": "basegems:opal_block",
+      "count": 1
+    }
+  }
+}

@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/bluetopaz_crossbow",
-    "textures": {
-        "layer0": "basegems:items/bluetopaz_crossbow_pulling_0"
-    }
-}

@@ -1,117 +1,122 @@
 package zone.moddev.mc.basegems.content;
 
 import java.util.Collections;
-import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlowingFluid;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.fluid.FlowingFluid;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.IFluidState;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.IRegistry;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.MapColor;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.SoundActions;
+import net.neoforged.neoforge.fluids.BaseFlowingFluid;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.registries.NewRegistryEvent;
 import zone.moddev.mc.basegems.BaseGems;
 import zone.moddev.mc.basegems.data.Gem;
+import zone.moddev.mc.lib.MMDLib;
+import zone.moddev.mc.lib.api.MaterialExtensions;
+import zone.moddev.mc.lib.common.factories.MaterialFactory;
+import zone.moddev.mc.lib.common.runtime.RuntimeContentRegistrar;
 
-@Mod.EventBusSubscriber(modid = BaseGems.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+/**
+ * Base Gems content. The gems, their items and blocks are MMDLib materials under
+ * {@code mmdlib/material/}, registered by MMDLib's runtime registrar. Molten gems stay
+ * Base Gems fluids, so their IDs match older saves; the {@code basegems:bucket} form
+ * fills them.
+ */
 public final class ModContent {
-    private static final Map<String, Block> BLOCKS = new LinkedHashMap<>();
-    private static final Map<String, Item> ITEMS = new LinkedHashMap<>();
-    private static final Map<String, Supplier<? extends Item>> ITEM_FACTORIES = new LinkedHashMap<>();
-    private static final Map<String, FluidContent> FLUIDS = new LinkedHashMap<>();
-    private static final Map<Fluid, Integer> FLUID_COLOURS = new IdentityHashMap<>();
-    private static final ItemGroup GEMS = new ItemGroup("basegems") {
-        @Override public ItemStack createIcon() { return new ItemStack(item("ruby_ingot")); }
-    };
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, BaseGems.MOD_ID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, BaseGems.MOD_ID);
+    public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(Registries.FLUID, BaseGems.MOD_ID);
+    public static final DeferredRegister<FluidType> FLUID_TYPES =
+            DeferredRegister.create(NeoForgeRegistries.Keys.FLUID_TYPES, BaseGems.MOD_ID);
+
+    private static final Map<String, FluidContent> FLUID_CONTENT = new LinkedHashMap<>();
+    private static RuntimeContentRegistrar registrar;
 
     private ModContent() {}
 
-    public static ResourceLocation id(String path) { return new ResourceLocation(BaseGems.MOD_ID, path); }
-    public static Block block(String path) { return BLOCKS.get(path); }
-    public static Item item(String path) { return ITEMS.get(path); }
-    public static FluidContent fluid(String path) { return FLUIDS.get(path); }
-    public static Map<String, FluidContent> fluids() { return Collections.unmodifiableMap(FLUIDS); }
-    public static boolean isBaseGemsFluid(Fluid fluid) { return FLUID_COLOURS.containsKey(fluid); }
-    public static int fluidColour(Fluid fluid) { return FLUID_COLOURS.getOrDefault(fluid, 0xffffff); }
+    public static void register(IEventBus bus) {
+        // The bucket and ore forms are named by the gem materials, so they must exist
+        // before MMDLib decodes them in its deferred construction work.
+        GemBucketItem.registerImplementation();
+        GemOreBlock.registerImplementation();
+        registrar = new RuntimeContentRegistrar(BaseGems.MOD_ID, MaterialExtensions.GLOBAL, bus);
+        BLOCKS.register(bus);
+        ITEMS.register(bus);
+        FLUIDS.register(bus);
+        FLUID_TYPES.register(bus);
+        bus.addListener(GemBucketItem::registerCapabilities);
+        // MMDLib loads definitions after mod construction; registries open after that.
+        bus.addListener(NewRegistryEvent.class, event -> populate());
+    }
 
-    // Vanilla's fluid registries are shared, so use Forge's sequential block event.
-    private static void initializeFluids() {
+    private static void populate() {
         for (Gem gem : Gem.ALL) {
-            String name = gem.name();
-            FluidContent fluid = new FluidContent(new RegistryHandle<>(name),
-                    new RegistryHandle<>("flowing_" + name), new RegistryHandle<>(name),
-                    new RegistryHandle<>(name + "_bucket"));
-            FLUIDS.put(name, fluid);
-            FlowingFluid source = new MoltenFluid.Source(name);
-            FlowingFluid flowing = new MoltenFluid.Flowing(name);
-            fluid.source().bind(source);
-            fluid.flowing().bind(flowing);
-            IRegistry.field_212619_h.put(id(name), source);
-            IRegistry.field_212619_h.put(id("flowing_" + name), flowing);
-            for (Fluid type : new Fluid[]{source, flowing}) {
-                FLUID_COLOURS.put(type, gem.colour() & 0xffffff);
-                for (IFluidState state : type.getStateContainer().getValidStates()) {
-                    Fluid.STATE_REGISTRY.add(state);
-                }
+            MaterialFactory.Result result = MMDLib.loadedMaterials().get(gem.id());
+            if (result == null) {
+                throw new IllegalStateException("MMDLib did not load the Base Gems material " + gem.id());
             }
+            registerFluid(gem);
+            registrar.queue(result);
         }
+        LegacyIds.register();
     }
 
-    @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        initializeFluids();
-        for (Gem gem : Gem.ALL) {
-            String name = gem.name();
-            GemBlocks.create(gem).forEach((path, value) -> {
-                BLOCKS.put(path, value);
-                event.getRegistry().register(value.setRegistryName(id(path)));
-                if (!path.startsWith("double_")) {
-                    ITEM_FACTORIES.put(path, () -> new ItemBlock(value, new Item.Properties().group(GEMS)));
-                }
-            });
-            FluidContent fluid = fluid(name);
-            BlockFlowingFluid molten = new MoltenGemBlock(fluid.source().get());
-            fluid.block().bind(molten);
-            BLOCKS.put(name, molten);
-            event.getRegistry().register(molten.setRegistryName(id(name)));
-            // The pre-flattening versions registered an item for the fluid block.
-            ITEM_FACTORIES.put(name, () -> new ItemBlock(molten, new Item.Properties()));
-            ITEM_FACTORIES.put(name + "_bucket", () -> {
-                Item bucket = new GemBucketItem(fluid.source().get(),
-                        new Item.Properties().containerItem(Items.BUCKET).maxStackSize(1).group(GEMS));
-                fluid.bucket().bind(bucket);
-                return bucket;
-            });
-        }
+    private static void registerFluid(Gem gem) {
+        String name = gem.name();
+        ResourceLocation id = gem.id();
+        DeferredHolder<Fluid, BaseFlowingFluid.Source> source = DeferredHolder.create(Registries.FLUID, id);
+        DeferredHolder<Fluid, BaseFlowingFluid.Flowing> flowing =
+                DeferredHolder.create(Registries.FLUID, id.withPrefix("flowing_"));
+        DeferredHolder<Block, MoltenGemBlock> block = DeferredHolder.create(Registries.BLOCK, id);
+        // The basegems:bucket item form registers this ID through MMDLib.
+        DeferredHolder<Item, GemBucketItem> bucket = DeferredHolder.create(Registries.ITEM, id.withSuffix("_bucket"));
+        DeferredHolder<FluidType, GemFluidType> type = FLUID_TYPES.register(name, () -> new GemFluidType(
+                FluidType.Properties.create().density(3000).viscosity(6000).temperature(1300)
+                        .lightLevel(10).canSwim(false).canDrown(true).canExtinguish(false).canHydrate(false)
+                        .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL_LAVA)
+                        .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY_LAVA),
+                gem.colour() & 0xFFFFFF));
+        // Molten gems flow slowly and never form new sources.
+        BaseFlowingFluid.Properties properties = new BaseFlowingFluid.Properties(type, source, flowing)
+                .bucket(bucket).block(block)
+                .slopeFindDistance(2).levelDecreasePerBlock(2).tickRate(30).explosionResistance(100.0F);
+        FLUIDS.register(name, () -> new BaseFlowingFluid.Source(properties));
+        FLUIDS.register("flowing_" + name, () -> new BaseFlowingFluid.Flowing(properties));
+        BLOCKS.register(name, () -> new MoltenGemBlock(source.get(), BlockBehaviour.Properties.of()
+                .mapColor(MapColor.FIRE).replaceable().noCollission().strength(100.0F)
+                .lightLevel(state -> 10).pushReaction(net.minecraft.world.level.material.PushReaction.DESTROY)
+                .noLootTable().liquid()));
+        // Older versions registered an item for every molten block. Keep it, hidden, so
+        // stacks in old saves survive.
+        ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        FLUID_CONTENT.put(name, new FluidContent(type, source, flowing, block, bucket));
     }
 
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        for (Gem gem : Gem.ALL) GemItems.add(gem, GEMS, ITEM_FACTORIES);
-        ITEM_FACTORIES.forEach((path, factory) -> {
-            Item item = factory.get();
-            ITEMS.put(path, item);
-            event.getRegistry().register(item.setRegistryName(id(path)));
-        });
+    public static RuntimeContentRegistrar registrar() {
+        return registrar;
     }
 
-    private static final class MoltenGemBlock extends BlockFlowingFluid {
-        private MoltenGemBlock(FlowingFluid fluid) {
-            super(fluid, Block.Properties.create(Material.LAVA).doesNotBlockMovement()
-                    .hardnessAndResistance(100).variableOpacity());
-        }
+    public static Map<String, FluidContent> fluids() {
+        return Collections.unmodifiableMap(FLUID_CONTENT);
+    }
+
+    /** A Base Gems item, such as {@code ruby_pickaxe}, once registries are populated. */
+    public static Item item(String path) {
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(BaseGems.MOD_ID, path);
+        DeferredHolder<Item, ? extends Item> item = registrar.items().get(id);
+        if (item == null) throw new IllegalArgumentException("Unknown Base Gems item " + id);
+        return item.get();
     }
 }

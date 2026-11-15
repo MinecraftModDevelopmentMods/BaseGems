@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/bars_ne",
-    "textures": {
-        "particle": "basegems:blocks/goldenberyl_block",
-        "bars": "basegems:blocks/goldenberyl_block",
-        "edge": "basegems:blocks/goldenberyl_block"
-    }
-}

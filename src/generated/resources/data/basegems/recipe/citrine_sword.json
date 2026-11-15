@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "x",
+      "x",
+      "s"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/citrine"
+      },
+      "s": {
+        "tag": "c:rods/wooden"
+      }
+    },
+    "result": {
+      "id": "basegems:citrine_sword",
+      "count": 1
+    }
+  }
+}

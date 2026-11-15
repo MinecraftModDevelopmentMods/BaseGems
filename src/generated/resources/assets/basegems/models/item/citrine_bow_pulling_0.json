@@ -1,0 +1,6 @@
+{
+  "parent": "basegems:item/citrine_bow",
+  "textures": {
+    "layer0": "basegems:item/citrine_bow_pulling_0"
+  }
+}

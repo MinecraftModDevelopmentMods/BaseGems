@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/lepidolite_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/lepidolite_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/lepidolite_block"
+    }
+  }
+}

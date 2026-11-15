@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/heliodor_bow",
-    "textures": {
-        "layer0": "basegems:items/heliodor_bow_pulling_1"
-    }
-}

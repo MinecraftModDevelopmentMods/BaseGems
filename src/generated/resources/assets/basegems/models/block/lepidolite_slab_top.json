@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "basegems:block/lepidolite_block",
+    "top": "basegems:block/lepidolite_block",
+    "side": "basegems:block/lepidolite_block"
+  }
+}

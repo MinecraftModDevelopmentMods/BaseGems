@@ -1,0 +1,16 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "ingredients": [
+      {
+        "tag": "c:gems/amethyst"
+      }
+    ],
+    "result": {
+      "id": "basegems:amethyst_nugget",
+      "count": 9
+    }
+  }
+}

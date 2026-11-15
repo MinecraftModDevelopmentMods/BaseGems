@@ -1,0 +1,21 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx",
+      "xxx",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "item": "basegems:onyx_smallpowder"
+      }
+    },
+    "result": {
+      "id": "basegems:onyx_powder",
+      "count": 1
+    }
+  }
+}

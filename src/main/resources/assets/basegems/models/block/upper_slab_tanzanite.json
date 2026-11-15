@@ -1,8 +1,0 @@
-{
-    "parent": "block/upper_slab",
-    "textures": {
-        "bottom": "basegems:blocks/tanzanite_block",
-        "top": "basegems:blocks/tanzanite_block",
-        "side": "basegems:blocks/tanzanite_block"
-    }
-}

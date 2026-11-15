@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:citrine_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:citrine_nugget"
+  },
+  "result": {
+    "id": "basegems:citrine_smallpowder",
+    "count": 1
+  }
+}

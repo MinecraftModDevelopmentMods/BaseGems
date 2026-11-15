@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:moldavite_powder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:moldavite_ore"
+  },
+  "result": {
+    "id": "basegems:moldavite_powder",
+    "count": 2
+  }
+}

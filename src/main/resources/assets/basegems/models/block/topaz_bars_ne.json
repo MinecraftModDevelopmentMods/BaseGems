@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/bars_ne",
-    "textures": {
-        "particle": "basegems:blocks/topaz_block",
-        "bars": "basegems:blocks/topaz_block",
-        "edge": "basegems:blocks/topaz_block"
-    }
-}

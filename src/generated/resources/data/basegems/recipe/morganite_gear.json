@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      " x ",
+      "xrx",
+      " x "
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/morganite"
+      },
+      "r": {
+        "tag": "c:rods/morganite"
+      }
+    },
+    "result": {
+      "id": "basegems:morganite_gear",
+      "count": 1
+    }
+  }
+}

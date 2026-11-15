@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_bottom",
-    "textures": {
-        "bottom": "basegems:blocks/agate_door_bottom",
-        "top": "basegems:blocks/agate_door_top"
-    }
-}

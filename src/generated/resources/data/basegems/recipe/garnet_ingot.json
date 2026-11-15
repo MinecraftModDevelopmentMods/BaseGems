@@ -1,0 +1,21 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx",
+      "xxx",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:nuggets/garnet"
+      }
+    },
+    "result": {
+      "id": "basegems:garnet_ingot",
+      "count": 1
+    }
+  }
+}

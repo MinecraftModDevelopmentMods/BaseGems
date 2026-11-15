@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/bars_ns",
-    "textures": {
-        "particle": "basegems:blocks/aquamarine_block",
-        "bars": "basegems:blocks/aquamarine_block",
-        "edge": "basegems:blocks/aquamarine_block"
-    }
-}

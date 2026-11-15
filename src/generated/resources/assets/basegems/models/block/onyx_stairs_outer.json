@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "basegems:block/onyx_block",
+    "top": "basegems:block/onyx_block",
+    "side": "basegems:block/onyx_block"
+  }
+}

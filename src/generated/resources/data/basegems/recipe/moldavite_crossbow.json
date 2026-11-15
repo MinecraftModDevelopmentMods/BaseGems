@@ -1,0 +1,27 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "srr",
+      " gr",
+      "r s"
+    ],
+    "key": {
+      "r": {
+        "tag": "c:rods/moldavite"
+      },
+      "g": {
+        "tag": "c:gears/moldavite"
+      },
+      "s": {
+        "item": "minecraft:string"
+      }
+    },
+    "result": {
+      "id": "basegems:moldavite_crossbow",
+      "count": 1
+    }
+  }
+}

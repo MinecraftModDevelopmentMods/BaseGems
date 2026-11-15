@@ -1,0 +1,27 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "srr",
+      " gr",
+      "r s"
+    ],
+    "key": {
+      "r": {
+        "tag": "c:rods/bluetopaz"
+      },
+      "g": {
+        "tag": "c:gears/bluetopaz"
+      },
+      "s": {
+        "item": "minecraft:string"
+      }
+    },
+    "result": {
+      "id": "basegems:bluetopaz_crossbow",
+      "count": 1
+    }
+  }
+}

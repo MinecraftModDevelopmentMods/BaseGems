@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/iron_bars_cap",
+  "textures": {
+    "particle": "basegems:block/bluetopaz_block",
+    "bars": "basegems:block/bluetopaz_block",
+    "edge": "basegems:block/bluetopaz_block"
+  }
+}

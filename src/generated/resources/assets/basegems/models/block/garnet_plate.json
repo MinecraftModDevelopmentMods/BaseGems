@@ -1,0 +1,8 @@
+{
+  "parent": "basegems:block/plate",
+  "textures": {
+    "top": "basegems:block/garnet_block",
+    "side": "basegems:block/garnet_block",
+    "bottom": "basegems:block/garnet_block"
+  }
+}

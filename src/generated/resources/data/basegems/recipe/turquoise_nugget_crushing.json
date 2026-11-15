@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:turquoise_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:turquoise_nugget"
+  },
+  "result": {
+    "id": "basegems:turquoise_smallpowder",
+    "count": 1
+  }
+}

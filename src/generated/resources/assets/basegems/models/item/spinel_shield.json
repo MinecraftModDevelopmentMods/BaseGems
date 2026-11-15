@@ -1,0 +1,14 @@
+{
+  "parent": "basegems:item/shield",
+  "textures": {
+    "shield": "basegems:block/spinel_block"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "basegems:item/spinel_shield_blocking"
+    }
+  ]
+}

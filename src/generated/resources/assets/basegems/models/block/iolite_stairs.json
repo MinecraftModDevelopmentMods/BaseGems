@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "basegems:block/iolite_block",
+    "top": "basegems:block/iolite_block",
+    "side": "basegems:block/iolite_block"
+  }
+}

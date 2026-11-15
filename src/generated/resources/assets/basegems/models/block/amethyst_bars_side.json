@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/iron_bars_side",
+  "textures": {
+    "particle": "basegems:block/amethyst_block",
+    "bars": "basegems:block/amethyst_block",
+    "edge": "basegems:block/amethyst_block"
+  }
+}

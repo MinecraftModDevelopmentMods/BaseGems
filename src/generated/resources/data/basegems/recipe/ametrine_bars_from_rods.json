@@ -1,0 +1,19 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:rods/ametrine"
+      }
+    },
+    "result": {
+      "id": "basegems:ametrine_bars",
+      "count": 4
+    }
+  }
+}

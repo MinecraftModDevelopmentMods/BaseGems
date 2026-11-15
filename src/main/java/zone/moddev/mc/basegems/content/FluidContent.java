@@ -1,25 +1,18 @@
 package zone.moddev.mc.basegems.content;
 
-import net.minecraft.block.BlockFlowingFluid;
-import net.minecraft.fluid.FlowingFluid;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.material.Fluid;
+import net.neoforged.neoforge.fluids.BaseFlowingFluid;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
-public final class FluidContent {
-    private final RegistryHandle<FlowingFluid> source;
-    private final RegistryHandle<FlowingFluid> flowing;
-    private final RegistryHandle<BlockFlowingFluid> block;
-    private final RegistryHandle<Item> bucket;
-
-    public FluidContent(RegistryHandle<FlowingFluid> source, RegistryHandle<FlowingFluid> flowing,
-            RegistryHandle<BlockFlowingFluid> block, RegistryHandle<Item> bucket) {
-        this.source = source;
-        this.flowing = flowing;
-        this.block = block;
-        this.bucket = bucket;
-    }
-
-    public RegistryHandle<FlowingFluid> source() { return source; }
-    public RegistryHandle<FlowingFluid> flowing() { return flowing; }
-    public RegistryHandle<BlockFlowingFluid> block() { return block; }
-    public RegistryHandle<Item> bucket() { return bucket; }
+/** A molten gem: its fluid type, source and flowing fluids, liquid block and bucket. */
+public record FluidContent(
+        DeferredHolder<FluidType, GemFluidType> type,
+        DeferredHolder<Fluid, BaseFlowingFluid.Source> source,
+        DeferredHolder<Fluid, BaseFlowingFluid.Flowing> flowing,
+        DeferredHolder<Block, ? extends LiquidBlock> block,
+        DeferredHolder<Item, ? extends Item> bucket) {
 }

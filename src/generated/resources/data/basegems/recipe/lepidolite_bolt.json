@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "r",
+      "r",
+      "f"
+    ],
+    "key": {
+      "r": {
+        "tag": "c:rods/lepidolite"
+      },
+      "f": {
+        "item": "minecraft:feather"
+      }
+    },
+    "result": {
+      "id": "basegems:lepidolite_bolt",
+      "count": 4
+    }
+  }
+}

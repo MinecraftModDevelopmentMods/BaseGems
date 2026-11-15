@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "basegems:blocks/lepidolite_block",
-        "top": "basegems:blocks/lepidolite_block",
-        "side": "basegems:blocks/lepidolite_block"
-    }
-}

@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:blackdiamond_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:blackdiamond_nugget"
+  },
+  "result": {
+    "id": "basegems:blackdiamond_smallpowder",
+    "count": 1
+  }
+}

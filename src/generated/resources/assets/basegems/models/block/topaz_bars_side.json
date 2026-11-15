@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/iron_bars_side",
+  "textures": {
+    "particle": "basegems:block/topaz_block",
+    "bars": "basegems:block/topaz_block",
+    "edge": "basegems:block/topaz_block"
+  }
+}

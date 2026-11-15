@@ -1,0 +1,20 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/jade"
+      }
+    },
+    "result": {
+      "id": "basegems:jade_bars",
+      "count": 16
+    }
+  }
+}

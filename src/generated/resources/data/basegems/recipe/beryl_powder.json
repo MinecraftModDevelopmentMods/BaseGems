@@ -1,0 +1,21 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx",
+      "xxx",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "item": "basegems:beryl_smallpowder"
+      }
+    },
+    "result": {
+      "id": "basegems:beryl_powder",
+      "count": 1
+    }
+  }
+}

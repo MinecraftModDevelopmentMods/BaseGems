@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/beryl_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/beryl_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/beryl_block"
+    }
+  }
+}

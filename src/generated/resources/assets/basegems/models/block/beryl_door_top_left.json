@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left",
+  "textures": {
+    "bottom": "basegems:block/beryl_door_bottom",
+    "top": "basegems:block/beryl_door_top"
+  }
+}

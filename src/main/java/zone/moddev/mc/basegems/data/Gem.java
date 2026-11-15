@@ -1,78 +1,79 @@
 package zone.moddev.mc.basegems.data;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
-/** The gem names and physical properties used in the legacy releases. */
-public final class Gem {
-    public static final List<Gem> ALL = Collections.unmodifiableList(Arrays.asList(
-            new Gem("agate", "EnableAgate", 6.5F, 8F, 4.5F, 0xFF179FD1),
-            new Gem("alexandrite", "EnableAlexandrite", 8.5F, 8F, 4.5F, 0xFF747385),
-            new Gem("amber", "EnableAmber", 2F, 8F, 4.5F, 0xFFF9C923),
-            new Gem("amethyst", "EnableAmethyst", 7F, 8F, 4.5F, 0xFFA242E2),
-            new Gem("ametrine", "EnableAmetrine", 7F, 8F, 4.5F, 0xFFC8A394),
-            new Gem("aquamarine", "EnableAquamarine", 7.5F, 8F, 4.5F, 0xFF78BACA),
-            new Gem("beryl", "EnableBeryl", 7.5F, 8F, 4.5F, 0xFF4EB86A),
-            new Gem("blackdiamond", "EnableBlackDiamond", 10F, 15F, 4.5F, 0xFF000000),
-            new Gem("bluetopaz", "EnableBlueTopaz", 8F, 8F, 4.5F, 0xFF01A4E9),
-            new Gem("carnelian", "EnableCarnelian", 6.5F, 8F, 4.5F, 0xFFF03905),
-            new Gem("citrine", "EnableCitrine", 7F, 8F, 4.5F, 0xFFFAD563),
-            new Gem("garnet", "EnableGarnet", 6.5F, 8F, 4.5F, 0xFF9D0938),
-            new Gem("goldenberyl", "EnableGoldenBeryl", 7.5F, 8F, 4.5F, 0xFFFDEE4C),
-            new Gem("heliodor", "EnableHeliodor", 7.5F, 8F, 4.5F, 0xFFF9FD5D),
-            new Gem("indicolite", "EnableIndicolite", 7F, 8F, 4.5F, 0xFF7EFBF5),
-            new Gem("iolite", "EnableIolite", 7F, 8F, 4.5F, 0xFF605DBD),
-            new Gem("jade", "EnableJade", 6.5F, 8F, 4.5F, 0xFF008127),
-            new Gem("jasper", "EnableJasper", 7F, 8F, 4.5F, 0xFF9E0403),
-            new Gem("lepidolite", "EnableLepidolite", 3F, 8F, 4.5F, 0xFFB980A0),
-            new Gem("malachite", "EnableMalachite", 4F, 8F, 4.5F, 0xFF25674C),
-            new Gem("moldavite", "EnableMoldavite", 5F, 8F, 4.5F, 0xFF68873B),
-            new Gem("moonstone", "EnableMoonstone", 6F, 8F, 4.5F, 0xFF9FAED7),
-            new Gem("morganite", "EnableMorganite", 7.5F, 8F, 4.5F, 0xFFF4D8CA),
-            new Gem("onyx", "EnableOnyx", 7F, 8F, 4.5F, 0xFF000000),
-            new Gem("opal", "EnableOpal", 6F, 8F, 4.5F, 0xFFC3CCE9),
-            new Gem("peridot", "EnablePeridot", 6.5F, 8F, 4.5F, 0xFFB9E64F),
-            new Gem("ruby", "EnableRuby", 9F, 8F, 4.5F, 0xFF7E0308),
-            new Gem("sapphire", "EnableSapphire", 9F, 8F, 4.5F, 0xFF1036D5),
-            new Gem("spinel", "EnableSpinel", 7.5F, 8F, 4.5F, 0xFFFE2B80),
-            new Gem("tanzanite", "EnableTanzanite", 6F, 8F, 4.5F, 0xFF4A4AE0),
-            new Gem("topaz", "EnableTopaz", 8F, 8F, 4.5F, 0xFFF9E838),
-            new Gem("turquoise", "EnableTurquoise", 5F, 8F, 4.5F, 0xFF3FB2C4),
-            new Gem("violetsapphire", "EnableVioletSapphire", 9F, 8F, 4.5F, 0xFF8247B7)
-    ));
+import net.minecraft.resources.ResourceLocation;
+import zone.moddev.mc.basegems.BaseGems;
+import zone.moddev.mc.lib.MMDLib;
+import zone.moddev.mc.lib.common.factories.MaterialFactory;
+import zone.moddev.mc.lib.common.runtime.MaterialStats;
+import zone.moddev.mc.lib.common.types.MMDMaterial;
 
-    private final String name;
-    private final String configKey;
-    private final float hardness;
-    private final float strength;
-    private final float magic;
-    private final int colour;
+/**
+ * One of the 33 gems. Names and config keys are fixed here, because the config is
+ * built before MMDLib loads; statistics come from the gem's MMDLib material in
+ * {@code mmdlib/material/}.
+ */
+public record Gem(String name, String configKey) {
+    public static final List<Gem> ALL = List.of(
+            new Gem("agate", "EnableAgate"),
+            new Gem("alexandrite", "EnableAlexandrite"),
+            new Gem("amber", "EnableAmber"),
+            new Gem("amethyst", "EnableAmethyst"),
+            new Gem("ametrine", "EnableAmetrine"),
+            new Gem("aquamarine", "EnableAquamarine"),
+            new Gem("beryl", "EnableBeryl"),
+            new Gem("blackdiamond", "EnableBlackDiamond"),
+            new Gem("bluetopaz", "EnableBlueTopaz"),
+            new Gem("carnelian", "EnableCarnelian"),
+            new Gem("citrine", "EnableCitrine"),
+            new Gem("garnet", "EnableGarnet"),
+            new Gem("goldenberyl", "EnableGoldenBeryl"),
+            new Gem("heliodor", "EnableHeliodor"),
+            new Gem("indicolite", "EnableIndicolite"),
+            new Gem("iolite", "EnableIolite"),
+            new Gem("jade", "EnableJade"),
+            new Gem("jasper", "EnableJasper"),
+            new Gem("lepidolite", "EnableLepidolite"),
+            new Gem("malachite", "EnableMalachite"),
+            new Gem("moldavite", "EnableMoldavite"),
+            new Gem("moonstone", "EnableMoonstone"),
+            new Gem("morganite", "EnableMorganite"),
+            new Gem("onyx", "EnableOnyx"),
+            new Gem("opal", "EnableOpal"),
+            new Gem("peridot", "EnablePeridot"),
+            new Gem("ruby", "EnableRuby"),
+            new Gem("sapphire", "EnableSapphire"),
+            new Gem("spinel", "EnableSpinel"),
+            new Gem("tanzanite", "EnableTanzanite"),
+            new Gem("topaz", "EnableTopaz"),
+            new Gem("turquoise", "EnableTurquoise"),
+            new Gem("violetsapphire", "EnableVioletSapphire"));
 
-    private Gem(String name, String configKey, float hardness, float strength, float magic, int colour) {
-        this.name = name;
-        this.configKey = configKey;
-        this.hardness = hardness;
-        this.strength = strength;
-        this.magic = magic;
-        this.colour = colour;
+    public Gem {
+        Objects.requireNonNull(name, "name");
+        Objects.requireNonNull(configKey, "configKey");
     }
 
-    public String name() { return name; }
-    public String configKey() { return configKey; }
-    public int colour() { return colour; }
-    public float hardness() { return hardness; }
-    public int toolLevel() { return (int) (hardness / 3); }
-    public int requiredHarvestLevel() { return Math.max(-1, Math.min(3, (int) (0.9F * hardness / 3))); }
-    public int toolDurability() { return (int) (32 * strength); }
-    public float toolEfficiency() { return hardness; }
-    public float baseAttackDamage() { return Math.round(2.5F * hardness) / 10.0F; }
-    public float equipmentTradeValue() { return hardness + strength + magic + toolLevel(); }
-    public int enchantability() { return (int) (2.5F * magic); }
-    public float axeAttackSpeed() { return -3.1F; }
-    public int shieldDurability() { return toolDurability() * 2; }
-    public int crackhammerDurability() { return toolDurability(); }
-    public float crackhammerAttackDamage() { return baseAttackDamage() + 4; }
-    public float crackhammerDestroySpeed() { return toolEfficiency(); }
-    public String repairIngredientTag() { return "forge:gems/" + name; }
+    public ResourceLocation id() {
+        return ResourceLocation.fromNamespaceAndPath(BaseGems.MOD_ID, name);
+    }
+
+    /** The gem's MMDLib material; available once MMDLib has loaded definitions. */
+    public MMDMaterial material() {
+        MaterialFactory.Result result = MMDLib.loadedMaterials().get(id());
+        if (result == null) {
+            throw new IllegalStateException("MMDLib has not loaded the material " + id());
+        }
+        return result.material();
+    }
+
+    public double hardness() { return material().properties().hardness(); }
+    public double strength() { return material().properties().strength(); }
+    public double magic() { return material().properties().magic(); }
+    public int colour() { return material().properties().color(); }
+    public int toolLevel() { return (int) (hardness() / 3); }
+    public float baseAttackDamage() { return new MaterialStats(material()).baseAttackDamage(); }
+    public double equipmentTradeValue() { return hardness() + strength() + magic() + toolLevel(); }
 }

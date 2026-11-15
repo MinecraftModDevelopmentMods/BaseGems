@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:heliodor_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:heliodor_nugget"
+  },
+  "result": {
+    "id": "basegems:heliodor_smallpowder",
+    "count": 1
+  }
+}

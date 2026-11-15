@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      " x ",
+      "xrx",
+      " x "
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/moonstone"
+      },
+      "r": {
+        "tag": "c:rods/moonstone"
+      }
+    },
+    "result": {
+      "id": "basegems:moonstone_gear",
+      "count": 1
+    }
+  }
+}

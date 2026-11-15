@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/goldenberyl_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/goldenberyl_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/goldenberyl_block"
+    }
+  }
+}

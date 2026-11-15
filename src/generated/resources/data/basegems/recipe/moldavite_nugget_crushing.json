@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:moldavite_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:moldavite_nugget"
+  },
+  "result": {
+    "id": "basegems:moldavite_smallpowder",
+    "count": 1
+  }
+}

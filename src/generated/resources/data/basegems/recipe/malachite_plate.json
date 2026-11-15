@@ -1,0 +1,19 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/malachite"
+      }
+    },
+    "result": {
+      "id": "basegems:malachite_plate",
+      "count": 3
+    }
+  }
+}

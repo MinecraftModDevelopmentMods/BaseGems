@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/iolite_crossbow",
-    "textures": {
-        "layer0": "basegems:items/iolite_crossbow_pulling_2"
-    }
-}

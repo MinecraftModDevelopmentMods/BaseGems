@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/moonstone_crossbow",
-    "textures": {
-        "layer0": "basegems:items/moonstone_crossbow_pulling_1"
-    }
-}

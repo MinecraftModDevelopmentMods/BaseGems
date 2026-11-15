@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/plate",
-    "textures": {
-        "top": "basegems:blocks/indicolite_block",
-        "side": "basegems:blocks/indicolite_block",
-        "bottom": "basegems:blocks/indicolite_block"
-    }
-}

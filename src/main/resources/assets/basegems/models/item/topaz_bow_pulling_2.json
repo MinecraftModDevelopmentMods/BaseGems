@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/topaz_bow",
-    "textures": {
-        "layer0": "basegems:items/topaz_bow_pulling_2"
-    }
-}

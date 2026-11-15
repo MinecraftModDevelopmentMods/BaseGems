@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left_open",
+  "textures": {
+    "bottom": "basegems:block/morganite_door_bottom",
+    "top": "basegems:block/morganite_door_top"
+  }
+}

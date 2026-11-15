@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "basegems:blocks/moldavite_block",
-        "top": "basegems:blocks/moldavite_block",
-        "side": "basegems:blocks/moldavite_block"
-    }
-}

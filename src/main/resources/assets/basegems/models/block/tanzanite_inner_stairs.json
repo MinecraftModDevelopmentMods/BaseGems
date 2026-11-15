@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "basegems:blocks/tanzanite_block",
-        "top": "basegems:blocks/tanzanite_block",
-        "side": "basegems:blocks/tanzanite_block"
-    }
-}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/jasper_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/jasper_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/jasper_block"
+    }
+  }
+}

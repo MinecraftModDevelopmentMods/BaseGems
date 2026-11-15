@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "basegems:blocks/aquamarine_block",
-        "top": "basegems:blocks/aquamarine_block",
-        "side": "basegems:blocks/aquamarine_block"
-    }
-}

@@ -1,6 +1,0 @@
-{
-    "parent": "block/wall_nsew",
-    "textures": {
-        "wall": "basegems:blocks/sapphire_block"
-    }
-}

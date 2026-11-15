@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:bluetopaz_powder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:bluetopaz_ore"
+  },
+  "result": {
+    "id": "basegems:bluetopaz_powder",
+    "count": 2
+  }
+}

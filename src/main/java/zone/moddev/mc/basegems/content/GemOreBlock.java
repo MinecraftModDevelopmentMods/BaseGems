@@ -1,37 +1,46 @@
 package zone.moddev.mc.basegems.content;
 
-import net.minecraft.block.BlockOre;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
-import zone.moddev.mc.basegems.data.Gem;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.DropExperienceBlock;
+import zone.moddev.mc.basegems.BaseGems;
 import zone.moddev.mc.basegems.data.GemRarity;
+import zone.moddev.mc.lib.api.BlockContext;
+import zone.moddev.mc.lib.api.BlockImplementation;
+import zone.moddev.mc.lib.api.MaterialExtensions;
+import zone.moddev.mc.lib.common.types.MMDBlock;
+import zone.moddev.mc.lib.common.types.MMDMaterial;
 
-final class GemOreBlock extends BlockOre {
-    private final Gem gem;
-
-    GemOreBlock(Gem gem, Properties properties) {
-        super(properties);
-        this.gem = gem;
+/**
+ * Gem ore, made by the {@code basegems:ore} block form. Rarer gems give more experience;
+ * the gem itself drops through the loot table.
+ */
+public final class GemOreBlock extends DropExperienceBlock {
+    public GemOreBlock(GemRarity rarity, Properties properties) {
+        super(UniformInt.of(rarity.minXp, rarity.maxXp), properties);
     }
 
-    @Override public ToolType getHarvestTool(IBlockState state) { return ToolType.PICKAXE; }
-    @Override public int getHarvestLevel(IBlockState state) { return gem.requiredHarvestLevel(); }
-    @Override public BlockRenderLayer getRenderLayer() { return BlockRenderLayer.CUTOUT_MIPPED; }
-
-    @Override
-    public IItemProvider getItemDropped(IBlockState state, World world, BlockPos pos, int fortune) {
-        return ModContent.item(gem.name() + "_ingot");
+    /** Must run before MMDLib decodes the gem materials that select {@code basegems:ore}. */
+    public static void registerImplementation() {
+        MaterialExtensions.GLOBAL.registerBlockImplementation(
+                ResourceLocation.fromNamespaceAndPath(BaseGems.MOD_ID, "ore"), new Implementation());
     }
 
-    @Override
-    public int getExpDrop(IBlockState state, IWorldReader world, BlockPos pos, int fortune) {
-        GemRarity rarity = GemRarity.of(gem.name());
-        return rarity.minXp + java.util.concurrent.ThreadLocalRandom.current()
-                .nextInt(rarity.maxXp - rarity.minXp + 1);
+    private static final class Implementation implements BlockImplementation<GemOreBlock> {
+        @Override
+        public Class<GemOreBlock> blockClass() {
+            return GemOreBlock.class;
+        }
+
+        @Override
+        public GemOreBlock create(MMDMaterial material, MMDBlock definition) {
+            throw new IllegalStateException("Created by the runtime registrar with a BlockContext: " + definition.name());
+        }
+
+        @Override
+        public GemOreBlock create(BlockContext context) {
+            String gem = context.material().name().orElseThrow().getPath();
+            return new GemOreBlock(GemRarity.of(gem), context.properties());
+        }
     }
 }

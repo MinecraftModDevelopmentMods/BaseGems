@@ -1,0 +1,27 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "srr",
+      " gr",
+      "r s"
+    ],
+    "key": {
+      "r": {
+        "tag": "c:rods/spinel"
+      },
+      "g": {
+        "tag": "c:gears/spinel"
+      },
+      "s": {
+        "item": "minecraft:string"
+      }
+    },
+    "result": {
+      "id": "basegems:spinel_crossbow",
+      "count": 1
+    }
+  }
+}

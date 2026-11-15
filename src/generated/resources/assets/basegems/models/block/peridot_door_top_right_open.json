@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right_open",
+  "textures": {
+    "bottom": "basegems:block/peridot_door_bottom",
+    "top": "basegems:block/peridot_door_top"
+  }
+}

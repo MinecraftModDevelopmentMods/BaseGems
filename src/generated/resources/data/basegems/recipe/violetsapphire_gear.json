@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      " x ",
+      "xrx",
+      " x "
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/violetsapphire"
+      },
+      "r": {
+        "tag": "c:rods/violetsapphire"
+      }
+    },
+    "result": {
+      "id": "basegems:violetsapphire_gear",
+      "count": 1
+    }
+  }
+}

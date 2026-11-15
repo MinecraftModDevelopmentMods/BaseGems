@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      " rs",
+      "r s",
+      " rs"
+    ],
+    "key": {
+      "r": {
+        "tag": "c:rods/iolite"
+      },
+      "s": {
+        "item": "minecraft:string"
+      }
+    },
+    "result": {
+      "id": "basegems:iolite_bow",
+      "count": 1
+    }
+  }
+}

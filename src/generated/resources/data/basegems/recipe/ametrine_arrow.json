@@ -1,0 +1,27 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "x",
+      "r",
+      "f"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:nuggets/ametrine"
+      },
+      "r": {
+        "tag": "c:rods/ametrine"
+      },
+      "f": {
+        "item": "minecraft:feather"
+      }
+    },
+    "result": {
+      "id": "basegems:ametrine_arrow",
+      "count": 4
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "x  ",
+      "xx ",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:storage_blocks/aquamarine"
+      }
+    },
+    "result": {
+      "id": "basegems:aquamarine_stairs",
+      "count": 4
+    }
+  }
+}

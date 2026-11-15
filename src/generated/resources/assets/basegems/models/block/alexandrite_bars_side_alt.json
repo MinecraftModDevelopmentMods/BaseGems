@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/iron_bars_side_alt",
+  "textures": {
+    "particle": "basegems:block/alexandrite_block",
+    "bars": "basegems:block/alexandrite_block",
+    "edge": "basegems:block/alexandrite_block"
+  }
+}

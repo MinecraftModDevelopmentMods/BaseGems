@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:garnet_powder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:garnet_ingot"
+  },
+  "result": {
+    "id": "basegems:garnet_powder",
+    "count": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "ingredients": [
+      {
+        "tag": "c:storage_blocks/ametrine"
+      }
+    ],
+    "result": {
+      "id": "basegems:ametrine_ingot",
+      "count": 9
+    }
+  }
+}

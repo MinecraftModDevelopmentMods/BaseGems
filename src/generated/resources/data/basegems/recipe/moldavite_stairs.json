@@ -1,0 +1,21 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "x  ",
+      "xx ",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:storage_blocks/moldavite"
+      }
+    },
+    "result": {
+      "id": "basegems:moldavite_stairs",
+      "count": 4
+    }
+  }
+}

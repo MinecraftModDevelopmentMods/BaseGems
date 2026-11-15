@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/bars_nsew",
-    "textures": {
-        "particle": "basegems:blocks/opal_block",
-        "bars": "basegems:blocks/opal_block",
-        "edge": "basegems:blocks/opal_block"
-    }
-}

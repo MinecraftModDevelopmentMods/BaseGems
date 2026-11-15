@@ -1,0 +1,27 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "x",
+      "r",
+      "f"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:nuggets/malachite"
+      },
+      "r": {
+        "tag": "c:rods/malachite"
+      },
+      "f": {
+        "item": "minecraft:feather"
+      }
+    },
+    "result": {
+      "id": "basegems:malachite_arrow",
+      "count": 4
+    }
+  }
+}

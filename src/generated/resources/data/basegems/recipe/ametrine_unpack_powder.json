@@ -1,0 +1,16 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "ingredients": [
+      {
+        "item": "basegems:ametrine_powder"
+      }
+    ],
+    "result": {
+      "id": "basegems:ametrine_smallpowder",
+      "count": 9
+    }
+  }
+}

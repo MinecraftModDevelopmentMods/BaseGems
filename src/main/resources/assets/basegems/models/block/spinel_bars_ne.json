@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/bars_ne",
-    "textures": {
-        "particle": "basegems:blocks/spinel_block",
-        "bars": "basegems:blocks/spinel_block",
-        "edge": "basegems:blocks/spinel_block"
-    }
-}

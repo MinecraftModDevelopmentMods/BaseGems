@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:ametrine_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:ametrine_nugget"
+  },
+  "result": {
+    "id": "basegems:ametrine_smallpowder",
+    "count": 1
+  }
+}

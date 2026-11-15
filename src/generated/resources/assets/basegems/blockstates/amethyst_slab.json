@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/amethyst_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/amethyst_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/amethyst_block"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "basegems:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "basegems:beryl_powder"
+  },
+  "result": {
+    "id": "basegems:beryl_ingot"
+  },
+  "experience": 0.45,
+  "cookingtime": 200
+}

@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:garnet_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:garnet_nugget"
+  },
+  "result": {
+    "id": "basegems:garnet_smallpowder",
+    "count": 1
+  }
+}

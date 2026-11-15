@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      " x ",
+      "xrx",
+      " x "
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/opal"
+      },
+      "r": {
+        "tag": "c:rods/opal"
+      }
+    },
+    "result": {
+      "id": "basegems:opal_gear",
+      "count": 1
+    }
+  }
+}

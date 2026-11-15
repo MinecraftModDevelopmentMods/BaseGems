@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/malachite_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/malachite_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/malachite_block"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:amethyst_powder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:amethyst_ingot"
+  },
+  "result": {
+    "id": "basegems:amethyst_powder",
+    "count": 1
+  }
+}

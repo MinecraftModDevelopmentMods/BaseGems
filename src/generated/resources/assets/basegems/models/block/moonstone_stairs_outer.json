@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "basegems:block/moonstone_block",
+    "top": "basegems:block/moonstone_block",
+    "side": "basegems:block/moonstone_block"
+  }
+}

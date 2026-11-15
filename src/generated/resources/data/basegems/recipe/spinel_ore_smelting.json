@@ -1,0 +1,12 @@
+{
+  "type": "basegems:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "basegems:spinel_ore"
+  },
+  "result": {
+    "id": "basegems:spinel_ingot"
+  },
+  "experience": 0.45,
+  "cookingtime": 200
+}

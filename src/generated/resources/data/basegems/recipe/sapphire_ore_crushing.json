@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:sapphire_powder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:sapphire_ore"
+  },
+  "result": {
+    "id": "basegems:sapphire_powder",
+    "count": 2
+  }
+}

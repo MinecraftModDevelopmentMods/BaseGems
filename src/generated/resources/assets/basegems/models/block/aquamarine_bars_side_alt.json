@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/iron_bars_side_alt",
+  "textures": {
+    "particle": "basegems:block/aquamarine_block",
+    "bars": "basegems:block/aquamarine_block",
+    "edge": "basegems:block/aquamarine_block"
+  }
+}

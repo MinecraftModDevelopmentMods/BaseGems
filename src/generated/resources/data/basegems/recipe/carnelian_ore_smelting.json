@@ -1,0 +1,12 @@
+{
+  "type": "basegems:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "basegems:carnelian_ore"
+  },
+  "result": {
+    "id": "basegems:carnelian_ingot"
+  },
+  "experience": 0.45,
+  "cookingtime": 200
+}

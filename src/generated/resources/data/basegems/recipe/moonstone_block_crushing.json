@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:moonstone_powder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:moonstone_block"
+  },
+  "result": {
+    "id": "basegems:moonstone_powder",
+    "count": 9
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_left_open",
+  "textures": {
+    "bottom": "basegems:block/onyx_door_bottom",
+    "top": "basegems:block/onyx_door_top"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:rods/alexandrite"
+      }
+    },
+    "result": {
+      "id": "basegems:alexandrite_bars",
+      "count": 4
+    }
+  }
+}

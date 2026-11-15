@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/bars_ns",
-    "textures": {
-        "particle": "basegems:blocks/blackdiamond_block",
-        "bars": "basegems:blocks/blackdiamond_block",
-        "edge": "basegems:blocks/blackdiamond_block"
-    }
-}

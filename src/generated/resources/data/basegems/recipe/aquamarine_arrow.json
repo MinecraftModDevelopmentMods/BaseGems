@@ -1,0 +1,27 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "x",
+      "r",
+      "f"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:nuggets/aquamarine"
+      },
+      "r": {
+        "tag": "c:rods/aquamarine"
+      },
+      "f": {
+        "item": "minecraft:feather"
+      }
+    },
+    "result": {
+      "id": "basegems:aquamarine_arrow",
+      "count": 4
+    }
+  }
+}

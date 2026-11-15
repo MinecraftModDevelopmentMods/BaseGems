@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      " x ",
+      "xrx",
+      " x "
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/garnet"
+      },
+      "r": {
+        "tag": "c:rods/garnet"
+      }
+    },
+    "result": {
+      "id": "basegems:garnet_gear",
+      "count": 1
+    }
+  }
+}

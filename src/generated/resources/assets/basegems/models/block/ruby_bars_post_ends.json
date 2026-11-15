@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/iron_bars_post_ends",
+  "textures": {
+    "particle": "basegems:block/ruby_block",
+    "bars": "basegems:block/ruby_block",
+    "edge": "basegems:block/ruby_block"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/jasper"
+      }
+    },
+    "result": {
+      "id": "basegems:jasper_plate",
+      "count": 3
+    }
+  }
+}

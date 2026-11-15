@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "basegems:blocks/ruby_block",
-        "top": "basegems:blocks/ruby_block",
-        "side": "basegems:blocks/ruby_block"
-    }
-}

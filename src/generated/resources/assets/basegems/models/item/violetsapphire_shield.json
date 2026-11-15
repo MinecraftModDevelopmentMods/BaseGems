@@ -1,0 +1,14 @@
+{
+  "parent": "basegems:item/shield",
+  "textures": {
+    "shield": "basegems:block/violetsapphire_block"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "basegems:item/violetsapphire_shield_blocking"
+    }
+  ]
+}

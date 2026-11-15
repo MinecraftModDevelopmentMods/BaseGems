@@ -21,26 +21,11 @@ public enum GemRarity {
     }
 
     public static GemRarity of(String gem) {
-        switch (gem) {
-            case "blackdiamond":
-                return BLACK_DIAMOND;
-            case "alexandrite":
-            case "ametrine":
-            case "bluetopaz":
-            case "goldenberyl":
-            case "heliodor":
-            case "indicolite":
-            case "iolite":
-            case "moldavite":
-            case "morganite":
-            case "ruby":
-            case "sapphire":
-            case "spinel":
-            case "tanzanite":
-            case "violetsapphire":
-                return RARE;
-            default:
-                return COMMON;
-        }
+        return switch (gem) {
+            case "blackdiamond" -> BLACK_DIAMOND;
+            case "alexandrite", "ametrine", "bluetopaz", "goldenberyl", "heliodor", "indicolite", "iolite",
+                    "moldavite", "morganite", "ruby", "sapphire", "spinel", "tanzanite", "violetsapphire" -> RARE;
+            default -> COMMON;
+        };
     }
 }

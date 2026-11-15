@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/onyx_crossbow",
-    "textures": {
-        "layer0": "basegems:items/onyx_crossbow_pulling_1"
-    }
-}

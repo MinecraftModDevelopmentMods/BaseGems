@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/heliodor_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/heliodor_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/heliodor_block"
+    }
+  }
+}

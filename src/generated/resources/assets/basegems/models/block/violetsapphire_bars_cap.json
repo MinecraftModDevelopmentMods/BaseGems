@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/iron_bars_cap",
+  "textures": {
+    "particle": "basegems:block/violetsapphire_block",
+    "bars": "basegems:block/violetsapphire_block",
+    "edge": "basegems:block/violetsapphire_block"
+  }
+}

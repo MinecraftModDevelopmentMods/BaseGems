@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      " x ",
+      "xrx",
+      " x "
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/ruby"
+      },
+      "r": {
+        "tag": "c:rods/ruby"
+      }
+    },
+    "result": {
+      "id": "basegems:ruby_gear",
+      "count": 1
+    }
+  }
+}

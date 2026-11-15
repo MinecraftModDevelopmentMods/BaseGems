@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/agate_crossbow",
-    "textures": {
-        "layer0": "basegems:items/agate_crossbow_pulling_2"
-    }
-}

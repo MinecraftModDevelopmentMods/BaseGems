@@ -1,127 +1,99 @@
 package zone.moddev.mc.basegems.recipe;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.RecipeSerializers;
-import net.minecraft.item.crafting.ShapedRecipe;
-import net.minecraft.item.crafting.ShapelessRecipe;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JsonUtils;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import zone.moddev.mc.basegems.config.GemConfig;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.MapCodec;
 
-/** Keeps recipe IDs stable between modes, including IDs stored in an old recipe book. */
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingInput;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.item.crafting.ShapedRecipePattern;
+import net.minecraft.world.item.crafting.ShapelessRecipe;
+import net.minecraft.world.level.Level;
+
+/**
+ * An ordinary shaped or shapeless recipe that follows the content mode and gem switches.
+ * Its ID stays the same in either mode, so recipe books keep it.
+ */
 public final class ContentCraftingRecipe {
-    public static final IRecipeSerializer<IRecipe> SERIALIZER = new Serializer();
     private ContentCraftingRecipe() {}
 
-    private static boolean allowed(IRecipe recipe) {
-        return GemConfig.allows(recipe.getRecipeOutput().getItem().getRegistryName().getPath());
+    private static boolean allowed(Recipe<?> recipe) {
+        return ModRecipes.allows(recipe.getResultItem(RegistryAccess.EMPTY).getItem());
     }
 
-    private static IRecipe wrap(IRecipe recipe) {
+    private static Recipe<?> wrap(Recipe<?> recipe) {
         // Recipe-book placement needs the shaped recipe's width and height, not just its ingredients.
-        if (recipe instanceof ShapedRecipe) return new Shaped((ShapedRecipe) recipe);
-        if (recipe instanceof ShapelessRecipe) return new Shapeless((ShapelessRecipe) recipe);
-        throw new IllegalArgumentException("Not an ordinary crafting recipe: " + recipe.getId());
+        if (recipe instanceof ShapedRecipe shaped) return new Shaped(shaped);
+        if (recipe instanceof ShapelessRecipe shapeless) return new Shapeless(shapeless);
+        throw new IllegalArgumentException("Not an ordinary crafting recipe: " + recipe.getClass().getName());
+    }
+
+    private static Recipe<?> unwrap(Recipe<?> recipe) {
+        if (recipe instanceof Shaped shaped) return shaped.plain;
+        if (recipe instanceof Shapeless shapeless) return shapeless.plain;
+        throw new IllegalArgumentException("Not a content-mode crafting recipe");
     }
 
     private static final class Shaped extends ShapedRecipe {
         private final ShapedRecipe plain;
 
         private Shaped(ShapedRecipe plain) {
-            super(plain.getId(), plain.getGroup(), plain.getWidth(), plain.getHeight(),
-                    plain.getIngredients(), plain.getRecipeOutput());
+            super(plain.getGroup(), plain.category(), new ShapedRecipePattern(plain.getWidth(), plain.getHeight(),
+                            plain.getIngredients(), java.util.Optional.empty()),
+                    plain.getResultItem(RegistryAccess.EMPTY), plain.showNotification());
             this.plain = plain;
         }
 
-        @Override
-        public boolean matches(IInventory inventory, World world) {
-            return allowed(this) && super.matches(inventory, world);
+        @Override public boolean matches(CraftingInput input, Level level) {
+            return allowed(this) && super.matches(input, level);
         }
 
-        @Override
-        public ItemStack getCraftingResult(IInventory inventory) {
-            return allowed(this) ? super.getCraftingResult(inventory) : ItemStack.EMPTY;
+        @Override public ItemStack assemble(CraftingInput input, HolderLookup.Provider registries) {
+            return allowed(this) ? super.assemble(input, registries) : ItemStack.EMPTY;
         }
 
-        @Override
-        public boolean isDynamic() {
-            return !allowed(this);
-        }
-
-        @Override
-        public IRecipeSerializer<?> getSerializer() {
-            return SERIALIZER;
-        }
+        @Override public boolean isSpecial() { return !allowed(this); }
+        @Override public RecipeSerializer<?> getSerializer() { return ModRecipes.CONTENT_CRAFTING.get(); }
     }
 
     private static final class Shapeless extends ShapelessRecipe {
         private final ShapelessRecipe plain;
 
         private Shapeless(ShapelessRecipe plain) {
-            super(plain.getId(), plain.getGroup(), plain.getRecipeOutput(), plain.getIngredients());
+            super(plain.getGroup(), plain.category(), plain.getResultItem(RegistryAccess.EMPTY),
+                    plain.getIngredients());
             this.plain = plain;
         }
 
-        @Override
-        public boolean matches(IInventory inventory, World world) {
-            return allowed(this) && super.matches(inventory, world);
+        @Override public boolean matches(CraftingInput input, Level level) {
+            return allowed(this) && super.matches(input, level);
         }
 
-        @Override
-        public ItemStack getCraftingResult(IInventory inventory) {
-            return allowed(this) ? super.getCraftingResult(inventory) : ItemStack.EMPTY;
+        @Override public ItemStack assemble(CraftingInput input, HolderLookup.Provider registries) {
+            return allowed(this) ? super.assemble(input, registries) : ItemStack.EMPTY;
         }
 
-        @Override
-        public boolean isDynamic() {
-            return !allowed(this);
-        }
-
-        @Override
-        public IRecipeSerializer<?> getSerializer() {
-            return SERIALIZER;
-        }
+        @Override public boolean isSpecial() { return !allowed(this); }
+        @Override public RecipeSerializer<?> getSerializer() { return ModRecipes.CONTENT_CRAFTING.get(); }
     }
 
-    private static final class Serializer implements IRecipeSerializer<IRecipe> {
-        private static final ResourceLocation NAME = new ResourceLocation("basegems", "content_crafting");
+    /** Reads the plain recipe nested under {@code recipe}. */
+    static final class Serializer implements RecipeSerializer<Recipe<?>> {
+        private static final MapCodec<Recipe<?>> CODEC = Recipe.CODEC.<Recipe<?>>flatXmap(
+                recipe -> recipe instanceof ShapedRecipe || recipe instanceof ShapelessRecipe
+                        ? DataResult.success(wrap(recipe))
+                        : DataResult.error(() -> "Content-mode crafting requires a shaped or shapeless recipe"),
+                recipe -> DataResult.success(unwrap(recipe))).fieldOf("recipe");
+        private static final StreamCodec<RegistryFriendlyByteBuf, Recipe<?>> STREAM_CODEC =
+                Recipe.STREAM_CODEC.map(ContentCraftingRecipe::wrap, ContentCraftingRecipe::unwrap);
 
-        @Override
-        public IRecipe read(ResourceLocation id, JsonObject json) {
-            JsonObject nested = JsonUtils.getJsonObject(json, "recipe");
-            String type = JsonUtils.getString(nested, "type");
-            if (!"minecraft:crafting_shaped".equals(type) && !"minecraft:crafting_shapeless".equals(type)) {
-                throw new JsonSyntaxException("Content-mode crafting requires an ordinary shaped or shapeless recipe");
-            }
-
-            return wrap(RecipeSerializers.deserialize(id, nested));
-        }
-
-        @Override
-        public IRecipe read(ResourceLocation id, PacketBuffer buffer) {
-            IRecipe nested = RecipeSerializers.read(buffer);
-            if (!nested.getId().equals(id) || nested.getSerializer() == SERIALIZER) {
-                throw new IllegalArgumentException("Invalid nested content-mode recipe " + id);
-            }
-            return wrap(nested);
-        }
-
-        @Override
-        public void write(PacketBuffer buffer, IRecipe value) {
-            IRecipe plain = value instanceof Shaped ? ((Shaped) value).plain : ((Shapeless) value).plain;
-            RecipeSerializers.write(plain, buffer);
-        }
-
-        @Override
-        public ResourceLocation getName() {
-            return NAME;
-        }
+        @Override public MapCodec<Recipe<?>> codec() { return CODEC; }
+        @Override public StreamCodec<RegistryFriendlyByteBuf, Recipe<?>> streamCodec() { return STREAM_CODEC; }
     }
 }

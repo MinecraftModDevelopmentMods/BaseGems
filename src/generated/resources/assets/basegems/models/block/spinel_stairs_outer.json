@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "basegems:block/spinel_block",
+    "top": "basegems:block/spinel_block",
+    "side": "basegems:block/spinel_block"
+  }
+}

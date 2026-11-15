@@ -1,0 +1,20 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "x",
+      "x"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/blackdiamond"
+      }
+    },
+    "result": {
+      "id": "basegems:blackdiamond_rod",
+      "count": 4
+    }
+  }
+}

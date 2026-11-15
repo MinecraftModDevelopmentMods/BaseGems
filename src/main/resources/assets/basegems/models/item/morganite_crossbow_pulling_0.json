@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/morganite_crossbow",
-    "textures": {
-        "layer0": "basegems:items/morganite_crossbow_pulling_0"
-    }
-}

@@ -1,0 +1,31 @@
+{
+  "type": "gem",
+  "color": -8865078,
+  "hardness": 7.5,
+  "strength": 8,
+  "magic": 4.5,
+  "damage": 1.9,
+  "items": "ingot nugget basegems:powder smallpowder rod gear pickaxe axe hoe shovel sword shears bow crossbow fishing_rod shield crackhammer arrow bolt basegems:bucket",
+  "blocks": "block basegems:ore plate bars door trapdoor button lever pressure_plate slab double_slab stairs wall",
+  "entities": "arrow bolt",
+  "has_fluid": false,
+  "special": {
+    "axe_attack_speed": -3.1,
+    "crackhammer_durability": 256,
+    "crackhammer_destroy_speed": 7.5,
+    "shield_durability": 512
+  },
+  "runtime": {
+    "repair_item": "basegems:aquamarine_ingot",
+    "base_block": "basegems:aquamarine_block",
+    "incorrect_blocks": "minecraft:incorrect_for_iron_tool",
+    "block_set_type": "minecraft:stone",
+    "block_sound": "stone",
+    "map_color": "stone",
+    "tinted": false
+  },
+  "harvest_tags": [
+    "minecraft:mineable/pickaxe",
+    "minecraft:needs_iron_tool"
+  ]
+}

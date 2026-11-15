@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/plate",
-    "textures": {
-        "top": "basegems:blocks/lepidolite_block",
-        "side": "basegems:blocks/lepidolite_block",
-        "bottom": "basegems:blocks/lepidolite_block"
-    }
-}

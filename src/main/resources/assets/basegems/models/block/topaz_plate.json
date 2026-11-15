@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/plate",
-    "textures": {
-        "top": "basegems:blocks/topaz_block",
-        "side": "basegems:blocks/topaz_block",
-        "bottom": "basegems:blocks/topaz_block"
-    }
-}

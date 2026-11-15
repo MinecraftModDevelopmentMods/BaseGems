@@ -1,0 +1,21 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx",
+      "xxx",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "item": "basegems:blackdiamond_smallpowder"
+      }
+    },
+    "result": {
+      "id": "basegems:blackdiamond_powder",
+      "count": 1
+    }
+  }
+}

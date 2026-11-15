@@ -1,0 +1,19 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/morganite"
+      }
+    },
+    "result": {
+      "id": "basegems:morganite_plate",
+      "count": 3
+    }
+  }
+}

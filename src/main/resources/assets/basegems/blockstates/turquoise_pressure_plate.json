@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "powered=false": { "model": "basegems:turquoise_pressure_plate_up" },
-        "powered=true": { "model": "basegems:turquoise_pressure_plate_down" }
-    }
-}

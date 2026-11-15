@@ -1,0 +1,6 @@
+{
+  "parent": "neoforge:item/bucket",
+  "loader": "neoforge:fluid_container",
+  "fluid": "basegems:malachite",
+  "apply_tint": true
+}

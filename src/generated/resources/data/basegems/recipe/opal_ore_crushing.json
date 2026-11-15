@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:opal_powder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:opal_ore"
+  },
+  "result": {
+    "id": "basegems:opal_powder",
+    "count": 2
+  }
+}

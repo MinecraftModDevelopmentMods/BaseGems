@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:onyx_powder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:onyx_block"
+  },
+  "result": {
+    "id": "basegems:onyx_powder",
+    "count": 9
+  }
+}

@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/indicolite_crossbow",
-    "textures": {
-        "layer0": "basegems:items/indicolite_crossbow_pulling_1"
-    }
-}

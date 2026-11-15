@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/violetsapphire_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/violetsapphire_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/violetsapphire_block"
+    }
+  }
+}

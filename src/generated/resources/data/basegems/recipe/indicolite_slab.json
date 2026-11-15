@@ -1,0 +1,19 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:storage_blocks/indicolite"
+      }
+    },
+    "result": {
+      "id": "basegems:indicolite_slab",
+      "count": 6
+    }
+  }
+}

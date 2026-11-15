@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:malachite_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:malachite_nugget"
+  },
+  "result": {
+    "id": "basegems:malachite_smallpowder",
+    "count": 1
+  }
+}

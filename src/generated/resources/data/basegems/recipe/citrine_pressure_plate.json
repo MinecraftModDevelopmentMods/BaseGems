@@ -1,0 +1,19 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/citrine"
+      }
+    },
+    "result": {
+      "id": "basegems:citrine_pressure_plate",
+      "count": 1
+    }
+  }
+}

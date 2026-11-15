@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/turquoise_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/turquoise_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/turquoise_block"
+    }
+  }
+}

@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "basegems:blocks/jade_block",
-        "top": "basegems:blocks/jade_block",
-        "side": "basegems:blocks/jade_block"
-    }
-}

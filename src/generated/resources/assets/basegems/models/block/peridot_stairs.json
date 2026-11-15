@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "basegems:block/peridot_block",
+    "top": "basegems:block/peridot_block",
+    "side": "basegems:block/peridot_block"
+  }
+}

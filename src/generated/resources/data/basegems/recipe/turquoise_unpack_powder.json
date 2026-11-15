@@ -1,0 +1,16 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "ingredients": [
+      {
+        "item": "basegems:turquoise_powder"
+      }
+    ],
+    "result": {
+      "id": "basegems:turquoise_smallpowder",
+      "count": 9
+    }
+  }
+}

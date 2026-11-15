@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left",
+  "textures": {
+    "bottom": "basegems:block/lepidolite_door_bottom",
+    "top": "basegems:block/lepidolite_door_top"
+  }
+}

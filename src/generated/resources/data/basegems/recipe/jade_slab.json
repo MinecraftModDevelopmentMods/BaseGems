@@ -1,0 +1,19 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:storage_blocks/jade"
+      }
+    },
+    "result": {
+      "id": "basegems:jade_slab",
+      "count": 6
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "basegems:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "basegems:onyx_ore"
+  },
+  "result": {
+    "id": "basegems:onyx_ingot"
+  },
+  "experience": 0.45,
+  "cookingtime": 200
+}

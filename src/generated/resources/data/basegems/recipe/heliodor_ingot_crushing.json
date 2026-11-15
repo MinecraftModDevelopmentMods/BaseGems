@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:heliodor_powder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:heliodor_ingot"
+  },
+  "result": {
+    "id": "basegems:heliodor_powder",
+    "count": 1
+  }
+}

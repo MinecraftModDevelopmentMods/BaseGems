@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:moonstone_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:moonstone_nugget"
+  },
+  "result": {
+    "id": "basegems:moonstone_smallpowder",
+    "count": 1
+  }
+}

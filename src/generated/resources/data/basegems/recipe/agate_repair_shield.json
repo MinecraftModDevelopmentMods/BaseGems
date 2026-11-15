@@ -1,0 +1,7 @@
+{
+  "type": "basegems:plate_repair",
+  "target": "basegems:agate_shield",
+  "plate": {
+    "tag": "c:plates/agate"
+  }
+}

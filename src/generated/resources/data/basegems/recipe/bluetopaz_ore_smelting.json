@@ -1,0 +1,12 @@
+{
+  "type": "basegems:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "basegems:bluetopaz_ore"
+  },
+  "result": {
+    "id": "basegems:bluetopaz_ingot"
+  },
+  "experience": 0.45,
+  "cookingtime": 200
+}

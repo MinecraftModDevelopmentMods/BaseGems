@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      " x ",
+      "xrx",
+      " x "
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/sapphire"
+      },
+      "r": {
+        "tag": "c:rods/sapphire"
+      }
+    },
+    "result": {
+      "id": "basegems:sapphire_gear",
+      "count": 1
+    }
+  }
+}

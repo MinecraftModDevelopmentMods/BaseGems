@@ -1,0 +1,6 @@
+{
+  "parent": "basegems:item/shield_blocking",
+  "textures": {
+    "shield": "basegems:block/morganite_block"
+  }
+}

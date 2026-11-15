@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/citrine_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/citrine_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/citrine_block"
+    }
+  }
+}

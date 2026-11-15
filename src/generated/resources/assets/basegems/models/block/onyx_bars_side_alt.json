@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/iron_bars_side_alt",
+  "textures": {
+    "particle": "basegems:block/onyx_block",
+    "bars": "basegems:block/onyx_block",
+    "edge": "basegems:block/onyx_block"
+  }
+}

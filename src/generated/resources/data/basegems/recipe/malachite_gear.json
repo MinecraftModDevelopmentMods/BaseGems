@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      " x ",
+      "xrx",
+      " x "
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/malachite"
+      },
+      "r": {
+        "tag": "c:rods/malachite"
+      }
+    },
+    "result": {
+      "id": "basegems:malachite_gear",
+      "count": 1
+    }
+  }
+}

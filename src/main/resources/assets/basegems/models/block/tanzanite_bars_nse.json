@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/bars_nse",
-    "textures": {
-        "particle": "basegems:blocks/tanzanite_block",
-        "bars": "basegems:blocks/tanzanite_block",
-        "edge": "basegems:blocks/tanzanite_block"
-    }
-}

@@ -1,0 +1,12 @@
+{
+  "type": "basegems:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "basegems:peridot_ore"
+  },
+  "result": {
+    "id": "basegems:peridot_ingot"
+  },
+  "experience": 0.45,
+  "cookingtime": 200
+}

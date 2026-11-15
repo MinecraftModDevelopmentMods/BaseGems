@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "basegems:block/amber_block",
+    "top": "basegems:block/amber_block",
+    "side": "basegems:block/amber_block"
+  }
+}

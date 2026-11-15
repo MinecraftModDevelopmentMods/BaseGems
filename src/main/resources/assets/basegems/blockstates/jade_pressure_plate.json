@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "powered=false": { "model": "basegems:jade_pressure_plate_up" },
-        "powered=true": { "model": "basegems:jade_pressure_plate_down" }
-    }
-}

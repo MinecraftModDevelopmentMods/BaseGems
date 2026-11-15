@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_bottom_rh",
-    "textures": {
-        "bottom": "basegems:blocks/malachite_door_bottom",
-        "top": "basegems:blocks/malachite_door_top"
-    }
-}

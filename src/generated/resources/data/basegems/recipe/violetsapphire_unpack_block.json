@@ -1,0 +1,16 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "ingredients": [
+      {
+        "tag": "c:storage_blocks/violetsapphire"
+      }
+    ],
+    "result": {
+      "id": "basegems:violetsapphire_ingot",
+      "count": 9
+    }
+  }
+}

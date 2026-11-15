@@ -1,3 +1,20 @@
+4.0.0.121012 for Minecraft 1.21.1
+
+All 33 gems come across to NeoForge 1.21.1. Use Java 21, NeoForge 21.1.265 or
+later, MMDLib 2.0.2 or later and MMD OreSpawn 4.1.1 or later. Base Metals is
+optional.
+
+- The gems, their items and blocks are now MMDLib materials. Crackhammers are
+  MMDLib crackhammers and share `mmdlib:crushing` recipes with other MMD mods.
+- Crossbows are vanilla-style crossbows. Bows and crossbows fire both gem
+  arrows and gem bolts.
+- Tags moved from `forge:` to the common `c:` namespace.
+- Gem doors use their door artwork, and molten gem buckets show the gem's
+  colour.
+- 1.13.2 worlds upgrade directly; double slabs keep their contents under the
+  new `<gem>_double_slab` name. Upgrade 1.12.2 worlds on 1.13.2 first.
+- The build now follows the MMD mod template.
+
 2.5.0.113021 for Minecraft 1.13.2
 
 - Pin optional Base Metals compatibility to 3.0.3, with its shared processing and mining fixes.

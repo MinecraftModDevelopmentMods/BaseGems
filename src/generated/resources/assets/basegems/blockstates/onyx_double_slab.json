@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/onyx_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/onyx_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/onyx_block"
+    }
+  }
+}

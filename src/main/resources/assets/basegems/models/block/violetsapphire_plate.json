@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/plate",
-    "textures": {
-        "top": "basegems:blocks/violetsapphire_block",
-        "side": "basegems:blocks/violetsapphire_block",
-        "bottom": "basegems:blocks/violetsapphire_block"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/bars_nse",
-    "textures": {
-        "particle": "basegems:blocks/lepidolite_block",
-        "bars": "basegems:blocks/lepidolite_block",
-        "edge": "basegems:blocks/lepidolite_block"
-    }
-}

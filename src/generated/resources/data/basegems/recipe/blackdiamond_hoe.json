@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xx",
+      " s",
+      " s"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/blackdiamond"
+      },
+      "s": {
+        "tag": "c:rods/wooden"
+      }
+    },
+    "result": {
+      "id": "basegems:blackdiamond_hoe",
+      "count": 1
+    }
+  }
+}

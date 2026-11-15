@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "basegems:blocks/turquoise_block",
-        "top": "basegems:blocks/turquoise_block",
-        "side": "basegems:blocks/turquoise_block"
-    }
-}

@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      " rs",
+      "r s",
+      " rs"
+    ],
+    "key": {
+      "r": {
+        "tag": "c:rods/indicolite"
+      },
+      "s": {
+        "item": "minecraft:string"
+      }
+    },
+    "result": {
+      "id": "basegems:indicolite_bow",
+      "count": 1
+    }
+  }
+}

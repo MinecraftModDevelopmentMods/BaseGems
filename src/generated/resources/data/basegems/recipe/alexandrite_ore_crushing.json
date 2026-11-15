@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:alexandrite_powder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:alexandrite_ore"
+  },
+  "result": {
+    "id": "basegems:alexandrite_powder",
+    "count": 2
+  }
+}

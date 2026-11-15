@@ -1,49 +1,44 @@
 package zone.moddev.mc.basegems.recipe;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import zone.moddev.mc.basegems.BaseGems;
-import zone.moddev.mc.basegems.config.GemConfig;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.CraftingInput;
+import net.minecraft.world.item.crafting.CustomRecipe;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.Level;
 
-import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeHidden;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JsonUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraftforge.registries.ForgeRegistries;
-
-public final class PlateRepairRecipe extends IRecipeHidden {
+/** A matching plate fully repairs one damaged shield without changing its other data. */
+public final class PlateRepairRecipe extends CustomRecipe {
     private final Item target;
     private final Ingredient plate;
 
-    public PlateRepairRecipe(ResourceLocation id, Item target, Ingredient plate) {
-        super(id);
+    public PlateRepairRecipe(Item target, Ingredient plate) {
+        super(CraftingBookCategory.EQUIPMENT);
         this.target = target;
         this.plate = plate;
     }
 
     @Override
-    public boolean matches(IInventory inventory, World world) {
-        if (!GemConfig.allows(target.getRegistryName().getPath())) return false;
+    public boolean matches(CraftingInput input, Level level) {
+        if (!ModRecipes.allows(target)) return false;
         ItemStack foundTarget = ItemStack.EMPTY;
         boolean foundPlate = false;
-
-        for (int slot = 0; slot < inventory.getSizeInventory(); slot++) {
-            ItemStack stack = inventory.getStackInSlot(slot);
-
-            if (stack.isEmpty()) {
-                continue;
-            }
-
-            if (stack.getItem() == target && stack.isDamaged() && foundTarget.isEmpty()) {
+        for (int slot = 0; slot < input.size(); slot++) {
+            ItemStack stack = input.getItem(slot);
+            if (stack.isEmpty()) continue;
+            if (stack.is(target) && stack.isDamaged() && foundTarget.isEmpty()) {
                 foundTarget = stack;
             } else if (plate.test(stack) && !foundPlate) {
                 foundPlate = true;
@@ -51,73 +46,47 @@ public final class PlateRepairRecipe extends IRecipeHidden {
                 return false;
             }
         }
-
         return !foundTarget.isEmpty() && foundPlate;
     }
 
     @Override
-    public ItemStack getCraftingResult(IInventory inventory) {
-        if (!matches(inventory, null)) {
-            return ItemStack.EMPTY;
-        }
-
-        for (int slot = 0; slot < inventory.getSizeInventory(); slot++) {
-            ItemStack stack = inventory.getStackInSlot(slot);
-
-            if (stack.getItem() == target && stack.isDamaged()) {
-                ItemStack repaired = stack.copy();
-                repaired.setCount(1);
-                repaired.setDamage(0);
-
+    public ItemStack assemble(CraftingInput input, HolderLookup.Provider registries) {
+        if (!matches(input, null)) return ItemStack.EMPTY;
+        for (int slot = 0; slot < input.size(); slot++) {
+            ItemStack stack = input.getItem(slot);
+            if (stack.is(target) && stack.isDamaged()) {
+                ItemStack repaired = stack.copyWithCount(1);
+                repaired.setDamageValue(0);
                 return repaired;
             }
         }
-
         return ItemStack.EMPTY;
     }
-    @Override
-    public boolean canFit(int width, int height) {
-        return width * height >= 2;
-    }
 
-    @Override
-    public ItemStack getRecipeOutput() {
-        return new ItemStack(target);
-    }
-
-    @Override public boolean isDynamic() { return !GemConfig.allows(target.getRegistryName().getPath()); }
+    @Override public boolean canCraftInDimensions(int width, int height) { return width * height >= 2; }
+    @Override public ItemStack getResultItem(HolderLookup.Provider registries) { return target.getDefaultInstance(); }
+    @Override public boolean isSpecial() { return !ModRecipes.allows(target); }
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
-        NonNullList<Ingredient> ingredients = NonNullList.create();
-        ingredients.add(Ingredient.fromItems(target));
-        ingredients.add(plate);
-
-        return ingredients;
+        return NonNullList.of(Ingredient.EMPTY, Ingredient.of(target), plate);
     }
 
-    @Override
-    public IRecipeSerializer<?> getSerializer() {
-        return CrushingRecipe.PLATE_REPAIR_SERIALIZER;
-    }
+    @Override public RecipeSerializer<?> getSerializer() { return ModRecipes.PLATE_REPAIR.get(); }
 
-    public static final class Serializer implements IRecipeSerializer<PlateRepairRecipe> {
-        private final ResourceLocation name = new ResourceLocation(BaseGems.MOD_ID, "plate_repair");
-        @Override public PlateRepairRecipe read(ResourceLocation id, JsonObject json) {
-            ResourceLocation targetId = new ResourceLocation(JsonUtils.getString(json, "target"));
-            Item target = ForgeRegistries.ITEMS.getValue(targetId);
-            if (target == null || target == Items.AIR) throw new JsonSyntaxException("Unknown target " + targetId);
-            return new PlateRepairRecipe(id, target, Ingredient.fromJson(JsonUtils.getJsonObject(json, "plate")));
-        }
-        @Override public PlateRepairRecipe read(ResourceLocation id, PacketBuffer buffer) {
-            Item target = ForgeRegistries.ITEMS.getValue(buffer.readResourceLocation());
-            if (target == null || target == Items.AIR) throw new IllegalStateException("Missing target");
-            return new PlateRepairRecipe(id, target, Ingredient.fromBuffer(buffer));
-        }
-        @Override public void write(PacketBuffer buffer, PlateRepairRecipe recipe) {
-            buffer.writeResourceLocation(recipe.target.getRegistryName());
-            recipe.plate.writeToBuffer(buffer);
-        }
-        @Override public ResourceLocation getName() { return name; }
+    static final class Serializer implements RecipeSerializer<PlateRepairRecipe> {
+        private static final MapCodec<PlateRepairRecipe> CODEC = RecordCodecBuilder.mapCodec(instance ->
+                instance.group(
+                        BuiltInRegistries.ITEM.byNameCodec().fieldOf("target").forGetter(recipe -> recipe.target),
+                        Ingredient.CODEC_NONEMPTY.fieldOf("plate").forGetter(recipe -> recipe.plate)
+                ).apply(instance, PlateRepairRecipe::new));
+        private static final StreamCodec<RegistryFriendlyByteBuf, PlateRepairRecipe> STREAM_CODEC =
+                StreamCodec.composite(
+                        ByteBufCodecs.registry(Registries.ITEM), recipe -> recipe.target,
+                        Ingredient.CONTENTS_STREAM_CODEC, recipe -> recipe.plate,
+                        PlateRepairRecipe::new);
+
+        @Override public MapCodec<PlateRepairRecipe> codec() { return CODEC; }
+        @Override public StreamCodec<RegistryFriendlyByteBuf, PlateRepairRecipe> streamCodec() { return STREAM_CODEC; }
     }
 }

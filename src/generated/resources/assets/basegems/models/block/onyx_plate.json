@@ -1,0 +1,8 @@
+{
+  "parent": "basegems:block/plate",
+  "textures": {
+    "top": "basegems:block/onyx_block",
+    "side": "basegems:block/onyx_block",
+    "bottom": "basegems:block/onyx_block"
+  }
+}

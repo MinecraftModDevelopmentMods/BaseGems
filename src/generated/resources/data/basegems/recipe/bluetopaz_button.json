@@ -1,0 +1,20 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "x",
+      "x"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:nuggets/bluetopaz"
+      }
+    },
+    "result": {
+      "id": "basegems:bluetopaz_button",
+      "count": 1
+    }
+  }
+}

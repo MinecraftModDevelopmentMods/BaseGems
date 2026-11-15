@@ -1,0 +1,21 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx",
+      "xxx",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "item": "basegems:goldenberyl_smallpowder"
+      }
+    },
+    "result": {
+      "id": "basegems:goldenberyl_powder",
+      "count": 1
+    }
+  }
+}

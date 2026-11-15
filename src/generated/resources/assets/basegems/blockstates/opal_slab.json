@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/opal_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/opal_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/opal_block"
+    }
+  }
+}

@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/spinel_crossbow",
-    "textures": {
-        "layer0": "basegems:items/spinel_crossbow_pulling_1"
-    }
-}

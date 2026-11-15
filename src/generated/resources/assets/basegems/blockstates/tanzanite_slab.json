@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/tanzanite_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/tanzanite_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/tanzanite_block"
+    }
+  }
+}

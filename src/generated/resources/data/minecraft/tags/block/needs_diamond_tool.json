@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "basegems:blackdiamond_block",
+    "basegems:blackdiamond_ore",
+    "basegems:blackdiamond_plate",
+    "basegems:blackdiamond_bars",
+    "basegems:blackdiamond_door",
+    "basegems:blackdiamond_trapdoor",
+    "basegems:blackdiamond_button",
+    "basegems:blackdiamond_lever",
+    "basegems:blackdiamond_pressure_plate",
+    "basegems:blackdiamond_slab",
+    "basegems:blackdiamond_double_slab",
+    "basegems:blackdiamond_stairs",
+    "basegems:blackdiamond_wall"
+  ]
+}

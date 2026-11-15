@@ -1,35 +1,49 @@
 package zone.moddev.mc.basegems.client;
 
+import net.minecraft.world.item.Item;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.client.model.DynamicFluidContainerModel;
+import zone.moddev.mc.basegems.BaseGems;
 import zone.moddev.mc.basegems.content.FluidContent;
 import zone.moddev.mc.basegems.content.ModContent;
-import zone.moddev.mc.basegems.entity.MaterialProjectile;
-
-import net.minecraftforge.client.event.ColorHandlerEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.ExtensionPoint;
-import net.minecraftforge.fml.ModLoadingContext;
 import zone.moddev.mc.orespawn.api.client.WorldSettingsExtensionRegistry;
 
+/**
+ * Client entry point. MMDLib's client runtime draws the projectiles and gives bows,
+ * crossbows, fishing rods and shields their item properties.
+ */
+@Mod(value = BaseGems.MOD_ID, dist = Dist.CLIENT)
 public final class ClientSetup {
-    private ClientSetup() {}
-
-    public static void register() {
-        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY,
-                () -> (minecraft, parent) -> new GemConfigScreen(parent));
-        WorldSettingsExtensionRegistry.registerConfigScreen("basegems", GemConfigScreen::new);
-        ClientMoltenGemRenderer.register();
-        MinecraftForge.EVENT_BUS.addListener(ClientSetup::registerBucketColours);
-        MinecraftForge.EVENT_BUS.addListener(ModsListConfigButton::onDraw);
-        RenderingRegistry.registerEntityRenderingHandler(MaterialProjectile.class,
-                manager -> new MaterialProjectileRenderer(manager));
+    public ClientSetup(IEventBus modBus, ModContainer container) {
+        container.registerExtensionPoint(IConfigScreenFactory.class,
+                (modContainer, parent) -> new GemConfigScreen(parent));
+        modBus.addListener(ClientSetup::setup);
+        modBus.addListener(ClientSetup::registerClientExtensions);
+        modBus.addListener(ClientSetup::registerItemColours);
     }
 
-    private static void registerBucketColours(ColorHandlerEvent.Item event) {
-        for (final FluidContent content : ModContent.fluids().values()) {
-            event.getItemColors().register((stack, tintIndex) -> tintIndex == 1
-                    ? ModContent.fluidColour(content.source().get()) : 0xFFFFFF,
-                    content.bucket().get());
+    private static void setup(FMLClientSetupEvent event) {
+        // OreSpawn's world settings link to the same gem switches.
+        event.enqueueWork(() -> WorldSettingsExtensionRegistry.registerConfigScreen(BaseGems.MOD_ID,
+                GemConfigScreen::new));
+    }
+
+    private static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+        for (FluidContent fluid : ModContent.fluids().values()) {
+            event.registerFluidType(fluid.type().get().clientExtensions(), fluid.type().get());
         }
+    }
+
+    /** Buckets show their molten gem's colour. */
+    private static void registerItemColours(RegisterColorHandlersEvent.Item event) {
+        event.register(new DynamicFluidContainerModel.Colors(), ModContent.fluids().values().stream()
+                .map(fluid -> (Item) fluid.bucket().get()).toArray(Item[]::new));
     }
 }

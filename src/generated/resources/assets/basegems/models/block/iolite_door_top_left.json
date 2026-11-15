@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left",
+  "textures": {
+    "bottom": "basegems:block/iolite_door_bottom",
+    "top": "basegems:block/iolite_door_top"
+  }
+}

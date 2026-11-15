@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "basegems:block/turquoise_block",
+    "top": "basegems:block/turquoise_block",
+    "side": "basegems:block/turquoise_block"
+  }
+}

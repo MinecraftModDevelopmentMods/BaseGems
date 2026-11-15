@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx",
+      " s ",
+      " s "
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/spinel"
+      },
+      "s": {
+        "tag": "c:rods/wooden"
+      }
+    },
+    "result": {
+      "id": "basegems:spinel_pickaxe",
+      "count": 1
+    }
+  }
+}

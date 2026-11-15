@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/alexandrite_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/alexandrite_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/alexandrite_block"
+    }
+  }
+}

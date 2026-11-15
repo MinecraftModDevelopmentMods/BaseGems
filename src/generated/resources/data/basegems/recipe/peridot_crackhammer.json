@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "x",
+      "s",
+      "s"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:storage_blocks/peridot"
+      },
+      "s": {
+        "tag": "c:rods/wooden"
+      }
+    },
+    "result": {
+      "id": "basegems:peridot_crackhammer",
+      "count": 1
+    }
+  }
+}

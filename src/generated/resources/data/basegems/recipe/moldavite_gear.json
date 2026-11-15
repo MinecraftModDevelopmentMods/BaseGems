@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      " x ",
+      "xrx",
+      " x "
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/moldavite"
+      },
+      "r": {
+        "tag": "c:rods/moldavite"
+      }
+    },
+    "result": {
+      "id": "basegems:moldavite_gear",
+      "count": 1
+    }
+  }
+}

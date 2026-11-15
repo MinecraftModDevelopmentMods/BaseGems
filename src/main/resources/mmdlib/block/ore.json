@@ -1,0 +1,18 @@
+{
+  "factory": "basegems:ore",
+  "material_defaults": false,
+  "template": {
+    "properties": {
+      "hardness": 3,
+      "blast_resistance": 5,
+      "requires_correct_tool": true,
+      "sound": "stone",
+      "map_color": "stone"
+    },
+    "has_item": true,
+    "tags": [
+      "c:ores",
+      "minecraft:mineable/pickaxe"
+    ]
+  }
+}

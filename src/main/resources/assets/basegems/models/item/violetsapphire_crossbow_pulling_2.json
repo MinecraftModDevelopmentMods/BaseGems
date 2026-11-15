@@ -1,6 +1,0 @@
-{
-    "parent": "basegems:item/violetsapphire_crossbow",
-    "textures": {
-        "layer0": "basegems:items/violetsapphire_crossbow_pulling_2"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "basegems:blocks/malachite_block",
-        "top": "basegems:blocks/malachite_block",
-        "side": "basegems:blocks/malachite_block"
-    }
-}

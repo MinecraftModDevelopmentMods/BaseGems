@@ -1,0 +1,23 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "s",
+      "x"
+    ],
+    "key": {
+      "s": {
+        "tag": "c:rods/wooden"
+      },
+      "x": {
+        "tag": "c:gems/agate"
+      }
+    },
+    "result": {
+      "id": "basegems:agate_lever",
+      "count": 1
+    }
+  }
+}

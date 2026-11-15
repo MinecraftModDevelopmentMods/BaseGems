@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/plate",
-    "textures": {
-        "top": "basegems:blocks/goldenberyl_block",
-        "side": "basegems:blocks/goldenberyl_block",
-        "bottom": "basegems:blocks/goldenberyl_block"
-    }
-}

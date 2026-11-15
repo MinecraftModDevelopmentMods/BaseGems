@@ -1,0 +1,7 @@
+{
+  "type": "basegems:plate_repair",
+  "target": "basegems:sapphire_shield",
+  "plate": {
+    "tag": "c:plates/sapphire"
+  }
+}

@@ -1,42 +1,30 @@
 package zone.moddev.mc.basegems;
 
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.DeferredWorkQueue;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+
+import com.mojang.logging.LogUtils;
+
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import zone.moddev.mc.basegems.config.GemConfig;
-import zone.moddev.mc.basegems.client.ClientSetup;
-import zone.moddev.mc.basegems.entity.ModEntities;
-import zone.moddev.mc.basegems.recipe.CrushingRecipe;
-import zone.moddev.mc.basegems.trade.GemTrades;
+import zone.moddev.mc.basegems.content.ModContent;
+import zone.moddev.mc.basegems.recipe.ModRecipes;
 import zone.moddev.mc.basegems.worldgen.GemWorldgen;
 
 @Mod(BaseGems.MOD_ID)
 public final class BaseGems {
     public static final String MOD_ID = "basegems";
-    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+    public static final Logger LOGGER = LogUtils.getLogger();
 
-    public BaseGems() {
-        ModEntities.initialize();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, GemConfig.SPEC);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(GemConfig::onConfigLoading);
-        MinecraftForge.EVENT_BUS.register(new GemEvents());
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientSetup::register);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueue);
+    public BaseGems(IEventBus modBus, ModContainer container) {
+        GemConfig.register(container);
+        modBus.addListener(GemConfig::onConfigLoading);
+        ModContent.register(modBus);
+        ModRecipes.register(modBus);
+        modBus.addListener(InterModEnqueueEvent.class, event -> GemWorldgen.enqueue());
+        NeoForge.EVENT_BUS.register(new GemEvents());
     }
-
-    private void setup(FMLCommonSetupEvent event) {
-        DeferredWorkQueue.runLater(CrushingRecipe::register);
-        GemTrades.register();
-    }
-    private void enqueue(InterModEnqueueEvent event) { GemWorldgen.enqueue(); }
 }

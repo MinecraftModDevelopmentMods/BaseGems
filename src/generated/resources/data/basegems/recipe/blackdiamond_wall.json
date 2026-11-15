@@ -1,0 +1,20 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:storage_blocks/blackdiamond"
+      }
+    },
+    "result": {
+      "id": "basegems:blackdiamond_wall",
+      "count": 6
+    }
+  }
+}

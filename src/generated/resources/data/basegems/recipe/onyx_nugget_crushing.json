@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:onyx_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:onyx_nugget"
+  },
+  "result": {
+    "id": "basegems:onyx_smallpowder",
+    "count": 1
+  }
+}

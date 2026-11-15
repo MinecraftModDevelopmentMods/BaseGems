@@ -1,8 +1,0 @@
-{
-    "parent": "block/upper_slab",
-    "textures": {
-        "bottom": "basegems:blocks/goldenberyl_block",
-        "top": "basegems:blocks/goldenberyl_block",
-        "side": "basegems:blocks/goldenberyl_block"
-    }
-}

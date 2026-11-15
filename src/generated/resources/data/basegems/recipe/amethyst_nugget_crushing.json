@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:amethyst_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:amethyst_nugget"
+  },
+  "result": {
+    "id": "basegems:amethyst_smallpowder",
+    "count": 1
+  }
+}

@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "powered=false": { "model": "basegems:ruby_pressure_plate_up" },
-        "powered=true": { "model": "basegems:ruby_pressure_plate_down" }
-    }
-}

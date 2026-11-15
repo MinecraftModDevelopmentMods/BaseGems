@@ -1,6 +1,0 @@
-{
-    "parent": "block/wall_side",
-    "textures": {
-        "wall": "basegems:blocks/malachite_block"
-    }
-}

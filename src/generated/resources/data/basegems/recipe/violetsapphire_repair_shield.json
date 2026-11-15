@@ -1,0 +1,7 @@
+{
+  "type": "basegems:plate_repair",
+  "target": "basegems:violetsapphire_shield",
+  "plate": {
+    "tag": "c:plates/violetsapphire"
+  }
+}

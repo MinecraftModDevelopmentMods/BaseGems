@@ -1,0 +1,7 @@
+{
+  "type": "basegems:plate_repair",
+  "target": "basegems:amber_shield",
+  "plate": {
+    "tag": "c:plates/amber"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xx",
+      "xs",
+      " s"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/opal"
+      },
+      "s": {
+        "tag": "c:rods/wooden"
+      }
+    },
+    "result": {
+      "id": "basegems:opal_axe",
+      "count": 1
+    }
+  }
+}

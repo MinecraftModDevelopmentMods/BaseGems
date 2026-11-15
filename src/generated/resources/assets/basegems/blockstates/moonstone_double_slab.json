@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/moonstone_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/moonstone_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/moonstone_block"
+    }
+  }
+}

@@ -1,8 +1,0 @@
-{
-    "parent": "basegems:block/plate",
-    "textures": {
-        "top": "basegems:blocks/tanzanite_block",
-        "side": "basegems:blocks/tanzanite_block",
-        "bottom": "basegems:blocks/tanzanite_block"
-    }
-}

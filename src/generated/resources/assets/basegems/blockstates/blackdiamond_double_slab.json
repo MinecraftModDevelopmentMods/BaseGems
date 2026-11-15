@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "basegems:block/blackdiamond_slab"
+    },
+    "type=top": {
+      "model": "basegems:block/blackdiamond_slab_top"
+    },
+    "type=double": {
+      "model": "basegems:block/blackdiamond_block"
+    }
+  }
+}

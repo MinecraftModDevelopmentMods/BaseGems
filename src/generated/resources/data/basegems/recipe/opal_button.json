@@ -1,0 +1,20 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "x",
+      "x"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:nuggets/opal"
+      }
+    },
+    "result": {
+      "id": "basegems:opal_button",
+      "count": 1
+    }
+  }
+}

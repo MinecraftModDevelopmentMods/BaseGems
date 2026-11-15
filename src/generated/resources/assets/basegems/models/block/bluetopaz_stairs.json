@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "basegems:block/bluetopaz_block",
+    "top": "basegems:block/bluetopaz_block",
+    "side": "basegems:block/bluetopaz_block"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      "xxx",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "tag": "c:storage_blocks/ametrine"
+      }
+    },
+    "result": {
+      "id": "basegems:ametrine_wall",
+      "count": 6
+    }
+  }
+}

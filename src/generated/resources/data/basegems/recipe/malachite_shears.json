@@ -1,0 +1,20 @@
+{
+  "type": "basegems:content_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+      " x",
+      "x "
+    ],
+    "key": {
+      "x": {
+        "tag": "c:gems/malachite"
+      }
+    },
+    "result": {
+      "id": "basegems:malachite_shears",
+      "count": 1
+    }
+  }
+}

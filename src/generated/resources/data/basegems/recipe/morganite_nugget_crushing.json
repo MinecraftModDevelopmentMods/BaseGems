@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:morganite_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:morganite_nugget"
+  },
+  "result": {
+    "id": "basegems:morganite_smallpowder",
+    "count": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:opal_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:opal_nugget"
+  },
+  "result": {
+    "id": "basegems:opal_smallpowder",
+    "count": 1
+  }
+}

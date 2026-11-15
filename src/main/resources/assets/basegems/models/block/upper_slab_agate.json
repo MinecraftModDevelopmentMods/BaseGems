@@ -1,8 +1,0 @@
-{
-    "parent": "block/upper_slab",
-    "textures": {
-        "bottom": "basegems:blocks/agate_block",
-        "top": "basegems:blocks/agate_block",
-        "side": "basegems:blocks/agate_block"
-    }
-}

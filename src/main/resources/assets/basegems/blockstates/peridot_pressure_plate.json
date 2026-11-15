@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "powered=false": { "model": "basegems:peridot_pressure_plate_up" },
-        "powered=true": { "model": "basegems:peridot_pressure_plate_down" }
-    }
-}

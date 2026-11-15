@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "basegems:content_mode",
+      "item": "basegems:aquamarine_smallpowder"
+    }
+  ],
+  "type": "mmdlib:crushing",
+  "ingredient": {
+    "item": "basegems:aquamarine_nugget"
+  },
+  "result": {
+    "id": "basegems:aquamarine_smallpowder",
+    "count": 1
+  }
+}

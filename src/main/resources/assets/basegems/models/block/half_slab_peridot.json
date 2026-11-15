@@ -1,8 +1,0 @@
-{
-    "parent": "block/half_slab",
-    "textures": {
-        "bottom": "basegems:blocks/peridot_block",
-        "top": "basegems:blocks/peridot_block",
-        "side": "basegems:blocks/peridot_block"
-    }
-}
