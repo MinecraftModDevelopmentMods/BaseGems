@@ -1,7 +1,7 @@
 // Java 8's doclet leaves enum siblings in platform-dependent order.
 // Keep the full hierarchy while giving leaf-only sibling lists a stable order.
 tasks.withType(Javadoc).configureEach {
-    inputs.property('javadocTreeOrder', 'lexical leaf siblings 1')
+    inputs.property('javadocTreeOrder', 'lexical leaf siblings and nullable alignment 2')
     doLast {
         fileTree(destinationDir) { include '**/*-tree.html' }.files.each { page ->
             String original = page.getText('UTF-8')
@@ -11,6 +11,18 @@ tasks.withType(Javadoc).configureEach {
                 opening + siblings.readLines().sort().join('\n') + '\n' + closing
             }
             if (ordered != original) page.setText(ordered, 'UTF-8')
+        }
+        // The Java 8 doclet counts CRLF in @Nullable when aligning wrapped parameters.
+        fileTree(destinationDir) { include '**/*.html' }.files.each { page ->
+            String original = page.getText('UTF-8')
+            String aligned = original.replaceAll(
+                    /(<pre>@Nullable\r?\n)(public[^\r\n]*?\()([^\r\n]*\r?\n)( +)([^ \r\n][^\r\n]*\)<\/pre>)/) {
+                all, annotation, prefix, first, indentation, last ->
+                String visible = prefix.replaceAll(/<[^>]+>/, '')
+                        .replace('&nbsp;', ' ').replace('&lt;', '<').replace('&gt;', '>')
+                annotation + prefix + first + (' ' * visible.length()) + last
+            }
+            if (aligned != original) page.setText(aligned, 'UTF-8')
         }
     }
 }
