@@ -37,7 +37,7 @@ than its budget if it runs out of suitable host rock.
 
 The provider covers the Overworld and leaves terrain replacement and
 retrogen off. In existing worlds, use new chunks to find the ores and review
-the saved OreSpawn settings for that world. When a material is disabled in
-`BaseGems.cfg`, its ore block and default rule are omitted on restart.
-Remove the corresponding rule from any pack-wide override when disabling a
-gem, since the override can only refer to registered blocks.
+the saved OreSpawn settings for that world. When a gem is disabled in
+`basegems-common.toml`, Base Gems stops supplying its default ore rule on
+restart. The block stays registered so it survives upgrades. Turn off the
+rule in OreSpawn too if it is already part of a saved world or pack override.

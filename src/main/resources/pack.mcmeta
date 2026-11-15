@@ -1,6 +1,6 @@
 {
-  "pack":{
-    "pack_format":3,
-    "description":"Base Gems"
+  "pack": {
+    "description": "Base Gems resources",
+    "pack_format": 4
   }
 }

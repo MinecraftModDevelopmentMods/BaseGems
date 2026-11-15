@@ -1,3 +1,22 @@
+2.5.0.113021 for Minecraft 1.13.2
+
+- Pin optional Base Metals compatibility to 3.0.3, with its shared processing and mining fixes.
+- Restore the 1.12 mining requirements for gem ores and blocks, separately from gem tool strength.
+- Use released OreSpawn 4.1.7, including the generation-boundary fix.
+- Fix missing fluids and startup hangs with other fluid-adding mods during parallel loading.
+
+All 33 gems come across to Forge 1.13.2. OreSpawn still handles deposits,
+and gems still give mining XP, turn up in smith trades and teach recipes
+when you pick them up.
+
+- Base Gems reads the original Forge registry when upgrading a world from
+  1.10.2, 1.11.2 or 1.12.2. Old block metadata becomes named states, and
+  filled buckets and worn equipment keep their contents and durability.
+- Moved recipes and advancements to data packs, language files to JSON and
+  Ore Dictionary entries to tags. The existing gem block and item names stay.
+- Base Gems no longer needs MMDLib on this version. Fantasy Level and gem
+  switches are available through Forge and OreSpawn.
+
 2.5.0.112021 for Minecraft 1.12.2
 
 All 33 gems come across from 1.11.2, along with the OreSpawn deposits, mining
