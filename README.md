@@ -1,4 +1,4 @@
-# Base Gems for Minecraft 1.12.2
+# Base Gems for Minecraft 1.13.2
 
 Base Gems adds 33 gemstones to Minecraft. Mine agate and amethyst in upper
 caves, look deeper for ruby and sapphire, or head down near bedrock for black
@@ -7,22 +7,41 @@ pieces, tools, weapons and shields.
 
 ## Installation
 
-Use Java 8 and Forge **14.23.5.2859 or later for Minecraft 1.12.2**. Put these
-jars in the `mods` folder on both the client and server.
+Use Java 8 and Forge **25.0.223 for Minecraft 1.13.2** on both client and
+server. Base Gems needs MMD OreSpawn and runs without MMDLib.
 
-- Base Gems `2.5.0.112021`.
-- [MMDLib 1.0.0 RC3](https://www.curseforge.com/minecraft/mc-mods/mmdlib/files/9414723).
-- [MMD OreSpawn 4.1.6.112021](https://www.curseforge.com/minecraft/mc-mods/mmd-orespawn/files/9527784),
-  or a compatible 4.x update.
+Use [MMD OreSpawn 4.1.7.113021](https://www.curseforge.com/minecraft/mc-mods/mmd-orespawn/files/9611746)
+or a later compatible 1.13.2 release. It includes the fix for checking cave air
+at generation boundaries; no separate local engine is needed.
 
-You can play with just those three mods. If you also use Base Metals, this
-build was checked with [Base Metals 2.6.2.112021](https://www.curseforge.com/minecraft/mc-mods/base-metals/files/9532211).
+Base Metals is optional for a new world. When installed together, use
+[Base Metals 3.0.3.113021](https://github.com/MinecraftModDevelopmentMods/BaseMetals/releases/tag/3.0.3.113021)
+or a later compatible 1.13.2 release. If your old
+world contains Base Metals blocks or items, keep it installed for the upgrade.
+
+Gem crushing works with the Base Gems crackhammer on its own. With Base
+Metals installed its tools and crushers can use the same recipes. With
+Modern Metals alone, its crackhammers can use them too.
+
+## Upgrading a world
+
+Make a separate copy before opening a 1.10.2, 1.11.2 or 1.12.2 world in
+1.13.2. Keep the original Forge `level.dat` with the copy. Base Gems uses
+that save's registry to restore the gems and their block states during
+Minecraft's flattening. [World upgrade details](docs/MIGRATION.md)
 
 ## Mining and trading
+
+Use a tool strong enough for the gem. Agate and jade need stone level;
+jasper, ruby and sapphire need iron level; black diamond needs diamond level.
+Modern Metals' galvanized steel, stainless steel and titanium hammers are
+iron level. A weaker tool breaks the ore
+without a drop. These are the same mining requirements as in 1.12.
 
 Gem ores give XP when mined. Fortune can increase the gem yield, and Silk
 Touch lets you take the ore block home. Smiths buy and sell gems for
 emeralds, with rarer gems appearing as their careers advance.
+In High Fantasy, toolsmiths and weaponsmiths also sell gem equipment.
 
 OreSpawn handles placement in the Overworld. Amber and moldavite turn up in
 shallow sediment pockets, while gems such as topaz and beryl tend to appear
@@ -37,10 +56,12 @@ changes stone, the background of the gem ores changes with it.
 Pick up a gem to learn what you can make with it in the recipe book. Some
 recipes appear when you pick up a processed part, such as a gem plate.
 The recipes you learn follow your Fantasy Level and gem settings.
+You can smelt gem ore or powder in a furnace to get the gem back.
 
 Open **Mods → Base Gems → Config** or choose **Base Gems** from OreSpawn's
-**Mods** list. Both screens save to `config/BaseGems.cfg`. Restart the game or
-server after changing Fantasy Level or switching a gem on or off.
+**Mods** list. Both screens save to `config/basegems-common.toml`. Restart the
+game or server after changing Fantasy Level or switching a gem on or off.
+Gem switches keep existing blocks and items available in old worlds.
 
 **High Fantasy** is the default and includes gem tools, weapons, shields and
 decorative pieces. Player and horse armour are left to add-ons.
@@ -51,13 +72,15 @@ client in multiplayer.
 
 ## Mod compatibility
 
-Other mods can use the Ore Dictionary names, such as `gemRuby`, `oreRuby`,
-`blockRuby`, `dustRuby` and `gearRuby`. The block and item IDs, config keys
-and Ore Dictionary names carry over from 1.11.2.
+The Ore Dictionary names have moved to tags such as `forge:gems/ruby`,
+`forge:ores/ruby`, `forge:storage_blocks/ruby`, `forge:dusts/ruby` and
+`forge:gears/ruby`. The existing Base Gems block and item names carry over.
+The older MMDLib machine integrations, equipment recycling recipes and shield
+upgrade recipes are not part of this port.
 
 ## Development and credits
 
-The 1.12.2 branch uses ForgeGradle 7 and builds a Java 8 mod.
+The 1.13.2 branch uses ForgeGradle 7 and builds a Java 8 mod.
 See [building and Eclipse setup](docs/BUILDING.md) and the
 [changelog](CHANGELOG.txt).
 

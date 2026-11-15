@@ -1,8 +1,9 @@
 package zone.moddev.mc.basegems.worldgen;
 
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.registries.ForgeRegistries;
 import zone.moddev.mc.basegems.BaseGems;
+import zone.moddev.mc.basegems.config.GemConfig;
 import zone.moddev.mc.orespawn.api.GeologyFamily;
 import zone.moddev.mc.orespawn.api.OreHeightDistribution;
 import zone.moddev.mc.orespawn.api.OrePattern;
@@ -62,15 +63,14 @@ public final class GemWorldgen {
     private GemWorldgen() { }
 
     public static void enqueue() {
-        WorldgenProvider.Builder provider = WorldgenProvider.builder(BaseGems.MODID, 1);
+        WorldgenProvider.Builder provider = WorldgenProvider.builder(BaseGems.MOD_ID, 1);
         int count = 0;
         for (Gem gem : GEMS) {
-            ResourceLocation block = new ResourceLocation(BaseGems.MODID, gem.name + "_ore");
-            // The legacy material toggles and Base Metals' ore switch can omit the block.
-            if (!ForgeRegistries.BLOCKS.containsKey(block)) {
+            ResourceLocation block = new ResourceLocation(BaseGems.MOD_ID, gem.name + "_ore");
+            if (!GemConfig.enabled(gem.name) || !ForgeRegistries.BLOCKS.containsKey(block)) {
                 continue;
             }
-            ResourceLocation rule = new ResourceLocation(BaseGems.MODID, "ore/" + gem.name);
+            ResourceLocation rule = new ResourceLocation(BaseGems.MOD_ID, "ore/" + gem.name);
             provider.ore(WorldgenProvider.OreDefinition.builder(rule, block)
                     .material(new ResourceLocation("orespawn", gem.name))
                     .retrogen(false)

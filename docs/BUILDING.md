@@ -1,9 +1,10 @@
-# Building Base Gems for Minecraft 1.12.2
+# Building Base Gems for Minecraft 1.13.2
 
 Use Java 17 to run Gradle 9.6.1, Java 25 for ForgeGradle's Mavenizer, and
 Java 8 for compilation and Minecraft. Put Java 17 on your command path and
 make the other JDKs available to Gradle's toolchain detection. Python 3
-stages the pinned mod dependencies and checks their SHA-256 hashes.
+stages the pinned OreSpawn jar, checks its SHA-256 and generates the resource
+pack and data pack.
 
 From the inner Git checkout on Windows:
 
@@ -13,8 +14,9 @@ python gradle/stage-legacy-dependencies.py .gradle/legacy-dependencies
 ```
 
 On Linux or macOS, use `python3` and `./gradlew`. The game jar is
-`build/libs/BaseGems-2.5.0.112021.jar`. Gradle builds the ore models from
-the tracked textures during resource processing.
+`build/libs/BaseGems-2.5.0.113021.jar`. The build uses Forge 25.0.223 and
+MCP snapshot 20180921-1.13. Model, recipe, tag, language and advancement data
+is generated during resource processing.
 
 `prepareEclipse` generates the Eclipse project and Java 8 launches with
 processed resources and the pinned runtime dependencies. Use the same

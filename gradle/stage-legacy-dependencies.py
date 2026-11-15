@@ -28,7 +28,7 @@ def main():
             if cached:
                 data = cached[0].read_bytes()
             else:
-                url = spec["repository"].rstrip("/") + "/" + relative.as_posix()
+                url = spec.get("download_url") or spec["repository"].rstrip("/") + "/" + relative.as_posix()
                 request = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
                 for attempt in range(3):
                     try:

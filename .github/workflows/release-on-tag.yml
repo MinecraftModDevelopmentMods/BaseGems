@@ -1,0 +1,20 @@
+name: Validate Base Gems 1.13.2 tag
+on:
+  push:
+    tags: ['*.*.*.113021']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  validate:
+    if: github.repository == 'MinecraftModDevelopmentMods/BaseGems'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Check the tag against the release metadata
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF_NAME" = "$(sed -n 's/^mod_version=//p' gradle.properties)"
+          grep -Fxq 'minecraft_version=1.13.2' gradle.properties
+          echo 'Tag validated. Publication uses deploy-release.yml with explicit confirmation.' >> "$GITHUB_STEP_SUMMARY"

@@ -2,6 +2,7 @@ import org.apache.tools.ant.filters.FixCrLfFilter
 
 plugins {
     id 'java'
+    id 'maven-publish'
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.renamer' version '1.1.5'
@@ -12,8 +13,8 @@ group = project.mod_group
 version = project.mod_version
 base.archivesName = 'BaseGems'
 
-if (!(project.version ==~ /\d+\.\d+\.\d+\.112021/)) {
-    throw new GradleException('Use Major.Minor.Patch.112021 for Minecraft 1.12.2 on Forge.')
+if (!(project.version ==~ /\d+\.\d+\.\d+\.113021/)) {
+    throw new GradleException('Use Major.Minor.Patch.113021 for Minecraft 1.13.2 on Forge.')
 }
 
 // Gradle and Mavenizer use modern JDKs; the mod and game still use Java 8.
@@ -54,13 +55,11 @@ def normalizeText = { details ->
             eof: FixCrLfFilter.AddAsisRemove.newInstance('asis'))
 }
 
-def developmentOutput = layout.buildDirectory.dir('forge12-development/main')
+def developmentOutput = layout.buildDirectory.dir('forge-run-mod-classes/main')
+def modPath = developmentOutput.get().asFile.absolutePath
 def prepareDevelopmentMod = tasks.register('prepareDevelopmentMod', Sync) {
-    group = 'ide'
-    description = 'Merges production classes and processed resources for Forge 1.12 launches.'
     dependsOn tasks.named('classes')
-    from tasks.named('compileJava', JavaCompile).flatMap { it.destinationDirectory }
-    from sourceSets.main.output.resourcesDir
+    from sourceSets.main.output
     into developmentOutput
 }
 
@@ -69,29 +68,27 @@ minecraft {
     if (gradle.startParameter.offline) mavenizerArguments.add('--offline')
     runs {
         configureEach {
+            mainClass = 'net.minecraftforge.userdev.LaunchTesting'
             workingDir.convention layout.projectDirectory.dir(
                     providers.gradleProperty('baseGemsRunDirectory').getOrElse('run'))
+            mods { basegems { source sourceSets.main } }
+            environment 'target', name == 'client' ? 'fmluserdevclient' : 'fmluserdevserver'
             environment 'MC_VERSION', project.minecraft_version
-            environment 'MOD_CLASSES', developmentOutput.get().asFile.absolutePath
-            systemProperty 'log4j.skipJansi', 'true'
+            environment 'MCP_VERSION', project.mcp_version
+            environment 'MCP_MAPPINGS', "${project.mappings_channel}_${project.mappings_version}"
+            environment 'FORGE_VERSION', project.forge_version
+            environment 'FORGE_GROUP', 'net.minecraftforge'
+            environment 'MOD_CLASSES', "${mod_id}%%${modPath}${File.pathSeparator}${mod_id}%%${modPath}"
             systemProperty 'forge.logging.console.level', 'info'
-            systemProperty 'log4j.configurationFile', file('gradle/ide/log4j2.xml').toURI().toString()
         }
         register('client')
-        register('server') { args 'nogui' }
+        register('server') { args '--nogui' }
     }
 }
-
-tasks.matching { it.name in ['runClient', 'runServer'] }.configureEach {
-    dependsOn prepareDevelopmentMod
-    dependsOn 'prepareJava8Launcher'
-    doFirst {
-        Set<File> splitOutputs = sourceSets.main.output.files.collect { it.canonicalFile } as Set<File>
-        classpath = files(developmentOutput, tasks.named('prepareJava8Launcher'), classpath.filter {
-            !splitOutputs.contains(it.canonicalFile) && it.name != 'slime-launcher-0.2.2.jar'
-        })
-        environment 'MC_VERSION', project.minecraft_version
-        environment 'MOD_CLASSES', developmentOutput.get().asFile.absolutePath
+tasks.withType(JavaExec).configureEach {
+    if (name in ['runClient', 'runServer']) {
+        dependsOn prepareDevelopmentMod
+        doFirst { new File(workingDir, 'mods').mkdirs() }
     }
 }
 
@@ -113,6 +110,21 @@ repositories {
         forRepository { maven { url = legacyRepository('https://www.cursemaven.com'); metadataSources { artifact() } } }
         filter { includeGroup 'curse.maven' }
     }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'PublishedBaseMetals'
+                url = legacyRepository('https://maven.moddev.zone/releases')
+                metadataSources { artifact() }
+            }
+        }
+        filter { includeModule('zone.moddev.mc.basemetals', 'BaseMetals') }
+    }
+    exclusiveContent {
+        forRepository { maven { url = 'https://repo.spongepowered.org/repository/maven-public' } }
+        filter { includeGroupAndSubgroups('org.spongepowered') }
+    }
+    maven { url = 'https://libraries.minecraft.net/' }
     mavenCentral()
 }
 
@@ -129,11 +141,11 @@ tasks.named('processResources', ProcessResources) {
     exclude '**/desktop.ini', '**/Thumbs.db', '**/.DS_Store'
     exclude armourAssets
     inputs.property 'version', project.version
-    inputs.property 'mcversion', project.minecraft_version
-    filesMatching('mcmod.info') { expand version: project.version, mcversion: project.minecraft_version }
-    // Pack format 3 looks up locale filenames in lowercase.
-    filesMatching('assets/basegems/lang/*.lang') { name = name.toLowerCase(Locale.ROOT) }
-    rename '(.+_at.cfg)', 'META-INF/$1'
+    inputs.property 'oreSpawnRange', project.orespawn_version_range
+    filesMatching('META-INF/mods.toml') {
+        expand version: project.version, oreSpawnRange: project.orespawn_version_range
+    }
+    exclude 'assets/basegems/lang/*.lang'
     filesMatching(textPatterns, normalizeText)
 }
 
@@ -164,7 +176,20 @@ tasks.named('sourcesJar', Jar) { exclude armourAssets }
 }
 
 ext.baseGemsBuild = [developmentOutput: developmentOutput].asImmutable()
-apply from: 'gradle/ore-models.gradle'
-apply from: 'gradle/recipe-advancements.gradle'
+apply from: 'gradle/resources.gradle'
 apply from: 'gradle/release/artifacts.gradle'
-apply from: 'gradle/ide/eclipse.gradle'
+apply from: 'gradle/eclipse.gradle'
+tasks.register('prepareEclipse') {
+    dependsOn 'genEclipseRuns', 'eclipse', 'prepareDevelopmentMod'
+}
+
+tasks.register('verifyFluidRegistration', Exec) {
+    group = 'verification'
+    description = 'Checks that fluid registration runs before blocks, outside parallel construction.'
+    commandLine 'node', '--test', 'tools/test_fluid_registration.js'
+}
+tasks.named('check') { dependsOn 'verifyFluidRegistration' }
+
+apply from: 'gradle/release-113.gradle'
+
+apply from: 'gradle/normalize-javadoc-trees.gradle'

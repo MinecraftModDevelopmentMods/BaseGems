@@ -25,3 +25,12 @@ run
 /forge-*-changelog.txt
 
 secret.json
+
+# Local agent context and verification evidence
+/AGENTS.md
+/agent-notes/
+/.codex/
+/.verification*/
+/release-candidates/
+__pycache__/
+*.pyc
