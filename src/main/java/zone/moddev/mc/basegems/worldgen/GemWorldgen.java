@@ -54,9 +54,9 @@ public final class GemWorldgen {
         new Deposit("spinel", Setting.METAMORPHIC, 8, 36, 0.11, 1, 2),
         new Deposit("tanzanite", Setting.METAMORPHIC, 10, 34, 0.045, 1, 2),
         new Deposit("ruby", Setting.METAMORPHIC, 6, 26, 0.095, 1, 2),
-        new Deposit("sapphire", Setting.VOLCANIC, 7, 33, 0.11, 1, 2),
-        new Deposit("violetsapphire", Setting.VOLCANIC, 6, 25, 0.045, 1, 2),
-        new Deposit("peridot", Setting.VOLCANIC, 9, 39, 0.18, 1, 3),
+        new Deposit("sapphire", Setting.CORUNDUM, 7, 33, 0.11, 1, 2),
+        new Deposit("violetsapphire", Setting.CORUNDUM, 6, 25, 0.045, 1, 2),
+        new Deposit("peridot", Setting.PERIDOT, 9, 39, 0.18, 1, 3),
         new Deposit("blackdiamond", Setting.DEEP, 5, 16, 0.035, 1, 1)
     };
 
@@ -64,7 +64,7 @@ public final class GemWorldgen {
 
     /** Hands the enabled deposits to OreSpawn; runs during {@code InterModEnqueueEvent}. */
     public static void enqueue() {
-        WorldgenProvider.Builder provider = WorldgenProvider.builder(BaseGems.MOD_ID, 1);
+        WorldgenProvider.Builder provider = WorldgenProvider.builder(BaseGems.MOD_ID, 2);
         int count = 0;
         for (Deposit deposit : DEPOSITS) {
             ResourceLocation block = ResourceLocation.fromNamespaceAndPath(BaseGems.MOD_ID, deposit.name + "_ore");
@@ -99,8 +99,9 @@ public final class GemWorldgen {
                 GeologyFamily.IGNEOUS_INTRUSIVE),
         METAMORPHIC(OrePattern.CLUSTERS, OreHeightDistribution.BOTTOM_TRIANGLE, 2, 1, 0.35,
                 GeologyFamily.METAMORPHIC),
-        VOLCANIC(OrePattern.CLUSTERS, OreHeightDistribution.BOTTOM_TRIANGLE, 2, 1, 0.35,
-                GeologyFamily.IGNEOUS_VOLCANIC),
+        CORUNDUM(OrePattern.CLUSTERS, OreHeightDistribution.BOTTOM_TRIANGLE, 2, 1, 0.35,
+                GeologyFamily.METAMORPHIC, GeologyFamily.IGNEOUS_VOLCANIC),
+        PERIDOT(OrePattern.CLUSTERS, OreHeightDistribution.BOTTOM_TRIANGLE, 2, 1, 0.35),
         DEEP(OrePattern.CLUSTERS, OreHeightDistribution.BOTTOM_TRIANGLE, 1, 0, 0.60,
                 GeologyFamily.IGNEOUS_VOLCANIC);
 
@@ -128,6 +129,9 @@ public final class GemWorldgen {
                 placement.hostBlock(DIRT).hostBlock(CLAY).hostBlock(SAND).hostBlock(GRAVEL);
             } else if (this == MOLDAVITE) {
                 placement.hostBlock(GRAVEL).hostBlock(DIRT, 0.5);
+            } else if (this == PERIDOT) {
+                placement.hostBlock(STONE).hostBlock(vanilla("deepslate")).hostBlock(vanilla("basalt"))
+                        .hostTag(ResourceLocation.fromNamespaceAndPath(BaseGems.MOD_ID, "ore_hosts/peridot"));
             } else {
                 placement.hostBlock(STONE);
                 for (GeologyFamily family : families) placement.hostFamily(family);

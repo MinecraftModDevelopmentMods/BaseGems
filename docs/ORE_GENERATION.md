@@ -14,6 +14,11 @@ mining trip can turn up several types.
 | Metamorphic and volcanic deposits | Garnet, jade, iolite, alexandrite, spinel, tanzanite, ruby, sapphire, violet sapphire, peridot | Small clusters biased toward the bottom of their ranges. Garnet is relatively common. Ruby and sapphire mostly reward deeper mining. |
 | Black diamond | Black diamond | A single-block find at Y 5–16. Some candidates exposed to cave air are skipped. |
 
+Peridot also accepts peridotite and gabbro through optional natural-rock tags;
+sapphire and violet sapphire accept metamorphic as well as volcanic rocks.
+Mineralogy is optional. These host corrections do not increase gem vein budgets.
+Existing saved profiles and pack overrides remain authoritative; no retrogen is enabled.
+
 The groupings draw on natural gemstone settings, including gem-rich
 pegmatites, marble-hosted ruby and spinel, and sediment-hosted amber and opal.
 Moldavite's shallow gravel placement represents redeposited impact glass.

@@ -1,3 +1,9 @@
+4.0.1.121012 for Minecraft 1.21.1
+
+- Let peridot use peridotite, gabbro and basalt, with optional Mineralogy hosts.
+- Allow sapphire and violet sapphire in metamorphic as well as volcanic rocks.
+- Keep gem depths, frequencies, vein sizes, drops and the other 30 gem rules unchanged. Saved profiles and pack overrides remain authoritative.
+
 4.0.0.121012 for Minecraft 1.21.1
 
 All 33 gems come across to NeoForge 1.21.1. Use Java 21, NeoForge 21.1.265 or
