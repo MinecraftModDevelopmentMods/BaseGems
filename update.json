@@ -1,10 +1,11 @@
 {
   "homepage": "https://www.curseforge.com/minecraft/mc-mods/basegems",
   "promos": {
-    "1.21.1-latest": "4.0.0.121012",
-    "1.21.1-recommended": "4.0.0.121012"
+    "1.21.1-latest": "4.0.1.121012",
+    "1.21.1-recommended": "4.0.1.121012"
   },
   "1.21.1": {
+    "4.0.1.121012": "Corrects the rocks that peridot and sapphire generate in; every other gem rule is unchanged.",
     "4.0.0.121012": "Base Gems for Minecraft 1.21.1 on NeoForge, built on MMDLib 2.0.2 and OreSpawn 4.1."
   }
 }

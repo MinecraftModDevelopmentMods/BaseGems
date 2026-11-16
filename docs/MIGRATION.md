@@ -2,7 +2,7 @@
 
 1. Close Minecraft or stop the server. Copy the whole world directory before
    upgrading, and keep the copy until you're happy with the result.
-2. Install Base Gems 4.0.0, MMDLib 2.0.2 or later and MMD OreSpawn 4.1.1 or
+2. Install Base Gems 4.0.1, MMDLib 2.0.2 or later and MMD OreSpawn 4.1.1 or
    later on NeoForge for 1.21.1, plus 1.21.1 versions of the other mods that
    placed blocks or items in the world.
 3. Open the world. Use Optimize World or the server's `--forceUpgrade`

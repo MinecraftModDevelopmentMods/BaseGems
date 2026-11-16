@@ -9,7 +9,7 @@ if it isn't installed.
 ```
 
 On Windows, use `gradlew.bat`. The game jar is
-`build/libs/BaseGems-4.0.0.121012-development.jar`; a release tag sets the
+`build/libs/BaseGems-4.0.1.121012-development.jar`; a release tag sets the
 version instead (see [releasing](RELEASING.md)). `./gradlew runClient` and
 `./gradlew runServer` start the game from `run/`.
 
