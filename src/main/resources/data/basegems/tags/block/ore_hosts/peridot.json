@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    {"id": "mineralogy:peridotite", "required": false},
+    {"id": "mineralogy:gabbro", "required": false}
+  ]
+}

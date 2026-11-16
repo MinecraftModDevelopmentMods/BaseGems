@@ -39,6 +39,7 @@ jobs:
       - name: Build and test
         run: |
           chmod +x ./gradlew
+          python3 tools/verify_geology_defaults.py
           ./gradlew clean check build
 
       - name: Upload build artifacts
