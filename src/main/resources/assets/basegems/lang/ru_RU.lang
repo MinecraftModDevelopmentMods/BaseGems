@@ -1328,3 +1328,4 @@ tile.basegems.violetsapphire_wall.name=Ограда фиолетового са�
 tile.basegems.violetsapphire_wall.normal.name=Ограда фиолетового сапфира
 tile.basegems.violetsapphire.name=Расплав фиолетового сапфира
 fluid.basegems.violetsapphire.name=Расплав фиолетового сапфира
+config.basegems.connection.mismatch=Настройки Base Gems отличаются от настроек сервера. Установите эти значения в config/basegems-common.toml, перезапустите Minecraft и подключитесь снова: %s

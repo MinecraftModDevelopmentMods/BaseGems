@@ -1328,3 +1328,4 @@ tile.basegems.violetsapphire_wall.name=Violet Sapphire Wall
 tile.basegems.violetsapphire_wall.normal.name=Violet Sapphire Wall
 tile.basegems.violetsapphire.name=Molten Violet Sapphire
 fluid.basegems.violetsapphire.name=Molten Violet Sapphire
+config.basegems.connection.mismatch=Base Gems settings differ from this server. Set these values in config/basegems-common.toml, then restart Minecraft and reconnect: %s

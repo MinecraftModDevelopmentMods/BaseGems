@@ -1,7 +1,7 @@
 package zone.moddev.mc.basegems.content;
 
-import net.minecraft.block.BlockSlab;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.IItemProvider;
@@ -10,21 +10,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
 /** Keeps old double slabs intact when a 1.10 or 1.12 world is upgraded. */
-public final class CompatibilityDoubleSlabBlock extends BlockSlab {
+public final class CompatibilityDoubleSlabBlock extends SlabBlock {
     private final int harvestLevel;
-    private final BlockSlab single;
+    private final SlabBlock single;
 
-    public CompatibilityDoubleSlabBlock(Properties properties, int harvestLevel, BlockSlab single) {
+    public CompatibilityDoubleSlabBlock(Properties properties, int harvestLevel, SlabBlock single) {
         super(properties);
         this.harvestLevel = harvestLevel;
         this.single = single;
         setDefaultState(getDefaultState().with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, Boolean.FALSE));
     }
 
-    @Override public ToolType getHarvestTool(IBlockState state) { return ToolType.PICKAXE; }
-    @Override public int getHarvestLevel(IBlockState state) { return harvestLevel; }
-    @Override public IItemProvider getItemDropped(IBlockState state, World world, BlockPos pos, int fortune) {
-        return single;
-    }
-    @Override protected ItemStack getSilkTouchDrop(IBlockState state) { return new ItemStack(single, 2); }
+    @Override public ToolType getHarvestTool(BlockState state) { return ToolType.PICKAXE; }
+    @Override public int getHarvestLevel(BlockState state) { return harvestLevel; }
 }

@@ -1328,3 +1328,4 @@ tile.basegems.violetsapphire_wall.name=Violetter Saphir-Mauer
 tile.basegems.violetsapphire_wall.normal.name=Violetter Saphir-Mauer
 tile.basegems.violetsapphire.name=Violetter Saphir-Schmelze
 fluid.basegems.violetsapphire.name=Violetter Saphir-Schmelze
+config.basegems.connection.mismatch=Die Base-Gems-Einstellungen unterscheiden sich von denen des Servers. Setze diese Werte in config/basegems-common.toml, starte Minecraft neu und verbinde dich erneut: %s

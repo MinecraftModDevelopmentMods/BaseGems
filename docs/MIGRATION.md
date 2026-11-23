@@ -1,30 +1,21 @@
-# Upgrading Base Gems worlds to 1.13.2
+# Upgrading Base Gems worlds to 1.14.4
 
-1. Close Minecraft or stop the old server. Copy the whole world directory
-   before upgrading. Keep the original save and its mods available.
-2. Use Java 8 and Forge 25.0.223. Install the 1.13.2 versions of Base Gems and
-   MMD OreSpawn, plus 1.13.2 ports of the other mods that placed blocks or
-   items in the world. The migration only handles Base Gems content. For
-   worlds with Base Metals, use its 1.13.2 version too.
-3. Open the copy. Use Optimize World or the server's `--forceUpgrade` option
-   to convert every region at once. Normal loading converts chunks as you
-   visit them. Keep the `basegems-legacy-registry.dat` file that Base Gems
-   writes in the save, especially if some old chunks are still unvisited.
-4. Check the places and inventories that matter to you and keep the old
-   save until you're happy with the upgrade.
+Close the game and copy the whole save. Install the 1.14.4 versions of Base
+Gems, OreSpawn and every other mod that owns blocks or items in the world.
+Open the copy with Java 8 and Forge 28.2.26. Keep the original until you have
+checked your builds and inventories.
 
-Minecraft 1.13 replaces numeric block IDs and metadata with named block
-states. Base Gems reads the IDs assigned to the world, including the
-Forge snapshot in `level.dat_old` when needed. It preserves the old gem
-names and restores settings such as slab halves, stair facing, plate
-orientation, fluid levels and the hinge and opening on both halves of a
-door. Old universal buckets containing molten gems become named gem
-buckets. Item counts, tool damage and existing item tags are carried over.
+For worlds from 1.10–1.12, first use released Base Gems 2.5.0.113021 on
+Minecraft 1.13.2. Keep `basegems-legacy-registry.dat` with that world when
+moving on to 1.14, especially if some old chunks remain unvisited. The 1.14
+port retains the old block and item names, fluid and bucket IDs, named block
+states and the legacy snapshot reader. Both old double-slab blocks and
+ordinary slabs remain registered.
 
-Base Gems creates a `*.basegems-legacy-backup` next to any level or player
-file it needs to rewrite. Minecraft writes converted chunks in place. The
-untouched copy of the original world is what you need if you want to go back.
+Use Optimize World or the server's `--forceUpgrade` option to convert every
+region at once. Reopen the copy and check the places and inventories that
+matter to you. OreSpawn keeps its world profile; gem rules retain their old
+IDs, so upgrading does not create a second family of deposits.
 
-Set Fantasy Level and gem switches in the new Mods config screen after
-the upgrade. The old `BaseGems.cfg` is a reference for the settings you used
-before. OreSpawn owns its saved world profiles.
+The focused test receipt records the copied world used for automated checks.
+It does not replace a backup or manual acceptance of your own modpack.

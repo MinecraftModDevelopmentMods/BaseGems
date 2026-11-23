@@ -1,4 +1,4 @@
-# Base Gems for Minecraft 1.13.2
+# Base Gems for Minecraft 1.14.4
 
 Base Gems adds 33 gemstones to Minecraft. Mine agate and amethyst in upper
 caves, look deeper for ruby and sapphire, or head down near bedrock for black
@@ -7,28 +7,30 @@ pieces, tools, weapons and shields.
 
 ## Installation
 
-Use Java 8 and Forge **25.0.223 for Minecraft 1.13.2** on both client and
+Use Java 8 and Forge **28.2.26 for Minecraft 1.14.4** on both client and
 server. Base Gems needs MMD OreSpawn and runs without MMDLib.
 
-Use [MMD OreSpawn 4.1.7.113021](https://www.curseforge.com/minecraft/mc-mods/mmd-orespawn/files/9611746)
-or a later compatible 1.13.2 release. It includes the fix for checking cave air
+Use [MMD OreSpawn 4.1.7.114041](https://github.com/MinecraftModDevelopmentMods/OreSpawn/releases/tag/4.1.7.114041)
+or a later compatible 1.14.4 release. It includes the fix for checking cave air
 at generation boundaries; no separate local engine is needed.
 
 Base Metals is optional for a new world. When installed together, use
-[Base Metals 3.0.3.113021](https://github.com/MinecraftModDevelopmentMods/BaseMetals/releases/tag/3.0.3.113021)
-or a later compatible 1.13.2 release. If your old
+[Base Metals 3.0.2.114041](https://github.com/MinecraftModDevelopmentMods/BaseMetals/releases/tag/3.0.2.114041)
+or a later compatible 1.14.4 release. If your old
 world contains Base Metals blocks or items, keep it installed for the upgrade.
 
 Gem crushing works with the Base Gems crackhammer on its own. With Base
 Metals installed its tools and crushers can use the same recipes. With
-Modern Metals alone, its crackhammers can use them too.
+[Modern Metals 3.0.0.114041](https://github.com/MinecraftModDevelopmentMods/ModernMetals/releases/tag/3.0.0.114041)
+alone, its crackhammers can use them too. Both metal mods remain optional;
+Base Metals owns shared crushing when both are installed.
 
 ## Upgrading a world
 
-Make a separate copy before opening a 1.10.2, 1.11.2 or 1.12.2 world in
-1.13.2. Keep the original Forge `level.dat` with the copy. Base Gems uses
-that save's registry to restore the gems and their block states during
-Minecraft's flattening. [World upgrade details](docs/MIGRATION.md)
+Make a separate copy before opening a 1.13.2 world in 1.14.4. Keep the
+whole save, including `basegems-legacy-registry.dat` if it is present. Worlds
+from 1.10–1.12 should first go through the released Base Gems 1.13.2 upgrade.
+[World upgrade details](docs/MIGRATION.md)
 
 ## Mining and trading
 
@@ -39,8 +41,8 @@ iron level. A weaker tool breaks the ore
 without a drop. These are the same mining requirements as in 1.12.
 
 Gem ores give XP when mined. Fortune can increase the gem yield, and Silk
-Touch lets you take the ore block home. Smiths buy and sell gems for
-emeralds, with rarer gems appearing as their careers advance.
+Touch lets you take the ore block home. Armourers, toolsmiths and weaponsmiths buy and sell gems for emeralds,
+with rarer gems appearing at higher levels. Their offers restock as they work.
 In High Fantasy, toolsmiths and weaponsmiths also sell gem equipment.
 
 OreSpawn handles placement in the Overworld. Amber and moldavite turn up in
@@ -55,10 +57,16 @@ changes stone, the background of the gem ores changes with it.
 
 Pick up a gem to learn what you can make with it in the recipe book. Some
 recipes appear when you pick up a processed part, such as a gem plate.
-The recipes you learn follow your Fantasy Level and gem settings.
-You can smelt gem ore or powder in a furnace to get the gem back.
+Tagged gems and parts from other mods teach the same recipes when they can
+be used as ingredients. The recipes you learn follow your Fantasy Level and
+gem settings. Smelt gem ore or powder in a furnace, or use a blast furnace
+for the same result in half the time.
 
-Open **Mods → Base Gems → Config** or choose **Base Gems** from OreSpawn's
+Repair a damaged gem shield by putting it and one matching plate in a
+crafting grid. Its name and enchantments stay. Repair is a manual recipe
+and does not appear in the recipe book.
+
+Open **Mods â†’ Base Gems â†’ Config** or choose **Base Gems** from OreSpawn's
 **Mods** list. Both screens save to `config/basegems-common.toml`. Restart the
 game or server after changing Fantasy Level or switching a gem on or off.
 Gem switches keep existing blocks and items available in old worlds.
@@ -67,8 +75,9 @@ Gem switches keep existing blocks and items available in old worlds.
 decorative pieces. Player and horse armour are left to add-ons.
 **Low Fantasy** keeps mining, trades, gem processing, plates and storage blocks.
 It leaves out recipes for things like ruby doors, gemstone gears and gem tools.
-Base Gems has its own Fantasy Level. Use the same setting on the server and
-client in multiplayer.
+Base Gems has its own Fantasy Level. Multiplayer checks it and all gem
+switches before joining; if they differ, the connection message lists the
+settings to change. Restart after changing them, then reconnect.
 
 ## Mod compatibility
 
@@ -80,9 +89,10 @@ upgrade recipes are not part of this port.
 
 ## Development and credits
 
-The 1.13.2 branch uses ForgeGradle 7 and builds a Java 8 mod.
+The 1.14.4 branch uses ForgeGradle 7 and builds a Java 8 mod.
 See [building and Eclipse setup](docs/BUILDING.md) and the
-[changelog](CHANGELOG.txt).
+[manual testing](docs/MANUAL_TESTING.md), [porting notes](docs/PORTING_114.md)
+and the [changelog](CHANGELOG.txt).
 
 The gem artwork comes from the 1.12.2 branch. Thanks to Aedda, Eejit,
 jmlovelace, KiriCattus and the Tinkers' Construct team for their work.

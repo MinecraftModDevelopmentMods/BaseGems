@@ -1328,3 +1328,4 @@ tile.basegems.violetsapphire_wall.name=Paarse saffier-muur
 tile.basegems.violetsapphire_wall.normal.name=Paarse saffier-muur
 tile.basegems.violetsapphire.name=Gesmolten paarse saffier
 fluid.basegems.violetsapphire.name=Gesmolten paarse saffier
+config.basegems.connection.mismatch=De instellingen van Base Gems verschillen van die van de server. Stel deze waarden in config/basegems-common.toml in, herstart Minecraft en maak opnieuw verbinding: %s

@@ -35,8 +35,7 @@ public final class BaseGems {
     }
 
     private void setup(FMLCommonSetupEvent event) {
-        DeferredWorkQueue.runLater(CrushingRecipe::register);
-        GemTrades.register();
+        DeferredWorkQueue.runLater(zone.moddev.mc.basegems.network.GameplaySettingsNetwork::register);
     }
     private void enqueue(InterModEnqueueEvent event) { GemWorldgen.enqueue(); }
 }

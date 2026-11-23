@@ -1328,3 +1328,4 @@ tile.basegems.violetsapphire_wall.name=Muro de zafiro violeta
 tile.basegems.violetsapphire_wall.normal.name=Muro de zafiro violeta
 tile.basegems.violetsapphire.name=Zafiro violeta en estado fundido
 fluid.basegems.violetsapphire.name=Zafiro violeta en estado fundido
+config.basegems.connection.mismatch=La configuración de Base Gems no coincide con la del servidor. Cambia estos valores en config/basegems-common.toml, reinicia Minecraft y vuelve a conectarte: %s

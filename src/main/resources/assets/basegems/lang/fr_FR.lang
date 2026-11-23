@@ -1328,3 +1328,4 @@ tile.basegems.violetsapphire_wall.name=Muret en saphir violet
 tile.basegems.violetsapphire_wall.normal.name=Muret en saphir violet
 tile.basegems.violetsapphire.name=Saphir violet à l’état fondu
 fluid.basegems.violetsapphire.name=Saphir violet à l’état fondu
+config.basegems.connection.mismatch=Les paramètres de Base Gems diffèrent de ceux du serveur. Modifiez ces valeurs dans config/basegems-common.toml, puis redémarrez Minecraft et reconnectez-vous : %s

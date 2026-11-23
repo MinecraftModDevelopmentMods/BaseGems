@@ -1,16 +1,23 @@
 [
   {
     "id": "orespawn",
-    "coordinate": "curse.maven:mmd-orespawn-245586:9611746",
-    "repository": "https://www.cursemaven.com",
-    "sha256": "E65DCCA0623A20111C40779CB0FE2078E98C618FAA68F79C9A28E1E53C63957E",
+    "coordinate": "zone.moddev.mc.orespawn:OreSpawn:4.1.7.114041",
+    "repository": "https://maven.moddev.zone/releases",
+    "sha256": "C6171543240D43CD6273601D537D46A8F8C8A8B5992B258827E2F6F713AB7D44",
     "runtime": true
   },
   {
     "id": "basemetals",
-    "coordinate": "zone.moddev.mc.basemetals:BaseMetals:3.0.3.113021",
+    "coordinate": "zone.moddev.mc.basemetals:BaseMetals:3.0.2.114041",
     "repository": "https://maven.moddev.zone/releases",
-    "sha256": "88B9DB908249B9CD7E415F5577311ED03A22CF6BF17800688F67FC65F6BE2ECD",
+    "sha256": "11C0C4A6FE26B22EE794EA76CD6E0F1C5B65FB03540F9E8E0C52425CFEFB062B",
     "runtime": false
+  },
+  {
+    "id": "modernmetals",
+    "coordinate": "zone.moddev.mc.modernmetals:ModernMetals:3.0.0.114041",
+    "repository": "https://maven.moddev.zone/releases",
+    "runtime": false,
+    "sha256": "22942EBC37BE76D940EA6EFCA53DA6E47085D72EAD95D348DE70D7526389683B"
   }
 ]

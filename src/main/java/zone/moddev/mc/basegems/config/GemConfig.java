@@ -43,6 +43,7 @@ public final class GemConfig {
     }
 
     public static String configuredMode() { return loaded == null ? activeMode : MODE.get(); }
+    public static String activeMode() { return activeMode; }
     public static boolean configuredGem(String gem) { return loaded == null || ENABLED.get(gem).get(); }
 
     public static void save(String mode, Map<String, Boolean> gems) {

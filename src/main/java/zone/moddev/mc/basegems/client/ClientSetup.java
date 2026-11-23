@@ -18,9 +18,8 @@ public final class ClientSetup {
         ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY,
                 () -> (minecraft, parent) -> new GemConfigScreen(parent));
         WorldSettingsExtensionRegistry.registerConfigScreen("basegems", GemConfigScreen::new);
-        ClientMoltenGemRenderer.register();
-        MinecraftForge.EVENT_BUS.addListener(ClientSetup::registerBucketColours);
-        MinecraftForge.EVENT_BUS.addListener(ModsListConfigButton::onDraw);
+        net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext.get().getModEventBus()
+                .addListener(ClientSetup::registerBucketColours);
         RenderingRegistry.registerEntityRenderingHandler(MaterialProjectile.class,
                 manager -> new MaterialProjectileRenderer(manager));
     }

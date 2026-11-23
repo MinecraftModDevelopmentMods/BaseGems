@@ -1,3 +1,20 @@
+2.5.0.114041 for Minecraft 1.14.4
+
+All 33 gems move to Forge 1.14.4, using OreSpawn 4.1.7.114041. Base Metals
+3.0.2.114041 remains optional, and Modern Metals tools can share the gem
+crushing recipes. The existing item names, config keys and mining levels stay.
+
+- Block drops use native loot tables, retaining Fortune, Silk Touch and XP.
+- Blast furnaces process gem ore and powder in half the ordinary furnace time.
+- Gem trades move to the three Village & Pillage smith professions and restock.
+- Molten gems use Forge's fluid renderer, with animated textures and coloured buckets.
+- Gem ore overlays use the wider Base Metals spacing to stop flickering at shallow angles.
+- Both config entry points use the 1.14 screens. Multiplayer checks Fantasy
+  Level and gem switches before joining.
+- Tagged gems and parts from other mods unlock the recipes that accept them.
+- Shield repair stays manual and keeps the shield's name and enchantments.
+- Saved gem IDs and the legacy registry snapshot remain available on upgrade.
+
 2.5.0.113021 for Minecraft 1.13.2
 
 - Pin optional Base Metals compatibility to 3.0.3, with its shared processing and mining fixes.

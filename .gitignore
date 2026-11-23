@@ -25,6 +25,7 @@ run
 /forge-*-changelog.txt
 
 secret.json
+/local-build.properties
 
 # Local agent context and verification evidence
 /AGENTS.md

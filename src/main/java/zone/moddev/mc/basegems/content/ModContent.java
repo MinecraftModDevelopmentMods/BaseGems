@@ -7,19 +7,19 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlowingFluid;
+import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
-import net.minecraft.init.Items;
+import net.minecraft.item.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.IRegistry;
+import net.minecraft.util.registry.Registry;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -38,6 +38,9 @@ public final class ModContent {
     };
 
     private ModContent() {}
+
+    public static Map<String, Block> blocks() { return Collections.unmodifiableMap(BLOCKS); }
+    public static Map<String, Item> items() { return Collections.unmodifiableMap(ITEMS); }
 
     public static ResourceLocation id(String path) { return new ResourceLocation(BaseGems.MOD_ID, path); }
     public static Block block(String path) { return BLOCKS.get(path); }
@@ -59,14 +62,21 @@ public final class ModContent {
             FlowingFluid flowing = new MoltenFluid.Flowing(name);
             fluid.source().bind(source);
             fluid.flowing().bind(flowing);
-            IRegistry.field_212619_h.put(id(name), source);
-            IRegistry.field_212619_h.put(id("flowing_" + name), flowing);
+            source.setRegistryName(id(name));
+            flowing.setRegistryName(id("flowing_" + name));
             for (Fluid type : new Fluid[]{source, flowing}) {
                 FLUID_COLOURS.put(type, gem.colour() & 0xffffff);
                 for (IFluidState state : type.getStateContainer().getValidStates()) {
                     Fluid.STATE_REGISTRY.add(state);
                 }
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerFluids(RegistryEvent.Register<Fluid> event) {
+        for (FluidContent content : FLUIDS.values()) {
+            event.getRegistry().registerAll(content.source().get(), content.flowing().get());
         }
     }
 
@@ -79,16 +89,16 @@ public final class ModContent {
                 BLOCKS.put(path, value);
                 event.getRegistry().register(value.setRegistryName(id(path)));
                 if (!path.startsWith("double_")) {
-                    ITEM_FACTORIES.put(path, () -> new ItemBlock(value, new Item.Properties().group(GEMS)));
+                    ITEM_FACTORIES.put(path, () -> new BlockItem(value, new Item.Properties().group(GEMS)));
                 }
             });
             FluidContent fluid = fluid(name);
-            BlockFlowingFluid molten = new MoltenGemBlock(fluid.source().get());
+            FlowingFluidBlock molten = new MoltenGemBlock(fluid.source().get());
             fluid.block().bind(molten);
             BLOCKS.put(name, molten);
             event.getRegistry().register(molten.setRegistryName(id(name)));
             // The pre-flattening versions registered an item for the fluid block.
-            ITEM_FACTORIES.put(name, () -> new ItemBlock(molten, new Item.Properties()));
+            ITEM_FACTORIES.put(name, () -> new BlockItem(molten, new Item.Properties()));
             ITEM_FACTORIES.put(name + "_bucket", () -> {
                 Item bucket = new GemBucketItem(fluid.source().get(),
                         new Item.Properties().containerItem(Items.BUCKET).maxStackSize(1).group(GEMS));
@@ -108,7 +118,7 @@ public final class ModContent {
         });
     }
 
-    private static final class MoltenGemBlock extends BlockFlowingFluid {
+    private static final class MoltenGemBlock extends FlowingFluidBlock {
         private MoltenGemBlock(FlowingFluid fluid) {
             super(fluid, Block.Properties.create(Material.LAVA).doesNotBlockMovement()
                     .hardnessAndResistance(100).variableOpacity());

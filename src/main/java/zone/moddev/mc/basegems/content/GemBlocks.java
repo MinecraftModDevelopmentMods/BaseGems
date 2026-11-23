@@ -26,7 +26,7 @@ final class GemBlocks {
         blocks.put(name + "_button", new HarvestButton(properties(gem).doesNotBlockMovement(), harvest));
         blocks.put(name + "_lever", new HarvestLever(properties(gem).doesNotBlockMovement(), harvest));
         blocks.put(name + "_pressure_plate", new HarvestPressurePlate(properties(gem), harvest));
-        BlockSlab slab = new HarvestSlab(properties(gem), harvest);
+        SlabBlock slab = new HarvestSlab(properties(gem), harvest);
         blocks.put(name + "_slab", slab);
         blocks.put("double_" + name + "_slab", new CompatibilityDoubleSlabBlock(properties(gem), harvest, slab));
         blocks.put(name + "_stairs", new HarvestStairs(storage.getDefaultState(), properties(gem), harvest));
@@ -42,62 +42,62 @@ final class GemBlocks {
     private static class HarvestBlock extends Block {
         private final int level;
         HarvestBlock(Properties properties, int level) { super(properties); this.level = level; }
-        @Override public ToolType getHarvestTool(net.minecraft.block.state.IBlockState state) { return ToolType.PICKAXE; }
-        @Override public int getHarvestLevel(net.minecraft.block.state.IBlockState state) { return level; }
+        @Override public ToolType getHarvestTool(net.minecraft.block.BlockState state) { return ToolType.PICKAXE; }
+        @Override public int getHarvestLevel(net.minecraft.block.BlockState state) { return level; }
     }
 
-    private static class HarvestPane extends BlockPane {
+    private static class HarvestPane extends PaneBlock {
         private final int level;
         HarvestPane(Properties properties, int level) { super(properties); this.level = level; }
-        @Override public ToolType getHarvestTool(net.minecraft.block.state.IBlockState state) { return ToolType.PICKAXE; }
-        @Override public int getHarvestLevel(net.minecraft.block.state.IBlockState state) { return level; }
+        @Override public ToolType getHarvestTool(net.minecraft.block.BlockState state) { return ToolType.PICKAXE; }
+        @Override public int getHarvestLevel(net.minecraft.block.BlockState state) { return level; }
     }
-    private static class HarvestDoor extends BlockDoor {
+    private static class HarvestDoor extends DoorBlock {
         private final int level;
         HarvestDoor(Properties properties, int level) { super(properties); this.level = level; }
-        @Override public ToolType getHarvestTool(net.minecraft.block.state.IBlockState state) { return ToolType.PICKAXE; }
-        @Override public int getHarvestLevel(net.minecraft.block.state.IBlockState state) { return level; }
+        @Override public ToolType getHarvestTool(net.minecraft.block.BlockState state) { return ToolType.PICKAXE; }
+        @Override public int getHarvestLevel(net.minecraft.block.BlockState state) { return level; }
     }
-    private static class HarvestTrapDoor extends BlockTrapDoor {
+    private static class HarvestTrapDoor extends TrapDoorBlock {
         private final int level;
         HarvestTrapDoor(Properties properties, int level) { super(properties); this.level = level; }
-        @Override public ToolType getHarvestTool(net.minecraft.block.state.IBlockState state) { return ToolType.PICKAXE; }
-        @Override public int getHarvestLevel(net.minecraft.block.state.IBlockState state) { return level; }
+        @Override public ToolType getHarvestTool(net.minecraft.block.BlockState state) { return ToolType.PICKAXE; }
+        @Override public int getHarvestLevel(net.minecraft.block.BlockState state) { return level; }
     }
-    private static class HarvestButton extends BlockButtonStone {
+    private static class HarvestButton extends StoneButtonBlock {
         private final int level;
         HarvestButton(Properties properties, int level) { super(properties); this.level = level; }
-        @Override public ToolType getHarvestTool(net.minecraft.block.state.IBlockState state) { return ToolType.PICKAXE; }
-        @Override public int getHarvestLevel(net.minecraft.block.state.IBlockState state) { return level; }
+        @Override public ToolType getHarvestTool(net.minecraft.block.BlockState state) { return ToolType.PICKAXE; }
+        @Override public int getHarvestLevel(net.minecraft.block.BlockState state) { return level; }
     }
-    private static class HarvestSlab extends BlockSlab {
+    private static class HarvestSlab extends SlabBlock {
         private final int level;
         HarvestSlab(Properties properties, int level) { super(properties); this.level = level; }
-        @Override public ToolType getHarvestTool(net.minecraft.block.state.IBlockState state) { return ToolType.PICKAXE; }
-        @Override public int getHarvestLevel(net.minecraft.block.state.IBlockState state) { return level; }
+        @Override public ToolType getHarvestTool(net.minecraft.block.BlockState state) { return ToolType.PICKAXE; }
+        @Override public int getHarvestLevel(net.minecraft.block.BlockState state) { return level; }
     }
-    private static class HarvestLever extends BlockLever {
+    private static class HarvestLever extends LeverBlock {
         private final int level;
         HarvestLever(Properties properties, int level) { super(properties); this.level = level; }
-        @Override public ToolType getHarvestTool(net.minecraft.block.state.IBlockState state) { return ToolType.PICKAXE; }
-        @Override public int getHarvestLevel(net.minecraft.block.state.IBlockState state) { return level; }
+        @Override public ToolType getHarvestTool(net.minecraft.block.BlockState state) { return ToolType.PICKAXE; }
+        @Override public int getHarvestLevel(net.minecraft.block.BlockState state) { return level; }
     }
-    private static class HarvestPressurePlate extends BlockPressurePlate {
+    private static class HarvestPressurePlate extends PressurePlateBlock {
         private final int level;
         HarvestPressurePlate(Properties properties, int level) { super(Sensitivity.MOBS, properties); this.level = level; }
-        @Override public ToolType getHarvestTool(net.minecraft.block.state.IBlockState state) { return ToolType.PICKAXE; }
-        @Override public int getHarvestLevel(net.minecraft.block.state.IBlockState state) { return level; }
+        @Override public ToolType getHarvestTool(net.minecraft.block.BlockState state) { return ToolType.PICKAXE; }
+        @Override public int getHarvestLevel(net.minecraft.block.BlockState state) { return level; }
     }
-    private static class HarvestStairs extends BlockStairs {
+    private static class HarvestStairs extends StairsBlock {
         private final int level;
-        HarvestStairs(net.minecraft.block.state.IBlockState base, Properties properties, int level) { super(base, properties); this.level = level; }
-        @Override public ToolType getHarvestTool(net.minecraft.block.state.IBlockState state) { return ToolType.PICKAXE; }
-        @Override public int getHarvestLevel(net.minecraft.block.state.IBlockState state) { return level; }
+        HarvestStairs(net.minecraft.block.BlockState base, Properties properties, int level) { super(base, properties); this.level = level; }
+        @Override public ToolType getHarvestTool(net.minecraft.block.BlockState state) { return ToolType.PICKAXE; }
+        @Override public int getHarvestLevel(net.minecraft.block.BlockState state) { return level; }
     }
-    private static class HarvestWall extends BlockWall {
+    private static class HarvestWall extends WallBlock {
         private final int level;
         HarvestWall(Properties properties, int level) { super(properties); this.level = level; }
-        @Override public ToolType getHarvestTool(net.minecraft.block.state.IBlockState state) { return ToolType.PICKAXE; }
-        @Override public int getHarvestLevel(net.minecraft.block.state.IBlockState state) { return level; }
+        @Override public ToolType getHarvestTool(net.minecraft.block.BlockState state) { return ToolType.PICKAXE; }
+        @Override public int getHarvestLevel(net.minecraft.block.BlockState state) { return level; }
     }
 }

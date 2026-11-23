@@ -1,0 +1,60 @@
+package zone.moddev.mc.basegems.recipe;
+
+import com.google.gson.JsonObject;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.BlastingRecipe;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.JSONUtils;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+import net.minecraftforge.common.crafting.CraftingHelper;
+import zone.moddev.mc.basegems.BaseGems;
+import zone.moddev.mc.basegems.config.GemConfig;
+
+/** Furnace recipes also honour the gem switches. */
+public final class GemBlastingRecipe extends BlastingRecipe {
+    public static final IRecipeSerializer<GemBlastingRecipe> SERIALIZER = new Serializer();
+    private static final int COOKING_TIME = 100;
+
+    private GemBlastingRecipe(ResourceLocation id, Ingredient ingredient, ItemStack result, float experience) {
+        super(id, "", ingredient, result, experience, COOKING_TIME);
+    }
+
+    private boolean allowed() {
+        return GemConfig.allows(getRecipeOutput().getItem().getRegistryName().getPath());
+    }
+
+    @Override public boolean matches(IInventory inventory, World world) {
+        return allowed() && super.matches(inventory, world);
+    }
+
+    @Override public ItemStack getCraftingResult(IInventory inventory) {
+        return allowed() ? super.getCraftingResult(inventory) : ItemStack.EMPTY;
+    }
+
+    @Override public boolean isDynamic() { return !allowed(); }
+    @Override public IRecipeSerializer<?> getSerializer() { return SERIALIZER; }
+
+    private static final class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<GemBlastingRecipe> {
+        private Serializer() { setRegistryName(BaseGems.MOD_ID, "blasting"); }
+        @Override public GemBlastingRecipe read(ResourceLocation id, JsonObject json) {
+            return new GemBlastingRecipe(id, Ingredient.deserialize(json.get("ingredient")),
+                    CraftingHelper.getItemStack(JSONUtils.getJsonObject(json, "result"), true),
+                    JSONUtils.getFloat(json, "experience", 0.0F));
+        }
+
+        @Override public GemBlastingRecipe read(ResourceLocation id, PacketBuffer buffer) {
+            return new GemBlastingRecipe(id, Ingredient.read(buffer), buffer.readItemStack(), buffer.readFloat());
+        }
+
+        @Override public void write(PacketBuffer buffer, GemBlastingRecipe recipe) {
+            recipe.getIngredients().get(0).write(buffer);
+            buffer.writeItemStack(recipe.getRecipeOutput());
+            buffer.writeFloat(recipe.getExperience());
+        }
+
+    }
+}

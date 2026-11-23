@@ -1,0 +1,121 @@
+import groovy.json.JsonSlurper
+import groovy.xml.XmlParser
+import groovy.xml.XmlUtil
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
+import java.security.MessageDigest
+import java.util.zip.ZipFile
+
+def published = new JsonSlurper().parse(file('gradle/dependencies.json')).collectEntries { [(it.id): it] }
+configurations {
+    baseMetalsDevelopment { canBeConsumed = false; transitive = false }
+    modernMetalsDevelopment { canBeConsumed = false; transitive = false }
+}
+dependencies {
+    baseMetalsDevelopment renamer.dependency(published.basemetals.coordinate)
+    modernMetalsDevelopment renamer.dependency(published.modernmetals.coordinate)
+}
+def modernOverride = providers.gradleProperty('modernMetalsDevelopmentJar')
+if (providers.gradleProperty('releaseBuild').getOrElse('false').toBoolean() && modernOverride.isPresent())
+    throw new GradleException('Release builds must use the published Modern Metals candidate')
+def selectedModern = { modernOverride.isPresent() ? file(modernOverride.get()) : configurations.modernMetalsDevelopment.singleFile }
+def profiles = [Standalone: ['', []], WithBaseMetals: ['with-basemetals', ['base']], WithModernMetals: ['with-modernmetals', ['modern']],
+                WithBaseAndModern: ['with-base-and-modern', ['base', 'modern']]]
+def hash = { File f -> MessageDigest.getInstance('SHA-256').digest(f.bytes).encodeHex().toString() }
+def companion = { File f ->
+    if (!f.name.toLowerCase(Locale.ROOT).endsWith('.jar')) return false
+    if (f.name ==~ /(?i)(BaseMetals-|base-metals-240967-|ModernMetals-).+\.jar/) return true
+    new ZipFile(f).withCloseable { z ->
+        def e = z.getEntry('META-INF/mods.toml')
+        e && (z.getInputStream(e).getText('UTF-8') =~ /modId\s*=\s*"(?:basemetals|modernmetals)"/).find()
+    }
+}
+def selected = { kinds ->
+    Map result = [:]
+    if (kinds.contains('base')) result["BaseMetals-${project.basemetals_version}-mapped.jar".toString()] = configurations.baseMetalsDevelopment.singleFile
+    if (kinds.contains('modern')) result["ModernMetals-${project.modernmetals_version}-mapped.jar".toString()] = selectedModern()
+    result
+}
+def prepare = tasks.register('prepareCompatibilityMods') {
+    dependsOn configurations.baseMetalsDevelopment, configurations.modernMetalsDevelopment, 'verifyReleaseDependencies'
+    doLast {
+        profiles.each { label, spec ->
+            File mods = file('run/' + spec[0] + '/mods').canonicalFile
+            if (!mods.toPath().startsWith(file('run').canonicalFile.toPath())) throw new GradleException('Unsafe mod directory')
+            mods.mkdirs()
+            Map expected = selected(spec[1])
+            mods.listFiles().findAll { it.isFile() && companion(it) && (!expected.containsKey(it.name) || hash(it) != hash(expected[it.name])) }.each { stale ->
+                File retained = file('.gradle/retired-compatibility-jars/' + label + '/' + hash(stale) + '-' + stale.name).canonicalFile
+                if (!retained.toPath().startsWith(file('.gradle/retired-compatibility-jars').canonicalFile.toPath())) throw new GradleException('Unsafe retention path')
+                retained.parentFile.mkdirs()
+                Files.copy(stale.toPath(), retained.toPath(), StandardCopyOption.REPLACE_EXISTING)
+                if (hash(retained) != hash(stale)) throw new GradleException('Retained companion differs')
+                Files.delete(stale.toPath())
+            }
+            expected.each { name, source ->
+                File target = new File(mods, name)
+                if (!target.isFile() || hash(target) != hash(source)) Files.copy(source.toPath(), target.toPath(), StandardCopyOption.REPLACE_EXISTING)
+                if (hash(target) != hash(source)) throw new GradleException('Staged companion differs: ' + target)
+            }
+        }
+    }
+}
+tasks.register('generateCompatibilityRuns') {
+    dependsOn 'genEclipseRuns', prepare
+    doLast {
+        String template = file('runClient.launch').getText('UTF-8')
+        profiles.each { label, spec ->
+            Node launch = new XmlParser().parseText(template)
+            launch.stringAttribute.find { it.attribute('key') == 'org.eclipse.jdt.launching.WORKING_DIRECTORY' }
+                    .attributes().put('value', file('run/' + spec[0]).absolutePath)
+            Node cp = launch.listAttribute.find { it.attribute('key') == 'org.eclipse.jdt.launching.CLASSPATH' }
+            def jre = cp.listEntry.findAll { it.attribute('value').contains('org.eclipse.jdt.launching.JRE_CONTAINER') }.toList()
+            def launchers = cp.listEntry.collect { new XmlParser().parseText(it.attribute('value')) }
+                    .findAll { it.attribute('externalArchive')?.contains('slime-launcher-') }.collect { file(it.attribute('externalArchive')) }
+            cp.children().clear()
+            (sourceSets.main.runtimeClasspath.files + launchers).findAll { !companion(it) }.unique().each { f ->
+                Node entry = new Node(null, 'runtimeClasspathEntry', [externalArchive: f.absolutePath, type: '2', path: '5'])
+                new Node(cp, 'listEntry', [value: XmlUtil.serialize(entry)])
+            }
+            jre.each { cp.append(it) }
+            file(label == 'Standalone' ? 'runClient.launch' : 'runClient' + label + '.launch').setText(XmlUtil.serialize(launch), 'UTF-8')
+        }
+    }
+}
+tasks.register('verifyEclipseProfiles') {
+    dependsOn 'generateCompatibilityRuns'
+    doLast {
+        profiles.keySet().collect { it == 'Standalone' ? 'runClient.launch' : 'runClient' + it + '.launch' }.each { name ->
+            Node launch = new XmlParser().parse(file(name))
+            if (!launch.booleanAttribute.any { it.attribute('key') == 'org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE' && it.attribute('value') == 'true' })
+                throw new GradleException('Manual profile includes test code: ' + name)
+        }
+        profiles.each { label, spec ->
+            File mods = file('run/' + spec[0] + '/mods')
+            Map expected = selected(spec[1])
+            def actual = mods.listFiles().findAll { it.isFile() && companion(it) }
+            if (actual.collect { it.name }.sort() != expected.keySet().toList().sort()) throw new GradleException('Wrong companions in ' + label)
+            actual.each { if (hash(it) != hash(expected[it.name])) throw new GradleException('Wrong jar in ' + label) }
+        }
+    }
+}
+tasks.register('configureEclipseBuildship') {
+    doLast {
+        File target = file('.settings/org.eclipse.buildship.core.prefs')
+        target.parentFile.mkdirs()
+        Properties settings = new Properties()
+        ['eclipse.preferences.version': '1', 'connection.gradle.distribution': 'GRADLE_DISTRIBUTION(WRAPPER)',
+         'connection.gradle.user.home': gradle.gradleUserHomeDir.canonicalPath, 'connection.project.dir': '',
+         'gradle.user.home': gradle.gradleUserHomeDir.canonicalPath, 'override.workspace.settings': 'true',
+         'java.home': new File(System.getProperty('java.home')).canonicalPath].each { key, value -> settings.setProperty(key, value) }
+        target.withOutputStream { settings.store(it, 'Base Gems Buildship configuration') }
+    }
+}
+
+eclipse.classpath.file.whenMerged { classpath ->
+    classpath.entries.findAll { it.path?.startsWith('src/integrationTest/') || it.path?.startsWith('src/clientIntegrationTest/') }
+            .each { it.entryAttributes['test'] = 'true' }
+}
+
+tasks.named('prepareEclipse') { dependsOn 'verifyEclipseProfiles', 'configureEclipseBuildship' }
+tasks.named('check') { dependsOn 'verifyEclipseProfiles' }

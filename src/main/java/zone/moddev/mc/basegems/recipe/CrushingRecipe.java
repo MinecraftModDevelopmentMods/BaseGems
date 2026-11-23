@@ -8,30 +8,31 @@ import zone.moddev.mc.basegems.BaseGems;
 import zone.moddev.mc.basegems.config.GemConfig;
 
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.RecipeSerializers;
+import net.minecraft.item.crafting.RecipeManager;
+import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.common.crafting.RecipeType;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.ModList;
 
-public final class CrushingRecipe implements IRecipe {
-    public static final RecipeType<CrushingRecipe> TYPE = RecipeType.get(
-            new ResourceLocation(BaseGems.MOD_ID, "crushing"), CrushingRecipe.class);
+@net.minecraftforge.fml.common.Mod.EventBusSubscriber(modid = BaseGems.MOD_ID, bus = net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD)
+public final class CrushingRecipe implements IRecipe<IInventory> {
+    public static final ResourceLocation TYPE_ID = new ResourceLocation(BaseGems.MOD_ID, "crushing");
+    public static final IRecipeType<CrushingRecipe> TYPE = IRecipeType.register("basegems:crushing");
     private static final ResourceLocation BASE_METALS_TYPE = new ResourceLocation("basemetals", "crushing");
     private static final ResourceLocation MODERN_METALS_TYPE = new ResourceLocation("modernmetals", "crushing");
-    public static final IRecipeSerializer<IRecipe> SERIALIZER = new Serializer();
+    public static final IRecipeSerializer<IRecipe<?>> SERIALIZER = new Serializer();
     public static final IRecipeSerializer<PlateRepairRecipe> PLATE_REPAIR_SERIALIZER =
             new PlateRepairRecipe.Serializer();
-    private static boolean registered;
 
     private final ResourceLocation id;
     private final Ingredient ingredient;
@@ -43,21 +44,18 @@ public final class CrushingRecipe implements IRecipe {
         this.result = result.copy();
     }
 
-    public static synchronized void register() {
-        if (registered) return;
-        RecipeSerializers.register(SERIALIZER);
-        RecipeSerializers.register(PLATE_REPAIR_SERIALIZER);
-        RecipeSerializers.register(ContentCraftingRecipe.SERIALIZER);
-        RecipeSerializers.register(GemSmeltingRecipe.SERIALIZER);
-        registered = true;
+    @net.minecraftforge.eventbus.api.SubscribeEvent
+    public static void register(net.minecraftforge.event.RegistryEvent.Register<IRecipeSerializer<?>> event) {
+        event.getRegistry().registerAll(SERIALIZER, PLATE_REPAIR_SERIALIZER,
+                ContentCraftingRecipe.SERIALIZER, GemSmeltingRecipe.SERIALIZER, GemBlastingRecipe.SERIALIZER);
     }
 
     @Nullable
     public static IRecipe find(World world, ItemStack input) {
-        InventoryBasic inventory = new InventoryBasic(new TextComponentString("crushing"), 1);
+        Inventory inventory = new Inventory(1);
         inventory.setInventorySlotContents(0, input);
         for (IRecipe recipe : world.getRecipeManager().getRecipes()) {
-            ResourceLocation type = recipe.getType().getId();
+            ResourceLocation type = Registry.RECIPE_TYPE.getKey(recipe.getType());
             if ((recipe instanceof CrushingRecipe || BASE_METALS_TYPE.equals(type) || MODERN_METALS_TYPE.equals(type))
                     && recipe.matches(inventory, world)) {
                 return recipe;
@@ -75,7 +73,7 @@ public final class CrushingRecipe implements IRecipe {
     @Override public ItemStack getRecipeOutput() { return result.copy(); }
     @Override public ResourceLocation getId() { return id; }
     @Override public IRecipeSerializer<?> getSerializer() { return SERIALIZER; }
-    @Override public RecipeType<CrushingRecipe> getType() { return TYPE; }
+    @Override public IRecipeType<CrushingRecipe> getType() { return TYPE; }
     @Override public NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> ingredients = NonNullList.create();
         ingredients.add(ingredient);
@@ -83,8 +81,8 @@ public final class CrushingRecipe implements IRecipe {
     }
     @Override public boolean isDynamic() { return true; }
 
-    public static final class Serializer implements IRecipeSerializer<IRecipe> {
-        private Serializer() {}
+    public static final class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<IRecipe<?>> {
+        private Serializer() { setRegistryName(TYPE_ID); }
         @Override public IRecipe read(ResourceLocation id, JsonObject json) {
             ItemStack result = CraftingHelper.getItemStack(json.getAsJsonObject("result"), true);
             // Keep disabled gems in the local type, which still rejects them in matches().
@@ -97,19 +95,18 @@ public final class CrushingRecipe implements IRecipe {
                     shared.addProperty("type", host.toString());
                     shared.add("ingredient", json.get("ingredient"));
                     shared.add("result", json.get("result"));
-                    return RecipeSerializers.deserialize(id, shared);
+                    return RecipeManager.deserializeRecipe(id, shared);
                 }
             }
-            return new CrushingRecipe(id, Ingredient.fromJson(json.get("ingredient")), result);
+            return new CrushingRecipe(id, Ingredient.deserialize(json.get("ingredient")), result);
         }
         @Override public CrushingRecipe read(ResourceLocation id, PacketBuffer buffer) {
-            return new CrushingRecipe(id, Ingredient.fromBuffer(buffer), buffer.readItemStack());
+            return new CrushingRecipe(id, Ingredient.read(buffer), buffer.readItemStack());
         }
         @Override public void write(PacketBuffer buffer, IRecipe value) {
             CrushingRecipe recipe = (CrushingRecipe) value;
-            recipe.ingredient.writeToBuffer(buffer);
+            recipe.ingredient.write(buffer);
             buffer.writeItemStack(recipe.result);
         }
-        @Override public ResourceLocation getName() { return TYPE.getId(); }
     }
 }
