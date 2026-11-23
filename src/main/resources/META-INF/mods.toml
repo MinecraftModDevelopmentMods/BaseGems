@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[25,)"
+loaderVersion="[28,)"
 license="LGPL-2.1"
 issueTrackerURL="https://github.com/MinecraftModDevelopmentMods/BaseGems/issues"
 
@@ -21,13 +21,20 @@ side="BOTH"
 [[dependencies.basegems]]
 modId="basemetals"
 mandatory=false
-versionRange="[3.0.3.113021,4.0.0)"
+versionRange="[3.0.2.114041,4.0.0)"
 ordering="AFTER"
 side="BOTH"
 
 [[dependencies.basegems]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.13.2]"
+versionRange="[1.14.4]"
 ordering="NONE"
+side="BOTH"
+
+[[dependencies.basegems]]
+modId="modernmetals"
+mandatory=false
+versionRange="[3.0.0.114041,4.0.0)"
+ordering="AFTER"
 side="BOTH"

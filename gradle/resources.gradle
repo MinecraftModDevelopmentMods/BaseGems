@@ -1,7 +1,15 @@
 def generated = layout.buildDirectory.dir('generated/basegems-resources')
+// Eclipse can have a different PATH from a terminal. Keep machine-specific
+// interpreter paths out of the shared build and honour the usual -P override.
+def localBuild = new Properties()
+def localBuildFile = rootProject.file('local-build.properties')
+if (localBuildFile.isFile()) localBuildFile.withInputStream { localBuild.load(it) }
+
 def generator = tasks.register('generateGemResources', Exec) {
     def python = providers.gradleProperty('pythonExecutable')
+            .orElse(providers.provider { localBuild.getProperty('pythonExecutable')?.trim() ?: null })
             .orElse(org.gradle.internal.os.OperatingSystem.current().isWindows() ? 'python' : 'python3')
+    inputs.property 'pythonExecutable', python
     inputs.file 'gradle/generate-resources.py'
     inputs.file 'gradle/model-templates.json'
     inputs.dir 'src/main/resources/assets/basegems'

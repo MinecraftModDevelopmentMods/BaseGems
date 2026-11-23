@@ -1328,3 +1328,4 @@ tile.basegems.violetsapphire_wall.name=バイオレットサファイアの塀
 tile.basegems.violetsapphire_wall.normal.name=バイオレットサファイアの塀
 tile.basegems.violetsapphire.name=溶融バイオレットサファイア
 fluid.basegems.violetsapphire.name=溶融バイオレットサファイア
+config.basegems.connection.mismatch=Base Gems の設定がサーバーと異なります。config/basegems-common.toml で次の値を設定し、Minecraft を再起動して再接続してください: %s

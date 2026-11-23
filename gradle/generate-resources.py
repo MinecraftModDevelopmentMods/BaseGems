@@ -1,4 +1,4 @@
-"""Translate the legacy art and build the data pack for Forge 25."""
+"""Translate the legacy art and build the data pack for Forge 28."""
 
 from pathlib import Path
 import json
@@ -62,7 +62,7 @@ def convert_models():
     for gem in GEMS:
         asset(f"blockstates/{gem}.json", {"variants": {"": {"model": "basegems:block/molten_gem"}}})
         asset(f"models/item/{gem}.json", generated_model(f"basegems:items/{gem}_ingot"))
-        asset(f"models/item/{gem}_bucket.json", generated_model("minecraft:item/lava_bucket"))
+        asset(f"models/item/{gem}_bucket.json", {"parent": "minecraft:item/generated", "textures": {"layer0": "minecraft:item/bucket", "layer1": "basegems:items/bucket_fluid", "layer2": "basegems:items/bucket_overlay"}})
         for form in FORMS:
             path = f"{gem}_{form}"
             if form == "door":
@@ -74,7 +74,7 @@ def convert_models():
                           "wall": "_wall_inventory", "pressure_plate": "_pressure_plate_up"}.get(form, "_" + form)
                 model = {"parent": "basegems:block/" + gem + suffix}
             asset(f"models/item/{path}.json", model)
-    asset("models/block/molten_gem.json", {"textures": {"particle": "basegems:blocks/molten_metal_still"}})
+    asset("models/block/molten_gem.json", {"textures": {"particle": "basegems:block/molten_metal_still"}})
 
 
 def convert_languages():
@@ -94,6 +94,7 @@ def convert_languages():
         for gem in GEMS:
             name = values.get(f"item.basegems.{gem}_ingot", gem)
             values[f"item.basegems.{gem}_bucket"] = values.get(f"fluid.basegems.{gem}", name) + " Bucket"
+        values.setdefault("config.basegems.connection.mismatch", "Base Gems settings differ from this server. Set these values in config/basegems-common.toml, then restart Minecraft and reconnect: %s")
         asset(f"lang/{path.stem.lower()}.json", values)
 
 
@@ -115,12 +116,15 @@ def game_data(kind, path, data):
 
 def advancement(gem, name, trigger):
     recipe = f"basegems:{gem}_{name}"
+    predicate = {"ingot": tag("gems", gem), "nugget": tag("nuggets", gem),
+                 "block": tag("storage_blocks", gem), "rod": tag("rods", gem),
+                 "plate": tag("plates", gem)}.get(trigger, item(gem, trigger))
     game_data("advancements/recipes", f"{gem}_{name}", {
         "parent": "minecraft:recipes/root",
         "rewards": {"recipes": [recipe]},
         "criteria": {
             "has_ingredient": {"trigger": "minecraft:inventory_changed",
-                               "conditions": {"items": [item(gem, trigger)]}},
+                               "conditions": {"items": [predicate]}},
             "has_recipe": {"trigger": "minecraft:recipe_unlocked", "conditions": {"recipe": recipe}},
         },
         "requirements": [["has_ingredient", "has_recipe"]],
@@ -181,11 +185,13 @@ def crafting(gem):
     shaped("bars", 4, "rod", "xxx", {"x": rod}, name="bars_from_rods")
     game_data("recipes", f"{gem}_repair_shield", {"type": "basegems:plate_repair",
               "target": f"basegems:{gem}_shield", "plate": tag("plates", gem)})
-    advancement(gem, "repair_shield", "plate")
     for form in ("ore", "powder"):
         game_data("recipes", f"{gem}_{form}_smelting", {"type": "basegems:smelting",
                   "ingredient": item(gem, form), "result": item(gem, "ingot"), "experience": 0.45})
         advancement(gem, f"{form}_smelting", form)
+        game_data("recipes", f"{gem}_{form}_blasting", {"type": "basegems:blasting",
+                  "ingredient": item(gem, form), "result": item(gem, "ingot"), "experience": 0.45})
+        advancement(gem, f"{form}_blasting", form)
     for form, result, count in (("ore", "powder", 2), ("ingot", "powder", 1), ("block", "powder", 9),
                                 ("nugget", "smallpowder", 1)):
         game_data("recipes", f"{gem}_{form}_crushing", {"type": "basegems:crushing",
@@ -211,8 +217,37 @@ def generate_tags():
           {"replace": False, "values": [f"basegems:{gem}_arrow" for gem in GEMS]})
 
 
+def loot(gem):
+    for form in FORMS:
+        block = f"basegems:{gem}_{form}"
+        entry = {"type": "minecraft:item", "name": block}
+        conditions = [{"condition": "minecraft:survives_explosion"}]
+        if form == "door":
+            conditions.append({"condition": "minecraft:block_state_property", "block": block,
+                               "properties": {"half": "lower"}})
+        if form == "slab":
+            entry["functions"] = [{"function": "minecraft:set_count", "count": 2, "conditions": [
+                {"condition": "minecraft:block_state_property", "block": block, "properties": {"type": "double"}}]}]
+        if form == "ore":
+            entry = {"type": "minecraft:alternatives", "children": [
+                {"type": "minecraft:item", "name": block, "conditions": [{"condition": "minecraft:match_tool",
+                    "predicate": {"enchantments": [{"enchantment": "minecraft:silk_touch", "levels": {"min": 1}}]}}]},
+                {"type": "minecraft:item", "name": f"basegems:{gem}_ingot", "functions": [
+                    {"function": "minecraft:apply_bonus", "enchantment": "minecraft:fortune", "formula": "minecraft:ore_drops"},
+                    {"function": "minecraft:explosion_decay"}]}]}
+            conditions = []
+        game_data("loot_tables/blocks", f"{gem}_{form}", {"type": "minecraft:block", "pools": [
+            {"rolls": 1, "entries": [entry], "conditions": conditions}]})
+    game_data("loot_tables/blocks", f"double_{gem}_slab", {"type": "minecraft:block", "pools": [
+        {"rolls": 1, "entries": [{"type": "minecraft:item", "name": f"basegems:{gem}_slab",
+         "functions": [{"function": "minecraft:set_count", "count": 2}]}],
+         "conditions": [{"condition": "minecraft:survives_explosion"}]}]})
+    game_data("loot_tables/blocks", gem, {"type": "minecraft:block", "pools": []})
+
+
 convert_models()
 convert_languages()
 generate_tags()
 for gem in GEMS:
     crafting(gem)
+    loot(gem)

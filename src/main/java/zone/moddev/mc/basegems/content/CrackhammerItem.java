@@ -10,19 +10,19 @@ import zone.moddev.mc.basegems.recipe.CrushingRecipe;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
+import net.minecraft.item.ToolItem;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -30,7 +30,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
-public final class CrackhammerItem extends ItemTool implements MaterialBacked {
+public final class CrackhammerItem extends ToolItem implements MaterialBacked {
     private final Gem material;
 
     public CrackhammerItem(Gem material, Item.Properties properties) {
@@ -43,12 +43,12 @@ public final class CrackhammerItem extends ItemTool implements MaterialBacked {
 
     @Override public Gem gem() { return material; }
 
-    @Override public float getDestroySpeed(ItemStack stack, IBlockState state) {
+    @Override public float getDestroySpeed(ItemStack stack, BlockState state) {
         return canHarvestBlock(state)
                 ? material.crackhammerDestroySpeed() : 1.0F;
     }
 
-    @Override public boolean canHarvestBlock(IBlockState state) {
+    @Override public boolean canHarvestBlock(BlockState state) {
         if (state.getHarvestTool() == ToolType.PICKAXE) return material.toolLevel() >= state.getHarvestLevel();
         Material blockMaterial = state.getMaterial();
         return blockMaterial == Material.ROCK || blockMaterial == Material.IRON
@@ -57,14 +57,14 @@ public final class CrackhammerItem extends ItemTool implements MaterialBacked {
 
 
     @Override
-    public EnumActionResult onItemUse(ItemUseContext context) {
+    public ActionResultType onItemUse(ItemUseContext context) {
         World world = context.getWorld();
-        EntityPlayer player = context.getPlayer();
-        if (context.getFace() != EnumFacing.UP || world.isRemote || player == null) return EnumActionResult.PASS;
+        PlayerEntity player = context.getPlayer();
+        if (context.getFace() != Direction.UP || world.isRemote || player == null) return ActionResultType.PASS;
 
         AxisAlignedBB area = new AxisAlignedBB(context.getPos().up());
-        List<EntityItem> entities = world.getEntitiesWithinAABB(EntityItem.class, area);
-        for (EntityItem entity : entities) {
+        List<ItemEntity> entities = world.getEntitiesWithinAABB(ItemEntity.class, area);
+        for (ItemEntity entity : entities) {
             ItemStack input = entity.getItem();
             IRecipe recipe = CrushingRecipe.find(world, input);
             if (recipe == null || !canCrushDroppedBlock(input)) continue;
@@ -78,28 +78,28 @@ public final class CrackhammerItem extends ItemTool implements MaterialBacked {
             input.shrink(operations);
             if (input.isEmpty()) entity.remove(); else entity.setItem(input);
             spawnOutputs(world, entity, output, operations);
-            hammer.damageItem(operations, player);
-            world.playSound(null, context.getPos(), net.minecraft.init.SoundEvents.BLOCK_GRAVEL_BREAK,
+            hammer.damageItem(operations, player, user -> user.sendBreakAnimation(net.minecraft.util.Hand.MAIN_HAND));
+            world.playSound(null, context.getPos(), net.minecraft.util.SoundEvents.BLOCK_GRAVEL_BREAK,
                     SoundCategory.BLOCKS, 0.5F, 0.5F + world.rand.nextFloat() * 0.3F);
-            return EnumActionResult.SUCCESS;
+            return ActionResultType.SUCCESS;
         }
-        return EnumActionResult.PASS;
+        return ActionResultType.PASS;
     }
 
     private boolean canCrushDroppedBlock(ItemStack input) {
-        if (!(input.getItem() instanceof ItemBlock)) return true;
-        return canHarvestBlock(((ItemBlock) input.getItem()).getBlock().getDefaultState());
+        if (!(input.getItem() instanceof BlockItem)) return true;
+        return canHarvestBlock(((BlockItem) input.getItem()).getBlock().getDefaultState());
     }
 
-    private static void spawnOutputs(World world, EntityItem source, ItemStack result, int operations) {
+    private static void spawnOutputs(World world, ItemEntity source, ItemStack result, int operations) {
         int remaining = result.getCount() * operations;
         while (remaining > 0) {
             ItemStack output = result.copy();
             output.setCount(Math.min(output.getMaxStackSize(), remaining));
             remaining -= output.getCount();
-            EntityItem crushed = new EntityItem(world, source.posX, source.posY, source.posZ, output);
+            ItemEntity crushed = new ItemEntity(world, source.posX, source.posY, source.posZ, output);
             crushed.setDefaultPickupDelay();
-            world.spawnEntity(crushed);
+            world.addEntity(crushed);
         }
     }
 }

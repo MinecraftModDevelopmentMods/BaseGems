@@ -13,8 +13,8 @@ group = project.mod_group
 version = project.mod_version
 base.archivesName = 'BaseGems'
 
-if (!(project.version ==~ /\d+\.\d+\.\d+\.113021/)) {
-    throw new GradleException('Use Major.Minor.Patch.113021 for Minecraft 1.13.2 on Forge.')
+if (!(project.version ==~ /\d+\.\d+\.\d+\.114041/)) {
+    throw new GradleException('Use Major.Minor.Patch.114041 for Minecraft 1.14.4 on Forge.')
 }
 
 // Gradle and Mavenizer use modern JDKs; the mod and game still use Java 8.
@@ -118,7 +118,7 @@ repositories {
                 metadataSources { artifact() }
             }
         }
-        filter { includeModule('zone.moddev.mc.basemetals', 'BaseMetals') }
+        filter { includeModule('zone.moddev.mc.basemetals', 'BaseMetals'); includeModule('zone.moddev.mc.orespawn', 'OreSpawn'); includeModule('zone.moddev.mc.modernmetals', 'ModernMetals') }
     }
     exclusiveContent {
         forRepository { maven { url = 'https://repo.spongepowered.org/repository/maven-public' } }
@@ -190,6 +190,9 @@ tasks.register('verifyFluidRegistration', Exec) {
 }
 tasks.named('check') { dependsOn 'verifyFluidRegistration' }
 
-apply from: 'gradle/release-113.gradle'
+apply from: 'gradle/release-114.gradle'
 
 apply from: 'gradle/normalize-javadoc-trees.gradle'
+
+apply from: 'gradle/verification-114.gradle'
+apply from: 'gradle/compatibility-114.gradle'

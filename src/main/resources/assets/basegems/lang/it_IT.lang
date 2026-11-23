@@ -1328,3 +1328,4 @@ tile.basegems.violetsapphire_wall.name=Muretto di zaffiro viola
 tile.basegems.violetsapphire_wall.normal.name=Muretto di zaffiro viola
 tile.basegems.violetsapphire.name=Zaffiro viola allo stato fuso
 fluid.basegems.violetsapphire.name=Zaffiro viola allo stato fuso
+config.basegems.connection.mismatch=Le impostazioni di Base Gems sono diverse da quelle del server. Imposta questi valori in config/basegems-common.toml, poi riavvia Minecraft e riconnettiti: %s

@@ -23,6 +23,9 @@ tasks.named('genEclipseRuns') {
                     xml = match.replaceFirst(Matcher.quoteReplacement(option + ' &quot;' + argument + '&quot;' + next))
                 }
             }
+            if (!xml.contains('org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE')) {
+                xml = xml.replace('</launchConfiguration>', '<booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/></launchConfiguration>')
+            }
             launch.setText(xml, 'UTF-8')
         }
     }

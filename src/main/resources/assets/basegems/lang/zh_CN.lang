@@ -1328,3 +1328,4 @@ tile.basegems.violetsapphire_wall.name=紫色蓝宝石墙
 tile.basegems.violetsapphire_wall.normal.name=紫色蓝宝石墙
 tile.basegems.violetsapphire.name=熔融紫色蓝宝石
 fluid.basegems.violetsapphire.name=熔融紫色蓝宝石
+config.basegems.connection.mismatch=Base Gems 设置与服务器不同。请在 config/basegems-common.toml 中修改以下值，然后重启 Minecraft 并重新连接：%s

@@ -7,7 +7,7 @@ import net.minecraft.item.crafting.FurnaceRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JsonUtils;
+import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.crafting.CraftingHelper;
@@ -38,25 +38,23 @@ public final class GemSmeltingRecipe extends FurnaceRecipe {
     @Override public boolean isDynamic() { return !allowed(); }
     @Override public IRecipeSerializer<?> getSerializer() { return SERIALIZER; }
 
-    private static final class Serializer implements IRecipeSerializer<GemSmeltingRecipe> {
+    private static final class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<GemSmeltingRecipe> {
+        private Serializer() { setRegistryName(BaseGems.MOD_ID, "smelting"); }
         @Override public GemSmeltingRecipe read(ResourceLocation id, JsonObject json) {
-            return new GemSmeltingRecipe(id, Ingredient.fromJson(json.get("ingredient")),
-                    CraftingHelper.getItemStack(JsonUtils.getJsonObject(json, "result"), true),
-                    JsonUtils.getFloat(json, "experience", 0.0F));
+            return new GemSmeltingRecipe(id, Ingredient.deserialize(json.get("ingredient")),
+                    CraftingHelper.getItemStack(JSONUtils.getJsonObject(json, "result"), true),
+                    JSONUtils.getFloat(json, "experience", 0.0F));
         }
 
         @Override public GemSmeltingRecipe read(ResourceLocation id, PacketBuffer buffer) {
-            return new GemSmeltingRecipe(id, Ingredient.fromBuffer(buffer), buffer.readItemStack(), buffer.readFloat());
+            return new GemSmeltingRecipe(id, Ingredient.read(buffer), buffer.readItemStack(), buffer.readFloat());
         }
 
         @Override public void write(PacketBuffer buffer, GemSmeltingRecipe recipe) {
-            recipe.getIngredients().get(0).writeToBuffer(buffer);
+            recipe.getIngredients().get(0).write(buffer);
             buffer.writeItemStack(recipe.getRecipeOutput());
             buffer.writeFloat(recipe.getExperience());
         }
 
-        @Override public ResourceLocation getName() {
-            return new ResourceLocation(BaseGems.MOD_ID, "smelting");
-        }
     }
 }

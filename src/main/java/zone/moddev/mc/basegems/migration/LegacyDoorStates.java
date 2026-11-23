@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDoor;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.block.DoorBlock;
+import net.minecraft.block.BlockState;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.BitArray;
 
@@ -18,17 +18,17 @@ final class LegacyDoorStates {
 
     private LegacyDoorStates() {}
 
-    static void capture(NBTTagCompound level, Block[] doorIds) {
-        NBTTagList list = level.getList("Sections", 10);
+    static void capture(CompoundNBT level, Block[] doorIds) {
+        ListNBT list = level.getList("Sections", 10);
         RawSection[] sections = new RawSection[16];
         for (int i = 0; i < list.size(); i++) {
-            NBTTagCompound section = list.getCompound(i);
+            CompoundNBT section = list.getCompound(i);
             int y = section.getByte("Y");
             if (y >= 0 && y < sections.length && section.contains("Blocks", 7)) {
                 sections[y] = new RawSection(section);
             }
         }
-        NBTTagList corrections = new NBTTagList();
+        ListNBT corrections = new ListNBT();
         for (int y = 0; y < sections.length; y++) {
             RawSection lower = sections[y];
             if (lower == null) continue;
@@ -43,34 +43,34 @@ final class LegacyDoorStates {
                 RawSection upper = sections[upperY];
                 if (upper == null || upper.id(upperIndex) != id || (upper.meta(upperIndex) & 8) == 0) continue;
 
-                IBlockState bottom = LegacyWorldDataHook.legacyState(door, door.getRegistryName().getPath(), lower.meta(i));
-                IBlockState top = LegacyWorldDataHook.legacyState(door, door.getRegistryName().getPath(), upper.meta(upperIndex));
-                IBlockState correctedBottom = bottom.with(BlockDoor.HINGE, top.get(BlockDoor.HINGE))
-                        .with(BlockDoor.POWERED, top.get(BlockDoor.POWERED));
-                IBlockState correctedTop = top.with(BlockDoor.FACING, bottom.get(BlockDoor.FACING))
-                        .with(BlockDoor.OPEN, bottom.get(BlockDoor.OPEN));
+                BlockState bottom = LegacyWorldDataHook.legacyState(door, door.getRegistryName().getPath(), lower.meta(i));
+                BlockState top = LegacyWorldDataHook.legacyState(door, door.getRegistryName().getPath(), upper.meta(upperIndex));
+                BlockState correctedBottom = bottom.with(DoorBlock.HINGE, top.get(DoorBlock.HINGE))
+                        .with(DoorBlock.POWERED, top.get(DoorBlock.POWERED));
+                BlockState correctedTop = top.with(DoorBlock.FACING, bottom.get(DoorBlock.FACING))
+                        .with(DoorBlock.OPEN, bottom.get(DoorBlock.OPEN));
                 corrections.add(correction(y, i, correctedBottom));
                 corrections.add(correction(upperY, upperIndex, correctedTop));
             }
         }
-        if (!corrections.isEmpty()) level.setTag(MARKER, corrections);
+        if (!corrections.isEmpty()) level.put(MARKER, corrections);
     }
 
-    static void apply(NBTTagCompound level) {
-        NBTTagList corrections = level.getList(MARKER, 10);
+    static void apply(CompoundNBT level) {
+        ListNBT corrections = level.getList(MARKER, 10);
         if (corrections.isEmpty()) return;
-        Map<Integer, Map<Integer, NBTTagCompound>> bySection = new HashMap<>();
+        Map<Integer, Map<Integer, CompoundNBT>> bySection = new HashMap<>();
         for (int i = 0; i < corrections.size(); i++) {
-            NBTTagCompound change = corrections.getCompound(i);
+            CompoundNBT change = corrections.getCompound(i);
             bySection.computeIfAbsent(change.getInt("Y"), key -> new HashMap<>())
                     .put(change.getInt("Index"), change.getCompound("State"));
         }
-        NBTTagList sections = level.getList("Sections", 10);
+        ListNBT sections = level.getList("Sections", 10);
         for (int i = 0; i < sections.size(); i++) {
-            NBTTagCompound section = sections.getCompound(i);
-            Map<Integer, NBTTagCompound> changes = bySection.get((int) section.getByte("Y"));
+            CompoundNBT section = sections.getCompound(i);
+            Map<Integer, CompoundNBT> changes = bySection.get((int) section.getByte("Y"));
             if (changes == null) continue;
-            NBTTagList palette = section.getList("Palette", 10);
+            ListNBT palette = section.getList("Palette", 10);
             BitArray original = new BitArray(bits(palette.size()), SECTION_SIZE, section.getLongArray("BlockStates"));
             Map<Integer, Integer> indices = new HashMap<>();
             changes.forEach((index, state) -> {
@@ -85,25 +85,25 @@ final class LegacyDoorStates {
             for (int index = 0; index < SECTION_SIZE; index++) {
                 flattened.setAt(index, indices.getOrDefault(index, original.getAt(index)));
             }
-            section.setLongArray("BlockStates", flattened.getBackingLongArray());
+            section.putLongArray("BlockStates", flattened.getBackingLongArray());
         }
-        level.removeTag(MARKER);
+        level.remove(MARKER);
     }
 
     private static int bits(int states) { return Math.max(4, 32 - Integer.numberOfLeadingZeros(states - 1)); }
 
-    private static NBTTagCompound correction(int y, int index, IBlockState state) {
-        NBTTagCompound tag = new NBTTagCompound();
-        tag.setInt("Y", y);
-        tag.setInt("Index", index);
-        tag.setTag("State", NBTUtil.writeBlockState(state));
+    private static CompoundNBT correction(int y, int index, BlockState state) {
+        CompoundNBT tag = new CompoundNBT();
+        tag.putInt("Y", y);
+        tag.putInt("Index", index);
+        tag.put("State", NBTUtil.writeBlockState(state));
         return tag;
     }
 
     private static final class RawSection {
         private final byte[] blocks, add, data;
 
-        RawSection(NBTTagCompound tag) {
+        RawSection(CompoundNBT tag) {
             blocks = tag.getByteArray("Blocks");
             add = tag.getByteArray("Add");
             data = tag.getByteArray("Data");
