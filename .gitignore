@@ -35,3 +35,5 @@ secret.json
 /release-candidates/
 __pycache__/
 *.pyc
+/local-basemetals.json
+/local-modernmetals.json

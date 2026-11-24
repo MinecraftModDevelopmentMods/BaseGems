@@ -1,4 +1,4 @@
-"""Translate the legacy art and build the data pack for Forge 28."""
+"""Translate the legacy art and build the data pack for Forge 31."""
 
 from pathlib import Path
 import json

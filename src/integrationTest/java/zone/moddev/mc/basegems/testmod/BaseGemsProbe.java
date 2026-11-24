@@ -187,11 +187,11 @@ public final class BaseGemsProbe {
     private void trades() {
         for (net.minecraft.entity.merchant.villager.VillagerProfession profession : new net.minecraft.entity.merchant.villager.VillagerProfession[]{net.minecraft.entity.merchant.villager.VillagerProfession.ARMORER, net.minecraft.entity.merchant.villager.VillagerProfession.TOOLSMITH, net.minecraft.entity.merchant.villager.VillagerProfession.WEAPONSMITH}) {
             int offers = 0;
-            for (net.minecraft.entity.merchant.villager.VillagerTrades.ITrade[] level : net.minecraft.entity.merchant.villager.VillagerTrades.field_221239_a.get(profession).values()) {
+            for (net.minecraft.entity.merchant.villager.VillagerTrades.ITrade[] level : net.minecraft.entity.merchant.villager.VillagerTrades.VILLAGER_DEFAULT_TRADES.get(profession).values()) {
                 for (net.minecraft.entity.merchant.villager.VillagerTrades.ITrade factory : level) if (factory.getClass().getName().startsWith("zone.moddev.mc.basegems.")) {
                     MerchantOffer offer = factory.getOffer(null, new Random(1)); if (offer == null) continue; offers++;
-                    ItemStack result = offer.func_222206_f(); require(result.getItem() == Items.EMERALD || GemConfig.allows(result.getItem().getRegistryName().getPath()), "Trade policy");
-                    require(offer.func_222214_i() == 6 && offer.func_222210_n() > 0, "Restock and XP");
+                    ItemStack result = offer.getSellingStack(); require(result.getItem() == Items.EMERALD || GemConfig.allows(result.getItem().getRegistryName().getPath()), "Trade policy");
+                    require(offer.func_222214_i() == 6 && offer.getGivenExp() > 0, "Restock and XP");
                 }
             }
             require(offers > 0, "Smith gem offers");

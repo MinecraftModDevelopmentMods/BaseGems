@@ -6,21 +6,28 @@ import java.nio.file.StandardCopyOption
 import java.security.MessageDigest
 import java.util.zip.ZipFile
 
+apply from: 'gradle/local-companions-115.gradle'
+
+def basePin = localCompanionPins.basemetals
+def modernPin = localCompanionPins.modernmetals
+
 def published = new JsonSlurper().parse(file('gradle/dependencies.json')).collectEntries { [(it.id): it] }
+def haveModern = modernPin.enabled || published.modernmetals != null
 configurations {
     baseMetalsDevelopment { canBeConsumed = false; transitive = false }
     modernMetalsDevelopment { canBeConsumed = false; transitive = false }
 }
 dependencies {
-    baseMetalsDevelopment renamer.dependency(published.basemetals.coordinate)
-    modernMetalsDevelopment renamer.dependency(published.modernmetals.coordinate)
+    baseMetalsDevelopment (basePin.enabled ? files(file(basePin.pin.mappedJar)) : renamer.dependency(published.basemetals.coordinate))
+    if (haveModern) modernMetalsDevelopment (modernPin.enabled ? files(file(modernPin.pin.mappedJar)) : renamer.dependency(published.modernmetals.coordinate))
 }
-def modernOverride = providers.gradleProperty('modernMetalsDevelopmentJar')
-if (providers.gradleProperty('releaseBuild').getOrElse('false').toBoolean() && modernOverride.isPresent())
-    throw new GradleException('Release builds must use the published Modern Metals candidate')
-def selectedModern = { modernOverride.isPresent() ? file(modernOverride.get()) : configurations.modernMetalsDevelopment.singleFile }
-def profiles = [Standalone: ['', []], WithBaseMetals: ['with-basemetals', ['base']], WithModernMetals: ['with-modernmetals', ['modern']],
-                WithBaseAndModern: ['with-base-and-modern', ['base', 'modern']]]
+
+def profiles = [Standalone: ['', []], WithBaseMetals: ['with-basemetals', ['base']]]
+if (haveModern) {
+    profiles.WithModernMetals = ['with-modernmetals', ['modern']]
+    profiles.WithBaseAndModern = ['with-both', ['base', 'modern']]
+}
+
 def hash = { File f -> MessageDigest.getInstance('SHA-256').digest(f.bytes).encodeHex().toString() }
 def companion = { File f ->
     if (!f.name.toLowerCase(Locale.ROOT).endsWith('.jar')) return false
@@ -33,11 +40,12 @@ def companion = { File f ->
 def selected = { kinds ->
     Map result = [:]
     if (kinds.contains('base')) result["BaseMetals-${project.basemetals_version}-mapped.jar".toString()] = configurations.baseMetalsDevelopment.singleFile
-    if (kinds.contains('modern')) result["ModernMetals-${project.modernmetals_version}-mapped.jar".toString()] = selectedModern()
+    if (kinds.contains('modern')) result["ModernMetals-${project.modernmetals_version}-mapped.jar".toString()] = configurations.modernMetalsDevelopment.singleFile
     result
 }
 def prepare = tasks.register('prepareCompatibilityMods') {
-    dependsOn configurations.baseMetalsDevelopment, configurations.modernMetalsDevelopment, 'verifyReleaseDependencies'
+    dependsOn configurations.baseMetalsDevelopment, 'verifyReleaseDependencies', 'verifyLocalCompanions'
+    if (haveModern) dependsOn configurations.modernMetalsDevelopment
     doLast {
         profiles.each { label, spec ->
             File mods = file('run/' + spec[0] + '/mods').canonicalFile

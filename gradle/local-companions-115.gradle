@@ -1,0 +1,63 @@
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+import java.security.MessageDigest
+
+// Local candidates are selected by hash. Release builds keep published dependencies.
+def releaseBuild = providers.gradleProperty('releaseBuild').map { it.toBoolean() }.orElse(false).get()
+def definitions = [
+    basemetals: [label: 'BaseMetals', version: '3.0.3.115021', checkout: '../../BaseMetals 115/BaseMetals', property: 'baseMetalsCheckout'],
+    modernmetals: [label: 'ModernMetals', version: '3.0.0.115021', checkout: '../../ModernMetals 115/ModernMetals', property: 'modernMetalsCheckout']
+]
+def hash = { File jar -> MessageDigest.getInstance('SHA-256').digest(jar.bytes).encodeHex().toString() }
+def pins = [:]
+definitions.each { modId, definition ->
+    File pinFile = file("local-${modId}.json")
+    String flag = 'useLocal' + definition.label
+    boolean enabled = providers.gradleProperty(flag).map { it.toBoolean() }
+            .orElse(pinFile.isFile() && !releaseBuild).get()
+    if (enabled && releaseBuild) throw new GradleException("Release builds must not use local ${definition.label}")
+    def pin = enabled && pinFile.isFile() ? new JsonSlurper().parse(pinFile) : [:]
+    if (enabled && pin.isEmpty()) throw new GradleException("Run pinLocal${definition.label} first")
+    pins[modId] = [enabled: enabled, pin: pin]
+    tasks.register('pinLocal' + definition.label) {
+        group = 'development'
+        description = "Pins the already-built sibling ${definition.label} jars for local testing."
+        doLast {
+            File checkout = file(providers.gradleProperty(definition.property).orElse(definition.checkout).get()).canonicalFile
+            def next = [version: definition.version]
+            [player: "build/libs/${definition.label}-${definition.version}.jar",
+             mapped: "build/libs-dev/${definition.label}-${definition.version}-deobf.jar"].each { kind, path ->
+                File jar = new File(checkout, path)
+                if (!jar.isFile()) throw new GradleException("Build ${definition.label} first: ${jar}")
+                next[kind + 'Jar'] = jar.canonicalPath
+                next[kind + 'Sha256'] = hash(jar)
+            }
+            pinFile.setText(JsonOutput.prettyPrint(JsonOutput.toJson(next)) + '\n', 'UTF-8')
+        }
+    }
+}
+ext.localCompanionPins = pins
+tasks.register('pinLocalCompanions') {
+    group = 'development'
+    dependsOn 'pinLocalBaseMetals', 'pinLocalModernMetals'
+}
+tasks.register('verifyLocalCompanions') {
+    group = 'verification'
+    doLast {
+        definitions.each { modId, definition ->
+            def selected = pins[modId]
+            if (selected.enabled) {
+                if (selected.pin.version != definition.version) throw new GradleException("Wrong local ${definition.label} version")
+                ['player', 'mapped'].each { kind ->
+                    File jar = file(selected.pin[kind + 'Jar'])
+                    if (!jar.isFile() || hash(jar) != selected.pin[kind + 'Sha256'])
+                        throw new GradleException("Local ${definition.label} changed. Rebuild, run pinLocal${definition.label}, then regenerate Eclipse launches: ${jar}")
+                }
+            }
+        }
+    }
+}
+tasks.named('check') { dependsOn 'verifyLocalCompanions' }
+tasks.withType(JavaExec).configureEach {
+    if (name in ['runClient', 'runServer']) dependsOn 'verifyLocalCompanions'
+}

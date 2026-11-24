@@ -31,7 +31,7 @@ public final class BaseGemsClientProbe {
         Minecraft mc=Minecraft.getInstance();
         try{
             if(ticks%200==0)System.out.println("BASEGEMS_CLIENT_STAGE "+state+" screen="+(mc.currentScreen==null?"null":mc.currentScreen.getClass().getName()));
-            if(mc.currentScreen instanceof net.minecraftforge.fml.client.gui.LoadingErrorScreen){
+            if(mc.currentScreen instanceof net.minecraftforge.fml.client.gui.screen.LoadingErrorScreen){
                 StringBuilder details=new StringBuilder();
                 for(java.lang.reflect.Field f:mc.currentScreen.getClass().getDeclaredFields())if(java.util.List.class.isAssignableFrom(f.getType())){
                     f.setAccessible(true);for(Object message:(java.util.List<?>)f.get(mc.currentScreen)){
@@ -44,11 +44,12 @@ public final class BaseGemsClientProbe {
             if(++ticks>3600)throw new IllegalStateException("Client gate timeout in stage "+state);
             if(state==0&&mc.currentScreen instanceof MainMenuScreen){
                 validate(mc);
-                mc.launchIntegratedServer("basegems-smoke","Base Gems 1.14 smoke",new WorldSettings(14162026L,GameType.CREATIVE,false,false,WorldType.DEFAULT));state=1;ticks=0;
+                mc.launchIntegratedServer("basegems-smoke","Base Gems 1.15 smoke",new WorldSettings(14162026L,GameType.CREATIVE,false,false,WorldType.DEFAULT));state=1;ticks=0;
             }else if(state==1&&mc.world!=null&&mc.player!=null&&++loaded>80){
+                validateWorldRendering(mc);
                 stopping=mc.getIntegratedServer();mc.world.sendQuittingDisconnectingPacket();mc.loadWorld(null);mc.displayGuiScreen(new MainMenuScreen());state=2;ticks=0;loaded=0;
             }else if(state==2&&mc.currentScreen instanceof MainMenuScreen&&!stopping.getExecutionThread().isAlive()){
-                mc.launchIntegratedServer("basegems-smoke","Base Gems 1.14 smoke",null);state=3;ticks=0;
+                mc.launchIntegratedServer("basegems-smoke","Base Gems 1.15 smoke",null);state=3;ticks=0;
             }else if(state==3&&mc.world!=null&&mc.player!=null&&++loaded>80){
                 stopping=mc.getIntegratedServer();mc.world.sendQuittingDisconnectingPacket();mc.loadWorld(null);mc.displayGuiScreen(new MainMenuScreen());state=4;ticks=0;
             }else if(state==4&&!stopping.getExecutionThread().isAlive()){
@@ -56,6 +57,31 @@ public final class BaseGemsClientProbe {
             }
         }catch(Throwable e){
             e.printStackTrace();try{Files.write(Paths.get("client-probe.json"),("{\"status\":\"failed\",\"failure\":\""+e.toString().replace("\"","'")+"\"}").getBytes(java.nio.charset.StandardCharsets.UTF_8));}catch(Exception ignored){}state=5;mc.shutdown();
+        }
+    }
+    private static void validateWorldRendering(Minecraft mc) {
+        for (net.minecraft.entity.EntityType<zone.moddev.mc.basegems.entity.MaterialProjectile> type :
+                Arrays.asList(zone.moddev.mc.basegems.entity.ModEntities.CUSTOM_ARROW.get(),
+                        zone.moddev.mc.basegems.entity.ModEntities.CUSTOM_BOLT.get())) {
+            zone.moddev.mc.basegems.entity.MaterialProjectile projectile = type.create(mc.world);
+            require(projectile != null && mc.getRenderManager().getRenderer(projectile)
+                    instanceof zone.moddev.mc.basegems.client.MaterialProjectileRenderer,
+                    "Native projectile renderer " + type.getRegistryName());
+        }
+        ModContent.blocks().forEach((name, block) -> {
+            if (block instanceof net.minecraft.block.DoorBlock || block instanceof net.minecraft.block.TrapDoorBlock
+                    || block instanceof net.minecraft.block.PaneBlock) {
+                require(net.minecraft.client.renderer.RenderTypeLookup.canRenderInLayer(block.getDefaultState(),
+                        net.minecraft.client.renderer.RenderType.getCutoutMipped()), "Decorative cutout " + name);
+            }
+        });
+        for (FluidContent fluid : ModContent.fluids().values()) {
+            require(net.minecraft.client.renderer.RenderTypeLookup.canRenderInLayer(fluid.source().get().getDefaultState(),
+                    net.minecraft.client.renderer.RenderType.getTranslucent()), "Source fluid render layer");
+            require(net.minecraft.client.renderer.RenderTypeLookup.canRenderInLayer(fluid.flowing().get().getDefaultState(),
+                    net.minecraft.client.renderer.RenderType.getTranslucent()), "Flowing fluid render layer");
+            require(net.minecraft.client.renderer.RenderTypeLookup.canRenderInLayer(fluid.block().get().getDefaultState(),
+                    net.minecraft.client.renderer.RenderType.getTranslucent()), "Fluid block render layer");
         }
     }
     private static void validate(Minecraft mc){
@@ -74,7 +100,8 @@ public final class BaseGemsClientProbe {
         int ores=0;
         for(Map.Entry<String,net.minecraft.block.Block> e:ModContent.blocks().entrySet())if(e.getKey().endsWith("_ore")){
             ores++;net.minecraft.block.Block block=e.getValue();String name=e.getKey();
-            require(block.getRenderLayer()==BlockRenderLayer.CUTOUT_MIPPED,"Ore cutout "+name);
+            require(net.minecraft.client.renderer.RenderTypeLookup.canRenderInLayer(block.getDefaultState(),
+                    net.minecraft.client.renderer.RenderType.getCutoutMipped()),"Ore cutout "+name);
             validateOreModel(mc.getBlockRendererDispatcher().getModelForState(block.getDefaultState()),block,name,"minecraft:block/stone","basegems:blocks/ore_overlays/"+name);
             validateOreModel(mc.getItemRenderer().getItemModelWithOverrides(new ItemStack(block),null,null),null,name,"minecraft:block/stone","basegems:blocks/ore_overlays/"+name);
         }
@@ -97,18 +124,18 @@ public final class BaseGemsClientProbe {
             boolean hasBase = false;
             boolean hasOverlay = false;
             for (BakedQuad quad : quads) {
-                String texture = quad.getSprite().getName().toString();
+                String texture = quad.func_187508_a().getName().toString();
                 hasBase |= host.equals(texture);
                 hasOverlay |= overlay.equals(texture);
-                require(!"missingno".equals(quad.getSprite().getName().getPath()), name + " missing texture");
+                require(!"missingno".equals(quad.func_187508_a().getName().getPath()), name + " missing texture");
                 validateOreVertices(quad, overlay.equals(texture), name);
                 if (overlay.equals(texture)) {
                     boolean transparent = false;
                     boolean visible = false;
 
-                    for (int y = 0; y < quad.getSprite().getHeight(); y++) {
-                        for (int x = 0; x < quad.getSprite().getWidth(); x++) {
-                            if (quad.getSprite().isPixelTransparent(0, x, y)) transparent = true;
+                    for (int y = 0; y < quad.func_187508_a().getHeight(); y++) {
+                        for (int x = 0; x < quad.func_187508_a().getWidth(); x++) {
+                            if (quad.func_187508_a().isPixelTransparent(0, x, y)) transparent = true;
                             else visible = true;
                         }
                     }
@@ -128,14 +155,17 @@ public final class BaseGemsClientProbe {
         float high = overlay ? 16.05F / 16 : 1;
 
         for (int vertex = 0; vertex < 4; vertex++) {
-            float u = quad.getSprite().getUnInterpolatedU(Float.intBitsToFloat(vertices[vertex * stride + 4]));
-            float v = quad.getSprite().getUnInterpolatedV(Float.intBitsToFloat(vertices[vertex * stride + 5]));
+            net.minecraft.client.renderer.texture.TextureAtlasSprite sprite = quad.func_187508_a();
+            float u = (Float.intBitsToFloat(vertices[vertex * stride + 4]) - sprite.getMinU())
+                    * 16 / (sprite.getMaxU() - sprite.getMinU());
+            float v = (Float.intBitsToFloat(vertices[vertex * stride + 5]) - sprite.getMinV())
+                    * 16 / (sprite.getMaxV() - sprite.getMinV());
             require(u >= -0.01F && u <= 16.01F && v >= -0.01F && v <= 16.01F,
                     name + " samples outside its texture sprite");
             for (int axis = 0; axis < 3; axis++) {
                 float coordinate = Float.intBitsToFloat(vertices[vertex * stride + axis]);
                 require(Math.min(Math.abs(coordinate - low), Math.abs(coordinate - high)) < 0.000001F,
-                        name + " incorrect " + (overlay ? "overlay" : "base") + " vertex " + coordinate + " sprite=" + quad.getSprite().getName());
+                        name + " incorrect " + (overlay ? "overlay" : "base") + " vertex " + coordinate + " sprite=" + quad.func_187508_a().getName());
             }
         }
     }
@@ -151,7 +181,7 @@ public final class BaseGemsClientProbe {
         require(!quads.isEmpty(), name + " has no rendered quads");
         boolean hasTintedFluidLayer = false;
         for (BakedQuad quad : quads) {
-            require(!"missingno".equals(quad.getSprite().getName().getPath()),
+            require(!"missingno".equals(quad.func_187508_a().getName().getPath()),
                     name + " uses the missing-texture sprite");
             if (quad.hasTintIndex() && quad.getTintIndex() == 1) hasTintedFluidLayer = true;
         }

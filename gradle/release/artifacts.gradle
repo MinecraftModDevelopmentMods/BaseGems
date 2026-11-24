@@ -19,7 +19,7 @@ tasks.register('verifyJava8Toolchain') {
     description = 'Checks Java 8 compatibility; exact compiler versions are required only for release builds.'
     doLast {
         def compiler = javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(8) }.get().metadata
-        if (compiler.languageVersion.asInt() != 8) throw new GradleException('Minecraft 1.14 requires Java 8.')
+        if (compiler.languageVersion.asInt() != 8) throw new GradleException('Minecraft 1.15 requires Java 8.')
         if (providers.gradleProperty('releaseBuild').getOrElse('false').toBoolean()
                 && (compiler.javaRuntimeVersion != '1.8.0_502-b07'
                 || System.getProperty('java.runtime.version') != '17.0.1+12')) {
@@ -38,10 +38,10 @@ tasks.register('verifyReleaseConfiguration') {
     group = 'verification'
     dependsOn tasks.named('verifyJava8Toolchain')
     doLast {
-        if (project.group != 'zone.moddev.mc.basegems' || project.version != '2.5.0.114041'
-                || project.minecraft_version != '1.14.4' || project.forge_version != '28.2.26'
-                || project.mappings_channel != 'snapshot' || project.mappings_version != '20190719-1.14.3'
-                || project.orespawn_version != '4.1.7.114041') {
+        if (project.group != 'zone.moddev.mc.basegems' || project.version != '2.5.0.115021'
+                || project.minecraft_version != '1.15.2' || project.forge_version != '31.2.57'
+                || project.mappings_channel != 'snapshot' || project.mappings_version != '20200514-1.15.1'
+                || project.orespawn_version != '4.1.7.115021') {
             throw new GradleException('Base Gems target, mappings or dependency pin changed.')
         }
     }
@@ -105,7 +105,7 @@ def auditJars = { File directory ->
                     }
                     def info = zip.getInputStream(zip.getEntry('META-INF/mods.toml')).getText('UTF-8')
                     if (!info.contains('modId="basegems"') || !info.contains('version="' + project.version + '"')
-                            || !info.contains('versionRange="[1.14.4]"')) {
+                            || !info.contains('versionRange="[1.15.2]"')) {
                         throw new GradleException('Incorrect processed mods.toml.')
                     }
                     if (zip.getEntry('zone/moddev/mc/basegems/BaseGems.class') == null) {

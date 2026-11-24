@@ -3,7 +3,29 @@
     "multipart": [
       {
         "apply": {
+          "model": "basegems:block/{gem}_bars_post_ends"
+        }
+      },
+      {
+        "when": {
+          "north": "false",
+          "east": "false",
+          "south": "false",
+          "west": "false"
+        },
+        "apply": {
           "model": "basegems:block/{gem}_bars_post"
+        }
+      },
+      {
+        "when": {
+          "north": "true",
+          "east": "false",
+          "south": "false",
+          "west": "false"
+        },
+        "apply": {
+          "model": "basegems:block/{gem}_bars_cap"
         }
       },
       {
@@ -16,45 +38,14 @@
       },
       {
         "when": {
-          "north": "false"
-        },
-        "apply": {
-          "model": "basegems:block/{gem}_bars_cap"
-        }
-      },
-      {
-        "when": {
-          "south": "true"
-        },
-        "apply": {
-          "model": "basegems:block/{gem}_bars_side_alt"
-        }
-      },
-      {
-        "when": {
-          "south": "false"
-        },
-        "apply": {
-          "model": "basegems:block/{gem}_bars_cap_alt",
-          "y": 90
-        }
-      },
-      {
-        "when": {
-          "west": "true"
-        },
-        "apply": {
-          "model": "basegems:block/{gem}_bars_side_alt",
-          "y": 90
-        }
-      },
-      {
-        "when": {
+          "north": "false",
+          "east": "true",
+          "south": "false",
           "west": "false"
         },
         "apply": {
           "model": "basegems:block/{gem}_bars_cap",
-          "y": 270
+          "y": 90
         }
       },
       {
@@ -68,10 +59,42 @@
       },
       {
         "when": {
-          "east": "false"
+          "north": "false",
+          "east": "false",
+          "south": "true",
+          "west": "false"
         },
         "apply": {
           "model": "basegems:block/{gem}_bars_cap_alt"
+        }
+      },
+      {
+        "when": {
+          "south": "true"
+        },
+        "apply": {
+          "model": "basegems:block/{gem}_bars_side_alt"
+        }
+      },
+      {
+        "when": {
+          "north": "false",
+          "east": "false",
+          "south": "false",
+          "west": "true"
+        },
+        "apply": {
+          "model": "basegems:block/{gem}_bars_cap_alt",
+          "y": 90
+        }
+      },
+      {
+        "when": {
+          "west": "true"
+        },
+        "apply": {
+          "model": "basegems:block/{gem}_bars_side_alt",
+          "y": 90
         }
       }
     ]
@@ -800,503 +823,44 @@
     }
   },
   "models/block/{gem}_bars_cap.json": {
-    "ambientocclusion": false,
+    "parent": "minecraft:block/iron_bars_cap",
     "textures": {
-      "particle": "basegems:block/{gem}_bars",
-      "bars": "basegems:block/{gem}_bars",
-      "edge": "basegems:block/{gem}_bars"
-    },
-    "elements": [
-      {
-        "from": [
-          8,
-          0,
-          8
-        ],
-        "to": [
-          8,
-          16,
-          9
-        ],
-        "faces": {
-          "west": {
-            "uv": [
-              8,
-              0,
-              7,
-              16
-            ],
-            "texture": "#bars"
-          },
-          "east": {
-            "uv": [
-              7,
-              0,
-              8,
-              16
-            ],
-            "texture": "#bars"
-          }
-        }
-      },
-      {
-        "from": [
-          7,
-          0,
-          9
-        ],
-        "to": [
-          9,
-          16,
-          9
-        ],
-        "faces": {
-          "north": {
-            "uv": [
-              9,
-              0,
-              7,
-              16
-            ],
-            "texture": "#bars"
-          },
-          "south": {
-            "uv": [
-              7,
-              0,
-              9,
-              16
-            ],
-            "texture": "#bars"
-          }
-        }
-      }
-    ]
+      "particle": "basegems:blocks/{gem}_block",
+      "bars": "basegems:blocks/{gem}_block",
+      "edge": "basegems:blocks/{gem}_block"
+    }
   },
   "models/block/{gem}_bars_cap_alt.json": {
-    "ambientocclusion": false,
+    "parent": "minecraft:block/iron_bars_cap_alt",
     "textures": {
-      "particle": "basegems:block/{gem}_bars",
-      "bars": "basegems:block/{gem}_bars",
-      "edge": "basegems:block/{gem}_bars"
-    },
-    "elements": [
-      {
-        "from": [
-          8,
-          0,
-          7
-        ],
-        "to": [
-          8,
-          16,
-          8
-        ],
-        "faces": {
-          "west": {
-            "uv": [
-              8,
-              0,
-              9,
-              16
-            ],
-            "texture": "#bars"
-          },
-          "east": {
-            "uv": [
-              9,
-              0,
-              8,
-              16
-            ],
-            "texture": "#bars"
-          }
-        }
-      },
-      {
-        "from": [
-          7,
-          0,
-          7
-        ],
-        "to": [
-          9,
-          16,
-          7
-        ],
-        "faces": {
-          "north": {
-            "uv": [
-              7,
-              0,
-              9,
-              16
-            ],
-            "texture": "#bars"
-          },
-          "south": {
-            "uv": [
-              9,
-              0,
-              7,
-              16
-            ],
-            "texture": "#bars"
-          }
-        }
-      }
-    ]
+      "particle": "basegems:blocks/{gem}_block",
+      "bars": "basegems:blocks/{gem}_block",
+      "edge": "basegems:blocks/{gem}_block"
+    }
   },
   "models/block/{gem}_bars_post.json": {
-    "ambientocclusion": false,
+    "parent": "minecraft:block/iron_bars_post",
     "textures": {
-      "particle": "basegems:block/{gem}_bars",
-      "bars": "basegems:block/{gem}_bars"
-    },
-    "elements": [
-      {
-        "from": [
-          8,
-          0,
-          7
-        ],
-        "to": [
-          8,
-          16,
-          9
-        ],
-        "faces": {
-          "west": {
-            "uv": [
-              7,
-              0,
-              9,
-              16
-            ],
-            "texture": "#bars"
-          },
-          "east": {
-            "uv": [
-              9,
-              0,
-              7,
-              16
-            ],
-            "texture": "#bars"
-          }
-        }
-      },
-      {
-        "from": [
-          7,
-          0,
-          8
-        ],
-        "to": [
-          9,
-          16,
-          8
-        ],
-        "faces": {
-          "north": {
-            "uv": [
-              7,
-              0,
-              9,
-              16
-            ],
-            "texture": "#bars"
-          },
-          "south": {
-            "uv": [
-              9,
-              0,
-              7,
-              16
-            ],
-            "texture": "#bars"
-          }
-        }
-      }
-    ]
+      "particle": "basegems:blocks/{gem}_block",
+      "bars": "basegems:blocks/{gem}_block",
+      "edge": "basegems:blocks/{gem}_block"
+    }
   },
   "models/block/{gem}_bars_side.json": {
-    "ambientocclusion": false,
+    "parent": "minecraft:block/iron_bars_side",
     "textures": {
-      "particle": "basegems:block/{gem}_bars",
-      "bars": "basegems:block/{gem}_bars",
-      "edge": "basegems:block/{gem}_bars"
-    },
-    "elements": [
-      {
-        "from": [
-          8,
-          0,
-          0
-        ],
-        "to": [
-          8,
-          16,
-          8
-        ],
-        "faces": {
-          "west": {
-            "uv": [
-              16,
-              0,
-              8,
-              16
-            ],
-            "texture": "#bars"
-          },
-          "east": {
-            "uv": [
-              8,
-              0,
-              16,
-              16
-            ],
-            "texture": "#bars"
-          }
-        }
-      },
-      {
-        "from": [
-          7,
-          0,
-          0
-        ],
-        "to": [
-          9,
-          16,
-          7
-        ],
-        "faces": {
-          "north": {
-            "uv": [
-              7,
-              0,
-              9,
-              16
-            ],
-            "texture": "#edge",
-            "cullface": "north"
-          }
-        }
-      },
-      {
-        "from": [
-          7,
-          0.001,
-          0
-        ],
-        "to": [
-          9,
-          0.001,
-          7
-        ],
-        "faces": {
-          "down": {
-            "uv": [
-              9,
-              0,
-              7,
-              7
-            ],
-            "texture": "#edge"
-          },
-          "up": {
-            "uv": [
-              7,
-              0,
-              9,
-              7
-            ],
-            "texture": "#edge"
-          }
-        }
-      },
-      {
-        "from": [
-          7,
-          15.999,
-          0
-        ],
-        "to": [
-          9,
-          15.999,
-          7
-        ],
-        "faces": {
-          "down": {
-            "uv": [
-              9,
-              0,
-              7,
-              7
-            ],
-            "texture": "#edge"
-          },
-          "up": {
-            "uv": [
-              7,
-              0,
-              9,
-              7
-            ],
-            "texture": "#edge"
-          }
-        }
-      }
-    ]
+      "particle": "basegems:blocks/{gem}_block",
+      "bars": "basegems:blocks/{gem}_block",
+      "edge": "basegems:blocks/{gem}_block"
+    }
   },
   "models/block/{gem}_bars_side_alt.json": {
-    "ambientocclusion": false,
+    "parent": "minecraft:block/iron_bars_side_alt",
     "textures": {
-      "particle": "basegems:block/{gem}_bars",
-      "bars": "basegems:block/{gem}_bars",
-      "edge": "basegems:block/{gem}_bars"
-    },
-    "elements": [
-      {
-        "from": [
-          8,
-          0,
-          8
-        ],
-        "to": [
-          8,
-          16,
-          16
-        ],
-        "faces": {
-          "west": {
-            "uv": [
-              8,
-              0,
-              0,
-              16
-            ],
-            "texture": "#bars"
-          },
-          "east": {
-            "uv": [
-              0,
-              0,
-              8,
-              16
-            ],
-            "texture": "#bars"
-          }
-        }
-      },
-      {
-        "from": [
-          7,
-          0,
-          9
-        ],
-        "to": [
-          9,
-          16,
-          16
-        ],
-        "faces": {
-          "south": {
-            "uv": [
-              7,
-              0,
-              9,
-              16
-            ],
-            "texture": "#edge",
-            "cullface": "south"
-          },
-          "down": {
-            "uv": [
-              9,
-              9,
-              7,
-              16
-            ],
-            "texture": "#edge"
-          },
-          "up": {
-            "uv": [
-              7,
-              9,
-              9,
-              16
-            ],
-            "texture": "#edge"
-          }
-        }
-      },
-      {
-        "from": [
-          7,
-          0.001,
-          9
-        ],
-        "to": [
-          9,
-          0.001,
-          16
-        ],
-        "faces": {
-          "down": {
-            "uv": [
-              9,
-              9,
-              7,
-              16
-            ],
-            "texture": "#edge"
-          },
-          "up": {
-            "uv": [
-              7,
-              9,
-              9,
-              16
-            ],
-            "texture": "#edge"
-          }
-        }
-      },
-      {
-        "from": [
-          7,
-          15.999,
-          9
-        ],
-        "to": [
-          9,
-          15.999,
-          16
-        ],
-        "faces": {
-          "down": {
-            "uv": [
-              9,
-              9,
-              7,
-              16
-            ],
-            "texture": "#edge"
-          },
-          "up": {
-            "uv": [
-              7,
-              9,
-              9,
-              16
-            ],
-            "texture": "#edge"
-          }
-        }
-      }
-    ]
+      "particle": "basegems:blocks/{gem}_block",
+      "bars": "basegems:blocks/{gem}_block",
+      "edge": "basegems:blocks/{gem}_block"
+    }
   },
   "models/block/{gem}_block.json": {
     "parent": "block/cube_all",
@@ -1690,32 +1254,62 @@
         "faces": {
           "down": {
             "texture": "#base",
-            "uv": [0, 0, 16, 16],
+            "uv": [
+              0,
+              0,
+              16,
+              16
+            ],
             "cullface": "down"
           },
           "up": {
             "texture": "#base",
-            "uv": [0, 0, 16, 16],
+            "uv": [
+              0,
+              0,
+              16,
+              16
+            ],
             "cullface": "up"
           },
           "north": {
             "texture": "#base",
-            "uv": [0, 0, 16, 16],
+            "uv": [
+              0,
+              0,
+              16,
+              16
+            ],
             "cullface": "north"
           },
           "south": {
             "texture": "#base",
-            "uv": [0, 0, 16, 16],
+            "uv": [
+              0,
+              0,
+              16,
+              16
+            ],
             "cullface": "south"
           },
           "west": {
             "texture": "#base",
-            "uv": [0, 0, 16, 16],
+            "uv": [
+              0,
+              0,
+              16,
+              16
+            ],
             "cullface": "west"
           },
           "east": {
             "texture": "#base",
-            "uv": [0, 0, 16, 16],
+            "uv": [
+              0,
+              0,
+              16,
+              16
+            ],
             "cullface": "east"
           }
         }
@@ -1734,32 +1328,62 @@
         "faces": {
           "down": {
             "texture": "#overlay",
-            "uv": [0, 0, 16, 16],
+            "uv": [
+              0,
+              0,
+              16,
+              16
+            ],
             "cullface": "down"
           },
           "up": {
             "texture": "#overlay",
-            "uv": [0, 0, 16, 16],
+            "uv": [
+              0,
+              0,
+              16,
+              16
+            ],
             "cullface": "up"
           },
           "north": {
             "texture": "#overlay",
-            "uv": [0, 0, 16, 16],
+            "uv": [
+              0,
+              0,
+              16,
+              16
+            ],
             "cullface": "north"
           },
           "south": {
             "texture": "#overlay",
-            "uv": [0, 0, 16, 16],
+            "uv": [
+              0,
+              0,
+              16,
+              16
+            ],
             "cullface": "south"
           },
           "west": {
             "texture": "#overlay",
-            "uv": [0, 0, 16, 16],
+            "uv": [
+              0,
+              0,
+              16,
+              16
+            ],
             "cullface": "west"
           },
           "east": {
             "texture": "#overlay",
-            "uv": [0, 0, 16, 16],
+            "uv": [
+              0,
+              0,
+              16,
+              16
+            ],
             "cullface": "east"
           }
         }
@@ -2026,6 +1650,14 @@
           0.4
         ]
       }
+    }
+  },
+  "models/block/{gem}_bars_post_ends.json": {
+    "parent": "minecraft:block/iron_bars_post_ends",
+    "textures": {
+      "particle": "basegems:blocks/{gem}_block",
+      "bars": "basegems:blocks/{gem}_block",
+      "edge": "basegems:blocks/{gem}_block"
     }
   }
 }

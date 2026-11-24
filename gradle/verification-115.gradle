@@ -73,7 +73,7 @@ tasks.named('check') { dependsOn 'integrationTestClasses', 'clientIntegrationTes
 tasks.register('verifyPortResources', Exec) {
     group = 'verification'
     dependsOn 'generateGemResources'
-    commandLine 'node', '--test', 'tools/test_port_114.js'
+    commandLine 'node', '--test', 'tools/test_port_115.js', 'tools/test_bar_models.js'
 }
 tasks.named('check') { dependsOn 'verifyPortResources' }
 

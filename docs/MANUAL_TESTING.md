@@ -1,17 +1,15 @@
-# Testing Base Gems 1.14.4
+# Testing Base Gems 1.15.2
 
-Use Java 8, Forge 28.2.26 and OreSpawn 4.1.7.114041. The game jar is
-`build/libs/BaseGems-2.5.0.114041.jar`. Base Metals 3.0.2.114041 is optional;
-the local Modern Metals 1.14.4 candidate can be tested alongside it.
+Use Java 8, Forge 31.2.57 and OreSpawn 4.1.7.115021. The game jar is
+`build/libs/BaseGems-2.5.0.115021.jar`. Base Metals 3.0.3.115021 is optional.
 
-After `prepareEclipse`, choose a normal launch:
+Build the siblings, run `pinLocalCompanions`, then run `prepareEclipse` separately. Choose a normal launch:
 
 - `runClient.launch`: Base Gems and OreSpawn.
-- `runClientWithBaseMetals.launch`: adds published Base Metals.
-- `runClientWithModernMetals.launch`: adds the supplied local Modern Metals jar.
-- `runClientWithBaseAndModernMetals.launch`: loads all three material mods.
+- `runClientWithBaseMetals.launch`: adds the selected Base Metals candidate.
+- `runClientWithModernMetals.launch`: adds the pinned Modern Metals build.
+- `runClientWithBaseAndModern.launch`: adds both pinned metal candidates.
 
-The latter two are generated when `modernMetalsDevelopmentJar` is supplied.
 Use the matching versions in a separate launcher instance if testing packaged
 jars. Avoid duplicate copies of the same mod.
 
@@ -19,11 +17,14 @@ Start with a fresh Survival player. Pick up gems, nuggets, rods and storage
 blocks and check their recipe-book entries. A tagged equivalent from another
 mod should teach the recipes that accept it. Test both ordinary and blast
 furnaces; the blast furnace should take half the time. Check gem crushing
-with a gem hammer, then the available Base Metals and Modern Metals hammers.
+with a gem hammer, then the available Base Metals hammers.
 
 Mine several gems with the required tool level, Fortune and Silk Touch.
 Ordinary mining should give gems and XP; Silk Touch gives the ore without
 XP. Check a door, slab, double slab and plate for their correct drops.
+Look at several gem ores from shallow angles and in the inventory, including
+with your usual resource pack. Their overlays should stay clear of the stone
+without flickering or showing pixels from neighbouring textures.
 
 Damage a named or enchanted gem shield. One matching plate in a crafting
 grid should fully repair it and keep its other data. The repair itself

@@ -1,4 +1,4 @@
-# Base Gems for Minecraft 1.14.4
+# Base Gems for Minecraft 1.15.2
 
 Base Gems adds 33 gemstones to Minecraft. Mine agate and amethyst in upper
 caves, look deeper for ruby and sapphire, or head down near bedrock for black
@@ -7,27 +7,25 @@ pieces, tools, weapons and shields.
 
 ## Installation
 
-Use Java 8 and Forge **28.2.26 for Minecraft 1.14.4** on both client and
+Use Java 8 and Forge **31.2.57 for Minecraft 1.15.2** on both client and
 server. Base Gems needs MMD OreSpawn and runs without MMDLib.
 
-Use [MMD OreSpawn 4.1.7.114041](https://github.com/MinecraftModDevelopmentMods/OreSpawn/releases/tag/4.1.7.114041)
-or a later compatible 1.14.4 release. It includes the fix for checking cave air
+Use [MMD OreSpawn 4.1.7.115021](https://github.com/MinecraftModDevelopmentMods/OreSpawn/releases/tag/4.1.7.115021)
+or a later compatible 1.15.2 release. It includes the fix for checking cave air
 at generation boundaries; no separate local engine is needed.
 
 Base Metals is optional for a new world. When installed together, use
-[Base Metals 3.0.2.114041](https://github.com/MinecraftModDevelopmentMods/BaseMetals/releases/tag/3.0.2.114041)
-or a later compatible 1.14.4 release. If your old
+[Base Metals 3.0.3.115021](https://github.com/MinecraftModDevelopmentMods/BaseMetals/releases/tag/3.0.3.115021)
+or a later compatible 1.15.2 release. If your old
 world contains Base Metals blocks or items, keep it installed for the upgrade.
 
 Gem crushing works with the Base Gems crackhammer on its own. With Base
-Metals installed its tools and crushers can use the same recipes. With
-[Modern Metals 3.0.0.114041](https://github.com/MinecraftModDevelopmentMods/ModernMetals/releases/tag/3.0.0.114041)
-alone, its crackhammers can use them too. Both metal mods remain optional;
-Base Metals owns shared crushing when both are installed.
+Metals installed its tools and crushers can use the same recipes. [Modern Metals 3.0.0.115021](https://github.com/MinecraftModDevelopmentMods/ModernMetals/releases/tag/3.0.0.115021)
+also supplies shared crushing when installed.
 
 ## Upgrading a world
 
-Make a separate copy before opening a 1.13.2 world in 1.14.4. Keep the
+Make a separate copy before opening a 1.14.4 world in 1.15.2. Keep the
 whole save, including `basegems-legacy-registry.dat` if it is present. Worlds
 from 1.10–1.12 should first go through the released Base Gems 1.13.2 upgrade.
 [World upgrade details](docs/MIGRATION.md)
@@ -36,9 +34,8 @@ from 1.10–1.12 should first go through the released Base Gems 1.13.2 upgrade.
 
 Use a tool strong enough for the gem. Agate and jade need stone level;
 jasper, ruby and sapphire need iron level; black diamond needs diamond level.
-Modern Metals' galvanized steel, stainless steel and titanium hammers are
-iron level. A weaker tool breaks the ore
-without a drop. These are the same mining requirements as in 1.12.
+A weaker tool breaks the ore without a drop. These are the same mining
+requirements as in 1.12.
 
 Gem ores give XP when mined. Fortune can increase the gem yield, and Silk
 Touch lets you take the ore block home. Armourers, toolsmiths and weaponsmiths buy and sell gems for emeralds,
@@ -66,7 +63,7 @@ Repair a damaged gem shield by putting it and one matching plate in a
 crafting grid. Its name and enchantments stay. Repair is a manual recipe
 and does not appear in the recipe book.
 
-Open **Mods â†’ Base Gems â†’ Config** or choose **Base Gems** from OreSpawn's
+Open **Mods > Base Gems > Config** or choose **Base Gems** from OreSpawn's
 **Mods** list. Both screens save to `config/basegems-common.toml`. Restart the
 game or server after changing Fantasy Level or switching a gem on or off.
 Gem switches keep existing blocks and items available in old worlds.
@@ -89,9 +86,9 @@ upgrade recipes are not part of this port.
 
 ## Development and credits
 
-The 1.14.4 branch uses ForgeGradle 7 and builds a Java 8 mod.
+The 1.15.2 branch uses ForgeGradle 7 and builds a Java 8 mod.
 See [building and Eclipse setup](docs/BUILDING.md) and the
-[manual testing](docs/MANUAL_TESTING.md), [porting notes](docs/PORTING_114.md)
+[manual testing](docs/MANUAL_TESTING.md), [porting notes](docs/PORTING_115.md)
 and the [changelog](CHANGELOG.txt).
 
 The gem artwork comes from the 1.12.2 branch. Thanks to Aedda, Eejit,
