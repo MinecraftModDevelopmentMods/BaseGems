@@ -2,7 +2,6 @@ package zone.moddev.mc.basegems.content;
 
 import net.minecraft.block.OreBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
@@ -21,7 +20,6 @@ final class GemOreBlock extends OreBlock {
 
     @Override public ToolType getHarvestTool(BlockState state) { return ToolType.PICKAXE; }
     @Override public int getHarvestLevel(BlockState state) { return gem.requiredHarvestLevel(); }
-    @Override public BlockRenderLayer getRenderLayer() { return BlockRenderLayer.CUTOUT_MIPPED; }
 
 
     @Override

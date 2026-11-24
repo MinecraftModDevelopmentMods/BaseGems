@@ -1,3 +1,19 @@
+2.5.0.115021 for Minecraft 1.15.2
+
+Doors, trapdoors and bars no longer hide the terrain behind their gaps. Their
+placement and collision behaviour stay the same.
+
+All 33 gems move across from the 1.14.4 release, with the same names, config
+keys, recipes and deposit distribution. Use OreSpawn 4.1.7.115021 and Java 8;
+Base Metals 3.0.3.115021 and Modern Metals 3.0.0.115021 are optional.
+Bars connect like vanilla iron bars.
+
+- Ore overlays keep the wider spacing and explicit texture coordinates.
+- Gem ores, decorative blocks, molten gems and projectiles use native 1.15 rendering.
+- Mining XP, Fortune, Silk Touch, smith trades and recipe discovery carry over.
+- Both config screens and the High/Low Fantasy settings remain available.
+- Saved gem blocks and items keep their IDs when upgrading a copy of a 1.14 world.
+
 2.5.0.114041 for Minecraft 1.14.4
 
 All 33 gems move to Forge 1.14.4, using OreSpawn 4.1.7.114041. Base Metals

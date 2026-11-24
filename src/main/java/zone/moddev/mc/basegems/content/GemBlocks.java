@@ -20,9 +20,9 @@ final class GemBlocks {
         blocks.put(name + "_ore", new GemOreBlock(gem, Block.Properties.create(Material.ROCK)
                 .sound(SoundType.STONE).hardnessAndResistance(3, 5).variableOpacity()));
         blocks.put(name + "_plate", new PlateBlock(properties(gem).variableOpacity(), harvest));
-        blocks.put(name + "_bars", new HarvestPane(properties(gem).variableOpacity(), harvest));
-        blocks.put(name + "_door", new HarvestDoor(properties(gem).variableOpacity(), harvest));
-        blocks.put(name + "_trapdoor", new HarvestTrapDoor(properties(gem).variableOpacity(), harvest));
+        blocks.put(name + "_bars", new HarvestPane(properties(gem).variableOpacity().notSolid(), harvest));
+        blocks.put(name + "_door", new HarvestDoor(properties(gem).variableOpacity().notSolid(), harvest));
+        blocks.put(name + "_trapdoor", new HarvestTrapDoor(properties(gem).variableOpacity().notSolid(), harvest));
         blocks.put(name + "_button", new HarvestButton(properties(gem).doesNotBlockMovement(), harvest));
         blocks.put(name + "_lever", new HarvestLever(properties(gem).doesNotBlockMovement(), harvest));
         blocks.put(name + "_pressure_plate", new HarvestPressurePlate(properties(gem), harvest));
